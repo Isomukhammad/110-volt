@@ -1,0 +1,15 @@
+.container {
+  background: linear-gradient(270.21deg, #b5159d 0.19%, #632489 99.81%);
+  padding: 12px 35px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: fit-content;
+
+  div {
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+  }
+}
