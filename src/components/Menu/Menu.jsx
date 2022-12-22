@@ -15,7 +15,7 @@ const Menu = () => {
                 <MenuCatalogue catalogues={catalogues} btn={btn} setBtn={setBtn} />
             </div>
             <div className={styles.catalogueItems}>
-                <MenuCategory />
+                <MenuCategory catalogues={catalogues} btn={btn} />
             </div>
         </div>
     )

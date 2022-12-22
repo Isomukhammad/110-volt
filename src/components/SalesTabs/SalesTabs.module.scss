@@ -1,0 +1,17 @@
+.salesTab {
+  margin-top: 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  .tabs {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+
+    .tab {
+      overflow: hidden;
+      border-radius: 8px;
+    }
+  }
+}

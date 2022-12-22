@@ -1,14 +1,28 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import styles from './MenuCategory.module.scss';
 
-const MenuCategory = ({ }) => {
+const MenuCategory = ({ catalogues, btn }) => {
+    console.log(catalogues)
+    const { title, catalogue } = catalogues[btn];
+    const { name, link } = catalogue;
+
     return (
         <div className={styles.category}>
-            <div>
-                <h1>Электроника</h1>
-                <p>Гаджеты</p>
+            <div className={styles.items}>
+                <h1>{title}</h1>
+                <div className={styles.links}>
+                    {
+                        catalogue.map((item) => (
+                            <Link href={item.link} key={item.id}>{item.name}</Link>
+                        ))
+                    }
+                </div>
             </div>
-            <Image src={'/images/Rectangle 15.png'} alt="" width={250} height={400}></Image>
+            <div className={styles.img}>
+                <Image src={'/images/Rectangle 15.png'} alt="" width={250} height={400} />
+                <p>Смартфоны</p>
+            </div>
         </div>
     )
 }

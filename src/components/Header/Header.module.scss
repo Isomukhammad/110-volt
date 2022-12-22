@@ -21,6 +21,10 @@
       .social {
         display: flex;
         gap: 8px;
+
+        svg {
+          cursor: pointer;
+        }
       }
 
       p {
@@ -61,6 +65,7 @@
         flex-direction: column;
         align-items: center;
         gap: 4px;
+        cursor: pointer;
       }
     }
 

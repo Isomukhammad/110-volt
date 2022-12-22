@@ -3,4 +3,38 @@
   flex-direction: row;
   justify-content: space-between;
   padding: 40px;
+
+  .items {
+    display: flex;
+    flex-direction: column;
+    gap: 57px;
+
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+
+      a {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 19px;
+        color: #828282;
+
+        &:hover {
+          color: #7b54c9;
+        }
+      }
+    }
+  }
+
+  .img {
+    p {
+      font-weight: 600;
+      margin-top: 24px;
+      text-align: center;
+      font-size: 16px;
+      line-height: 19px;
+      color: #242424;
+    }
+  }
 }

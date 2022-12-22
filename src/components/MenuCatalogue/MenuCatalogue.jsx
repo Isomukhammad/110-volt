@@ -14,7 +14,7 @@ const MenuCatalogue = ({ catalogues, btn, setBtn }) => {
                         >
                             <use xlinkHref={`#${item.logo}`}></use>
                         </svg>
-                        {item.name}
+                        {item.title}
                     </button>
                 ))
             }

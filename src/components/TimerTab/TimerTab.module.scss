@@ -1,0 +1,41 @@
+.timerTab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  color: #bdbdbd;
+
+  .title {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+  }
+
+  .timer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 24px;
+
+    span {
+      font-weight: 500;
+      font-size: 36px;
+      line-height: 42px;
+
+      /* Grey Scale/Grey 5 */
+
+      color: #e0e0e0;
+    }
+
+    div {
+      text-align: center;
+    }
+
+    .time {
+      color: #242424;
+      font-weight: 700;
+      font-size: 32px;
+      line-height: 39px;
+    }
+  }
+}
