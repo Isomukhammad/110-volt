@@ -156,5 +156,75 @@
       "img": "/images/Rectangle 1188-5.png",
       "decsription": "О рассрочке в 110-volt"
     }
+  ],
+  "sales": [
+    {
+      "id": 0,
+      "img": "Rectangle 1187.png"
+    },
+    {
+      "id": 1,
+      "img": "Rectangle 1187-1.png"
+    },
+    {
+      "id": 2,
+      "img": "Rectangle 1187-2.png"
+    }
+  ],
+  "catalogues": [
+    {
+      "id": 0,
+      "name": "Электроника",
+      "logo": "phone-logo",
+      "catalogue": [
+        {
+          "id": 0,
+          "name": "Гаджеты и аксессуары",
+          "link": "/"
+        },
+        {
+          "id": 1,
+          "name": "Смартфоны",
+          "link": "/"
+        },
+        {
+          "id": 2,
+          "name": "Планшеты",
+          "link": "/"
+        },
+        {
+          "id": 3,
+          "name": "Наушники",
+          "link": "/"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "name": "Компьютерная техника",
+      "logo": "computer-logo",
+      "catalogue": [
+        {
+          "id": 0,
+          "name": "Мониторы",
+          "link": "/"
+        },
+        {
+          "id": 1,
+          "name": "Видеокарты",
+          "link": "/"
+        },
+        {
+          "id": 2,
+          "name": "Принтеры",
+          "link": "/"
+        },
+        {
+          "id": 3,
+          "name": "Компьютерные корпуса",
+          "link": "/"
+        }
+      ]
+    }
   ]
 }

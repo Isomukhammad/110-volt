@@ -1,12 +1,17 @@
+import { useState } from 'react';
+
 import Link from 'next/link';
 
 import SearchInput from '../SearchInput/SearchInput';
 
-import CompanyLogo from '../../public/icons/d_logo.svg';
+import CompanyLogo from '../../../public/icons/d_logo.svg';
 
 import styles from './Header.module.scss';
+import Menu from '../Menu/Menu';
 
 const Header = () => {
+    const [menuOpen, setMenuOpen] = useState(true);
+
     return (
         <header className={styles.container}>
             <div className={styles.information}>
@@ -33,33 +38,37 @@ const Header = () => {
             </div>
 
             <nav className={styles.navigation}>
-                <button className={styles.menuButton}>
+                <button className={styles.menuButton} onClick={() => { setMenuOpen(!menuOpen) }}>
                     <svg viewBox="0 0 24 24" className={styles.menuLogo}>
                         <use xlinkHref="#menu"></use>
                     </svg>
                 </button>
                 <CompanyLogo />
                 <SearchInput placeholder={'Я ищу ...'} />
-                <div className={styles.navButton}>
-                    <svg viewBox="0 0 21 22" fill="none" className={styles.languageButton}>
-                        <use xlinkHref='#language-logo'></use>
-                    </svg>
-                    <p>Русский</p>
-                </div>
-                <div className={styles.navButton}>
-                    <svg viewBox="0 0 21 22" fill="none" className={styles.languageButton}>
-                        <use xlinkHref='#bag-logo'></use>
-                    </svg>
-                    <p>Корзина</p>
-                </div>
-                <div className={styles.navButton}>
-                    <svg viewBox="0 0 21 22" fill="none" className={styles.languageButton}>
-                        <use xlinkHref='#profile-logo'></use>
-                    </svg>
-                    <p>Войти</p>
+                <div className={styles.navButtons}>
+                    <div className={styles.navButton}>
+                        <svg viewBox="0 0 21 22" fill="none" className={styles.languageButton}>
+                            <use xlinkHref='#language-logo'></use>
+                        </svg>
+                        <p>Русский</p>
+                    </div>
+                    <div className={styles.navButton}>
+                        <svg viewBox="0 0 21 22" fill="none" className={styles.languageButton}>
+                            <use xlinkHref='#bag-logo'></use>
+                        </svg>
+                        <p>Корзина</p>
+                    </div>
+                    <div className={styles.navButton}>
+                        <svg viewBox="0 0 21 22" fill="none" className={styles.languageButton}>
+                            <use xlinkHref='#profile-logo'></use>
+                        </svg>
+                        <p>Войти</p>
+                    </div>
                 </div>
             </nav>
-            <div></div>
+            {
+                menuOpen ? <Menu /> : null
+            }
         </header >
     )
 }

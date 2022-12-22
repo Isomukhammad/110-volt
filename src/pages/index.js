@@ -7,6 +7,8 @@ import BrandCategories from '../components/BrandCategories/BrandCategories'
 import ReviewCategories from '../components/ReviewCategories/ReviewCategories'
 
 import styles from '../styles/Home.module.css';
+import DiscountTabs from '../components/DiscountTabs/DiscountTabs';
+import SalesTabs from '../components/SalesTabs/SalesTabs';
 
 export default function Home() {
   return (
@@ -15,9 +17,11 @@ export default function Home() {
 
       <Headline />
       <PopularCategories />
+      <DiscountTabs />
       <Recommendations title="Хиты продаж" link="/" linkTitle="Все хиты" />
       <Recommendations title="Лучшие новинки" link="/" linkTitle="Все новинки" />
       <Recommendations title="Успейте купить" />
+      <SalesTabs />
       <ReviewCategories />
       <BrandCategories />
       <CompanyDescription />

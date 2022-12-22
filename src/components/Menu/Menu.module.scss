@@ -1,0 +1,17 @@
+.menu {
+  background-color: white;
+  position: absolute;
+  height: 1080px;
+  left: 0;
+  bottom: -1080px;
+  border-radius: 32px;
+  width: 1080px;
+  color: black;
+
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+
+  .catalogueItems {
+    border-left: 2px solid #f2f2f2;
+  }
+}
