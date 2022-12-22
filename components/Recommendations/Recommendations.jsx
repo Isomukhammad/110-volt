@@ -24,7 +24,7 @@ const Recommendations = ({ title, link, linkTitle }) => {
                     ))
                 }
                 {
-                    data.bestsellers.slice(0).reverse().map((product) => (
+                    data.bestsellers.map((product) => (
                         <ProductItem key={product.id} info={product} />
                     ))
                 }

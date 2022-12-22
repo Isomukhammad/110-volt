@@ -16,7 +16,7 @@ const BrandCategories = () => {
                     ))
                 }
                 {
-                    brands.slice(0).reverse().map((brand) => (
+                    brands.map((brand) => (
                         <BrandTab key={brand.id} info={brand} />
                     ))
                 }
