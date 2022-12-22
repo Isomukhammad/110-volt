@@ -1,19 +1,23 @@
 import Link from 'next/link';
+
+import SearchInput from '../SearchInput/SearchInput';
+
 import CompanyLogo from '../../public/icons/d_logo.svg';
-import TelegramLogo from '../../public/icons/telegram.svg'
-import InstagramLogo from '../../public/icons/instagram.svg'
-import Search from '../Search/Search';
 
 import styles from './Header.module.scss';
 
 const Header = () => {
     return (
-        <div className={styles.container}>
+        <header className={styles.container}>
             <div className={styles.information}>
                 <div className={styles.contacts}>
                     <div className={styles.social}>
-                        <InstagramLogo />
-                        <TelegramLogo />
+                        <svg width={16} height={16}>
+                            <use xlinkHref='#instagram-logo'></use>
+                        </svg>
+                        <svg width={16} height={16}>
+                            <use xlinkHref='#telegram-logo'></use>
+                        </svg>
                     </div>
                     <p>+998 (55) 501 56 56</p>
                 </div>
@@ -28,33 +32,35 @@ const Header = () => {
                 </div>
             </div>
 
-            <div className={styles.actions}>
-                <svg viewBox="0 0 24 24" className={styles.menuButton}>
-                    <use xlinkHref="#menu"></use>
-                </svg>
+            <nav className={styles.navigation}>
+                <button className={styles.menuButton}>
+                    <svg viewBox="0 0 24 24" className={styles.menuLogo}>
+                        <use xlinkHref="#menu"></use>
+                    </svg>
+                </button>
                 <CompanyLogo />
-                <Search placeholder={'Я ищу ...'} />
-                <div>
+                <SearchInput placeholder={'Я ищу ...'} />
+                <div className={styles.navButton}>
                     <svg viewBox="0 0 21 22" fill="none" className={styles.languageButton}>
                         <use xlinkHref='#language-logo'></use>
                     </svg>
                     <p>Русский</p>
                 </div>
-                <div>
+                <div className={styles.navButton}>
                     <svg viewBox="0 0 21 22" fill="none" className={styles.languageButton}>
                         <use xlinkHref='#bag-logo'></use>
                     </svg>
                     <p>Корзина</p>
                 </div>
-                <div>
+                <div className={styles.navButton}>
                     <svg viewBox="0 0 21 22" fill="none" className={styles.languageButton}>
                         <use xlinkHref='#profile-logo'></use>
                     </svg>
                     <p>Войти</p>
                 </div>
-            </div>
+            </nav>
             <div></div>
-        </div >
+        </header >
     )
 }
 

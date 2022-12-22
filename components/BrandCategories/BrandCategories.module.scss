@@ -1,0 +1,14 @@
+.brands {
+  margin-top: 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+
+  .tabs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    column-gap: 16px;
+    row-gap: 24px;
+  }
+}

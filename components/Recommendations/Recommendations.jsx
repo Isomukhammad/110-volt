@@ -1,5 +1,6 @@
 import Link from "next/link"
 import data from "../../data.json"
+import CategoriesTabsLink from "../CategoriesTabsLink/CategoriesTabLink"
 
 import ProductItem from "../ProductItem/ProductItem"
 
@@ -12,11 +13,7 @@ const Recommendations = ({ title, link, linkTitle }) => {
                 <h2>{title}</h2>
                 {
                     link ? (
-                        <Link href={`${link}`}>{linkTitle}<span>
-                            <svg viewBox="0 0 17 16" fill="none" className={styles.arrowIcon} width="16px" height="9.33px">
-                                <use xlinkHref='#arrow-right'></use>
-                            </svg>
-                        </span></Link>
+                        <CategoriesTabsLink link='/' linkTitle={linkTitle} />
                     ) : (null)
                 }
             </div>
@@ -27,7 +24,7 @@ const Recommendations = ({ title, link, linkTitle }) => {
                     ))
                 }
                 {
-                    data.bestsellers.map((product) => (
+                    data.bestsellers.slice(0).reverse().map((product) => (
                         <ProductItem key={product.id} info={product} />
                     ))
                 }

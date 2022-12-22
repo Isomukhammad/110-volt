@@ -41,13 +41,28 @@
     }
   }
 
-  .actions {
+  .navigation {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 
+    .navButton {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
     .menuButton {
+      padding: 16px 18px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 16px;
+      border: none;
+    }
+
+    .menuLogo {
+      margin-bottom: -3px;
       height: 24px;
       width: 24px;
       fill: #ffffff;

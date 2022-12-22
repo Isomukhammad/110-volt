@@ -1,17 +1,16 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from '@next/font/google'
-import styles from '../styles/Home.module.css'
 import Headline from '../components/Headline/Headline'
 import PopularCategories from '../components/PopularCategories/PopularCategories'
 import HeadInfo from '../utils/HeadInfo'
 import Recommendations from '../components/Recommendations/Recommendations';
+import CompanyDescription from '../components/CompanyDescription/CompanyDescription'
+import BrandCategories from '../components/BrandCategories/BrandCategories'
+import ReviewCategories from '../components/ReviewCategories/ReviewCategories'
 
-const inter = Inter({ subsets: ['latin'] })
+import styles from '../styles/Home.module.css';
 
 export default function Home() {
   return (
-    <div className={styles.main}>
+    <main className={styles.main}>
       <HeadInfo />
 
       <Headline />
@@ -19,6 +18,9 @@ export default function Home() {
       <Recommendations title="Хиты продаж" link="/" linkTitle="Все хиты" />
       <Recommendations title="Лучшие новинки" link="/" linkTitle="Все новинки" />
       <Recommendations title="Успейте купить" />
-    </div>
+      <ReviewCategories />
+      <BrandCategories />
+      <CompanyDescription />
+    </main>
   )
 }

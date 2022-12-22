@@ -102,5 +102,59 @@
       "img": "/images/image 6-5.png",
       "name": "Wi-Fi роутер Xiaomi Mi Wi-Fi Router 4A (большой) Wi-Fi роутер Xiaomi Mi Wi-Fi Router 4A (большой)"
     }
+  ],
+  "brands": [
+    {
+      "id": 0,
+      "name": "Xiaomi",
+      "img": "/images/image 7.png"
+    },
+    {
+      "id": 1,
+      "name": "Apple",
+      "img": "/images/image 8.png"
+    },
+    {
+      "id": 2,
+      "name": "Samsung",
+      "img": "/images/image 9.png"
+    },
+    {
+      "id": 3,
+      "name": "HP",
+      "img": "/images/image 10.png"
+    }
+  ],
+  "reviews": [
+    {
+      "id": 0,
+      "img": "/images/Rectangle 1188.png",
+      "decsription": "О рассрочке в 110-volt"
+    },
+    {
+      "id": 1,
+      "img": "/images/Rectangle 1188-1.png",
+      "decsription": "О рассрочке в 110-volt"
+    },
+    {
+      "id": 2,
+      "img": "/images/Rectangle 1188-2.png",
+      "decsription": "О рассрочке в 110-volt"
+    },
+    {
+      "id": 3,
+      "img": "/images/Rectangle 1188-3.png",
+      "decsription": "О рассрочке в 110-volt"
+    },
+    {
+      "id": 4,
+      "img": "/images/Rectangle 1188-4.png",
+      "decsription": "О рассрочке в 110-volt"
+    },
+    {
+      "id": 5,
+      "img": "/images/Rectangle 1188-5.png",
+      "decsription": "О рассрочке в 110-volt"
+    }
   ]
 }

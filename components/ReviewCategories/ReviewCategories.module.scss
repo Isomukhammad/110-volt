@@ -1,20 +1,22 @@
-.bestsellers {
-  margin-top: 80px;
+.reviews {
+  display: flex;
+  flex-direction: column;
+  margin-top: 120px;
   display: flex;
   flex-direction: column;
   gap: 40px;
 
-  .titleBar {
+  .header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
   }
 
   .tabs {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    column-gap: 15px;
-    row-gap: 44px;
+    grid-template-rows: 1fr;
+    gap: 16px;
   }
 }

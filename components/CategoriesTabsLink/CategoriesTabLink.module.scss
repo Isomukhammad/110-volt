@@ -1,0 +1,14 @@
+.link {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  font-family: "Segoe UI";
+  color: #828282;
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+
+  svg {
+    margin-top: 11px;
+  }
+}

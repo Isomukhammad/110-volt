@@ -6,10 +6,10 @@ import styles from './Main.module.scss';
 
 const MainLayout = ({ children }) => {
     return (
-        <div>
+        <div styles={styles.main}>
             <Sprites />
             <Header />
-            <div className={styles.main}>
+            <div className={styles.children}>
                 {children}
             </div>
             <Footer />
