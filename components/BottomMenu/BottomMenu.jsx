@@ -3,7 +3,7 @@ import MenuLogo from '../../public/icons/gg_menu.svg';
 import BagLogo from '../../public/icons/Bag.svg';
 import ProfileLogo from '../../public/icons/Profile.svg';
 
-import styles from './bottom-menu.module.scss'
+import styles from './BottomMenu.module.scss'
 import Link from 'next/link';
 
 const BottomMenu = () => {

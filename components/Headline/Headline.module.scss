@@ -1,0 +1,25 @@
+.headline {
+  display: grid;
+  grid-template-columns: 1196px 388px;
+  grid-template-rows: 350px 71px;
+  column-gap: 16px;
+  row-gap: 12px;
+
+  div {
+    overflow: hidden;
+  }
+
+  .mainImg {
+    border-radius: 24px;
+  }
+
+  .slider {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+
+    img {
+      border-radius: 16px;
+    }
+  }
+}

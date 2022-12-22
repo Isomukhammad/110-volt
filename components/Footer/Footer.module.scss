@@ -1,0 +1,37 @@
+.footer {
+  background: linear-gradient(270.95deg, #642489 20.31%, #851a75 100%);
+  padding: 80px 160px;
+  display: flex;
+  flex-direction: column;
+  gap: 160px;
+
+  * {
+    color: #ffffff;
+  }
+
+  .links {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+
+    div {
+      h2 {
+        margin-bottom: 24px;
+      }
+
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+  }
+  .devLogo {
+    width: 15px;
+    height: 18px;
+  }
+
+  .additional {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

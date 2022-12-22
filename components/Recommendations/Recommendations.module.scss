@@ -1,0 +1,36 @@
+.bestsellers {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  .titleBar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    a {
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 24px;
+      font-family: "Segoe UI";
+      color: #828282;
+      display: flex;
+      flex-direction: row;
+      gap: 12px;
+      align-items: center;
+
+      svg {
+        margin-top: 10px;
+      }
+    }
+  }
+
+  .tabs {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    column-gap: 15px;
+    row-gap: 44px;
+  }
+}
