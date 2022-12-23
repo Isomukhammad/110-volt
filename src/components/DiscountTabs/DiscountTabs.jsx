@@ -1,52 +1,78 @@
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
+// Import Swiper styles
 import "swiper/css";
-import "swiper/css/bundle";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-import { Autoplay, Pagination, Navigation } from "swiper";
+// import required modules
+import { Pagination, Navigation, Autoplay } from "swiper";
+
+import styles from './DiscountTabs.module.scss'
 
 const DiscountTabs = () => {
-    const [data] = useState([{
-        id: 0,
-        name: 'Slide1'
-    }, {
-        id: 1,
-        name: 'Slide2'
-    }, {
-        id: 2,
-        name: 'Slide3'
-    }]);
+    const swiperPrevRef = useRef(null);
+    const swiperNextRef = useRef(null);
 
     return (
-        <div className='tabs'>
+        <div className={styles.tabs}>
             <Swiper
-                spaceBetween={30}
-                centeredSlides={true}
+                slidesPerView={2}
+                spaceBetween={16}
+                slidesPerGroup={1}
+                loop={true}
+                loopFillGroupWithBlank={true}
                 autoplay={{
-                    delay: 2500,
+                    delay: 5000,
                     disableOnInteraction: false,
                 }}
-                pagination={{
-                    clickable: true,
+                navigation={{
+                    prevEl: swiperPrevRef,
+                    nextEl: swiperNextRef
                 }}
-                navigation={true}
-                modules={[Autoplay, Pagination, Navigation]}
+                modules={[Pagination, Navigation, Autoplay]}
                 className="mySwiper"
+
+                onInit={(swiper) => {
+                    swiper.params.navigation.prevEl = swiperPrevRef.current;
+                    swiper.params.navigation.nextEl = swiperNextRef.current;
+                    swiper.navigation.init();
+                    swiper.navigation.update();
+                }}
             >
-                <SwiperSlide>Slide 1</SwiperSlide>
-                <SwiperSlide>Slide 2</SwiperSlide>
-                <SwiperSlide>Slide 3</SwiperSlide>
-                <SwiperSlide>Slide 4</SwiperSlide>
-                <SwiperSlide>Slide 5</SwiperSlide>
-                <SwiperSlide>Slide 6</SwiperSlide>
-                <SwiperSlide>Slide 7</SwiperSlide>
-                <SwiperSlide>Slide 8</SwiperSlide>
-                <SwiperSlide>Slide 9</SwiperSlide>
+                <SwiperSlide className={styles.swiperSlide}>
+                    <img src="/images/Rectangle 5.png" />
+                </SwiperSlide>
+                <SwiperSlide className={styles.swiperSlide}>
+                    <img src="/images/Rectangle 6.png" />
+                </SwiperSlide>
+                <SwiperSlide className={styles.swiperSlide}>
+                    <img src="/images/Rectangle 5.png" />
+                </SwiperSlide>
+                <SwiperSlide className={styles.swiperSlide}>
+                    <img src="/images/Rectangle 6.png" />
+                </SwiperSlide>
+                <SwiperSlide className={styles.swiperSlide}>
+                    <img src="/images/Rectangle 5.png" />
+                </SwiperSlide>
+                <SwiperSlide className={styles.swiperSlide}>
+                    <img src="/images/Rectangle 6.png" />
+                </SwiperSlide>
             </Swiper>
+            <div className={styles.swiperPrev} ref={swiperPrevRef}>
+                <svg width={18.67} height={16.33} viewBox='0 0 28 28' fill='none' stroke="white"
+                >
+                    <use xlinkHref={`#arrow-left`}></use>
+                </svg>
+            </div>
+            <div className={styles.swiperNext} ref={swiperNextRef}>
+                <svg width={18.67} height={16.33} viewBox='0 0 28 28' fill='none' stroke="white"
+                >
+                    <use xlinkHref={`#arrow-left`}></use>
+                </svg>
+            </div>
         </div>
     )
 }

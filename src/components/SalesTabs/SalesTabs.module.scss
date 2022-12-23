@@ -10,8 +10,9 @@
     gap: 24px;
 
     .tab {
-      overflow: hidden;
-      border-radius: 8px;
+      img {
+        border-radius: 8px;
+      }
     }
   }
 }

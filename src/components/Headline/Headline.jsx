@@ -10,30 +10,32 @@ const Headline = () => {
 
     return (
         <div className={styles.headline}>
-            <Image src={`/images/image ${image}.png`} alt="" width={1196} height={350} className={styles.mainImg} />
-            <Image src={'/images/image 3.png'} alt="" width={388} height={350} />
-            <div className={styles.slider}>
-                {
-                    data.images.map(img => (
-                        <Image key={img.id} src={img.img} alt="" width={249} height={71} onClick={() => setImage(img.img - id)} />
-                    ))
-                }
-                {
-                    data.images.map(img => (
-                        <Image key={img.id} src={img.img} alt="" width={249} height={71} onClick={() => setImage(img.img - id)} />
-                    ))
-                }
-                {
-                    data.images.map(img => (
-                        <Image key={img.id} src={img.img} alt="" width={249} height={71} onClick={() => setImage(img.img - id)} />
-                    ))
-                }
-                {
-                    data.images.map(img => (
-                        <Image key={img.id} src={img.img} alt="" width={249} height={71} onClick={() => setImage(img.img - id)} />
-                    ))
-                }
+            <div className={styles.sliders}>
+                <Image src={`/images/image ${image}.png`} alt="" width={1196} height={350} className={styles.mainImg} />
+                <div className={styles.slider}>
+                    {
+                        data.images.map(img => (
+                            <Image key={img.id} src={img.img} alt="" width={253} height={75} onClick={() => setImage(img.img - id)} />
+                        ))
+                    }
+                    {
+                        data.images.map(img => (
+                            <Image key={img.id} src={img.img} alt="" width={253} height={75} onClick={() => setImage(img.img - id)} />
+                        ))
+                    }
+                    {
+                        data.images.map(img => (
+                            <Image key={img.id} src={img.img} alt="" width={253} height={75} onClick={() => setImage(img.img - id)} />
+                        ))
+                    }
+                    {
+                        data.images.map(img => (
+                            <Image key={img.id} src={img.img} alt="" width={253} height={75} onClick={() => setImage(img.img - id)} />
+                        ))
+                    }
+                </div>
             </div>
+            <Image src={'/images/image 3.png'} alt="" width={388} height={437} />
         </div>
     )
 }

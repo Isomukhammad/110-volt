@@ -3,7 +3,6 @@ import Link from 'next/link';
 import styles from './MenuCategory.module.scss';
 
 const MenuCategory = ({ catalogues, btn }) => {
-    console.log(catalogues)
     const { title, catalogue } = catalogues[btn];
     const { name, link } = catalogue;
 

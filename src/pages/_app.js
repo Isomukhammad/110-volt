@@ -1,7 +1,6 @@
 import MainLayout from '../layouts/Main';
 
 import '../components/MenuCatalogue/MenuCatalogue.scss';
-import '../components/DiscountTabs/DiscountTabs.scss'
 
 import '../styles/globals.css';
 

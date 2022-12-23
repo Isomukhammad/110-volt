@@ -45,6 +45,10 @@ const Sprites = () => {
                     <path fillRule="evenodd" clipRule="evenodd" d="M11.9848 12.0059C14.5229 12.0059 16.58 9.94781 16.58 7.40971C16.58 4.87162 14.5229 2.81448 11.9848 2.81448C9.44667 2.81448 7.38858 4.87162 7.38858 7.40971C7.38001 9.93924 9.42382 11.9973 11.9524 12.0059H11.9848Z" fill="white" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 </symbol>
 
+                <symbol id="arrow-left">
+                    <path xmlns="http://www.w3.org/2000/svg" d="M23.3333 14H4.66666M12.8333 5.83337L4.66666 14L12.8333 22.1667" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </symbol>
+
                 <symbol id="arrow-right">
                     <path d="M1.16666 6.00004H11.8333M7.16666 1.33337L11.8333 6.00004L7.16666 10.6667" stroke="#242424" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 </symbol>
