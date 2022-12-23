@@ -229,5 +229,55 @@
         }
       ]
     }
+  ],
+  "popularItems": [
+    {
+      "id": 0,
+      "decsription": "Samsung Q70A QLED 4K Smart TV (2021) QE85Q77AAUXCE | Samsung Узбекистан",
+      "monthly": "372 000",
+      "price": "32 540 000",
+      "discounted": "29 483 000",
+      "img": "/images/image 6.png"
+    },
+    {
+      "id": 1,
+      "decsription": "Samsung Q70A QLED 4K Smart TV (2021) QE85Q77AAUXCE | Samsung Узбекистан",
+      "monthly": "372 000",
+      "price": "32 540 000",
+      "discounted": "29 483 000",
+      "img": "/images/image 6-1.png"
+    },
+    {
+      "id": 2,
+      "decsription": "Samsung Q70A QLED 4K Smart TV (2021) QE85Q77AAUXCE | Samsung Узбекистан",
+      "monthly": "372 000",
+      "price": "32 540 000",
+      "discounted": "29 483 000",
+      "img": "/images/image 6-2.png"
+    },
+    {
+      "id": 3,
+      "decsription": "Samsung Q70A QLED 4K Smart TV (2021) QE85Q77AAUXCE | Samsung Узбекистан",
+      "monthly": "372 000",
+      "price": "32 540 000",
+      "discounted": "29 483 000",
+      "img": "/images/image 6-3.png"
+    },
+    {
+      "id": 4,
+      "decsription": "Samsung Q70A QLED 4K Smart TV (2021) QE85Q77AAUXCE | Samsung Узбекистан",
+      "monthly": "372 000",
+      "price": "32 540 000",
+      "discounted": "29 483 000",
+      "img": "/images/image 6-4.png"
+    },
+    {
+      "id": 5,
+      "decsription": "Samsung Q70A QLED 4K Smart TV (2021) QE85Q77AAUXCE | Samsung Узбекистан",
+      "monthly": "372 000",
+      "price": "32 540 000",
+      "discounted": "29 483 000",
+      "img": "/images/image 6-5.png"
+    }
   ]
 }

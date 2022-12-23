@@ -19,7 +19,7 @@ const Footer = () => {
                     <h2>Компания</h2>
                     <Link href="/about">О компании</Link>
                     <Link href="/contacts">Наши контакты</Link>
-                    <Link href="/">Новости</Link>
+                    <Link href="/news">Новости</Link>
                     <Link href="/offer">Оферта</Link>
                 </div>
 
@@ -57,7 +57,9 @@ const Footer = () => {
             </div>
 
             <div className={styles.additional}>
-                <Image src={'/images/CompanyLogo2.png'} alt="" width="0" height="0" sizes="100vw" className={styles.image} placeholder="blurDataURL" />
+                <Link href='/'>
+                    <Image src={'/images/CompanyLogo2.png'} alt="" width="0" height="0" sizes="100vw" className={styles.image} placeholder="blurDataURL" />
+                </Link>
                 <p>© 2022 110-volt. Все права защищены</p>
                 <p className={styles.devs}>Разработка -
                     <span>
@@ -67,7 +69,7 @@ const Footer = () => {
                     </span>
                 </p>
             </div>
-        </footer >
+        </footer>
     )
 }
 

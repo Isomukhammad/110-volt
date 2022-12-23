@@ -4,7 +4,7 @@ import HeadInfo from "../../utils/HeadInfo";
 
 import styles from './offer.module.scss'
 
-const Offer = () => {
+const OfferPage = () => {
     return (
         <>
             <HeadInfo title="Оферта" />
@@ -40,4 +40,4 @@ const Offer = () => {
     )
 }
 
-export default Offer;
+export default OfferPage;

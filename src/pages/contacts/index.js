@@ -4,7 +4,7 @@ import HeadInfo from '../../utils/HeadInfo';
 
 import styles from './contacts.module.scss'
 
-const Contacts = () => {
+const ContactsPage = () => {
     return (
         <>
             <HeadInfo title="Наши контакты" />
@@ -25,4 +25,4 @@ const Contacts = () => {
     )
 }
 
-export default Contacts; 
+export default ContactsPage; 

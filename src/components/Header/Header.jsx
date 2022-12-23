@@ -44,7 +44,9 @@ const Header = () => {
                     </svg>
                 </button>
 
-                <Image src={'/images/CompanyLogo1.png'} alt="" width="0" height="0" sizes="100vw" className={styles.image} placeholder="blurDataURL" />
+                <Link href='/'>
+                    <Image src={'/images/CompanyLogo1.png'} alt="" width="0" height="0" sizes="100vw" className={styles.image} placeholder="blurDataURL" />
+                </Link>
 
                 <SearchInput placeholder={'Я ищу ...'} />
                 <div className={styles.navButtons}>
