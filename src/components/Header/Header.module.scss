@@ -53,6 +53,12 @@
     justify-content: space-between;
     align-items: center;
 
+    .image {
+      width: auto;
+      height: 40px;
+      object-fit: contain;
+    }
+
     .navButtons {
       display: flex;
       flex-direction: row;

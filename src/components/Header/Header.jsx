@@ -4,10 +4,10 @@ import Link from 'next/link';
 
 import SearchInput from '../SearchInput/SearchInput';
 
-import CompanyLogo from '../../../public/icons/d_logo.svg';
-
 import styles from './Header.module.scss';
+
 import Menu from '../Menu/Menu';
+import Image from 'next/image';
 
 const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -17,10 +17,10 @@ const Header = () => {
             <div className={styles.information}>
                 <div className={styles.contacts}>
                     <div className={styles.social}>
-                        <svg width={16} height={16}>
+                        <svg width={16} height={16} fill="white">
                             <use xlinkHref='#instagram-logo'></use>
                         </svg>
-                        <svg width={16} height={16}>
+                        <svg width={16} height={16} fill="white">
                             <use xlinkHref='#telegram-logo'></use>
                         </svg>
                     </div>
@@ -43,7 +43,9 @@ const Header = () => {
                         <use xlinkHref="#menu"></use>
                     </svg>
                 </button>
-                <CompanyLogo />
+
+                <Image src={'/images/CompanyLogo1.png'} alt="" width="0" height="0" sizes="100vw" className={styles.image} placeholder="blurDataURL" />
+
                 <SearchInput placeholder={'Я ищу ...'} />
                 <div className={styles.navButtons}>
                     <div className={styles.navButton}>

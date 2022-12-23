@@ -1,8 +1,16 @@
 import styles from './Formtextarea.module.scss'
 
-const FormTextarea = ({ ...otherProps }) => {
+const FormTextarea = ({ register, name, placeholder, required }) => {
     return (
-        <textarea cols="30" rows="10" {...otherProps} className={styles.input}></textarea>
+        <textarea
+            cols="30"
+            rows="10"
+            className={styles.input}
+            placeholder={placeholder}
+            {...register(name, {
+                required: `${required}`
+            })}
+        />
     )
 }
 

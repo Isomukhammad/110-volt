@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import Button from '../Button/Button';
@@ -9,7 +8,15 @@ import FormTextarea from '../FormTextarea/Formtextarea';
 import styles from './ContactUs.module.scss'
 
 const ContactUs = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const {
+        register,
+        handleSubmit,
+        formState: {
+            errors
+        },
+        reset
+    } = useForm();
+    console.log(errors);
 
     const onSubmit = data => console.log(data);
 
@@ -18,23 +25,40 @@ const ContactUs = () => {
             <h2>Напишите нам</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <FormInput
-                    placeholder="Ваше имя..."
                     type='text'
                     name='name'
-                    required
+                    placeholder="Ваше имя..."
                     register={register}
+                    required="Поле выше обязательно к заполнению!"
                 />
+                <div className={styles.error}>
+                    {
+                        errors?.name && <p>{errors?.name?.message}</p>
+                    }
+                </div>
                 <FormInput
-                    placeholder="Номер телефона..."
                     type='number'
-                    name='password'
-                    required
+                    name='number'
+                    placeholder="Номер телефона..."
+                    register={register}
+                    required="Поле выше обязательно к заполнению!"
                 />
+                <div className={styles.error}>
+                    {
+                        errors?.number && <p>{errors?.number?.message}</p>
+                    }
+                </div>
                 <FormTextarea
                     placeholder="Ваше сообщение"
                     name="description"
-                    required
+                    register={register}
+                    required="Поле выше обязательно к заполнению!"
                 />
+                <div className={styles.error}>
+                    {
+                        errors?.description && <p>{errors?.description?.message}</p>
+                    }
+                </div>
                 <Button>Отправить</Button>
             </form>
         </div>

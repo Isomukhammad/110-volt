@@ -1,10 +1,18 @@
 import styles from './FormInput.module.scss'
 
-const FormInput = ({ register, ...otherProps }) => {
-    console.log({ register })
+const FormInput = ({ name, register, placeholder, required }) => {
+    if (!name || !register || !placeholder || !required) {
+        return null;
+    }
 
     return (
-        <input {...otherProps} className={styles.input} {...register("name")} />
+        <input
+            {...register(name, {
+                required: `${required}`,
+            })}
+            placeholder={placeholder}
+            className={styles.input}
+        />
     )
 }
 

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import styles from './Footer.module.scss'
@@ -36,23 +37,27 @@ const Footer = () => {
                     <Link href="/">Партнерам</Link>
                 </div>
 
-                <div styles={styles.socials}>
-                    <svg className={styles.telegramLogo} width="16" height="16">
-                        <use xlinkHref="#telegram-logo"></use>
-                    </svg>
-                    <svg className={styles.facebookLogo} width="16" height="16">
-                        <use xlinkHref="#fb-logo"></use>
-                    </svg>
-                    <svg className={styles.instagramLogo} width="16" height="16">
-                        <use xlinkHref='#instagram-logo'></use>
-                    </svg>
+                <div className={styles.socials}>
+                    <div>
+                        <svg className={styles.telegramLogo} width="30" height="30" fill="white" viewBox="0 0 40 40">
+                            <use xlinkHref="#tg-footer"></use>
+                        </svg>
+                    </div>
+                    <div>
+                        <svg className={styles.facebookLogo} width="30" height="30" fill="white" viewBox="0 0 40 40">
+                            <use xlinkHref="#fb-footer"></use>
+                        </svg>
+                    </div>
+                    <div>
+                        <svg className={styles.instagramLogo} width="30" height="30" fill="white" viewBox="0 0 40 40">
+                            <use xlinkHref='#ig-footer'></use>
+                        </svg>
+                    </div>
                 </div>
             </div>
 
             <div className={styles.additional}>
-                <svg viewBox="0 0 221 40" width="221" height="40">
-                    <use xlinkHref="#footer-logo"></use>
-                </svg>
+                <Image src={'/images/CompanyLogo2.png'} alt="" width="0" height="0" sizes="100vw" className={styles.image} placeholder="blurDataURL" />
                 <p>© 2022 110-volt. Все права защищены</p>
                 <p className={styles.devs}>Разработка -
                     <span>
@@ -62,7 +67,7 @@ const Footer = () => {
                     </span>
                 </p>
             </div>
-        </footer>
+        </footer >
     )
 }
 

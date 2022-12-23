@@ -4,16 +4,16 @@
   padding: 16px 18px;
   resize: none;
 
-  //   &:focus {
-  //     outline: none;
-  //   }
+  &:focus {
+    outline: none;
+  }
 
-  //   &::placeholder {
-  //     font-weight: 400;
-  //     font-size: 15px;
-  //     line-height: 18px;
-  //     display: flex;
-  //     align-items: center;
-  //     color: #c0c0c0;
-  //   }
+  &::placeholder {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    display: flex;
+    align-items: center;
+    color: #c0c0c0;
+  }
 }
