@@ -16,10 +16,10 @@ const Footer = () => {
 
                 <div>
                     <h2>Компания</h2>
-                    <Link href="/">О компании</Link>
-                    <Link href="/">Наши контакты</Link>
+                    <Link href="/about">О компании</Link>
+                    <Link href="/contacts">Наши контакты</Link>
                     <Link href="/">Новости</Link>
-                    <Link href="/">Оферта</Link>
+                    <Link href="/offer">Оферта</Link>
                 </div>
 
                 <div>
@@ -54,9 +54,9 @@ const Footer = () => {
                     <use xlinkHref="#footer-logo"></use>
                 </svg>
                 <p>© 2022 110-volt. Все права защищены</p>
-                <p>Разработка -
+                <p className={styles.devs}>Разработка -
                     <span>
-                        <svg viewBox="0 0 15 18" fill="none" className={styles.devLogo}>
+                        <svg viewBox="0 0 15 18" fill="none" width={15} height={18} className={styles.devLogo}>
                             <use xlinkHref='#dev-logo'></use>
                         </svg>
                     </span>

@@ -1,0 +1,26 @@
+.container {
+  padding-top: 40px;
+  padding-bottom: 120px;
+  color: #242424;
+
+  h1 {
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 40px;
+    margin-bottom: 48px;
+    margin-top: 40px;
+  }
+
+  .information {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+
+    p {
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 140%;
+    }
+  }
+}

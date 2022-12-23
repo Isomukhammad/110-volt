@@ -23,11 +23,15 @@
       gap: 16px;
     }
   }
-  .devLogo {
-    width: 15px;
-    height: 18px;
-    margin-left: 10px;
-    margin-bottom: -3px;
+
+  .devs {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    svg {
+      margin-left: 10px;
+    }
   }
 
   .additional {

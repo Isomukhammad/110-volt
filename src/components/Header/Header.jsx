@@ -10,7 +10,7 @@ import styles from './Header.module.scss';
 import Menu from '../Menu/Menu';
 
 const Header = () => {
-    const [menuOpen, setMenuOpen] = useState(true);
+    const [menuOpen, setMenuOpen] = useState(false);
 
     return (
         <header className={styles.container}>

@@ -11,6 +11,7 @@ import "swiper/css/navigation";
 import { Pagination, Navigation, Autoplay } from "swiper";
 
 import styles from './DiscountTabs.module.scss'
+import Image from "next/image";
 
 const DiscountTabs = () => {
     const swiperPrevRef = useRef(null);
@@ -43,22 +44,22 @@ const DiscountTabs = () => {
                 }}
             >
                 <SwiperSlide className={styles.swiperSlide}>
-                    <img src="/images/Rectangle 5.png" />
+                    <Image src="/images/Rectangle 5.png" alt="" width={792} height={280} />
                 </SwiperSlide>
                 <SwiperSlide className={styles.swiperSlide}>
-                    <img src="/images/Rectangle 6.png" />
+                    <Image src="/images/Rectangle 6.png" alt="" width={792} height={280} />
                 </SwiperSlide>
                 <SwiperSlide className={styles.swiperSlide}>
-                    <img src="/images/Rectangle 5.png" />
+                    <Image src="/images/Rectangle 5.png" alt="" width={792} height={280} />
                 </SwiperSlide>
                 <SwiperSlide className={styles.swiperSlide}>
-                    <img src="/images/Rectangle 6.png" />
+                    <Image src="/images/Rectangle 6.png" alt="" width={792} height={280} />
                 </SwiperSlide>
                 <SwiperSlide className={styles.swiperSlide}>
-                    <img src="/images/Rectangle 5.png" />
+                    <Image src="/images/Rectangle 5.png" alt="" width={792} height={280} />
                 </SwiperSlide>
                 <SwiperSlide className={styles.swiperSlide}>
-                    <img src="/images/Rectangle 6.png" />
+                    <Image src="/images/Rectangle 6.png" alt="" width={792} height={280} />
                 </SwiperSlide>
             </Swiper>
             <div className={styles.swiperPrev} ref={swiperPrevRef}>
