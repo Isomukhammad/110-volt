@@ -8,11 +8,17 @@ const MainLayout = ({ children }) => {
     return (
         <div className={styles.main} >
             <Sprites />
-            <Header />
-            <div className={styles.children}>
-                {children}
+            <div className={styles.header}>
+                <Header />
             </div>
-            <Footer />
+            <div className={styles.content}>
+                <div className={styles.children}>
+                    {children}
+                </div>
+            </div>
+            <div className={styles.footer}>
+                <Footer />
+            </div>
         </div >
     )
 }
