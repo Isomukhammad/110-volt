@@ -1,4 +1,4 @@
-.main {
+.container {
   position: relative;
   background: linear-gradient(270.21deg, #b5159d 0.19%, #632489 99.81%);
   display: flex;
@@ -6,20 +6,33 @@
   justify-content: space-between;
   align-items: center;
   min-height: 100vh;
-}
 
-.header,
-.children,
-.footer {
-  width: 1600px;
-}
+  .cheader,
+  .content,
+  .cfooter {
+    width: 1600px;
+    max-width: 100%;
+  }
 
-.content {
-  width: 100%;
-  flex: 1;
-  border-radius: 32px;
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  .children {
+    width: 100%;
+    flex: 1;
+    border-radius: 32px;
+    background-color: white;
+  }
+
+  .header,
+  .footer,
+  .children {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  @media screen and (max-width: 1599px) {
+    .content {
+      padding: 0 1em;
+    }
+  }
 }

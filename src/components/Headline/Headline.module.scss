@@ -1,13 +1,31 @@
 .headline {
   display: grid;
-  grid-template-columns: 1196px 388px;
-  grid-template-rows: 437px;
+  grid-template-columns: 3fr 1fr;
+  grid-template-row: 1fr;
   column-gap: 16px;
 
   .sliders {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    max-height: 446px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 5fr 1fr;
     gap: 12px;
+
+    .mainImg {
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+
+    .slider {
+      display: flex;
+      flex-direction: row;
+
+      img {
+        object-fit: contain;
+        height: 100%;
+        width: auto;
+      }
+    }
   }
 
   div {
@@ -26,6 +44,13 @@
 
     img {
       border-radius: 16px;
+    }
+  }
+
+  .sideImg {
+    img {
+      width: 100%;
+      height: auto;
     }
   }
 }

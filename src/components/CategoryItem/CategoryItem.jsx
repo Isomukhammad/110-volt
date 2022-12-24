@@ -1,15 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import styles from './ProductItem.module.scss';
+import styles from './CategoryItem.module.scss';
 
-const ProductItem = ({ info }) => {
+const CategoryItem = ({ info }) => {
     const { img, price, discounted, monthly, name } = info;
 
     return (
         <div className={styles.tab}>
             <Link href="/">
-                <Image src={img} alt={name} width={254} height={254} />
+                <Image src={img} alt={name} sizes="100vw" width="0" height="0" placeholder="blurDataURL" />
             </Link>
             <div className={styles.monthly}>{monthly} сум/мес</div>
             <div className={styles.name}>{name}</div>
@@ -21,4 +21,4 @@ const ProductItem = ({ info }) => {
     )
 }
 
-export default ProductItem;
+export default CategoryItem;

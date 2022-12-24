@@ -6,7 +6,7 @@ const PopularCategoryTab = ({ info }) => {
 
     return (
         <div className={styles.tab}>
-            <Image src={img} alt="" width={208} height={160} />
+            <Image src={img} alt="" width="0" height="0" sizes="100vw" placeholder='blurDataURL' />
             <p>{name}
                 <span>
                     <svg viewBox="0 0 17 16" fill="none" className={styles.arrowIcon} width="16px" height="9.33px">

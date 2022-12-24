@@ -44,19 +44,19 @@ const DiscountTabs = () => {
                 }}
             >
                 <SwiperSlide className={styles.swiperSlide}>
-                    <Image src="/images/Rectangle 5.png" alt="" width={792} height={280} />
+                    <Image src="/images/Rectangle 5.png" alt="" width="0" height="0" sizes="100vw" placeholder="blurDataURL" />
                 </SwiperSlide>
                 <SwiperSlide className={styles.swiperSlide}>
-                    <Image src="/images/Rectangle 6.png" alt="" width={792} height={280} />
+                    <Image src="/images/Rectangle 6.png" alt="" width="0" height="0" sizes="100vw" placeholder="blurDataURL" />
                 </SwiperSlide>
                 <SwiperSlide className={styles.swiperSlide}>
-                    <Image src="/images/Rectangle 5.png" alt="" width={792} height={280} />
+                    <Image src="/images/Rectangle 5.png" alt="" width="0" height="0" sizes="100vw" placeholder="blurDataURL" />
                 </SwiperSlide>
                 <SwiperSlide className={styles.swiperSlide}>
-                    <Image src="/images/Rectangle 6.png" alt="" width={792} height={280} />
+                    <Image src="/images/Rectangle 6.png" alt="" width="0" height="0" sizes="100vw" placeholder="blurDataURL" />
                 </SwiperSlide>
                 <SwiperSlide className={styles.swiperSlide}>
-                    <Image src="/images/Rectangle 5.png" alt="" width={792} height={280} />
+                    <Image src="/images/Rectangle 5.png" alt="" width="0" height="0" sizes="100vw" placeholder="blurDataURL" />
                 </SwiperSlide>
                 <SwiperSlide className={styles.swiperSlide}>
                     <Image src="/images/Rectangle 6.png" alt="" width={792} height={280} />

@@ -7,11 +7,13 @@
   .tabs {
     display: flex;
     flex-direction: row;
-    gap: 24px;
+    justify-content: space-between;
 
     .tab {
       img {
         border-radius: 8px;
+        width: 100%;
+        height: auto;
       }
     }
   }

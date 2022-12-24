@@ -1,12 +1,12 @@
 .container {
   color: white;
-  // background: linear-gradient(270.21deg, #b5159d 0.19%, #632489 99.81%);
   display: flex;
   flex-direction: column;
   padding: 24px 0;
   gap: 36px;
   position: relative;
   z-index: 1;
+  width: 100%;
 
   .information {
     display: flex;

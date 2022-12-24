@@ -16,7 +16,7 @@ const SalesTabs = () => {
                 {
                     sales.map(item => (
                         <div key={item.id} className={styles.tab}>
-                            <Image src={item.img} alt="" width={517} height={388} placeholder="blurDataURL" />
+                            <Image src={item.img} alt="" width="0" height="0" sizes="100vw" placeholder="blurDataURL" />
 
                             <TimerTab deadline={item.deadline} />
                         </div>

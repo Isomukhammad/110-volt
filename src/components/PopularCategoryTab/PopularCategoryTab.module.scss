@@ -9,6 +9,11 @@
   justify-content: center;
   gap: 17px;
 
+  img {
+    width: 100%;
+    height: auto;
+  }
+
   p {
     display: flex;
     flex-direction: row;
