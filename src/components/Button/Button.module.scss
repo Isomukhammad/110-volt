@@ -12,8 +12,30 @@
 
   &:active {
     outline: 1px solid #7b54c9;
-    border-radius: 16px;
     background: transparent;
     color: #7b54c9;
+  }
+
+  &.reverse {
+    outline: 1px solid #7b54c9;
+    background: transparent;
+    color: #7b54c9;
+
+    &:active {
+      background: transparent;
+      background: #7b54c9;
+      color: #ffffff;
+    }
+  }
+
+  &.news {
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+
+    &:active {
+      outline: none;
+      background: white;
+      color: black;
+    }
   }
 }
