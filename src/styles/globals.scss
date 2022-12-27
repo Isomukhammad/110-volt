@@ -1,3 +1,5 @@
+@import "./colors.scss";
+
 body {
   overflow-x: hidden;
 }
@@ -19,7 +21,7 @@ svg {
 }
 
 a {
-  color: #242424;
+  color: $Purple;
 }
 
 input::-webkit-outer-spin-button,

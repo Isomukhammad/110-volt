@@ -10,7 +10,7 @@ const PopularCategoryTab = ({ info }) => {
             <ImageComponent src={img} alt="" />
             <p>{name}
                 <span>
-                    <svg viewBox="0 0 17 16" fill="none" className={styles.arrowIcon} width="16px" height="9.33px">
+                    <svg viewBox="0 0 16 16" fill="none" className={styles.arrowIcon} width="16px" height="16" stroke="#242424">
                         <use xlinkHref='#arrow-right'></use>
                     </svg>
                 </span>

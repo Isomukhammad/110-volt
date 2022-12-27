@@ -9,6 +9,7 @@
   justify-content: center;
   gap: 17px;
   cursor: pointer;
+  transition: 0.5s;
 
   img {
     width: auto;
@@ -26,5 +27,9 @@
 
   &:hover {
     color: #7b54c9;
+
+    svg {
+      stroke: #7b54c9;
+    }
   }
 }

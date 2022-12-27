@@ -5,7 +5,7 @@ import ImageComponent from '../ImageComponent/ImageComponent'
 import styles from './ProductTab.module.scss'
 
 const ProductTab = ({ info }) => {
-    let { description, monthly, price, discounted, img } = info;
+    let { id, subtitle, description, monthly, price, discounted, img } = info;
 
     if (typeof img !== 'string') {
         img = info.img[0];
@@ -14,7 +14,7 @@ const ProductTab = ({ info }) => {
     return (
         <div className={styles.container}>
             <div href='/' className={styles.image}>
-                <Link href='/'>Быстрый просмотр</Link>
+                <Link href={`/category/product/${subtitle}`}>Быстрый просмотр</Link>
                 <ImageComponent
                     src={img}
                     alt={description}
