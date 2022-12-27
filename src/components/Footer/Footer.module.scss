@@ -11,8 +11,9 @@
   }
 
   .links {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 
     div {
       h2 {
