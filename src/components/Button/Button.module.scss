@@ -10,6 +10,17 @@
   border: none;
   cursor: pointer;
 
+  &:disabled {
+    background: #f2f2f2;
+    color: #bdbdbd;
+
+    &:active {
+      outline: none;
+      background: #f2f2f2;
+      color: #bdbdbd;
+    }
+  }
+
   &:active {
     outline: 1px solid #7b54c9;
     background: transparent;

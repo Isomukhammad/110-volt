@@ -7,7 +7,7 @@ const CategoriesTabsLink = ({ linkTitle, link }) => {
         <Link href={`${link}`} className={styles.link}>
             {linkTitle}
             <span>
-                <svg viewBox="0 0 17 16" fill="none" className={styles.arrowIcon} width="16px" height="9.33px">
+                <svg viewBox="0 0 16 13" fill="none" className={styles.arrowIcon} width="16px" height="16px" stroke="#242424">
                     <use xlinkHref='#arrow-right'></use>
                 </svg>
             </span>

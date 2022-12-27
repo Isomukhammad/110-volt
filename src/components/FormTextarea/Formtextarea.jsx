@@ -4,7 +4,7 @@ const FormTextarea = ({ register, name, placeholder, required }) => {
     return (
         <textarea
             cols="30"
-            rows="10"
+            rows="8"
             className={styles.input}
             placeholder={placeholder}
             {...register(name, {

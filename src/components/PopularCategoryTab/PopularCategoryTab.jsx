@@ -1,4 +1,5 @@
-import Image from 'next/image';
+import ImageComponent from '../ImageComponent/ImageComponent';
+
 import styles from './PopularCategoryTab.module.scss'
 
 const PopularCategoryTab = ({ info }) => {
@@ -6,7 +7,7 @@ const PopularCategoryTab = ({ info }) => {
 
     return (
         <div className={styles.tab}>
-            <Image src={img} alt="" width="0" height="0" sizes="100vw" placeholder='blurDataURL' />
+            <ImageComponent src={img} alt="" />
             <p>{name}
                 <span>
                     <svg viewBox="0 0 17 16" fill="none" className={styles.arrowIcon} width="16px" height="9.33px">

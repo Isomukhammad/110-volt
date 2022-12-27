@@ -8,6 +8,14 @@
   z-index: 1;
   width: 100%;
 
+  a {
+    color: white;
+  }
+
+  svg {
+    pointer-events: none;
+  }
+
   .information {
     display: flex;
     flex-direction: row;

@@ -8,10 +8,11 @@
   align-items: center;
   justify-content: center;
   gap: 17px;
+  cursor: pointer;
 
   img {
-    width: 100%;
-    height: auto;
+    width: auto;
+    height: 100%;
   }
 
   p {
@@ -21,5 +22,9 @@
     gap: 14.67px;
     font-size: 20px;
     line-height: 18px;
+  }
+
+  &:hover {
+    color: #7b54c9;
   }
 }

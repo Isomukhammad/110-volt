@@ -1,37 +1,68 @@
-import HeadInfo from '../../utils/HeadInfo'
-import PagePath from '../../components/PagePath/PagePath';
-import ImageComponent from '../../components/ImageComponent/ImageComponent';
+import news from '../../data.json';
+
+import PagePath from "../../components/PagePath/PagePath";
+import HeadInfo from "../../utils/HeadInfo";
+import Button from '../../components/Button/Button';
+import ImageComponent from "../../components/ImageComponent/ImageComponent";
+import NewsTabs from '../../components/NewsTabs/NewsTabs'
+import DiscountTabs from '../../components/DiscountTabs/DiscountTabs'
+import PopularGoods from '../../components/PopularGoods/PopularGoods'
 
 import styles from './News.module.scss'
-import Button from '../../components/Button/Button';
-import DiscountTabs from '../../components/DiscountTabs/DiscountTabs';
+import Link from 'next/link';
 
 const NewsPage = () => {
     return (
         <>
             <HeadInfo title="Новости" />
-            <div className={styles.container}>
-                <PagePath category="Новости" />
-                <h1 className={styles.title}>Новости</h1>
-                <div className={styles.headline}>
-                    <div className={styles.image}>
-                        <div className={styles.info}>
-                            <h1>110 volt - на рынке Узбекистана</h1>
-                            <Button type="news">Подробнее</Button>
+            <PagePath category="Новости" />
+            {
+                news ? (
+                    <div className={styles.container}>
+                        <h1 className={styles.title}>Новости</h1>
+                        <div className={styles.headline}>
+                            <div className={styles.image}>
+                                <div className={styles.info}>
+                                    <h1>110 volt - на рынке Узбекистана</h1>
+                                    <Button type="news">Подробнее</Button>
+                                </div>
+                                <ImageComponent src={'/images/Documents-rafiki 1.png'} />
+                            </div>
+                            <div className={styles.contacts}>
+                                <h2>Контакты</h2>
+                                <p>По всем интересующим вас вопросом можете обращаться по телефону <span>+99855 501 56 56</span> или написав нам на почту <span>info@110volt.uz</span></p>
+                                <div className={styles.buttons}>
+                                    <Button>Написать</Button>
+                                    <Button type="reverse">Позвонить</Button>
+                                </div>
+                            </div>
                         </div>
-                        <ImageComponent src={'/images/Documents-rafiki 1.png'} />
-                    </div>
-                    <div className={styles.contacts}>
-                        <h2>Контакты</h2>
-                        <p>По всем интересующим вас вопросом можете обращаться по телефону <span>+99855 501 56 56</span> или написав нам на почту <span>info@110volt.uz</span></p>
-                        <div className={styles.buttons}>
-                            <Button>Написать</Button>
-                            <Button type="reverse">Позвонить</Button>
+
+                        <div className={styles.news}>
+                            <NewsTabs />
                         </div>
+
+                        <DiscountTabs />
                     </div>
-                </div>
-                <DiscountTabs />
-            </div>
+                ) : (
+                    <div className={styles.error}>
+                        <div className={styles.content}>
+                            <ImageComponent
+                                src={'/images/Studying-rafiki 1.png'}
+                                alt=""
+                            />
+                            <h2>Здесь пока ничего нету</h2>
+                            <p>Наши редакторы уже в процессе написания новой статьи</p>
+                            <Link href='/'>
+                                <Button>Вернуться на главную</Button>
+                            </Link>
+                        </div>
+
+                        <PopularGoods />
+                        <DiscountTabs />
+                    </div>
+                )
+            }
         </>
     )
 }

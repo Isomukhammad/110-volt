@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import Link from 'next/link';
 
@@ -10,7 +10,12 @@ import Menu from '../Menu/Menu';
 import Image from 'next/image';
 
 const Header = () => {
+    const ref = useRef(false)
     const [menuOpen, setMenuOpen] = useState(false);
+
+    const stopProp = (e) => {
+        e.stopPropagation();
+    }
 
     return (
         <header className={styles.container}>
@@ -38,8 +43,15 @@ const Header = () => {
             </div>
 
             <nav className={styles.navigation}>
-                <button className={styles.menuButton} onClick={() => { setMenuOpen(!menuOpen) }}>
-                    <svg viewBox="0 0 24 24" className={styles.menuLogo}>
+                <button
+                    ref={ref}
+                    className={styles.menuButton}
+                    onClick={(e) => { setMenuOpen(!menuOpen) }}
+                >
+                    <svg
+                        viewBox="0 0 24 24"
+                        className={styles.menuLogo}
+                    >
                         <use xlinkHref="#menu"></use>
                     </svg>
                 </button>
@@ -66,12 +78,12 @@ const Header = () => {
                         <svg viewBox="0 0 21 22" fill="none" className={styles.languageButton}>
                             <use xlinkHref='#profile-logo'></use>
                         </svg>
-                        <p>Войти</p>
+                        <Link href='/signin'>Войти</Link >
                     </div>
                 </div>
             </nav>
             {
-                menuOpen ? <Menu /> : null
+                menuOpen ? <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen} refs={ref} /> : null
             }
         </header >
     )

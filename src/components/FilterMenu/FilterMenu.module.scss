@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 253px;
+
+  .category {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .radios {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+  }
+}

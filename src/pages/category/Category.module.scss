@@ -1,0 +1,11 @@
+.container {
+  .title {
+    margin: 40px 0;
+  }
+
+  .content {
+    display: grid;
+    grid-template-columns: 253px auto;
+    column-gap: 30px;
+  }
+}

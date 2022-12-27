@@ -1,16 +1,25 @@
-import Image from 'next/image';
 import Link from 'next/link';
+
+import ImageComponent from '../ImageComponent/ImageComponent'
 
 import styles from './ProductTab.module.scss'
 
 const ProductTab = ({ info }) => {
-    const { description, monthly, price, discounted, img } = info;
+    let { description, monthly, price, discounted, img } = info;
+
+    if (typeof img !== 'string') {
+        img = info.img[0];
+    }
 
     return (
         <div className={styles.container}>
-            <Link href="/">
-                <Image src={img} alt={description} sizes="100vw" width={0} height={0} placeholder="blurDataURL" />
-            </Link>
+            <div href='/' className={styles.image}>
+                <Link href='/'>Быстрый просмотр</Link>
+                <ImageComponent
+                    src={img}
+                    alt={description}
+                />
+            </div>
 
             <div className={styles.prices}>
                 <p>{monthly} сум/мес</p>

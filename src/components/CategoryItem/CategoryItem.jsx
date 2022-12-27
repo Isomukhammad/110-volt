@@ -8,9 +8,10 @@ const CategoryItem = ({ info }) => {
 
     return (
         <div className={styles.tab}>
-            <Link href="/">
+            <div href='/' className={styles.image}>
+                <Link href='/'>Быстрый просмотр</Link>
                 <Image src={img} alt={name} sizes="100vw" width="0" height="0" placeholder="blurDataURL" />
-            </Link>
+            </div>
             <div className={styles.monthly}>{monthly} сум/мес</div>
             <div className={styles.name}>{name}</div>
             <div className={styles.prices}>

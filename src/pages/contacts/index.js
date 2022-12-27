@@ -16,7 +16,8 @@ const ContactsPage = () => {
                     <div>
                         <ContactsInfo />
                     </div>
-                    <div>
+
+                    <div className={styles.map}>
                         <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A14f7af4a8cb4a7e1f03d71f822ec528a05c8512cb0392b616d6f85bd84676f7d&amp;source=constructor"></iframe>
                     </div>
                 </div>

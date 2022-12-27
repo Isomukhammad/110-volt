@@ -1,17 +1,3 @@
-@font-face {
-  font-family: "Gilroy";
-  src: url("../design/fonts/Gilroy/Gilroy-Regular.eot");
-  src: local("../design/fonts/Gilroy/Gilroy Regular"),
-    local("../design/fonts/Gilroy/Gilroy-Regular"),
-    url("../design/fonts/Gilroy/Gilroy-Regular.eot?#iefix")
-      format("embedded-opentype"),
-    url("../design/fonts/Gilroy/Gilroy-Regular.woff2") format("woff2"),
-    url("../design/fonts/Gilroy/Gilroy-Regular.woff") format("woff"),
-    url("../design/fonts/Gilroy/Gilroy-Regular.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-}
-
 body {
   overflow-x: hidden;
 }
@@ -21,12 +7,27 @@ body {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  font-family: "Gilroy";
+  font-family: "Gilroy", sans-serif;
 }
 
 img {
   position: relative;
 }
+
 svg {
   display: block;
+}
+
+a {
+  color: #242424;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
 }
