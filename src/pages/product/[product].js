@@ -1,15 +1,15 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
-import HeadInfo from '../../../utils/HeadInfo';
-import ImageComponent from '../../../components/ImageComponent/ImageComponent';
-import Button from '../../../components/Button/Button'
-import PopularGoods from '../../../components/PopularGoods/PopularGoods';
+import HeadInfo from '../../utils/HeadInfo';
+import ImageComponent from '../../components/ImageComponent/ImageComponent';
+import Button from '../../components/Button/Button'
+import PopularGoods from '../../components/PopularGoods/PopularGoods';
 
-import data from '../../../products.json';
+import data from '../../products.json';
 
 import styles from './Product.module.scss';
-import ProductCharasteristic from '../../../components/ProductCharasteristic/ProductCharasteristic';
+import ProductCharasteristic from '../../components/ProductCharasteristic/ProductCharasteristic';
 
 const ProductPage = () => {
     const [product, setProduct] = useState();

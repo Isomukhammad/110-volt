@@ -2,12 +2,10 @@ import { useRef, useState } from "react";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-// import required modules
 import { Pagination, Navigation, Autoplay } from "swiper";
 
 import styles from './DiscountTabs.module.scss'
@@ -30,17 +28,16 @@ const DiscountTabs = () => {
                     disableOnInteraction: false,
                 }}
                 navigation={{
-                    prevEl: swiperPrevRef,
-                    nextEl: swiperNextRef
+                    prevEl: swiperPrevRef.current,
+                    nextEl: swiperNextRef.current
                 }}
                 modules={[Pagination, Navigation, Autoplay]}
                 className="mySwiper"
 
-                onInit={(swiper) => {
+                onBeforeInit={(swiper) => {
                     swiper.params.navigation.prevEl = swiperPrevRef.current;
                     swiper.params.navigation.nextEl = swiperNextRef.current;
-                    swiper.navigation.init();
-                    swiper.navigation.update();
+
                 }}
             >
                 <SwiperSlide className={styles.swiperSlide}>
