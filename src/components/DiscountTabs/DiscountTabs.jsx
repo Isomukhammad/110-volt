@@ -12,8 +12,9 @@ import styles from './DiscountTabs.module.scss'
 import Image from "next/image";
 
 const DiscountTabs = () => {
-    const swiperPrevRef = useRef(null);
-    const swiperNextRef = useRef(null);
+    // const swiperPrevRef = useRef(null);
+    // const swiperNextRef = useRef(null);
+    const swiperRef = useRef();
 
     return (
         <div className={styles.tabs}>
@@ -27,17 +28,17 @@ const DiscountTabs = () => {
                     delay: 5000,
                     disableOnInteraction: false,
                 }}
-                navigation={{
-                    prevEl: swiperPrevRef.current,
-                    nextEl: swiperNextRef.current
-                }}
+                // navigation={{
+                //     prevEl: swiperPrevRef.current,
+                //     nextEl: swiperNextRef.current
+                // }}
                 modules={[Pagination, Navigation, Autoplay]}
                 className="mySwiper"
 
                 onBeforeInit={(swiper) => {
-                    swiper.params.navigation.prevEl = swiperPrevRef.current;
-                    swiper.params.navigation.nextEl = swiperNextRef.current;
-
+                    // swiper.params.navigation.prevEl = swiperPrevRef.current;
+                    // swiper.params.navigation.nextEl = swiperNextRef.current;
+                    swiperRef.current = swiper;
                 }}
             >
                 <SwiperSlide className={styles.swiperSlide}>
@@ -59,13 +60,17 @@ const DiscountTabs = () => {
                     <Image src="/images/Rectangle 6.png" alt="" width={792} height={280} />
                 </SwiperSlide>
             </Swiper>
-            <div className={styles.swiperPrev} ref={swiperPrevRef}>
+            <div className={styles.swiperPrev} onClick={() => {
+                swiperRef.current?.slidePrev()
+            }}>
                 <svg width={18.67} height={16.33} viewBox='0 0 28 28' fill='none' stroke="white"
                 >
                     <use xlinkHref={`#arrow-left`}></use>
                 </svg>
             </div>
-            <div className={styles.swiperNext} ref={swiperNextRef}>
+            <div className={styles.swiperNext} onClick={() => {
+                swiperRef.current?.slideNext()
+            }}>
                 <svg width={18.67} height={16.33} viewBox='0 0 28 28' fill='none' stroke="white"
                 >
                     <use xlinkHref={`#arrow-left`}></use>

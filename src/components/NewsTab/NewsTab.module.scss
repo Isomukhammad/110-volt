@@ -3,9 +3,21 @@
   flex-direction: column;
   gap: 16px;
   overflow: hidden;
+  cursor: pointer;
+  color: #242424;
+
+  .image {
+    overflow: hidden;
+    border-radius: 16px;
+  }
+  &:hover {
+    img {
+      scale: 1.1;
+    }
+  }
 
   img {
-    border-radius: 16px;
+    transition: 0.5s;
   }
 
   h3 {

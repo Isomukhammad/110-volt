@@ -10,11 +10,16 @@
   gap: 12px;
   transition: 0.5s;
 
+  svg {
+    stroke: #242424;
+    transform: 0.5s;
+  }
+
   &:hover {
     color: #7b54c9;
 
     svg {
-      color: #7b54c9;
+      stroke: #7b54c9;
     }
   }
 }

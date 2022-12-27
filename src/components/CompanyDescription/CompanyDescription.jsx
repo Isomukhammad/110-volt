@@ -25,12 +25,13 @@ const CompanyDescription = ({ title, description, link }) => {
                 <p>Начни прямо сейчас!
                     Чтобы начать шопинг с Wildberries – необходимо пройти простую регистрацию на сайте, которая займет всего несколько минут. Оцените преимущества покупок одежды, обуви, электроники, детских товаров и продукции для дома, продуктов питания и книг в Wildberries уже сейчас.</p>
             </div>
-
-            <button onClick={() => { setIsHidden(!isHidden) }}>
-                {
-                    isHidden ? 'Read more...' : 'Show less...'
-                }
-            </button>
+            <div>
+                <button onClick={() => { setIsHidden(!isHidden) }}>
+                    {
+                        isHidden ? 'Читать далее' : 'Скрыть'
+                    }
+                </button>
+            </div>
         </article>
     )
 }
