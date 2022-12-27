@@ -1,18 +1,65 @@
-.menu {
-  background-color: white;
+.container {
   position: fixed;
+  top: 0;
   left: 0;
-  min-height: 1080px;
-  bottom: -1080px;
-  width: 1080px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  animation: fadeIn 0.2s ease-in-out;
+
+  .close {
+    position: absolute;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    right: -48px;
+    top: 8px;
+  }
+}
+
+.menu {
+  position: fixed;
+  top: 0;
+  height: 100%;
+  max-height: 1080px;
+  background-color: white;
+  width: 50%;
   color: #242424;
   border: 2px solid #f2f2f2;
   z-index: 1;
-
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr 2fr auto;
+  animation: menuIn 0.5s;
 
   .catalogueItems {
     border-left: 2px solid #f2f2f2;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes menuIn {
+  0% {
+    left: -50%;
+  }
+
+  100% {
+    left: 0;
   }
 }
