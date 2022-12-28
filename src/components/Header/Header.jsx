@@ -11,7 +11,8 @@ import Image from 'next/image';
 
 const Header = () => {
     const ref = useRef(false)
-    const [menuOpen, setMenuOpen] = useState(false);
+    const [firstOpen, setFirstOpen] = useState(false); //state which is used for opening menu for the first time
+    const [menuOpen, setMenuOpen] = useState(false); //state which is used to control classes of menu component which is always active after initial opening, so it has animation in closing
 
     const stopProp = (e) => {
         e.stopPropagation();
@@ -46,11 +47,15 @@ const Header = () => {
                 <button
                     ref={ref}
                     className={styles.menuButton}
-                    onClick={(e) => { setMenuOpen(!menuOpen) }}
+                    onClick={(e) => {
+                        setMenuOpen(true);
+                        setFirstOpen(true);
+                    }}
                 >
                     <svg
                         viewBox="0 0 24 24"
                         className={styles.menuLogo}
+                        onClick={stopProp}
                     >
                         <use xlinkHref="#menu"></use>
                     </svg>
@@ -72,6 +77,7 @@ const Header = () => {
                         <svg viewBox="0 0 21 22" fill="none" className={styles.languageButton}>
                             <use xlinkHref='#bag-logo'></use>
                         </svg>
+                        <div className={styles.itemsNumber}>3</div>
                         <p>Корзина</p>
                     </div>
                     <div className={styles.navButton}>
@@ -83,7 +89,7 @@ const Header = () => {
                 </div>
             </nav>
             {
-                menuOpen ? <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen} refs={ref} /> : null
+                firstOpen ? <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen} refs={ref} /> : null
             }
         </header >
     )

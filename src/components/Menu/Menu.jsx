@@ -3,12 +3,11 @@ import data from '../../data.json';
 
 import MenuCatalogue from '../MenuCatalogue/MenuCatalogue';
 import MenuCategory from '../MenuCategory/MenuCategory';
-import styles from './Menu.module.scss'
+// import styles from './Menu.module.scss'
 
 
 const Menu = ({ menuOpen, setMenuOpen }) => {
     const useOutsideAlerter = (ref) => {
-        console.log(ref);
         useEffect(() => {
             const handleClickOutside = (event) => {
                 if (ref.current && !ref.current.contains(event.target)) {
@@ -25,26 +24,28 @@ const Menu = ({ menuOpen, setMenuOpen }) => {
 
     const [btn, setBtn] = useState(0);
     const { catalogues } = data;
-    const closedClass = menuOpen ? null : styles.closedMenu;
 
     const wrapperRef = useRef(null);
     useOutsideAlerter(wrapperRef);
 
     return (
-        <div className={`${styles.container} ${closedClass}`}>
-            <div className={styles.menu} ref={wrapperRef}>
-                <div className={styles.menuCatalogue}>
+        <div className={`
+        menu-container 
+        ${menuOpen ? 'menuIsOpen' : 'menuIsClosed'}
+        `}>
+            <div className='menu' ref={wrapperRef}>
+                <div className='menuCatalogue'>
                     <MenuCatalogue catalogues={catalogues} btn={btn} setBtn={setBtn} />
                 </div>
-                <div className={styles.catalogueItems}>
-                    <MenuCategory catalogues={catalogues} btn={btn} />
+                <div className='catalogueItems'>
+                    <MenuCategory catalogues={catalogues} btn={btn} setMenuOpen={setMenuOpen} />
                 </div>
                 <div
-                    className={styles.close}
-                    onClick={() => setMenuOpen(!menuOpen)}
+                    className='close'
+                    onClick={() => setMenuOpen(false)}
                 >
                     <svg
-                        viewBox='0 0 32px 32px'
+                        viewBox='0 0 32 32'
                         width={32}
                         height={32}
                         stroke="white"

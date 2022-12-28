@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 const MenuCatalogue = ({ catalogues, btn, setBtn }) => {
     return (
-        <div className='menuCatalogue'>
+        <div className='menu-catalogue'>
             {
                 catalogues.map((item) => (
                     <button
@@ -14,7 +14,7 @@ const MenuCatalogue = ({ catalogues, btn, setBtn }) => {
                         >
                             <use xlinkHref={`#${item.logo}`}></use>
                         </svg>
-                        {item.title}
+                        <p>{item.title}</p>
                     </button>
                 ))
             }

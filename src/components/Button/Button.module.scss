@@ -9,6 +9,7 @@
   color: #ffffff;
   border: none;
   cursor: pointer;
+  transition: 0.5s;
 
   &:disabled {
     background: #f2f2f2;
@@ -21,10 +22,8 @@
     }
   }
 
-  &:active {
-    outline: 1px solid #7b54c9;
-    background: transparent;
-    color: #7b54c9;
+  &:hover {
+    background-color: #4d2d8e;
   }
 
   &.reverse {
@@ -32,21 +31,19 @@
     background: transparent;
     color: #7b54c9;
 
-    &:active {
-      background: transparent;
+    &:hover {
       background: #7b54c9;
       color: #ffffff;
     }
   }
 
   &.news {
+    width: fit-content;
     background: rgba(255, 255, 255, 0.2);
     color: #ffffff;
 
-    &:active {
-      outline: none;
-      background: white;
-      color: black;
+    &:hover {
+      background: #4d2d8e;
     }
   }
 }

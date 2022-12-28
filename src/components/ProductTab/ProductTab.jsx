@@ -14,7 +14,7 @@ const ProductTab = ({ info }) => {
     return (
         <div className={styles.container}>
             <div href='/' className={styles.image}>
-                <Link href={`/category/product/${subtitle}`}>Быстрый просмотр</Link>
+                <Link href={`/product/${subtitle}`}>Быстрый просмотр</Link>
                 <ImageComponent
                     src={img}
                     alt={description}

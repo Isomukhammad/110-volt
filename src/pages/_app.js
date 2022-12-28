@@ -1,5 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, createContext } from 'react';
 import { useRouter } from 'next/router';
+
 import NProgress from 'nprogress';
 
 import MainLayout from '../layouts/Main';
@@ -9,6 +10,8 @@ import '../components/MenuCatalogue/MenuCatalogue.scss';
 import '../styles/nprogress.css'
 import '../styles/globals.scss';
 import '../styles/colors.scss';
+import '../styles/Menu.scss';
+import '../styles/Slider.scss';
 
 export default function App({ Component, pageProps }) {
   const router = useRouter()

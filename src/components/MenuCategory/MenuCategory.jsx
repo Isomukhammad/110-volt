@@ -2,13 +2,15 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styles from './MenuCategory.module.scss';
 
-const MenuCategory = ({ catalogues, btn }) => {
+const MenuCategory = ({ catalogues, btn, setMenuOpen }) => {
     const { title, catalogue } = catalogues[btn];
     const { name, link } = catalogue;
 
     return (
         <div className={styles.category}>
-            <div className={styles.items}>
+            <div
+                className={styles.items}
+                onClick={() => setMenuOpen(false)}>
                 <h1>{title}</h1>
                 <div className={styles.links}>
                     {
@@ -19,7 +21,9 @@ const MenuCategory = ({ catalogues, btn }) => {
                 </div>
             </div>
             <div className={styles.img}>
-                <Image src={'/images/Rectangle 15.png'} alt="" width={250} height={400} />
+                <div>
+                    <Image src={'/images/Rectangle 15.png'} alt="" width={250} height={400} />
+                </div>
                 <p>Смартфоны</p>
             </div>
         </div>

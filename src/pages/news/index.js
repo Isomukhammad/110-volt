@@ -10,6 +10,7 @@ import PopularGoods from '../../components/PopularGoods/PopularGoods'
 
 import styles from './News.module.scss'
 import Link from 'next/link';
+import Image from 'next/image';
 
 const NewsPage = () => {
     return (
@@ -21,12 +22,20 @@ const NewsPage = () => {
                     <div className={styles.container}>
                         <h1 className={styles.title}>Новости</h1>
                         <div className={styles.headline}>
-                            <div className={styles.image}>
+                            <div className={styles.subtitle}>
                                 <div className={styles.info}>
                                     <h1>110 volt - на рынке Узбекистана</h1>
                                     <Button type="news">Подробнее</Button>
                                 </div>
-                                <ImageComponent src={'/images/Documents-rafiki 1.png'} />
+                                <div className={styles.image}>
+                                    <Image
+                                        src={'/images/Documents-rafiki 1.png'}
+                                        sizes="100vw"
+                                        width="0"
+                                        height="0"
+                                        alt=""
+                                    />
+                                </div>
                             </div>
                             <div className={styles.contacts}>
                                 <h2>Контакты</h2>

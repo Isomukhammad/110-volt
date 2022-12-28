@@ -20,6 +20,10 @@ const FilterMenu = ({ products }) => {
         }
     }
 
+    const handleRangeChange = (event) => {
+        console.log(event.target.value);
+    }
+
     const handleRadioChange = (event) => {
         console.log(event.target.value);
     }
@@ -94,7 +98,7 @@ const FilterMenu = ({ products }) => {
 
             <div className={styles.category}>
                 <h3>Цена</h3>
-                <input type="range" min="0" max="100000000" step="10" />
+                <input type="range" min="0" max="100000000" step="10" onChange={handleRangeChange} />
             </div>
 
             <div className={styles.category}>

@@ -1,13 +1,7 @@
-.container {
-  visibility: hidden;
+.menu-container {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  animation: fadeIn 0.2s ease-in-out;
-  z-index: 1;
 
   .close {
     position: absolute;
@@ -22,6 +16,7 @@
 .menu {
   position: fixed;
   top: 0;
+  left: -52%;
   height: 100%;
   max-height: 1080px;
   background-color: white;
@@ -31,7 +26,6 @@
   z-index: 1;
   display: grid;
   grid-template-columns: 1fr 2fr auto;
-  animation: menuIn 0.5s;
 
   .catalogueItems {
     border-left: 2px solid #f2f2f2;
@@ -63,5 +57,41 @@
 
   100% {
     left: 0;
+  }
+}
+
+@keyframes menuOut {
+  0% {
+    left: 0;
+  }
+
+  100% {
+    left: -53%;
+  }
+}
+
+.menuIsOpen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  animation: fadeIn 0.2s ease-in-out;
+
+  .menu {
+    left: 0;
+    animation: menuIn 0.5s;
+  }
+}
+
+.menuIsClosed {
+  animation: fadeOut 1s ease-in-out;
+  top: -100%;
+  left: -100%;
+
+  .menu {
+    left: -53%;
+    animation: menuOut 0.5s;
   }
 }

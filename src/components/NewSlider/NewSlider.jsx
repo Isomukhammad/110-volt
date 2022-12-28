@@ -31,7 +31,6 @@ const NewSlider = ({ data }) => {
                     nextEl: swiperNextRef
                 }}
                 modules={[Pagination, Navigation, Autoplay]}
-                className="mySwiper"
 
                 onInit={(swiper) => {
                     swiper.params.navigation.prevEl = swiperPrevRef.current;
@@ -55,13 +54,13 @@ const NewSlider = ({ data }) => {
                 }
             </Swiper>
             <div className={styles.swiperPrev} ref={swiperPrevRef}>
-                <svg width={28} height={28} viewBox='0 0 28 28' fill='none' stroke="#7B54C9"
+                <svg width={28} height={28} viewBox='0 0 28 28' fill='none' stroke="white"
                 >
                     <use xlinkHref={`#arrow-left`}></use>
                 </svg>
             </div>
             <div className={styles.swiperNext} ref={swiperNextRef}>
-                <svg width={28} height={28} viewBox='0 0 28 28' fill='none' stroke="#7B54C9"
+                <svg width={28} height={28} viewBox='0 0 28 28' fill='none' stroke="white"
                 >
                     <use xlinkHref={`#arrow-left`}></use>
                 </svg>

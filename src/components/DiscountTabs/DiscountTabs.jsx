@@ -5,6 +5,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import "swiper/css/free-mode";
+import "swiper/css/thumbs";
 
 import { Pagination, Navigation, Autoplay } from "swiper";
 
@@ -12,32 +14,25 @@ import styles from './DiscountTabs.module.scss'
 import Image from "next/image";
 
 const DiscountTabs = () => {
-    // const swiperPrevRef = useRef(null);
-    // const swiperNextRef = useRef(null);
     const swiperRef = useRef();
 
     return (
         <div className={styles.tabs}>
             <Swiper
-                slidesPerView={2}
                 spaceBetween={16}
                 slidesPerGroup={1}
+                slidesPerView={2} // or 'auto'
+                slidesPerColumn={3}
+                slidesPerColumnFill="row"
                 loop={true}
                 loopFillGroupWithBlank={true}
                 autoplay={{
                     delay: 5000,
                     disableOnInteraction: false,
                 }}
-                // navigation={{
-                //     prevEl: swiperPrevRef.current,
-                //     nextEl: swiperNextRef.current
-                // }}
                 modules={[Pagination, Navigation, Autoplay]}
-                className="mySwiper"
 
                 onBeforeInit={(swiper) => {
-                    // swiper.params.navigation.prevEl = swiperPrevRef.current;
-                    // swiper.params.navigation.nextEl = swiperNextRef.current;
                     swiperRef.current = swiper;
                 }}
             >

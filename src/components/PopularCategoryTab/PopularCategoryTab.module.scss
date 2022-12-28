@@ -25,6 +25,10 @@
     line-height: 18px;
   }
 
+  svg {
+    transition: 0.5s;
+  }
+
   &:hover {
     color: #7b54c9;
 

@@ -13,11 +13,11 @@
     grid-template-columns: 50% 50%;
     gap: 16px;
 
-    .image {
+    .subtitle {
       background: linear-gradient(82.88deg, #b5159d 0%, #65248a 100%);
       border-radius: 16px;
-      display: flex;
-      flex-direction: row;
+      display: grid;
+      grid-template-columns: 50% 50%;
       align-items: center;
       gap: 40px;
       padding: 0 64px;
@@ -27,6 +27,15 @@
         display: flex;
         flex-direction: column;
         gap: 40px;
+      }
+
+      .image {
+        display: block;
+        img {
+          object-fit: contain;
+          height: 280px;
+          width: 100%;
+        }
       }
     }
 

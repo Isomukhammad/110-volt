@@ -9,6 +9,12 @@
     flex-direction: column;
     gap: 57px;
 
+    h1 {
+      font-size: 24px;
+      line-height: 28px;
+      color: #242424;
+    }
+
     .links {
       display: flex;
       flex-direction: column;
@@ -19,15 +25,30 @@
         font-size: 16px;
         line-height: 19px;
         color: #828282;
+        transition: 0.3s;
 
         &:hover {
-          color: #7b54c9;
+          color: #242424;
         }
       }
     }
   }
 
   .img {
+    div {
+      background-color: black;
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: pointer;
+
+      img {
+        transition: 0.3s;
+        &:hover {
+          scale: 1.2;
+          opacity: 0.8;
+        }
+      }
+    }
     p {
       font-weight: 600;
       margin-top: 24px;
