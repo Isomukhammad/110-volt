@@ -4,14 +4,16 @@
   flex-direction: column;
   justify-content: space-between;
   position: relative;
+}
 
-  .mainSlider {
-    &:hover {
-      .sliderPrev,
-      .sliderNext {
-        visibility: visible;
-        opacity: 1;
-      }
+.mainSlider {
+  border-radius: 16px;
+
+  &:hover {
+    .sliderPrev,
+    .sliderNext {
+      visibility: visible;
+      opacity: 1;
     }
   }
 }
