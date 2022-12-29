@@ -61,13 +61,13 @@ const Footer = () => {
                     <Image src={'/images/CompanyLogo2.png'} alt="" width="0" height="0" sizes="100vw" className={styles.image} placeholder="blurDataURL" />
                 </Link>
                 <p>© 2022 110-volt. Все права защищены</p>
-                <p className={styles.devs}>Разработка -
+                <Link href="http://inweb.uz/" className={styles.devs}>Разработка -
                     <span>
                         <svg viewBox="0 0 15 18" fill="none" width={15} height={18} className={styles.devLogo}>
                             <use xlinkHref='#dev-logo'></use>
                         </svg>
                     </span>
-                </p>
+                </Link>
             </div>
         </footer>
     )
