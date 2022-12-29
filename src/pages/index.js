@@ -16,7 +16,7 @@ export default function Home() {
     <main className={styles.main}>
       <HeadInfo />
 
-      {/* <Headline /> */}
+      <Headline />
       <PopularCategories />
       <DiscountTabs />
       <Recommendations title="Хиты продаж" link="/" linkTitle="Все хиты" />
