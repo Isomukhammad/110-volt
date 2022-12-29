@@ -20,8 +20,7 @@ const DiscountTabs = () => {
         <div className={styles.tabs}>
             <Swiper
                 spaceBetween={16}
-                slidesPerGroup={1}
-                slidesPerView={2} // or 'auto'
+                slidesPerView={2}
                 loop={true}
                 loopFillGroupWithBlank={true}
                 autoplay={{

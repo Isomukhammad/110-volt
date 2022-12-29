@@ -1,10 +1,12 @@
+//scss is in styles folder
+
 import { useEffect, useRef, useState } from 'react';
 import data from '../../data.json';
 
 import MenuCatalogue from '../MenuCatalogue/MenuCatalogue';
 import MenuCategory from '../MenuCategory/MenuCategory';
-// import styles from './Menu.module.scss'
 
+import styles from './Menu.module.scss';
 
 const Menu = ({ menuOpen, setMenuOpen }) => {
     const useOutsideAlerter = (ref) => {
@@ -29,19 +31,18 @@ const Menu = ({ menuOpen, setMenuOpen }) => {
     useOutsideAlerter(wrapperRef);
 
     return (
-        <div className={`
-        menu-container 
-        ${menuOpen ? 'menuIsOpen' : 'menuIsClosed'}
-        `}>
-            <div className='menu' ref={wrapperRef}>
-                <div className='menuCatalogue'>
+        <div
+            className={`${styles.container} ${menuOpen ? styles.menuIsOpen : styles.menuIsClosed}`}
+        >
+            <div className={styles.menu} ref={wrapperRef}>
+                <div className={styles.menuCatalogue}>
                     <MenuCatalogue catalogues={catalogues} btn={btn} setBtn={setBtn} />
                 </div>
-                <div className='catalogueItems'>
+                <div className={styles.catalogueItems}>
                     <MenuCategory catalogues={catalogues} btn={btn} setMenuOpen={setMenuOpen} />
                 </div>
                 <div
-                    className='close'
+                    className={styles.close}
                     onClick={() => setMenuOpen(false)}
                 >
                     <svg

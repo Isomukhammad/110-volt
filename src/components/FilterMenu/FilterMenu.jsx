@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import RadioButton from '../FilterRadio/FilterRadio';
+import InputRadio from '../InputRadio/InputRadio';
 import FormCheckbox from '../FormCheckbox/FormCheckbox';
 import styles from './FilterMenu.module.scss';
 
@@ -7,6 +7,7 @@ const FilterMenu = ({ products }) => {
     const [brands, setBrands] = useState([]);
     const [space, setSpace] = useState([]);
     const [sim, setSim] = useState([]);
+    const [checkedRadio, setCheckedRadio] = useState(null);
 
     const handleBrandChange = (event) => {
         if (brands.includes(event.target.name)) {
@@ -25,7 +26,13 @@ const FilterMenu = ({ products }) => {
     }
 
     const handleRadioChange = (event) => {
-        console.log(event.target.value);
+        if (checkedRadio != event.target.value) {
+            console.log(event.target.value);
+            setCheckedRadio(event.target.value)
+        } else {
+            console.log(event.target.value);
+            setCheckedRadio(null)
+        }
     }
 
     const handleSpaceChange = (event) => {
@@ -153,29 +160,34 @@ const FilterMenu = ({ products }) => {
             <div className={styles.category}>
                 <h3>Цвет</h3>
                 <form className={styles.radios}>
-                    <RadioButton
+                    <InputRadio
                         name='color'
                         color='red'
+                        value="red"
                     />
-                    <RadioButton
+                    <InputRadio
                         name='color'
                         color='black'
+                        value='black'
                     />
-                    <RadioButton
+                    <InputRadio
                         name='color'
                         color='white'
+                        value='white'
                     />
-                    <RadioButton
+                    <InputRadio
                         name='color'
                         color='purple'
                     />
-                    <RadioButton
+                    <InputRadio
                         name='color'
                         color='orange'
+                        value='orange'
                     />
-                    <RadioButton
+                    <InputRadio
                         name='color'
                         color='blue'
+                        value='blue'
                     />
                 </form>
             </div>

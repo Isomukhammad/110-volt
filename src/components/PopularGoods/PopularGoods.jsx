@@ -16,7 +16,7 @@ const PopularGoods = () => {
             <div className={styles.tabs}>
                 {
                     popularItems.map((item) => (
-                        <ProductTab key={item.key} info={item} />
+                        <ProductTab key={item.id} info={item} />
                     ))
                 }
             </div>

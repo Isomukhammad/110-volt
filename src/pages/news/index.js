@@ -11,6 +11,7 @@ import PopularGoods from '../../components/PopularGoods/PopularGoods'
 import styles from './News.module.scss'
 import Link from 'next/link';
 import Image from 'next/image';
+import PageButtons from '../../components/PageButtons/PageButtons';
 
 const NewsPage = () => {
     return (
@@ -49,6 +50,10 @@ const NewsPage = () => {
 
                         <div className={styles.news}>
                             <NewsTabs />
+                        </div>
+
+                        <div className={styles.pageButtons}>
+                            <PageButtons />
                         </div>
 
                         <DiscountTabs />

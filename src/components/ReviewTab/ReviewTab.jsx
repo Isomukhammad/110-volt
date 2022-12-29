@@ -1,3 +1,5 @@
+//Component is used in main page in cliets reviews row
+
 import Image from "next/image";
 
 import styles from './ReviewTab.module.scss';

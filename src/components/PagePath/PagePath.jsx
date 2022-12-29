@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import styles from './PagePath.module.scss'
 
-const PagePath = ({ category, subcategory }) => {
+const PagePath = ({ category, subcategory, product }) => {
     return (
         <div className={styles.container}>
             <div>
@@ -10,7 +10,7 @@ const PagePath = ({ category, subcategory }) => {
             </div>
             {
                 category ? (
-                    <div className={category ? `${styles.active}` : null}>
+                    <div className={!subcategory ? `${styles.active}` : null}>
                         <svg viewBox='0 0 20 20' width={20} height={20}>
                             <use xlinkHref='#dash'></use>
                         </svg>
@@ -20,11 +20,21 @@ const PagePath = ({ category, subcategory }) => {
             }
             {
                 subcategory ? (
+                    <div className={!product ? `${styles.active}` : null}>
+                        <svg viewBox='0 0 20 20' width={20} height={20}>
+                            <use xlinkHref='#dash'></use>
+                        </svg>
+                        <Link href="/">{category}</Link>
+                    </div>
+                ) : null
+            }
+            {
+                product ? (
                     <div className={styles.active}>
                         <svg viewBox='0 0 20 20' width={20} height={20}>
                             <use xlinkHref='#dash'></use>
                         </svg>
-                        <Link href={url1?.url}>{subcategory}</Link>
+                        <Link href={url1?.url}>{product}</Link>
                     </div>
                 ) : null
             }
