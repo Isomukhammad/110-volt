@@ -28,6 +28,7 @@ const ProductPage = () => {
         setHeight(position);
     };
 
+    const [number, setNunber] = useState();
 
     useEffect(() => {
         const filter = data.map((item) => {
