@@ -93,8 +93,8 @@ const Sprites = () => {
                 </symbol>
 
                 <symbol id="arrow-left-1">
-                    <path d="M13.8332 8H3.1665" stroke="#BDBDBD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M8.49984 12.6666L3.1665 7.99992L8.49984 3.33325" stroke="#BDBDBD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M13.8332 8H3.1665" stroke="#BDBDBD" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M8.49984 12.6666L3.1665 7.99992L8.49984 3.33325" stroke="#BDBDBD" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 </symbol>
 
                 <g id="dev-logo" clipPath="url(#clip0_512_609)">

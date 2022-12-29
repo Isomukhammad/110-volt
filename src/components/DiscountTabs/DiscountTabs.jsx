@@ -22,8 +22,6 @@ const DiscountTabs = () => {
                 spaceBetween={16}
                 slidesPerGroup={1}
                 slidesPerView={2} // or 'auto'
-                slidesPerColumn={3}
-                slidesPerColumnFill="row"
                 loop={true}
                 loopFillGroupWithBlank={true}
                 autoplay={{
