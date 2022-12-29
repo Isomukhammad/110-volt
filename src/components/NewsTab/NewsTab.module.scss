@@ -9,6 +9,12 @@
   .image {
     overflow: hidden;
     border-radius: 16px;
+
+    img {
+      margin-top: 0px;
+      width: 100%;
+      height: auto;
+    }
   }
   &:hover {
     img {
