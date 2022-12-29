@@ -1,19 +1,33 @@
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import HeadInfo from '../../utils/HeadInfo';
 import ImageComponent from '../../components/ImageComponent/ImageComponent';
 import Button from '../../components/Button/Button'
 import PopularGoods from '../../components/PopularGoods/PopularGoods';
+import ProductCharasteristic from '../../components/ProductCharasteristic/ProductCharasteristic';
+import ProductHeader from '../../components/ProductHeader/ProductHeader';
+import PagePath from '../../components/PagePath/PagePath'
 
 import data from '../../products.json';
 
 import styles from './Product.module.scss';
-import ProductCharasteristic from '../../components/ProductCharasteristic/ProductCharasteristic';
 
 const ProductPage = () => {
+    const [height, setHeight] = useState(0);
+    const [show, setShow] = useState('false');
+
+    const ref = useRef(null);
     const [product, setProduct] = useState();
+    const router = useRouter();
+    console.log(router)
     const { query } = useRouter();
+
+    const handleScroll = () => {
+        const position = window.pageYOffset + 160;
+        setHeight(position);
+    };
+
 
     useEffect(() => {
         const filter = data.map((item) => {
@@ -25,11 +39,27 @@ const ProductPage = () => {
         setProduct(filter[0]);
     }, [query])
 
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll, { passive: true });
+
+        if (height >= 700) {
+            setShow("true")
+        } else {
+            setShow("false")
+        }
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    })
+
     return (
         <>
             <HeadInfo title={query.product} />
             <div className={styles.container}>
-                <section className={styles.headline}>
+                <ProductHeader product={product} show={show} />
+                <PagePath />
+                <section className={styles.headline} ref={ref}>
                     <ImageComponent
                         src={'/images/Rectangle 1177.png'} alt="заглушка"
                     />
@@ -68,7 +98,7 @@ const ProductPage = () => {
 
                 <ProductCharasteristic />
             </div >
-            <PopularGoods />
+            {/* <PopularGoods /> */}
         </>
     )
 }

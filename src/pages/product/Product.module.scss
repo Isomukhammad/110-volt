@@ -1,4 +1,6 @@
 .container {
+  position: relative;
+
   h1 {
     font-size: 32px;
   }
@@ -62,7 +64,7 @@
           font-size: 32px;
           display: flex;
           flex-direction: row;
-          align-items: end;
+          align-items: flex-end;
           gap: 24px;
           line-height: 30px;
 

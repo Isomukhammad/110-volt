@@ -1,5 +1,7 @@
-import Image from 'next/image';
 import Link from 'next/link';
+
+import ImageComponent from '../ImageComponent/ImageComponent'
+
 import styles from './MenuCategory.module.scss';
 
 const MenuCategory = ({ catalogues, btn, setMenuOpen }) => {
@@ -22,7 +24,7 @@ const MenuCategory = ({ catalogues, btn, setMenuOpen }) => {
             </div>
             <div className={styles.img}>
                 <div>
-                    <Image src={'/images/Rectangle 15.png'} alt="" width={250} height={400} />
+                    <ImageComponent src={'/images/Rectangle 15.png'} alt="" width={250} height={400} />
                 </div>
                 <p>Смартфоны</p>
             </div>

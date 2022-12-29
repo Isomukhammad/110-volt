@@ -10,7 +10,6 @@ import '../components/MenuCatalogue/MenuCatalogue.scss';
 import '../styles/nprogress.css'
 import '../styles/globals.scss';
 import '../styles/colors.scss';
-import '../styles/Menu.scss';
 import '../styles/Slider.scss';
 
 export default function App({ Component, pageProps }) {
