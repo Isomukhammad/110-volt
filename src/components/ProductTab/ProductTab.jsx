@@ -16,7 +16,7 @@ const ProductTab = ({
     productId,
     arrLength
 }) => {
-    let { id, subtitle, description, monthly, price, discounted, img } = info;
+    let { subtitle, description, monthly, price, discounted, img } = info;
     const [quickView, setQuickView] = useState('false');
 
     if (typeof img !== 'string') {

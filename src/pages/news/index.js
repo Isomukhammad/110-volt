@@ -72,7 +72,7 @@ const NewsPage = () => {
                             </Link>
                         </div>
 
-                        <PopularGoods />
+                        {/* <PopularGoods /> */}
                         <DiscountTabs />
                     </div>
                 )
