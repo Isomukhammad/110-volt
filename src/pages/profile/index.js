@@ -9,6 +9,7 @@ import DiscountTabs from '../../components/DiscountTabs/DiscountTabs';
 import OrderTab from '../../components/OrderTab/OrderTab';
 
 import styles from './Profile.module.scss';
+import ProfileForm from '../../components/ProfileForm/ProfileForm';
 
 const ProfilePage = () => {
     const [section, setSection] = useState('profile');
@@ -58,11 +59,17 @@ const ProfilePage = () => {
                         </section>
                     </aside>
 
-                    <main className={styles.orders}>
-                        <OrderTab />
-                        <OrderTab />
-                        <OrderTab />
-                    </main>
+                    {
+                        section === 'profile' ? (
+                            <ProfileForm />
+                        ) : (
+                            <main className={styles.orders}>
+                                <OrderTab />
+                                <OrderTab />
+                                <OrderTab />
+                            </main>
+                        )
+                    }
                 </div>
                 <PopularGoods title={'Популярные товары'} />
                 <DiscountTabs />
