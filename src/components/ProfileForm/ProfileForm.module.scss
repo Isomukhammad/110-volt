@@ -25,6 +25,30 @@
 
     &.passwordInfo {
       margin-top: 80px;
+
+      input {
+        border: 1px solid #e0e0e0;
+        border-radius: 16px;
+        padding: 16px 18px;
+        width: 100%;
+
+        &:focus {
+          outline: none;
+        }
+
+        &::placeholder {
+          font-weight: 400;
+          font-size: 15px;
+          line-height: 18px;
+          display: flex;
+          align-items: center;
+          color: #c0c0c0;
+        }
+      }
+    }
+    .passwordError {
+      font-weight: 600;
+      color: red;
     }
   }
 }
