@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Button from '../Button/Button';
 import FormInput from '../FormInput/FormInput';
@@ -5,6 +6,8 @@ import FormInput from '../FormInput/FormInput';
 import styles from './ProfileForm.module.scss';
 
 const ProfileForm = () => {
+    const [match, setMatch] = useState(true);
+
     const {
         register,
         handleSubmit,
@@ -20,20 +23,40 @@ const ProfileForm = () => {
     const {
         register: register2,
         handleSubmit: handleSubmit2,
+        watch: watch2,
         formState: {
             errors: errors2,
-            isValid: isValid2
+            isValid: isValid2,
         },
+        getValues,
         reset: reset2
     } = useForm({
-        mode: "onBlur"
+        mode: "onChange"
     });
+
+    const onSubmit = (data) => console.log(data);
+    const onSubmitPassword = (data) => {
+        console.log(data);
+    }
+
+    const handleConfirmPassword = (event) => {
+        if (event.target.value) {
+            if (getValues('newPassword') === event.target.value) {
+                setMatch(true);
+            } else {
+                setMatch(false);
+            }
+        } else {
+            setMatch(true)
+        }
+    }
 
     return (
         <div className={styles.container}>
             <h3>Личные данные</h3>
             <form
                 className={styles.personalInfo}
+                onSubmit={handleSubmit(onSubmit)}
             >
                 <FormInput
                     type='text'
@@ -65,43 +88,51 @@ const ProfileForm = () => {
                     maxLength="30"
                     error={errors?.email}
                 />
-                {
-                    errors?.email && <p className={styles.error}>{errors?.email?.message}</p>
-                }
-                <Button active={!isValid}>Сохранить изменения</Button>
+                <Button type="submit" active={!isValid}>Сохранить изменения</Button>
             </form>
 
             <form
                 className={styles.passwordInfo}
+                onSubmit={handleSubmit(onSubmitPassword)}
             >
-                <FormInput
+                <input
                     type='password'
                     name='oldPassword'
-                    placeholder="Ваше имя"
-                    register={register2}
-                    required="Введите старый пароль!"
-                    minLength="6"
-                // maxLength="12"
+                    placeholder="Старый пароль"
+                    {...register2("oldPassword", {
+                        required: true,
+                        maxLength: 20,
+                        minLength: 6
+                    })}
                 />
-                <FormInput
+                <input
                     type='password'
                     name='newPassword'
-                    placeholder="Номер телефона"
-                    register={register2}
-                    required="Введите новый пароль!"
-                    minLength="6"
-                // maxLength="12"
+                    placeholder="Придумайте новый пароль"
+                    {...register2("newPassword", {
+                        required: true,
+                        maxLength: 20,
+                        minLength: 6
+                    })}
                 />
-                <FormInput
+                <input
                     type='password'
                     name='confirmPassword'
-                    placeholder="E-mail"
-                    register={register2}
-                    required="Подтвердите свой пароль!"
-                    minLength="6"
-                // maxLength="12"
+                    placeholder="Подтвердите пароль"
+                    {...register2("confirmPassword", {
+                        required: true,
+                        maxLength: 20,
+                        minLength: 6,
+                        onChange: (e) => { handleConfirmPassword(e) },
+                    })}
                 />
-                <Button active={!isValid2}>Сохранить изменения</Button>
+                {!match ? <p className={styles.passwordError}>Пароли не совпадают</p> : null}
+                <Button
+                    active={!isValid ===
+                        !(getValues('newPassword') === getValues('confirmPassword'))
+                    }
+                    type="submit"
+                >Сохранить изменения</Button>
             </form>
         </div>
     )
