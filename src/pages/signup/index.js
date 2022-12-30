@@ -1,17 +1,20 @@
 import Link from 'next/link';
+import { useState } from 'react';
+import MsgCodeForm from '../../components/MsgCodeForm/MsgCodeForm';
 import SignupForm from '../../components/SignupForm/SignupForm';
 import HeadInfo from '../../utils/HeadInfo';
 
-import styles from './signup.module.scss';
+import styles from './SignUp.module.scss';
 
 const SignUp = () => {
+    const [msg, setMsg] = useState(false);
     return (
         <>
             <HeadInfo title="Регистрация" />
             <div className={styles.container}>
-                <div className={styles.signIn}>
+                <div className={styles.signUn}>
                     <h2>Регистрация</h2>
-                    <SignupForm />
+                    {msg ? <MsgCodeForm /> : <SignupForm />}
                     <p className={styles.account}>Уже есть аккаунт? <Link href="/signin">Войти</Link></p>
                     <div className={styles.conditions}>
                         <svg
