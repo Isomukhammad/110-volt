@@ -45,9 +45,6 @@ const ProfileForm = () => {
                     maxLength="30"
                     error={errors?.name}
                 />
-                {
-                    errors?.name && <p className={styles.error}>{errors?.name?.message}</p>
-                }
                 <FormInput
                     type='number'
                     name='mobile'
@@ -58,9 +55,6 @@ const ProfileForm = () => {
                     maxLength="20"
                     error={errors?.mobile}
                 />
-                {
-                    errors?.mobile && <p className={styles.error}>{errors?.mobile?.message}</p>
-                }
                 <FormInput
                     type='email'
                     name='email'
