@@ -17,18 +17,10 @@
       color: #bdbdbd;
     }
 
-    svg {
-      fill: #bdbdbd;
-    }
-
     &.active {
       a {
         color: #242424;
         pointer-events: none;
-      }
-
-      svg {
-        fill: #242424;
       }
     }
   }
