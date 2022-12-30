@@ -21,7 +21,7 @@ const FormInput = ({ name, register, placeholder, required, type, maxLength, min
             })}
             placeholder={placeholder}
             className={`${styles.input} ${error ? styles.error : null}`}
-            value={value ? value : null}
+            value={value ? value : ''}
         />
     )
 }
