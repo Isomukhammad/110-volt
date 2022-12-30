@@ -38,7 +38,7 @@ const ProfilePage = () => {
                 />
                 <h1>Мой аккаунт</h1>
 
-                <div className={styles.content}>
+                <div className={`${styles.content} ${section === 'order' ? styles.space : ''}`}>
                     <aside className={styles.sidebar}>
                         <section
                             onClick={() => setSection('profile')}
