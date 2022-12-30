@@ -12,7 +12,6 @@ const QuickView = ({
     setProductId,
     arrLength
 }) => {
-    console.log(data);
     return (
         <div
             className={`
