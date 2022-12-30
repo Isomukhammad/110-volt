@@ -8,7 +8,7 @@
   z-index: 5;
   display: flex;
   justify-content: center;
-  animation: headerMenuOut 0.5s ease-in-out;
+  animation: headerMenuOut 1s ease-in-out;
 
   .content {
     width: 1600px;
@@ -82,12 +82,18 @@
       gap: 8px;
     }
   }
+
+  @media screen and (max-width: 1599px) {
+    .content {
+      padding: 0 3em;
+    }
+  }
 }
 
 .show {
   padding: 24px 0;
   top: 0;
-  animation: headerMenu 0.5s ease-in-out;
+  animation: headerMenu 1s ease-in-out;
 }
 
 @keyframes headerMenu {
