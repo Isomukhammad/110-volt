@@ -1,6 +1,6 @@
 import styles from './FormInput.module.scss'
 
-const FormInput = ({ name, register, placeholder, required, type, maxLength, minLength, error }) => {
+const FormInput = ({ name, register, placeholder, required, type, maxLength, minLength, error, value }) => {
     if (!name || !register || !placeholder || !required) {
         return null;
     }
@@ -21,6 +21,7 @@ const FormInput = ({ name, register, placeholder, required, type, maxLength, min
             })}
             placeholder={placeholder}
             className={`${styles.input} ${error ? styles.error : null}`}
+            value={value ? value : null}
         />
     )
 }
