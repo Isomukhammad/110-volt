@@ -7,7 +7,8 @@ import Button from '../../components/Button/Button'
 import PopularGoods from '../../components/PopularGoods/PopularGoods';
 import ProductCharasteristic from '../../components/ProductCharasteristic/ProductCharasteristic';
 import ProductHeader from '../../components/ProductHeader/ProductHeader';
-import PagePath from '../../components/PagePath/PagePath'
+import DiscountTabs from '../../components/DiscountTabs/DiscountTabs';
+import PagePath from '../../components/PagePath/PagePath';
 
 import data from '../../products.json';
 
@@ -43,7 +44,7 @@ const ProductPage = () => {
     useEffect(() => {
         window.addEventListener('scroll', handleScroll, { passive: true });
 
-        if (height >= 700) {
+        if (height >= 680) {
             setShow("true")
         } else {
             setShow("false")
@@ -59,7 +60,27 @@ const ProductPage = () => {
             <HeadInfo title={query.product} />
             <div className={styles.container}>
                 <ProductHeader product={product} show={show} />
-                <PagePath />
+                <PagePath
+                    paths={[
+                        {
+                            "url": "",
+                            "name": "Главная"
+                        },
+                        {
+                            "url": "/category/",
+                            "name": "Компьютерная техника"
+                        },
+                        {
+                            "url": "/category/noutbuki",
+                            "name": "Ноутбуки"
+                        },
+                        {
+                            "url": "",
+                            "name": `${product?.subtitle}`
+                        }
+                    ]}
+                />
+
                 <section className={styles.headline} ref={ref}>
                     <ImageComponent
                         src={'/images/Rectangle 1177.png'} alt="заглушка"
@@ -98,6 +119,9 @@ const ProductPage = () => {
                 </section>
 
                 <ProductCharasteristic />
+                <PopularGoods title={'Популярные товары'} margin={'80px'} />
+                <PopularGoods title={'С этим товаром покупали'} margin={'80px'} />
+                <DiscountTabs />
             </div >
             {/* <PopularGoods /> */}
         </>
