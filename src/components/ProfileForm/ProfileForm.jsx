@@ -17,6 +17,18 @@ const ProfileForm = () => {
         mode: "onBlur"
     });
 
+    const {
+        register: register2,
+        handleSubmit: handleSubmit2,
+        formState: {
+            errors: errors2,
+            isValid: isValid2
+        },
+        reset: reset2
+    } = useForm({
+        mode: "onBlur"
+    });
+
     return (
         <div className={styles.container}>
             <h3>Личные данные</h3>
@@ -72,30 +84,30 @@ const ProfileForm = () => {
                     type='password'
                     name='oldPassword'
                     placeholder="Ваше имя"
-                    register={register}
-                    required="Введите своё имя!"
+                    register={register2}
+                    required="Введите старый пароль!"
                     minLength="6"
-                    maxLength="12"
+                // maxLength="12"
                 />
                 <FormInput
                     type='password'
                     name='newPassword'
                     placeholder="Номер телефона"
-                    register={register}
-                    required="Введите свой номер телефона!"
+                    register={register2}
+                    required="Введите новый пароль!"
                     minLength="6"
-                    maxLength="12"
+                // maxLength="12"
                 />
                 <FormInput
                     type='password'
                     name='confirmPassword'
                     placeholder="E-mail"
-                    register={register}
-                    required="Введите ваш E-mail!"
+                    register={register2}
+                    required="Подтвердите свой пароль!"
                     minLength="6"
-                    maxLength="12"
+                // maxLength="12"
                 />
-                <Button active={!isValid}>Сохранить изменения</Button>
+                <Button active={!isValid2}>Сохранить изменения</Button>
             </form>
         </div>
     )
