@@ -1,10 +1,8 @@
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
-import Button from '../Button/Button';
 
-import ImageComponent from '../ImageComponent/ImageComponent'
+import Button from '../Button/Button';
 import QuickView from '../QuickView/QuickView';
 
 import styles from './ProductTab.module.scss'
@@ -16,7 +14,7 @@ const ProductTab = ({
     productId,
     arrLength
 }) => {
-    let { id, subtitle, description, monthly, price, discounted, img } = info;
+    let { subtitle, description, monthly, price, discounted, img } = info;
     const [quickView, setQuickView] = useState('false');
 
     if (typeof img !== 'string') {
@@ -80,8 +78,6 @@ const ProductTab = ({
                         <use xlinkHref="#heart"></use>
                     </svg>
                 </div>
-
-
             </Link >
             <QuickView
                 setQuickView={setQuickView}

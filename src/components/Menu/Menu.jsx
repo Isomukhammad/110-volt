@@ -30,6 +30,10 @@ const Menu = ({ menuOpen, setMenuOpen }) => {
     const wrapperRef = useRef(null);
     useOutsideAlerter(wrapperRef);
 
+    const stopProp = (event) => {
+        event.stopProagation();
+    }
+
     return (
         <div
             className={`${styles.container} ${menuOpen ? styles.menuIsOpen : styles.menuIsClosed}`}
@@ -38,7 +42,8 @@ const Menu = ({ menuOpen, setMenuOpen }) => {
                 <div className={styles.menuCatalogue}>
                     <MenuCatalogue catalogues={catalogues} btn={btn} setBtn={setBtn} />
                 </div>
-                <div className={styles.catalogueItems}>
+                <div className={styles.catalogueItems}
+                    onClick={(e) => { e.stopPropagation() }}>
                     <MenuCategory catalogues={catalogues} btn={btn} setMenuOpen={setMenuOpen} />
                 </div>
                 <div

@@ -1,0 +1,19 @@
+.container {
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .error {
+      color: red;
+    }
+
+    &.personalInfo {
+      margin-top: 40px;
+    }
+
+    &.passwordInfo {
+      margin-top: 80px;
+    }
+  }
+}

@@ -9,13 +9,13 @@ const FormInput = ({ name, register, placeholder, required, type, maxLength, min
         <input
             type={type}
             {...register(name, {
-                required: `${required}`,
+                required: `${required ? required : false}`,
                 minLength: {
-                    value: `${minLength}`,
+                    value: `${minLength ? minLength : null}`,
                     message: `Надо минимум ${minLength} символов`
                 },
                 maxLength: {
-                    value: `${maxLength}`,
+                    value: `${maxLength ? maxLength : null}`,
                     message: `Надо максимум ${maxLength} символов`
                 }
             })}

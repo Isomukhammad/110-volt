@@ -3,7 +3,7 @@ import SigninForm from '../../components/SigninForm/SigninForm';
 
 import HeadInfo from '../../utils/HeadInfo'
 
-import styles from './signIn.module.scss'
+import styles from './SignIn.module.scss'
 
 const SignIn = () => {
     return (
@@ -13,7 +13,10 @@ const SignIn = () => {
                 <div className={styles.signIn}>
                     <h2>Войти</h2>
                     <SigninForm />
-                    <p className={styles.account}>Нет аккаунта? <Link href="/signup">Зарегестрироваться</Link></p>
+                    <p className={styles.account}>
+                        Нет аккаунта?
+                        <Link href="/signup">Зарегестрироваться</Link>
+                    </p>
                     <div className={styles.conditions}>
                         <svg
                             viewBox='0 0 16 13'

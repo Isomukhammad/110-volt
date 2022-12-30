@@ -1,0 +1,46 @@
+.container {
+  width: 100%;
+  margin-bottom: 120px;
+  h1 {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 39px;
+    margin-top: 40px;
+  }
+
+  .content {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
+      section {
+        padding: 16px;
+        width: 253px;
+        cursor: pointer;
+        border-radius: 16px;
+        text-align: center;
+
+        &:hover {
+          background-color: #f2f2f2;
+        }
+      }
+
+      .active {
+        background-color: #f2f2f2;
+      }
+    }
+
+    .orders {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+  }
+}

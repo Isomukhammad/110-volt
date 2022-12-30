@@ -5,6 +5,30 @@
   &:hover {
     box-shadow: 0px 4px 40px rgba(35, 35, 35, 0.1);
 
+    .preview {
+      .quickReview {
+        opacity: 1;
+        visibility: visible;
+        display: flex;
+        justify-content: center;
+
+        &:hover {
+          background: #f2f2f2;
+        }
+      }
+
+      .image {
+        img {
+          -webkit-filter: brightness(70%);
+          -webkit-transition: all 0.3s ease;
+          -moz-transition: all 0.3s ease;
+          -o-transition: all 0.3s ease;
+          -ms-transition: all 0.3s ease;
+          transition: all 0.3s ease;
+        }
+      }
+    }
+
     .buttons {
       visibility: visible;
     }
@@ -15,15 +39,16 @@
     cursor: pointer;
 
     .quickReview {
+      text-align: center;
       transition: visibility 0s, opacity 0.3s linear;
       opacity: 0;
       visibility: hidden;
-      width: 65%;
+      width: 75%;
+      left: 50%;
       top: 50%;
-      left: 17%;
       position: absolute;
       z-index: 1;
-      transform: translateY(-50%);
+      transform: translate(-50%, -50%);
       font-size: 14px;
       line-height: 16px;
       background-color: rgba(255, 255, 255, 0.9);
@@ -43,28 +68,6 @@
         width: 100%;
         height: auto;
         -webkit-filter: brightness(100%);
-      }
-    }
-
-    &:hover {
-      .quickReview {
-        opacity: 1;
-        visibility: visible;
-        display: flex;
-        justify-content: center;
-
-        &:hover {
-          background: #f2f2f2;
-        }
-      }
-
-      img {
-        -webkit-filter: brightness(70%);
-        -webkit-transition: all 0.3s ease;
-        -moz-transition: all 0.3s ease;
-        -o-transition: all 0.3s ease;
-        -ms-transition: all 0.3s ease;
-        transition: all 0.3s ease;
       }
     }
   }

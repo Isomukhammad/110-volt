@@ -32,7 +32,7 @@ const ErrorPage = () => {
                         <Button>Вернуться на главную</Button>
                     </Link>
                 </div>
-                <PopularGoods />
+                <PopularGoods title={'Популярные товары'} />
                 <DiscountTabs />
             </div>
         </>

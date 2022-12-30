@@ -29,7 +29,7 @@ const Recommendations = ({ title, link, linkTitle }) => {
                     ))
                 }
             </div>
-        </div>
+        </div >
     )
 }
 

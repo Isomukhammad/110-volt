@@ -1,44 +1,34 @@
 import Link from 'next/link';
+import { useEffect } from 'react';
+import styles from './PagePath.module.scss';
 
-import styles from './PagePath.module.scss'
-
-const PagePath = ({ category, subcategory, product }) => {
+const PagePath = ({ paths }) => {
     return (
-        <div className={styles.container}>
-            <div>
-                <Link href="/" className={category ? `${styles.active}` : null}>Главная</Link>
-            </div>
+        <nav className={styles.container}>
             {
-                category ? (
-                    <div className={!subcategory ? `${styles.active}` : null}>
-                        <svg viewBox='0 0 20 20' width={20} height={20}>
-                            <use xlinkHref='#dash'></use>
-                        </svg>
-                        <Link href="/">{category}</Link>
+                paths?.map((item, index) => (
+                    <div key={index}>
+                        {
+                            index === 0 ? (
+                                <Link href="/">Главная</Link>
+                            ) : (
+                                item.url ? (
+                                    <Link
+                                        href={`/${item.url}`}
+                                    >
+                                        &mdash; {item.name}
+                                    </Link>
+                                ) : (
+                                    <div>
+                                        &mdash; {item.name}
+                                    </div>
+                                )
+                            )
+                        }
                     </div>
-                ) : null
+                ))
             }
-            {
-                subcategory ? (
-                    <div className={!product ? `${styles.active}` : null}>
-                        <svg viewBox='0 0 20 20' width={20} height={20}>
-                            <use xlinkHref='#dash'></use>
-                        </svg>
-                        <Link href="/">{category}</Link>
-                    </div>
-                ) : null
-            }
-            {
-                product ? (
-                    <div className={styles.active}>
-                        <svg viewBox='0 0 20 20' width={20} height={20}>
-                            <use xlinkHref='#dash'></use>
-                        </svg>
-                        <Link href={url1?.url}>{product}</Link>
-                    </div>
-                ) : null
-            }
-        </div>
+        </nav>
     )
 }
 
