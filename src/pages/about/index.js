@@ -13,7 +13,18 @@ const AboutPage = () => {
     return (
         <div className={styles.container}>
             <HeadInfo title="О Компании" />
-            <PagePath category="О компании" />
+            <PagePath
+                paths={[
+                    {
+                        "url": "/",
+                        "name": "Главная"
+                    },
+                    {
+                        "url": "",
+                        "name": `О нашей компании`
+                    }
+                ]}
+            />
             <AboutDescription />
             <DiscountTabs />
         </div>
