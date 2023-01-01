@@ -14,7 +14,18 @@ const ErrorPage = () => {
         <>
             <HeadInfo title="404 error" />
             <div className={styles.container}>
-                <PagePath category="В дальнем космосе" />
+                <PagePath
+                    paths={[
+                        {
+                            "url": "/",
+                            "name": "Главная"
+                        },
+                        {
+                            "url": "",
+                            "name": "В дальнем космосе"
+                        }
+                    ]}
+                />
                 <div className={styles.image}>
                     <Image
                         src={"/images/Error Logo.png"}
