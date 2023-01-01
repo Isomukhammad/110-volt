@@ -17,7 +17,18 @@ const NewsPage = () => {
     return (
         <>
             <HeadInfo title="Новости" />
-            <PagePath category="Новости" />
+            <PagePath
+                paths={[
+                    {
+                        "url": "/",
+                        "name": "Главная"
+                    },
+                    {
+                        "url": "",
+                        "name": `Новости`
+                    }
+                ]}
+            />
             {
                 news ? (
                     <div className={styles.container}>
