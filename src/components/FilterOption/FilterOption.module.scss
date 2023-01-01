@@ -1,0 +1,62 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  overflow: hidden;
+  height: fit-content;
+  transition: all 1s ease-in;
+
+  .title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+
+    svg {
+      animation: rotateBack 0.3s;
+      transform: rotate(90deg);
+    }
+  }
+
+  .options {
+    height: fit-content;
+  }
+
+  .close {
+    height: 0;
+  }
+}
+
+.rotate {
+  .title {
+    svg {
+      animation: rotateForward 0.3s;
+      transform: rotate(270deg);
+    }
+  }
+}
+
+@keyframes rotateForward {
+  0% {
+    transform: rotate(90deg);
+  }
+
+  50% {
+    transform: rotate(180deg);
+  }
+
+  100% {
+    transform: rotate(270deg);
+  }
+}
+
+@keyframes rotateBack {
+  0% {
+    transform: rotate(270deg);
+  }
+
+  100% {
+    transform: rotate(90deg);
+  }
+}
