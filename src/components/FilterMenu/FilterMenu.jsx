@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import InputRadio from '../InputRadio/InputRadio';
 import FormCheckbox from '../FormCheckbox/FormCheckbox';
 import styles from './FilterMenu.module.scss';
+import FilterOption from '../FilterOption/FilterOption';
 
 const FilterMenu = ({ products }) => {
     const [brands, setBrands] = useState([]);
@@ -64,9 +65,7 @@ const FilterMenu = ({ products }) => {
     }, [sim])
     return (
         <div className={styles.container}>
-            <div className={styles.category}>
-                <h3>Бренды</h3>
-
+            <FilterOption title={'Бренды'}>
                 <form>
                     <FormCheckbox
                         name="Apple"
@@ -101,15 +100,13 @@ const FilterMenu = ({ products }) => {
                         handleChange={handleBrandChange}
                     />
                 </form>
-            </div>
+            </FilterOption>
 
-            <div className={styles.category}>
-                <h3>Цена</h3>
+            <FilterOption title="Цена">
                 <input type="range" min="0" max="100000000" step="10" onChange={handleRangeChange} />
-            </div>
+            </FilterOption>
 
-            <div className={styles.category}>
-                <h3>Объем встроенной памяти</h3>
+            <FilterOption title="Объем встроенной памяти">
                 <form>
                     <FormCheckbox
                         name="1 ТБ"
@@ -132,11 +129,9 @@ const FilterMenu = ({ products }) => {
                         handleChange={handleSpaceChange}
                     />
                 </form>
-            </div>
+            </FilterOption>
 
-            <div className={styles.category}>
-                <h3>Количество и тип SIM-карты</h3>
-
+            <FilterOption title="Количество и тип SIM-карты">
                 <form>
                     <FormCheckbox
                         name="Dual-Sim (nano-sim)"
@@ -155,10 +150,9 @@ const FilterMenu = ({ products }) => {
                         handleChange={handleSimChange}
                     />
                 </form>
-            </div>
+            </FilterOption>
 
-            <div className={styles.category}>
-                <h3>Цвет</h3>
+            <FilterOption title="Цвет">
                 <form className={styles.radios}>
                     <InputRadio
                         name='color'
@@ -190,7 +184,7 @@ const FilterMenu = ({ products }) => {
                         value='blue'
                     />
                 </form>
-            </div>
+            </FilterOption>
         </div>
     )
 }
