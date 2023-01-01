@@ -10,7 +10,18 @@ const ContactsPage = () => {
             <HeadInfo title="Наши контакты" />
 
             <div className={styles.container}>
-                <PagePath category="Контакты" />
+                <PagePath
+                    paths={[
+                        {
+                            "url": "/",
+                            "name": "Главная"
+                        },
+                        {
+                            "url": "",
+                            "name": `Контакты`
+                        }
+                    ]}
+                />
                 <h1>Наши контакты</h1>
                 <div className={styles.informations}>
                     <div>
