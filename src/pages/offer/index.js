@@ -9,7 +9,18 @@ const OfferPage = () => {
         <>
             <HeadInfo title="Оферта" />
             <main className={styles.container}>
-                <PagePath category="Оферта" />
+                <PagePath
+                    paths={[
+                        {
+                            "url": "/",
+                            "name": "Главная"
+                        },
+                        {
+                            "url": "",
+                            "name": `Оферта`
+                        }
+                    ]}
+                />
                 <h1>Оферта</h1>
                 <div className={styles.information}>
                     <p>Публичная оферта интернет-магазина «110volt.uz»</p>
