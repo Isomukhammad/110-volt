@@ -1,5 +1,6 @@
+import Link from 'next/link';
 import Button from '../Button/Button';
-import ImageComponent from '../ImageComponent/ImageComponent';
+import QuickViewSlider from '../QuickViewSlider/QuickViewSlider';
 
 import styles from './QuickView.module.scss';
 
@@ -24,33 +25,7 @@ const QuickView = ({
                 className={styles.content}
                 onClick={(e) => e.stopPropagation()}
             >
-                <div className={styles.image}>
-                    <ImageComponent
-                        src={data.img[0]}
-                        alt=""
-                    />
-                    <button className={styles.prevImgBtn}>
-                        <svg
-                            viewBox="0 0 16 13"
-                            fill='none'
-                            width="24px"
-                            height="24px"
-                            stroke="#7b54c9"
-                        >
-                            <use xlinkHref='#arrow-right'></use>
-                        </svg>
-                    </button>
-                    <button className={styles.nextImgBtn}>
-                        <svg viewBox="0 0 16 13"
-                            width={24}
-                            height={24}
-                            stroke="#7b54c9"
-                            fill="none"
-                        >
-                            <use xlinkHref='#arrow-right'></use>
-                        </svg>
-                    </button>
-                </div>
+                <QuickViewSlider images={data.img} />
                 <div className={styles.information}>
                     <div className={styles.title}>
                         <h2>{data.subtitle}</h2>
@@ -70,9 +45,9 @@ const QuickView = ({
                     </div>
                 </div>
 
-                <button className={styles.moreInfoBtn}>
+                <Link href={`/product/${data.subtitle}`} className={styles.moreInfoBtn}>
                     Больше информации
-                </button>
+                </Link>
 
                 <button
                     className={`${styles.prevBtn} ${index === 0 ? styles.disabled : ''}`}
