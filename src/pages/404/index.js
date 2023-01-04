@@ -28,7 +28,7 @@ const ErrorPage = () => {
                 />
                 <div className={styles.image}>
                     <Image
-                        src={"/images/Error Logo.png"}
+                        src={"/images/404 error lost in space-rafiki 1.png"}
                         alt="Error Image"
                         sizes="100vw"
                         width={0}
