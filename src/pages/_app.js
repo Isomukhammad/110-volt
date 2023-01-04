@@ -1,7 +1,9 @@
-import { useEffect, createContext } from 'react';
+import { useEffect } from 'react';
+import { Provider } from 'react-redux';
 import { useRouter } from 'next/router';
-
 import NProgress from 'nprogress';
+
+import store, { wrapper } from '../store/store';
 
 import MainLayout from '../layouts/Main';
 
@@ -12,7 +14,7 @@ import '../styles/globals.scss';
 import '../styles/colors.scss';
 import '../styles/Slider.scss';
 
-export default function App({ Component, pageProps }) {
+const App = ({ Component, ...rest }) => {
   const router = useRouter()
 
   useEffect(() => {
@@ -30,11 +32,14 @@ export default function App({ Component, pageProps }) {
     }
   }, [router])
 
+  const { store, props } = wrapper.useWrappedStore(rest)
   return (
-    <>
+    <Provider store={store}>
       <MainLayout>
-        <Component {...pageProps} />
+        <Component {...props} />
       </MainLayout>
-    </>
+    </Provider>
   )
 }
+
+export default App;
