@@ -1,20 +1,19 @@
-import Link from 'next/link';
-
+import { useState } from 'react';
 import products from '../../products.json';
-
-import Button from '../../components/Button/Button';
-import DiscountTabs from '../../components/DiscountTabs/DiscountTabs';
-import ImageComponent from '../../components/ImageComponent/ImageComponent';
-import PagePath from '../../components/PagePath/PagePath'
-import PopularGoods from '../../components/PopularGoods/PopularGoods';
+import data from '../../data.json'
 
 import HeadInfo from '../../utils/HeadInfo';
 
+import DiscountTabs from '../../components/DiscountTabs/DiscountTabs';
+import PagePath from '../../components/PagePath/PagePath'
+import PopularGoods from '../../components/PopularGoods/PopularGoods';
+import CartError from '../../components/CartError/CartError';
+import CartItem from '../../components/CartItem/CartItem';
+
 import styles from './Cart.module.scss'
+import CartTotal from '../../components/CartTotal/CartTotal';
 
 const Cart = () => {
-    console.log(products);
-
     return (
         <>
             <HeadInfo title="Корзина" />
@@ -31,20 +30,26 @@ const Cart = () => {
                 ]}
             />
             <div className={styles.container}>
-                <div className={styles.content}>
-                    <div className={styles.image}>
-                        <ImageComponent
-                            src={'/images/Empty-amico 1.png'}
-                            alt=""
-                        />
-                    </div>
-                    <h2>Здесь пока ничего нет</h2>
-                    <p>Загляните а главую или воспользуйтесь поиском</p>
-                    <Link href="/">
-                        <Button>Вернуться на главную</Button>
-                    </Link>
-                    <div></div>
-                </div>
+                {
+                    products ? (
+                        <div className={styles.content}>
+                            <h1 className={styles.title}>Корзина</h1>
+
+                            <div className={styles.cart}>
+                                <div className={styles.cartItems}>
+                                    <CartItem info={products[0].products[0]} />
+                                    <CartItem info={products[0].products[0]} />
+                                    <CartItem info={products[0].products[0]} />
+                                </div>
+                                <div className={styles.cartTotal}>
+                                    <CartTotal />
+                                </div>
+                            </div>
+                        </div>
+                    ) : (
+                        <CartError />
+                    )
+                }
                 <PopularGoods
                     title="Популярные товары"
                 />
