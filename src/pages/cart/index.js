@@ -1,4 +1,7 @@
 import Link from 'next/link';
+
+import products from '../../products.json';
+
 import Button from '../../components/Button/Button';
 import DiscountTabs from '../../components/DiscountTabs/DiscountTabs';
 import ImageComponent from '../../components/ImageComponent/ImageComponent';
@@ -10,6 +13,8 @@ import HeadInfo from '../../utils/HeadInfo';
 import styles from './Cart.module.scss'
 
 const Cart = () => {
+    console.log(products);
+
     return (
         <>
             <HeadInfo title="Корзина" />
@@ -30,11 +35,12 @@ const Cart = () => {
                     <div className={styles.image}>
                         <ImageComponent
                             src={'/images/Empty-amico 1.png'}
+                            alt=""
                         />
                     </div>
                     <h2>Здесь пока ничего нет</h2>
                     <p>Загляните а главую или воспользуйтесь поиском</p>
-                    <Link href='/'>
+                    <Link href="/">
                         <Button>Вернуться на главную</Button>
                     </Link>
                     <div></div>
