@@ -67,11 +67,11 @@ const ProductPage = () => {
                             "name": "Главная"
                         },
                         {
-                            "url": "/category/",
+                            "url": "category/",
                             "name": "Компьютерная техника"
                         },
                         {
-                            "url": "/category/noutbuki",
+                            "url": "category/noutbuki",
                             "name": "Ноутбуки"
                         },
                         {
