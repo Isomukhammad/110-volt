@@ -31,36 +31,6 @@
     max-width: 1000px;
     background-color: white;
 
-    .image {
-      position: relative;
-
-      button {
-        position: absolute;
-        background: rgba(35, 35, 35, 0.1);
-        border: none;
-        padding: 10px;
-        transform: translateY(-50%);
-        border-radius: 500px;
-
-        &.prevImgBtn {
-          top: 50%;
-          left: 0;
-
-          svg {
-            transform: scale(-1, -1);
-          }
-        }
-        &.nextImgBtn {
-          top: 50%;
-          right: 0;
-        }
-
-        svg {
-          stroke: white;
-        }
-      }
-    }
-
     .information {
       display: flex;
       flex-direction: column;
@@ -150,6 +120,7 @@
     }
 
     .moreInfoBtn {
+      text-align: center;
       cursor: pointer;
       position: absolute;
       width: 100%;
