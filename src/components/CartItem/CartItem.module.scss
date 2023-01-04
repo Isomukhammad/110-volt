@@ -39,6 +39,12 @@
     align-self: flex-start;
     gap: 24px;
 
+    .checkoutQuantity {
+      font-size: 20px;
+      line-height: 18px;
+      color: #bdbdbd;
+    }
+
     button {
       background-color: transparent;
       border: 1px solid #e0e0e0;
@@ -66,11 +72,23 @@
     }
   }
 
+  .centrelized {
+    margin-top: 0px;
+    align-self: center;
+  }
+
   .prices {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     gap: 12px;
+
+    .checkoutPrice {
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 24px;
+      text-align: right;
+    }
 
     .monthly {
       display: flex;
