@@ -1,10 +1,12 @@
 import { combineReducers, configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 import { createWrapper } from 'next-redux-wrapper';
 
-import counter from './countSlicer'
+import counter from './countSlicer';
+import cart from './cartSlice';
 
 const combinedReducer = combineReducers({
-    counter
+    counter,
+    cart
 })
 
 const makeStore = () =>
