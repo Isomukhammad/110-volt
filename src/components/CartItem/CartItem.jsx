@@ -6,6 +6,17 @@ import ImageComponent from '../ImageComponent/ImageComponent';
 import styles from './CartItem.module.scss'
 
 const CartItem = ({ info }) => {
+    const dispatch = useDispatch();
+
+    const cartItems = useSelector((state) => state.cart.cartItems);
+
+    const handleAddToCart = (product) => {
+        dispatch(addItemsToCart(product))
+    }
+
+    useEffect(() => {
+        console.log(cartItems)
+    }, [cartItems])
     return (
         <div className={styles.container}>
             <div className={styles.product}>
@@ -16,7 +27,7 @@ const CartItem = ({ info }) => {
                 <div className={styles.title}>{info.subtitle}</div>
             </div>
             <div className={styles.quantity}>
-                <button>
+                <button onClick={() => handleAddToCart(info)}>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="#242424" xmlns="http://www.w3.org/2000/svg">
                         <use xlinkHref='#minus'></use>
                     </svg>
