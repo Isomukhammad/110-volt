@@ -1,0 +1,81 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  max-width: 50%;
+
+  .contactInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+
+    .category {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+
+      .personalInformation {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+
+        input {
+          padding: 16px 18px;
+          border: 1px solid #e0e0e0;
+          border-radius: 16px;
+
+          &:focus {
+            outline: none;
+          }
+        }
+      }
+
+      .chosePayment {
+        display: flex;
+        flex-direction: row;
+        gap: 80px;
+
+        .column {
+          display: flex;
+          flex-direction: column;
+          gap: 24px;
+
+          .radio {
+            display: flex;
+            flex-direction: row;
+            gap: 12px;
+            align-items: center;
+
+            input[type="radio"] {
+              cursor: pointer;
+              width: 18px;
+              height: 18px;
+              //   &:checked {
+              //     background-color: red;
+              //     accent-color: #ffffff;
+              //   }
+              &:after {
+                border: 1px solid #e0e0e0;
+              }
+
+              &:checked:after {
+                width: 14px;
+                height: 14px;
+                border-radius: 15px;
+                // top: -2px;
+                left: 1px;
+                position: relative;
+                background-color: white;
+                content: "";
+                display: inline-block;
+                visibility: visible;
+                // border: 6px solid #7b54c9;
+                outline: 4px solid #7b54c9;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
