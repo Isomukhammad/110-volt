@@ -11,7 +11,7 @@ const FilterOption = ({ title, children }) => {
             >
                 <h3>{title}</h3>
                 <svg
-                    vierBox="0 0 24 24"
+                    viewBox="0 0 24 24"
                     width={24}
                     height={24}
                     fill="#BDBDBD"
