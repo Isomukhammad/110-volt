@@ -5,7 +5,82 @@
     border: none;
     width: 24px;
     height: 24px;
-    background-color: red;
     cursor: pointer;
+
+    &:after {
+      width: 24px;
+      height: 24px;
+      border-radius: 15px;
+      top: -2px;
+      left: -1px;
+      position: relative;
+      background-color: #d1d3d1;
+      content: "";
+      display: inline-block;
+      visibility: visible;
+      border: 2px solid white;
+    }
+
+    &:checked:after {
+      width: 22px;
+      height: 22spx;
+      border-radius: 15px;
+      top: -2px;
+      left: -1px;
+      position: relative;
+      content: "";
+      display: inline-block;
+      visibility: visible;
+      outline: 2px solid black;
+      outline-offset: 2px;
+    }
+  }
+}
+
+.red {
+  input[type="radio"] {
+    &:after {
+      background-color: #e95050;
+    }
+  }
+}
+
+.black {
+  input[type="radio"] {
+    &:after {
+      background-color: #242424;
+    }
+  }
+}
+
+.white {
+  input[type="radio"] {
+    &:after {
+      background-color: #ecedee;
+    }
+  }
+}
+
+.purple {
+  input[type="radio"] {
+    &:after {
+      background: linear-gradient(270.95deg, #888bf4 0%, #5151c6 100%);
+    }
+  }
+}
+
+.orange {
+  input[type="radio"] {
+    &:after {
+      background-color: #ff8a00;
+    }
+  }
+}
+
+.blue {
+  input[type="radio"] {
+    &:after {
+      background-color: #7dc9ff;
+    }
   }
 }
