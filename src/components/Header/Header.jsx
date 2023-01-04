@@ -73,23 +73,25 @@ const Header = () => {
                         </svg>
                         <p>Русский</p>
                     </div>
-                    <div className={styles.navButton}>
+                    <Link
+                        href="/cart"
+                        className={styles.navButton}
+                    >
                         <svg viewBox="0 0 21 22" fill="none" className={styles.languageButton}>
                             <use xlinkHref='#bag-logo'></use>
                         </svg>
                         <div className={styles.itemsNumber}>3</div>
-                        <Link
-                            href="/cart"
-                        >Корзина</Link>
-                    </div>
-                    <div className={styles.navButton}>
+                        <div>Корзина</div>
+                    </Link>
+                    <Link
+                        href='/signin'
+                        className={styles.navButton}
+                    >
                         <svg viewBox="0 0 21 22" fill="none" className={styles.languageButton}>
                             <use xlinkHref='#profile-logo'></use>
                         </svg>
-                        <Link
-                            href='/signin'
-                        >Войти</Link >
-                    </div>
+                        <div>Войти</div >
+                    </Link>
                 </div>
             </nav>
             {
