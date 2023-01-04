@@ -46,4 +46,25 @@
       }
     }
   }
+
+  .offer {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+
+    svg {
+      scale: 2;
+    }
+
+    p {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 150%;
+      color: #828282;
+
+      span {
+        color: #7b54c9;
+      }
+    }
+  }
 }
