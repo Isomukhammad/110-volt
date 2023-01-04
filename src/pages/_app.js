@@ -1,9 +1,6 @@
 import { useEffect } from 'react';
-import { Provider } from 'react-redux';
 import { useRouter } from 'next/router';
 import NProgress from 'nprogress';
-
-import store, { wrapper } from '../store/store';
 
 import MainLayout from '../layouts/Main';
 
@@ -14,7 +11,7 @@ import '../styles/globals.scss';
 import '../styles/colors.scss';
 import '../styles/Slider.scss';
 
-const App = ({ Component, ...rest }) => {
+const App = ({ Component, pageProps }) => {
   const router = useRouter()
 
   useEffect(() => {
@@ -32,13 +29,12 @@ const App = ({ Component, ...rest }) => {
     }
   }, [router])
 
-  const { store, props } = wrapper.useWrappedStore(rest)
   return (
-    <Provider store={store}>
+    <>
       <MainLayout>
-        <Component {...props} />
+        <Component {...pageProps} />
       </MainLayout>
-    </Provider>
+    </>
   )
 }
 
