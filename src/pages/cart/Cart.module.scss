@@ -1,37 +1,32 @@
 .container {
   margin-bottom: 120px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: 80px;
-  margin-bottom: 120px;
+  margin-top: 40px;
 
   .content {
-    width: 460px;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
 
-    .image {
-      padding: 0 20.5px 24px 20.5px;
+    .title {
+      line-height: 40px;
     }
 
-    h2 {
-      margin-top: 24px;
-      line-height: 150%;
-    }
+    .cart {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 100px;
 
-    p {
-      //   padding: 0 50px;
-      margin-top: 12px;
-      font-weight: 500;
-      font-size: 20px;
-      line-height: 150%;
-      color: #828282;
-    }
+      .cartItems {
+        flex: 3;
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+      }
 
-    button {
-      width: fit-content;
-      margin-top: 40px;
+      .cartTotal {
+        flex: 1;
+      }
     }
   }
 }
