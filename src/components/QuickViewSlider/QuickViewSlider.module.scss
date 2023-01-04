@@ -1,0 +1,31 @@
+.container {
+  position: relative;
+  max-width: 434px;
+
+  button {
+    z-index: 2;
+    position: absolute;
+    background: rgba(35, 35, 35, 0.1);
+    border: none;
+    padding: 10px;
+    transform: translateY(-50%);
+    border-radius: 500px;
+
+    &.prevImgBtn {
+      top: 50%;
+      left: 0;
+
+      svg {
+        transform: scale(-1, -1);
+      }
+    }
+    &.nextImgBtn {
+      top: 50%;
+      right: 0;
+    }
+
+    svg {
+      stroke: white;
+    }
+  }
+}
