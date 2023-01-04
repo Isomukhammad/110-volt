@@ -6,6 +6,8 @@ import Button from '../Button/Button';
 import QuickView from '../QuickView/QuickView';
 
 import styles from './ProductTab.module.scss'
+import { useDispatch, useSelector } from 'react-redux';
+import { addItemToCart } from '../../store/cartSlice';
 
 const ProductTab = ({
     index,
@@ -14,6 +16,14 @@ const ProductTab = ({
     productId,
     arrLength
 }) => {
+    const dispatch = useDispatch();
+
+    const cartItems = useSelector((state) => state.cart.cartItems);
+
+    const handleAddItemToCart = (product) => {
+        dispatch(addItemToCart(product))
+    }
+
     let { subtitle, description, monthly, price, discounted, img } = info;
     const [quickView, setQuickView] = useState('false');
 
@@ -67,7 +77,13 @@ const ProductTab = ({
                     className={styles.buttons}
                     onClick={(e) => e.preventDefault()}
                 >
-                    <Button>В корзину</Button>
+                    <div
+                        onClick={() => handleAddItemToCart(info)}
+                    >
+                        <Button>
+                            В корзину
+                        </Button>
+                    </div>
                     <svg
                         viewBox='0 0 24 24'
                         width={24}
