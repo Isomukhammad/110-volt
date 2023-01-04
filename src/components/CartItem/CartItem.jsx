@@ -1,4 +1,8 @@
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addItemsToCart, getCartItems } from '../../store/cartSlice';
 import ImageComponent from '../ImageComponent/ImageComponent';
+
 import styles from './CartItem.module.scss'
 
 const CartItem = ({ info }) => {
