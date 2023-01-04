@@ -1,22 +1,9 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { addItemsToCart, getCartItems } from '../../store/cartSlice';
 import ImageComponent from '../ImageComponent/ImageComponent';
 
 import styles from './CartItem.module.scss'
 
-const CartItem = ({ info }) => {
-    const dispatch = useDispatch();
-
-    const cartItems = useSelector((state) => state.cart.cartItems);
-
-    const handleAddToCart = (product) => {
-        dispatch(addItemsToCart(product))
-    }
-
-    useEffect(() => {
-        console.log(cartItems)
-    }, [cartItems])
+const CartItem = ({ info, checkout }) => {
     return (
         <div className={styles.container}>
             <div className={styles.product}>
@@ -26,27 +13,43 @@ const CartItem = ({ info }) => {
                 />
                 <div className={styles.title}>{info.subtitle}</div>
             </div>
-            <div className={styles.quantity}>
-                <button onClick={() => handleAddToCart(info)}>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="#242424" xmlns="http://www.w3.org/2000/svg">
-                        <use xlinkHref='#minus'></use>
-                    </svg>
-                </button>
-                <div className={styles.number}>
-                    <span>0</span>
-                    <hr />
-                </div>
-                <button>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="#242424" xmlns="http://www.w3.org/2000/svg">
-                        <use xlinkHref='#plus'></use>
-                    </svg>
-                </button>
+            <div className={`${styles.quantity} ${checkout ? styles.centrelized : ''}`}>
+                {
+                    checkout ? (
+                        <div className={styles.checkoutQuantity}>x 1</div>
+                    ) : (
+                        <>
+                            <button>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="#242424" xmlns="http://www.w3.org/2000/svg">
+                                    <use xlinkHref='#minus'></use>
+                                </svg>
+                            </button>
+                            <div className={styles.number}>
+                                <span>0</span>
+                                <hr />
+                            </div>
+                            <button>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="#242424" xmlns="http://www.w3.org/2000/svg">
+                                    <use xlinkHref='#plus'></use>
+                                </svg>
+                            </button>
+                        </>
+                    )
+                }
             </div>
             <div className={styles.prices}>
-                <div className={styles.monthly}>{info.monthly} сум/мес<span>x 12 месяцев</span>
-                </div>
-                <div className={styles.discounted}>{info.discounted} сум</div>
-                <div className={styles.price}>{info.price} сум</div>
+                {
+                    checkout ? (
+                        <div className={styles.checkoutPrice}>{info.price} сум</div>
+                    ) : (
+                        <>
+                            <div className={styles.monthly}>{info.monthly} сум/мес<span>x 12 месяцев</span>
+                            </div>
+                            <div className={styles.discounted}>{info.discounted} сум</div>
+                            <div className={styles.price}>{info.price} сум</div>
+                        </>
+                    )
+                }
             </div>
         </div>
     );
