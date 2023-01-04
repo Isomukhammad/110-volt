@@ -45,4 +45,20 @@
       background: #4d2d8e;
     }
   }
+
+  &.cart {
+    background: transparent;
+    color: #828282;
+    outline: 1px solid #e0e0e0;
+
+    &:hover:enabled {
+      background: #7b54c9;
+      outline: none;
+      color: white;
+    }
+
+    &:disabled {
+      color: #e0e0e0;
+    }
+  }
 }
