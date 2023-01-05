@@ -46,4 +46,10 @@
       }
     }
   }
+
+  @media screen and (max-width: 480px) {
+    .signIn {
+      width: 350px;
+    }
+  }
 }

@@ -24,6 +24,25 @@
     display: none;
   }
 
+  @media screen and (max-width: 1024px) {
+    img {
+      width: 50%;
+      height: auto;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    img {
+      width: 80%;
+      height: auto;
+    }
+
+    .ads {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
   @media screen and (max-width: 480px) {
     padding-bottom: 120px;
     h1 {
@@ -34,11 +53,6 @@
     img {
       width: 100%;
       height: auto;
-    }
-
-    .ads {
-      display: flex;
-      flex-direction: column;
     }
   }
 }

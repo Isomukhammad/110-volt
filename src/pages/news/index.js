@@ -30,7 +30,7 @@ const NewsPage = () => {
                 ]}
             />
             {
-                news ? (
+                !news ? (
                     <div className={styles.container}>
                         <h1 className={styles.title}>Новости</h1>
                         <div className={styles.headline}>
@@ -71,22 +71,25 @@ const NewsPage = () => {
                         <DiscountTabs />
                     </div>
                 ) : (
-                    <div className={styles.error}>
-                        <div className={styles.content}>
-                            <ImageComponent
-                                src={'/images/Studying-rafiki 1.png'}
-                                alt=""
-                            />
-                            <h2>Здесь пока ничего нету</h2>
-                            <p>Наши редакторы уже в процессе написания новой статьи</p>
-                            <Link href='/'>
-                                <Button>Вернуться на главную</Button>
-                            </Link>
+                    <>
+                        <div className={styles.error}>
+                            <div className={styles.content}>
+                                <div>
+                                    <ImageComponent
+                                        src={'/images/Studying-rafiki 1.png'}
+                                        alt=""
+                                    />
+                                    <h2>Здесь пока ничего нету</h2>
+                                    <p>Наши редакторы уже в процессе написания новой статьи</p>
+                                    <Link href='/'>
+                                        <Button>Вернуться на главную</Button>
+                                    </Link>
+                                </div>
+                            </div>
+                            <PopularGoods title="Популярные товары" />
+                            <DiscountTabs />
                         </div>
-
-                        <PopularGoods title="Популярные товары" />
-                        <DiscountTabs />
-                    </div>
+                    </>
                 )
             }
         </>

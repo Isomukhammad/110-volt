@@ -18,7 +18,7 @@ const DiscountTabs = () => {
 
     //choose the screen size 
     const handleResize = () => {
-        if (window.innerWidth <= 480) {
+        if (window.innerWidth <= 768) {
             setIsMobile(true)
         } else {
             setIsMobile(false)
@@ -30,7 +30,7 @@ const DiscountTabs = () => {
     })
 
     useEffect(() => {
-        if (window.innerWidth <= 480) {
+        if (window.innerWidth <= 768) {
             setIsMobile(true);
         }
     }, [])

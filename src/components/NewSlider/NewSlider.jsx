@@ -18,7 +18,7 @@ const NewSlider = ({ data }) => {
         <div className={styles.container}>
             <Swiper
                 slidesPerView={3}
-                spaceBetween={76}
+                spaceBetween={30}
                 slidesPerGroup={1}
                 loop={true}
                 loopFillGroupWithBlank={true}

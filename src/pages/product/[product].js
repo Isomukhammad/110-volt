@@ -15,6 +15,7 @@ import data from '../../products.json';
 import styles from './Product.module.scss';
 
 const ProductPage = () => {
+    const [isHidden, setIsHidden] = useState(true);
     const [height, setHeight] = useState(0);
     const [show, setShow] = useState('false');
 
@@ -80,9 +81,12 @@ const ProductPage = () => {
                 />
 
                 <section className={styles.headline} ref={ref}>
-                    <ImageComponent
-                        src={'/images/Rectangle 1177.png'} alt="заглушка"
-                    />
+                    <div className={styles.image}>
+                        <ImageComponent
+                            src={'/images/Rectangle 1177.png'} alt="заглушка"
+                        />
+                    </div>
+
                     <div className={styles.mainInfo}>
                         <div className={styles.titleInfo}>
                             <h2>{product?.subtitle}</h2>
@@ -113,9 +117,19 @@ const ProductPage = () => {
 
                 <section className={styles.description}>
                     <h1>Описание</h1>
-                    <p>{product?.description}</p>
+                    <p className={isHidden ? `${styles.hide}` : null}>{product?.description}</p>
+                    <div>
+                        <button onClick={() => { setIsHidden(!isHidden) }}>
+                            {
+                                isHidden ? 'Читать далее' : 'Скрыть'
+                            }
+                        </button>
+                    </div>
                 </section>
 
+                <div className={styles.bottomButton}>
+                    <Button>В корзину</Button>
+                </div>
                 <ProductCharasteristic />
                 <PopularGoods title={'Популярные товары'} margin={'80px'} />
                 <PopularGoods title={'С этим товаром покупали'} margin={'80px'} />
