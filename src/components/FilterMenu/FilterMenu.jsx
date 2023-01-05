@@ -172,6 +172,7 @@ const FilterMenu = ({ products }) => {
                     <InputRadio
                         name='color'
                         color='purple'
+                        value='purple'
                     />
                     <InputRadio
                         name='color'
