@@ -2,6 +2,9 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import NProgress from 'nprogress';
 
+//context 
+import ScreenContext from '../context/screenContext';
+
 //layout
 import MainLayout from '../layouts/Main';
 
@@ -32,9 +35,11 @@ const App = ({ Component, pageProps }) => {
 
   return (
     <>
-      <MainLayout>
-        <Component {...pageProps} />
-      </MainLayout>
+      <ScreenContext>
+        <MainLayout>
+          <Component {...pageProps} />
+        </MainLayout>
+      </ScreenContext>
     </>
   )
 }
