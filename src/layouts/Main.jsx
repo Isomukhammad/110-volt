@@ -3,6 +3,7 @@ import Footer from "../components/Footer/Footer"
 import Header from "../components/Header/Header"
 
 import styles from './Main.module.scss';
+import MobileBottomMenu from "../components/MobileBottomMenu/MobileBottomMenu";
 
 const MainLayout = ({ children }) => {
     return (
@@ -23,6 +24,7 @@ const MainLayout = ({ children }) => {
                     <Footer />
                 </div>
             </div>
+            <MobileBottomMenu />
         </div >
     )
 }
