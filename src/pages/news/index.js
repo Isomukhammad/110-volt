@@ -67,6 +67,7 @@ const NewsPage = () => {
                             <PageButtons />
                         </div>
 
+                        <PopularGoods title="Популярные товары" />
                         <DiscountTabs />
                     </div>
                 ) : (
@@ -83,7 +84,7 @@ const NewsPage = () => {
                             </Link>
                         </div>
 
-                        <PopularGoods />
+                        <PopularGoods title="Популярные товары" />
                         <DiscountTabs />
                     </div>
                 )
