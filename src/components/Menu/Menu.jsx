@@ -9,6 +9,9 @@ import MenuCategory from '../MenuCategory/MenuCategory';
 import styles from './Menu.module.scss';
 
 const Menu = ({ menuOpen, setMenuOpen }) => {
+    const [btn, setBtn] = useState(0);
+    const { catalogues } = data;
+
     const useOutsideAlerter = (ref) => {
         useEffect(() => {
             const handleClickOutside = (event) => {
@@ -23,9 +26,6 @@ const Menu = ({ menuOpen, setMenuOpen }) => {
             };
         }, [ref]);
     }
-
-    const [btn, setBtn] = useState(0);
-    const { catalogues } = data;
 
     const wrapperRef = useRef(null);
     useOutsideAlerter(wrapperRef);
