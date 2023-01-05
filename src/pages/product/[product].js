@@ -20,8 +20,6 @@ const ProductPage = () => {
 
     const ref = useRef(null);
     const [product, setProduct] = useState();
-    const router = useRouter();
-    console.log(router)
     const { query } = useRouter();
 
     const handleScroll = () => {
