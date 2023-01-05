@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -14,13 +14,34 @@ import styles from './DiscountTabs.module.scss'
 import Image from "next/image";
 
 const DiscountTabs = () => {
+    const [isMobile, setIsMobile] = useState(false)
+
+    //choose the screen size 
+    const handleResize = () => {
+        if (window.innerWidth <= 480) {
+            setIsMobile(true)
+        } else {
+            setIsMobile(false)
+        }
+    }
+
+    useEffect(() => {
+        window.addEventListener("resize", handleResize)
+    })
+
+    useEffect(() => {
+        if (window.innerWidth <= 480) {
+            setIsMobile(true);
+        }
+    }, [])
+
     const swiperRef = useRef();
 
     return (
         <div className={styles.tabs}>
             <Swiper
                 spaceBetween={16}
-                slidesPerView={2}
+                slidesPerView={isMobile ? 1 : 2}
                 loop={true}
                 loopFillGroupWithBlank={true}
                 autoplay={{
@@ -52,22 +73,29 @@ const DiscountTabs = () => {
                     <Image src="/images/Rectangle 6.png" alt="" width={792} height={280} />
                 </SwiperSlide>
             </Swiper>
-            <div className={styles.swiperPrev} onClick={() => {
-                swiperRef.current?.slidePrev()
-            }}>
-                <svg width={18.67} height={16.33} viewBox='0 0 28 28' fill='none' stroke="white"
-                >
-                    <use xlinkHref={`#arrow-left`}></use>
-                </svg>
-            </div>
-            <div className={styles.swiperNext} onClick={() => {
-                swiperRef.current?.slideNext()
-            }}>
-                <svg width={18.67} height={16.33} viewBox='0 0 28 28' fill='none' stroke="white"
-                >
-                    <use xlinkHref={`#arrow-left`}></use>
-                </svg>
-            </div>
+
+            {
+                isMobile ? null : (
+                    <>
+                        <div className={styles.swiperPrev} onClick={() => {
+                            swiperRef.current?.slidePrev()
+                        }}>
+                            <svg width={18.67} height={16.33} viewBox='0 0 28 28' fill='none' stroke="white"
+                            >
+                                <use xlinkHref={`#arrow-left`}></use>
+                            </svg>
+                        </div>
+                        <div className={styles.swiperNext} onClick={() => {
+                            swiperRef.current?.slideNext()
+                        }}>
+                            <svg width={18.67} height={16.33} viewBox='0 0 28 28' fill='none' stroke="white"
+                            >
+                                <use xlinkHref={`#arrow-left`}></use>
+                            </svg>
+                        </div>
+                    </>
+                )
+            }
         </div>
     )
 }

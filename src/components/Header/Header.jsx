@@ -65,7 +65,7 @@ const Header = () => {
                     <Image src={'/images/CompanyLogo1.png'} alt="" width="0" height="0" sizes="100vw" className={styles.image} placeholder="blurDataURL" />
                 </Link>
 
-                <SearchInput placeholder={'Я ищу ...'} />
+                {/* <SearchInput placeholder={'Я ищу ...'} /> */}
                 <div className={styles.navButtons}>
                     <div className={styles.navButton}>
                         <svg viewBox="0 0 21 22" fill="none" className={styles.languageButton}>

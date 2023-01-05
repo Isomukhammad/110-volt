@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import FooterCategory from "../FooterCategory/FooterCategory";
 
 import styles from './Footer.module.scss'
 
@@ -7,7 +8,7 @@ const Footer = () => {
     return (
         <footer className={styles.footer}>
             <div className={styles.links}>
-                <div>
+                <div className={styles.contactUs}>
                     <h2>Свяжитесь с нами</h2>
                     <p>Телефон: <span>+99855 501 56 56</span></p>
                     <p>Режим работы: <span>9:00–21:00</span></p>
@@ -15,44 +16,48 @@ const Footer = () => {
                     <p>Адрес: <span>г.Ташкент, ул. А.Навои 24</span></p>
                 </div>
 
-                <div>
-                    <h2>Компания</h2>
+                <FooterCategory title="Компания">
                     <Link href="/about">О компании</Link>
                     <Link href="/contacts">Наши контакты</Link>
                     <Link href="/news">Новости</Link>
                     <Link href="/offer">Оферта</Link>
-                </div>
-
-                <div>
-                    <h2>Покупатели</h2>
+                </FooterCategory>
+                <FooterCategory title="Покупатели">
                     <Link href="/">Как оформить заказ</Link>
                     <Link href="/">Условия доставки</Link>
                     <Link href="/">Способы доставки</Link>
                     <Link href="/">Оформление рассрочки</Link>
-                </div>
-
-                <div>
-                    <h2>Информация</h2>
+                </FooterCategory>
+                <FooterCategory title="Информация">
                     <Link href="/">Для корпоративных клиентов</Link>
                     <Link href="/">Партнерам</Link>
-                </div>
+                </FooterCategory>
 
                 <div className={styles.socials}>
-                    <div>
-                        <svg className={styles.telegramLogo} width="30" height="30" fill="white" viewBox="0 0 40 40">
-                            <use xlinkHref="#tg-footer"></use>
-                        </svg>
+                    <div className={styles.socailLinks}>
+                        <div>
+                            <svg className={styles.telegramLogo} width="30" height="30" fill="white" viewBox="0 0 40 40">
+                                <use xlinkHref="#tg-footer"></use>
+                            </svg>
+                        </div>
+                        <div>
+                            <svg className={styles.facebookLogo} width="30" height="30" fill="white" viewBox="0 0 40 40">
+                                <use xlinkHref="#fb-footer"></use>
+                            </svg>
+                        </div>
+                        <div>
+                            <svg className={styles.instagramLogo} width="30" height="30" fill="white" viewBox="0 0 40 40">
+                                <use xlinkHref='#ig-footer'></use>
+                            </svg>
+                        </div>
                     </div>
-                    <div>
-                        <svg className={styles.facebookLogo} width="30" height="30" fill="white" viewBox="0 0 40 40">
-                            <use xlinkHref="#fb-footer"></use>
-                        </svg>
-                    </div>
-                    <div>
-                        <svg className={styles.instagramLogo} width="30" height="30" fill="white" viewBox="0 0 40 40">
-                            <use xlinkHref='#ig-footer'></use>
-                        </svg>
-                    </div>
+                    <Link href="http://inweb.uz/" className={styles.devsMobile}>Разработка -
+                        <span>
+                            <svg viewBox="0 0 15 18" fill="none" width={15} height={18} className={styles.devLogo}>
+                                <use xlinkHref='#dev-logo'></use>
+                            </svg>
+                        </span>
+                    </Link>
                 </div>
             </div>
 
@@ -69,7 +74,7 @@ const Footer = () => {
                     </span>
                 </Link>
             </div>
-        </footer>
+        </footer >
     )
 }
 

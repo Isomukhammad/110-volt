@@ -36,4 +36,19 @@
       padding: 0 3em;
     }
   }
+
+  @media screen and (max-width: 480px) {
+    .content {
+      padding: 0;
+    }
+    .cheader,
+    .content,
+    .cfooter {
+      padding: 0 2em;
+      max-width: 100%;
+    }
+    .children {
+      border-radius: 0;
+    }
+  }
 }

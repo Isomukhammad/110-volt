@@ -14,26 +14,47 @@ import 'swiper/css/thumbs'
 import { Pagination, Navigation, Autoplay, Grid } from 'swiper'
 
 import styles from './BrandCategories.module.scss'
+import { useEffect, useState } from 'react'
 
 const BrandCategories = () => {
-	const { brands } = data
+	const { brands } = data;
+	const [isMobile, setIsMobile] = useState(false)
+
+	//choose the screen size 
+	const handleResize = () => {
+		if (window.innerWidth <= 480) {
+			setIsMobile(true)
+		} else {
+			setIsMobile(false)
+		}
+	}
+
+	useEffect(() => {
+		window.addEventListener("resize", handleResize)
+	})
+
+	useEffect(() => {
+		if (window.innerWidth <= 480) {
+			setIsMobile(true);
+		}
+	}, [])
 
 	return (
 		<div className={`brands ${styles.brands}`}>
 			<h1>Популярные бренды</h1>
 			<div className={styles.tabs}>
 				<Swiper
-					modules={[Pagination, Navigation, Autoplay, Grid]}
-					slidesPerView={4}
-                    spaceBetween={30}
+					modules={[Autoplay, Navigation, Grid, Pagination]}
+					slidesPerView={isMobile ? 1 : 4}
+					spaceBetween={30}
 					grid={{
-                        fill: 'rows',
+						fill: 'rows',
 						rows: 2,
 					}}
 					loop={true}
-					loopFillGroupWithBlank={true}
+					// loopFillGroupWithBlank={true}
 					autoplay={{
-						delay: 5000,
+						delay: 2000,
 						disableOnInteraction: false,
 					}}
 					className={styles.slider}
