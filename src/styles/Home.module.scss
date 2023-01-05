@@ -1,0 +1,8 @@
+.main {
+  padding: 88px 0 120px 0;
+  color: #242424;
+
+  @media screen and (max-width: 480px) {
+    padding: 40px 0 120px 0;
+  }
+}
