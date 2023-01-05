@@ -24,7 +24,6 @@ const Slider = () => {
 	return (
 		<div className={styles.container}>
 			<Swiper
-
 				loop={true}
 				spaceBetween={10}
 				autoplay={{
@@ -48,7 +47,7 @@ const Slider = () => {
 								fill
 								sizes='100vw'
 								alt='img'
-								style={{objectFit: 'cover'}}
+								style={{ objectFit: 'cover' }}
 							/>
 						</Link>
 					</SwiperSlide>
@@ -111,7 +110,7 @@ const Slider = () => {
 								alt='img'
 								sizes='100vw'
 								fill
-								style={{objectFit: 'cover'}}
+								style={{ objectFit: 'cover' }}
 							/>
 						</div>
 					</SwiperSlide>
