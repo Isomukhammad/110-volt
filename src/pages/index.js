@@ -9,7 +9,7 @@ import ReviewCategories from '../components/ReviewCategories/ReviewCategories'
 import DiscountTabs from '../components/DiscountTabs/DiscountTabs';
 import SalesTabs from '../components/SalesTabs/SalesTabs';
 
-import styles from '../styles/Home.module.css';
+import styles from '../styles/Home.module.scss';
 
 export default function Home() {
   return (
