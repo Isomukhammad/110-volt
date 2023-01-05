@@ -78,6 +78,42 @@
   .pageButtons {
     margin-top: 80px;
   }
+
+  @media screen and (max-width: 480px) {
+    .headline {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+
+      .subtitle {
+        padding: 60px 24px;
+        position: relative;
+        z-index: 1;
+
+        .info {
+          h1 {
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 30px;
+          }
+        }
+
+        .image {
+          position: absolute;
+          z-index: -2;
+          right: -4.5em;
+        }
+      }
+
+      .contacts {
+        .buttons {
+          width: 100%;
+          flex-direction: column;
+          gap: 12px;
+        }
+      }
+    }
+  }
 }
 
 .error {
@@ -87,6 +123,7 @@
   justify-content: center;
   margin-top: 80px;
   margin-bottom: 120px;
+  width: 100%;
 
   .content {
     width: 420px;

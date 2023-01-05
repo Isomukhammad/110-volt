@@ -65,4 +65,13 @@
       color: #828282;
     }
   }
+
+  @media screen and (max-width: 480px) {
+    flex-direction: column-reverse;
+    gap: 32px;
+
+    .showMore {
+      width: 100%;
+    }
+  }
 }

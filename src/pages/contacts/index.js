@@ -25,7 +25,7 @@ const ContactsPage = () => {
                 />
                 <h1>Наши контакты</h1>
                 <div className={styles.informations}>
-                    <div>
+                    <div className={styles.contactInfo}>
                         <ContactsInfo />
                     </div>
 

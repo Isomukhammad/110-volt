@@ -3,4 +3,9 @@
   grid-template-columns: repeat(3, 1fr);
   column-gap: 76px;
   row-gap: 80px;
+
+  @media screen and (max-width: 480px) {
+    display: flex;
+    flex-direction: column;
+  }
 }
