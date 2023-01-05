@@ -27,4 +27,18 @@
       }
     }
   }
+
+  .dicountTab {
+    display: none;
+  }
+
+  @media screen and (max-width: 480px) {
+    .informations {
+      flex-direction: column;
+    }
+
+    .dicountTab {
+      display: flex;
+    }
+  }
 }

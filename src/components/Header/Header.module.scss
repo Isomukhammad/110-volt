@@ -67,6 +67,11 @@
       object-fit: contain;
     }
 
+    .search {
+      flex: 1;
+      max-width: 880px;
+    }
+
     .navButtons {
       display: flex;
       flex-direction: row;
@@ -127,6 +132,10 @@
     }
 
     .navigation {
+      .search {
+        display: none;
+      }
+
       .navButtons {
         display: none;
       }

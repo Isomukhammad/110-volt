@@ -9,7 +9,6 @@ import Slider from '../Slider/Slider'
 import ImageComponent from '../ImageComponent/ImageComponent'
 
 const Headline = () => {
-	console.log(data);
 	const { slider } = data
 	const [image, setImage] = useState(2)
 	const imageName = `url("/images/image ${image}.png")`
@@ -31,6 +30,7 @@ const Headline = () => {
 							<ImageComponent
 								src={image.img}
 								key={image.id}
+								alt=""
 							/>
 						))
 					}

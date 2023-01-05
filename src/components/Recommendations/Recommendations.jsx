@@ -3,6 +3,7 @@ import data from "../../data.json"
 import CategoriesTabsLink from "../CategoriesTabsLink/CategoriesTabLink"
 
 import CategoryItem from "../CategoryItem/CategoryItem"
+import ProductTab from "../ProductsList/ProductsList"
 
 import styles from './Recommendations.module.scss'
 
@@ -29,6 +30,9 @@ const Recommendations = ({ title, link, linkTitle }) => {
                     ))
                 }
             </div>
+            {/* <div className={styles.mobileTab}>
+                <ProductTab info={data.bestsellers} />
+            </div> */}
         </div >
     )
 }
