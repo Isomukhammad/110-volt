@@ -5,6 +5,7 @@ import styles from './CartTotal.module.scss'
 
 const CartTotal = ({ offer }) => {
     const router = useRouter();
+    console.log(router.pathname)
 
     return (
         <div className={styles.container}>
@@ -14,11 +15,26 @@ const CartTotal = ({ offer }) => {
                     <p>3 товара</p>
                 </div>
                 <h2 className={styles.price}>76 266 000 сум</h2>
-                <div className={styles.buttons}>
-                    <Link href="/checkout">
-                        <Button>Перейти к оформлению</Button>
-                    </Link>
-                    <Button type="reverse">Купить в рассрочку</Button>
+                <div className={styles.actionButtons}>
+                    {
+                        router.pathname === '/checkout' ? (
+                            <>
+                                <Link href="/checkout">
+                                    <Button>Оформить заказ</Button>
+                                </Link>
+                                <Link href="/cart">
+                                    <Button type="reverse">Назад</Button>
+                                </Link>
+                            </>
+                        ) : (
+                            <>
+                                <Link href="/checkout">
+                                    <Button>Перейти к оформлению</Button>
+                                </Link>
+                                <Button type="reverse">Купить в рассрочку</Button>
+                            </>
+                        )
+                    }
                 </div>
                 {
                     offer ? <div className={styles.offer}>
@@ -37,8 +53,18 @@ const CartTotal = ({ offer }) => {
                     </div> : null
                 }
             </div>
-            <Button type="cart" active={true}>Добавить всё в избранное</Button>
-            <Button type="cart">Очистить корзину</Button>
+            {
+                router.pathname === '/checkout' ? (
+                    null
+                ) : (
+                    <>
+                        <div className={styles.cartButtons}>
+                            <Button type="cart" active={true}>Добавить всё в избранное</Button>
+                            <Button type="cart">Очистить корзину</Button>
+                        </div>
+                    </>
+                )
+            }
         </div>
     );
 }
