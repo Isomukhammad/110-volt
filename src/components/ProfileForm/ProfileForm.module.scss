@@ -51,4 +51,19 @@
       color: red;
     }
   }
+
+  @media screen and (max-width: 1024px) {
+    padding-left: 160px;
+    width: 100%;
+    max-width: 1187px;
+  }
+
+  @media screen and (max-width: 768px) {
+    padding-left: 0;
+    max-width: 100%;
+
+    form {
+      width: 100%;
+    }
+  }
 }
