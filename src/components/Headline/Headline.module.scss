@@ -55,4 +55,14 @@
       display: flex;
     }
   }
+
+  @media screen and (max-width: 1024px) {
+    .side {
+      display: none;
+    }
+
+    .slider {
+      width: 100%;
+    }
+  }
 }
