@@ -151,4 +151,57 @@
       }
     }
   }
+
+  @media screen and (max-width: 1024px) {
+    max-width: 100%;
+    .contactInfo {
+      .category {
+        .orderType {
+          button {
+            width: 50%;
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    max-width: 100%;
+    .contactInfo {
+      .category {
+        .orderType {
+          button {
+            font-size: 14px;
+          }
+        }
+
+        .personalInformation {
+          display: flex;
+          flex-direction: column;
+          input {
+            padding: 16px 18px;
+            border: 1px solid #e0e0e0;
+            border-radius: 16px;
+
+            &:focus {
+              outline: none;
+            }
+          }
+        }
+      }
+
+      .immediately {
+        .instalment {
+          .cardInfo {
+            display: flex;
+            flex-direction: column;
+          }
+
+          textarea {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
 }
