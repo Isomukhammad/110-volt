@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 24px 64px 40px 24px;
+  padding: 24px 24px 40px 24px;
 
   .product {
     flex: 2;
@@ -17,6 +17,8 @@
       width: fit-content;
 
       img {
+        width: 120px;
+        height: 120px;
         background: linear-gradient(
           0deg,
           rgba(0, 0, 0, 0.04),
@@ -48,5 +50,26 @@
     line-height: 24px;
     text-align: right;
     color: #828282;
+  }
+
+  @media screen and (max-width: 1024px) {
+    flex-wrap: wrap;
+    .product {
+      flex: auto;
+      width: 100%;
+    }
+
+    .quantity {
+      margin-top: 32px;
+      order: 3;
+      flex: 1;
+    }
+
+    .price {
+      margin-top: 32px;
+      order: 2;
+      flex: 1;
+      text-align: left;
+    }
   }
 }
