@@ -49,7 +49,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 8px 24px;
+    padding: 8px 0;
     font-weight: 700;
     font-size: 18px;
     line-height: 22px;
@@ -123,16 +123,23 @@
   }
   @media screen and (max-width: 1024px) {
     .image {
+      height: fit-content;
       img {
         width: 150px;
       }
     }
   }
+
+  @media screen and (max-width: 1024px) {
+    .monthly {
+      font-size: 16px;
+    }
+  }
+
   @media screen and (max-width: 768px) {
     .image {
       position: relative;
       height: fit-content;
-      cursor: pointer;
 
       img {
         width: 254px;
