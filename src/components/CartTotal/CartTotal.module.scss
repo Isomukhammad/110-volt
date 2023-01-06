@@ -36,7 +36,7 @@
       line-height: 30px;
     }
 
-    .buttons {
+    .actionButtons {
       display: flex;
       flex-direction: column;
       gap: 12px;
@@ -65,6 +65,36 @@
       span {
         color: #7b54c9;
       }
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    max-width: none;
+    flex-direction: row;
+    justify-content: space-between;
+    .content {
+      width: 50%;
+    }
+
+    .cartButtons {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      width: 30%;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column-reverse;
+    .content {
+      width: 100%;
+    }
+
+    .cartButtons {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      width: 100%;
     }
   }
 }
