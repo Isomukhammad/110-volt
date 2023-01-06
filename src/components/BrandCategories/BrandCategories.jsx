@@ -14,30 +14,12 @@ import 'swiper/css/thumbs'
 import { Pagination, Navigation, Autoplay, Grid } from 'swiper'
 
 import styles from './BrandCategories.module.scss'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
+import { ScreenSize } from '../../context/screenContext'
 
 const BrandCategories = () => {
+	const { isMobile } = useContext(ScreenSize)
 	const { brands } = data;
-	const [isMobile, setIsMobile] = useState(false)
-
-	//choose the screen size 
-	const handleResize = () => {
-		if (window.innerWidth <= 480) {
-			setIsMobile(true)
-		} else {
-			setIsMobile(false)
-		}
-	}
-
-	useEffect(() => {
-		window.addEventListener("resize", handleResize)
-	})
-
-	useEffect(() => {
-		if (window.innerWidth <= 480) {
-			setIsMobile(true);
-		}
-	}, [])
 
 	return (
 		<div className={`brands ${styles.brands}`}>
