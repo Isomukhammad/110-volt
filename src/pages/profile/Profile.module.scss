@@ -15,13 +15,14 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    gap: 30px;
 
     .sidebar {
       display: flex;
       flex-direction: column;
       gap: 16px;
 
-      section {
+      .section {
         padding: 16px;
         width: 253px;
         cursor: pointer;
@@ -42,6 +43,22 @@
       display: flex;
       flex-direction: column;
       gap: 40px;
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    justify-content: space-between;
+  }
+
+  @media screen and (max-width: 768px) {
+    .content {
+      flex-direction: column;
+
+      .sidebar {
+        .section {
+          width: 100%;
+        }
+      }
     }
   }
 }

@@ -58,4 +58,27 @@
       }
     }
   }
+
+  @media screen and (max-width: 1024px) {
+    .content {
+      .cart {
+        gap: 30px;
+        flex-direction: column;
+
+        .cartItems {
+          .amount {
+            display: inline;
+            div {
+              display: inline-block;
+              margin-right: 1em;
+            }
+          }
+        }
+
+        .cartTotal {
+          display: none;
+        }
+      }
+    }
+  }
 }
