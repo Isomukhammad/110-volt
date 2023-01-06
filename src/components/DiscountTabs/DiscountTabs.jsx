@@ -1,4 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
+
+import { ScreenSize } from "../../context/screenContext";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -14,26 +16,7 @@ import styles from './DiscountTabs.module.scss'
 import Image from "next/image";
 
 const DiscountTabs = () => {
-    const [isMobile, setIsMobile] = useState(false)
-
-    //choose the screen size 
-    const handleResize = () => {
-        if (window.innerWidth <= 768) {
-            setIsMobile(true)
-        } else {
-            setIsMobile(false)
-        }
-    }
-
-    useEffect(() => {
-        window.addEventListener("resize", handleResize)
-    })
-
-    useEffect(() => {
-        if (window.innerWidth <= 768) {
-            setIsMobile(true);
-        }
-    }, [])
+    const { isMobile } = useContext(ScreenSize)
 
     const swiperRef = useRef();
 
