@@ -1,19 +1,20 @@
-import { useEffect, useRef, useState } from 'react';
-
+import { useContext, useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 
+
+import { ScreenSize } from '../../context/screenContext';
+
+import Menu from '../Menu/Menu';
 import SearchInput from '../SearchInput/SearchInput';
 
 import styles from './Header.module.scss';
 
-import Menu from '../Menu/Menu';
-import Image from 'next/image';
-
 const Header = () => {
+    const { isMobile, isTablet } = useContext(ScreenSize)
     const ref = useRef(false)
     const [firstOpen, setFirstOpen] = useState(false); //state which is used for opening menu for the first time
     const [menuOpen, setMenuOpen] = useState(false); //state which is used to control classes of menu component which is always active after initial opening, so it has animation in closing
-
     const stopProp = (e) => {
         e.stopPropagation();
     }
@@ -62,12 +63,37 @@ const Header = () => {
                 </button>
 
                 <Link href='/'>
-                    <Image src={'/images/CompanyLogo1.png'} alt="" width="0" height="0" sizes="100vw" className={styles.image} placeholder="blurDataURL" />
+                    {
+                        isTablet || isMobile ? (
+                            <Image src={'/images/CompanyLogo2.png'} alt="" width="0" height="0" sizes="100vw" className={styles.image} placeholder="blurDataURL" />
+                        ) : (
+                            <Image src={'/images/CompanyLogo1.png'} alt="" width="0" height="0" sizes="100vw" className={styles.image} placeholder="blurDataURL" />
+                        )
+                    }
                 </Link>
 
                 <div className={styles.search}>
                     <SearchInput placeholder={'Я ищу ...'} />
                 </div>
+
+                <div
+                    className={styles.searchLogo}
+                    onClick={() => {
+                        setFirstOpen(true);
+                        setMenuOpen(true);
+                    }}
+                >
+                    <svg
+                        viewBox='0 0 24 24'
+                        width={24}
+                        height={24}
+                        stroke="white"
+                        fill='none'
+                    >
+                        <use xlinkHref='#search'></use>
+                    </svg>
+                </div>
+
                 <div className={styles.navButtons}>
                     <div className={styles.navButton}>
                         <svg viewBox="0 0 21 22" fill="none" className={styles.languageButton}>
