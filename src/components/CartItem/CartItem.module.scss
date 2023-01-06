@@ -14,7 +14,8 @@
     gap: 40px;
 
     img {
-      max-width: 120px;
+      width: 120px;
+      height: auto;
       background: linear-gradient(
         0deg,
         rgba(0, 0, 0, 0.04),
@@ -118,6 +119,15 @@
       line-height: 16px;
       text-decoration-line: line-through;
       color: #bdbdbd;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    gap: 30px;
+    flex-wrap: wrap;
+
+    .prices {
+      align-items: flex-start;
     }
   }
 }
