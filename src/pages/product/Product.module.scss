@@ -112,10 +112,20 @@
     font-weight: 400;
     font-size: 18px;
     line-height: 150%;
+
+    button {
+      display: none;
+    }
   }
 
   .bottomButton {
     display: none;
+  }
+
+  @media screen and (max-width: 1024px) {
+    .headline {
+      flex-direction: column;
+    }
   }
 
   @media screen and (max-width: 768px) {
@@ -135,6 +145,26 @@
         .buttons {
           display: none;
         }
+      }
+    }
+
+    .bottomButton {
+      display: flex;
+      position: fixed;
+      bottom: 94px;
+      z-index: 5;
+      background-color: white;
+      width: 100%;
+      left: 0;
+      border: 2px solid white;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      padding: 9px 0;
+
+      button {
+        width: 80%;
+        padding: 12px 0;
       }
     }
   }
@@ -157,6 +187,7 @@
       }
 
       button {
+        display: flex;
         color: #7b54c9;
         width: fit-content;
         background-color: transparent;
@@ -165,26 +196,6 @@
         font-size: 16px;
         line-height: 20px;
         cursor: pointer;
-      }
-    }
-
-    .bottomButton {
-      display: flex;
-      position: fixed;
-      bottom: 94px;
-      z-index: 5;
-      background-color: white;
-      width: 100%;
-      left: 0;
-      border: 2px solid white;
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      padding: 9px 0;
-
-      button {
-        width: 80%;
-        padding: 12px 0;
       }
     }
   }
