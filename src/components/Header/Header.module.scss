@@ -20,6 +20,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    gap: 1em;
 
     .contacts {
       display: flex;
@@ -59,6 +60,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    gap: 30px;
     align-items: center;
 
     .image {
@@ -70,6 +72,15 @@
     .search {
       flex: 1;
       max-width: 880px;
+    }
+
+    .searchLogo {
+      display: none;
+      cursor: pointer;
+
+      svg {
+        scale: 1.5;
+      }
     }
 
     .navButtons {
@@ -126,7 +137,7 @@
     }
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1024px) {
     .information {
       display: none;
     }
@@ -134,6 +145,10 @@
     .navigation {
       .search {
         display: none;
+      }
+
+      .searchLogo {
+        display: flex;
       }
 
       .navButtons {
