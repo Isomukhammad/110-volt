@@ -41,4 +41,36 @@
       text-align: right;
     }
   }
+
+  .orders {
+    .priceMobile {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .header {
+      .price {
+        display: none;
+      }
+    }
+
+    .orders {
+      .priceMobile {
+        display: flex;
+        justify-content: center;
+
+        p {
+          border-top: 1px solid #f2f2f2;
+          padding: 40px 0;
+          padding: 40px 0;
+          font-weight: 700;
+          font-size: 20px;
+          line-height: 24px;
+          width: 85%;
+          text-align: center;
+        }
+      }
+    }
+  }
 }

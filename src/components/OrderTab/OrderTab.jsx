@@ -16,6 +16,11 @@ const OrderTab = () => {
                 <OrderedProduct />
                 <OrderedProduct />
                 <OrderedProduct />
+                <div className={styles.priceMobile}>
+                    <p>
+                        Итого: 63 114 300 сум
+                    </p>
+                </div>
             </main>
         </div>
     )
