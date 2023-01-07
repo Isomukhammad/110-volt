@@ -5,9 +5,8 @@
   gap: 40px;
 
   .tabs {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(3, 32%);
     gap: 24px;
 
     .tab {
