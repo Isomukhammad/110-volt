@@ -18,8 +18,6 @@ const PageButtons = () => {
                 <button className={styles.active}><span>1</span></button>
                 <button><span>2</span></button>
                 <button><span>3</span></button>
-                <button><span>4</span></button>
-                <button><span>5</span></button>
                 <button><span>...</span></button>
                 <button><span>998</span></button>
                 <button><span>999</span></button>
