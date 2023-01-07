@@ -1,12 +1,72 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import ReactDropdown from 'react-dropdown';
+import { ScreenSize } from '../../context/screenContext';
 import styles from './SortMenu.module.scss';
 
-const SortMenu = () => {
+const SortMenu = ({ setFilterOpen }) => {
+    const [listView, setListView] = useState(false);
+    const { isTablet } = useContext(ScreenSize);
+
+    const options = [
+        {
+            value: 'popularity', label: 'По популярности'
+        },
+        {
+            value: 'new', label: 'Новинкам'
+        },
+        {
+            value: 'rating', label: 'Рейтингу'
+        },
+        {
+            value: 'ascending', label: 'Цена: по возрастанию'
+        },
+        {
+            value: 'descending', label: 'Цена: убыванию'
+        },
+        {
+            value: 'sale', label: 'Скидки'
+        }
+    ];
+    const defaultOption = options[0];
     const [choice, setChoice] = useState('popularity');
     const [isAscending, setIsAscending] = useState(true);
 
+    const handleViewChange = (boolean) => {
+        if (isTablet) {
+            setListView(!listView)
+        } else {
+            setListView(boolean)
+        }
+    }
+
     return (
         <div className={styles.container}>
+            <ReactDropdown
+                options={options}
+                value={defaultOption}
+                placeholder="Select an option"
+                arrowClosed={
+                    <svg
+                        viewBox="0 0 24 24"
+                        width={24}
+                        height={24}
+                        fill="#BDBDBD"
+                    >
+                        <use xlinkHref='#arrow-ios-forward'></use>
+                    </svg>
+                }
+                arrowOpen={
+                    <svg
+                        viewBox="0 0 24 24"
+                        width={24}
+                        height={24}
+                        fill="#BDBDBD"
+                    >
+                        <use xlinkHref='#arrow-ios-backward'></use>
+                    </svg>
+                }
+                className={styles.sortDropdown}
+            />
             <div className={styles.sortBy}>
                 <p className={styles.title}>Сортировать по: </p>
                 <ul className={styles.choices}>
@@ -50,11 +110,42 @@ const SortMenu = () => {
                     >Скидкам</li>
                 </ul>
             </div>
+            <div className={styles.filterButton} onClick={() => setFilterOpen(true)}>
+                <svg
+                    viewBox='0 0 24 24'
+                    width={24}
+                    height={24}
+                >
+                    <use xlinkHref='#filter'></use>
+                </svg>
+                <p>Фильтры</p>
+            </div>
             <div className={styles.viewType}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#BDBDBD">
+                <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    style={{
+                        stroke: listView === true ? "#7B54C9" : "#BDBDBD",
+                        display: !listView && isTablet ? "none" : ''
+                    }}
+                    onClick={() => handleViewChange(true)}
+                >
                     <use xlinkHref='#row-view-logo'></use>
                 </svg>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7B54C9">
+                <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#7B54C9"
+                    style={{
+                        stroke: !listView === true ? "#7B54C9" : "#BDBDBD",
+                        display: listView && isTablet ? "none" : ''
+                    }}
+                    onClick={() => handleViewChange(false)}
+                >
                     <use xlinkHref='#column-view-logo'></use>
                 </svg>
             </div>
