@@ -138,21 +138,43 @@
   }
 
   @media screen and (max-width: 1024px) {
+    padding: 12px 0;
     .information {
       display: none;
     }
 
     .navigation {
+      .menuButton {
+        padding: 12px 12px;
+        scale: 0.7;
+        svg {
+          scale: 1;
+        }
+      }
+
       .search {
         display: none;
       }
 
+      .image {
+        height: 30px;
+      }
+
       .searchLogo {
         display: flex;
+        scale: 0.7;
       }
 
       .navButtons {
         display: none;
+      }
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .navigation {
+      .image {
+        height: 15px;
       }
     }
   }

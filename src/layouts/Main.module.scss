@@ -51,4 +51,13 @@
       border-radius: 0;
     }
   }
+
+  @media screen and (max-width: 768px) {
+    .cheader,
+    .content,
+    .cfooter {
+      padding: 0 1em;
+      max-width: 100%;
+    }
+  }
 }
