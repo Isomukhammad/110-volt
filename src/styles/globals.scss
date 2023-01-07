@@ -35,21 +35,21 @@ input::-webkit-inner-spin-button {
 .text-two-line,
 .text-three-line,
 .text-four-line {
-	display: -webkit-box !important;
-	-webkit-box-orient: vertical;
-	overflow: hidden;
-	text-overflow: ellipsis;
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .text-one-line {
-	-webkit-line-clamp: 1;
+  -webkit-line-clamp: 1;
 }
 .text-two-line {
-	-webkit-line-clamp: 2;
+  -webkit-line-clamp: 2;
 }
 .text-three-line {
-	-webkit-line-clamp: 3;
+  -webkit-line-clamp: 3;
 }
 .text-four-line {
-	-webkit-line-clamp: 4;
+  -webkit-line-clamp: 4;
 }
