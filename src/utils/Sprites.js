@@ -2,6 +2,14 @@ const Sprites = () => {
     return (
         <svg style={{ display: "none" }}>
             <defs>
+                <symbol id="filter">
+                    <path d="M3 5H7M21 5H11M3 12H15M21 12H19M3 19H5M21 19H9" fill="#BDBDBD" stroke="#BDBDBD" strokeWidth="1.5" strokeLinecap="round" />
+                    <path d="M9 7C10.1046 7 11 6.10457 11 5C11 3.89543 10.1046 3 9 3C7.89543 3 7 3.89543 7 5C7 6.10457 7.89543 7 9 7Z" fill="#BDBDBD" stroke="#BDBDBD" strokeWidth="1.5" strokeLinecap="round"
+                    />
+                    <path d="M17 14C18.1046 14 19 13.1046 19 12C19 10.8954 18.1046 10 17 10C15.8954 10 15 10.8954 15 12C15 13.1046 15.8954 14 17 14Z" fill="#BDBDBD" stroke="#BDBDBD" strokeWidth="1.5" strokeLinecap="round" />
+                    <path d="M7 21C8.10457 21 9 20.1046 9 19C9 17.8954 8.10457 17 7 17C5.89543 17 5 17.8954 5 19C5 20.1046 5.89543 21 7 21Z" fill="#BDBDBD" stroke="#BDBDBD" strokeWidth="1.5" strokeLinecap="round" />
+                </symbol>
+
                 <symbol id="search">
                     <path d="M16.5652 16.5652L21 21M18.0435 11.0217C18.0435 14.8997 14.8997 18.0435 11.0217 18.0435C7.14374 18.0435 4 14.8997 4 11.0217C4 7.14374 7.14374 4 11.0217 4C14.8997 4 18.0435 7.14374 18.0435 11.0217Z" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </symbol>
