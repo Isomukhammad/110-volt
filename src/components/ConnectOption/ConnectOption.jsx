@@ -6,7 +6,6 @@ const ConnectOption = () => {
     const [option, setOption] = useState("Напишите мне")
 
     const onChangeHandler = (e) => {
-        console.log(e.target.innerHTML)
         setOption(e.target.innerHTML)
     }
     const onClickHandler = () => setOpen(!open);
