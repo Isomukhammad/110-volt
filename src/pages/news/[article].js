@@ -21,7 +21,6 @@ const NewsBlog = () => {
             return item.id == query.article;
         })
         setData(item);
-        console.log(query);
     }, [query]);
 
     return (
