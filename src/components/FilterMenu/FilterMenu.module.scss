@@ -31,33 +31,79 @@
     display: flex;
     flex-direction: row;
     gap: 8px;
+  }
 
-    // input[type="radio"]:after {
-    //   width: 15px;
-    //   height: 15px;
-    //   border-radius: 15px;
-    //   top: -2px;
-    //   left: -1px;
-    //   position: relative;
-    //   background-color: #d1d3d1;
-    //   content: "";
-    //   display: inline-block;
-    //   visibility: visible;
-    //   border: 2px solid white;
-    // }
+  .closeButton {
+    display: none;
+  }
 
-    // input[type="radio"]:checked:after {
-    //   width: 15px;
-    //   height: 15px;
-    //   border-radius: 15px;
-    //   top: -2px;
-    //   left: -1px;
-    //   position: relative;
-    //   background-color: #ffa500;
-    //   content: "";
-    //   display: inline-block;
-    //   visibility: visible;
-    //   border: 2px solid white;
-    // }
+  @media screen and (max-width: 1024px) {
+    display: flex;
+    padding: 2em;
+    position: fixed;
+    overflow-y: scroll;
+    background-color: white;
+    width: 100vw;
+    height: 100vh;
+    right: -100vw;
+    top: 0;
+    z-index: 12;
+    transition: all 0.3s;
+    opacity: 0;
+
+    .closeButton {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+  }
+}
+
+.filterOpen {
+  @media screen and (max-width: 1024px) {
+    display: flex;
+    padding: 2em;
+    position: fixed;
+    overflow-y: scroll;
+    background-color: white;
+    width: 100vw;
+    height: 100vh;
+    right: 0;
+    top: 0;
+    z-index: 12;
+    opacity: 1;
+
+    .closeButton {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@keyframes openFilter {
+  0% {
+    right: -100vw;
+  }
+
+  100% {
+    right: 0vh;
+  }
+}
+
+@keyframes closeFilter {
+  0% {
+    right: 0vh;
+  }
+
+  100% {
+    right: -100vw;
   }
 }
