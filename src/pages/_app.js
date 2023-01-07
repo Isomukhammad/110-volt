@@ -13,7 +13,8 @@ import '../styles/nprogress.css'
 import '../styles/globals.scss';
 import '../styles/colors.scss';
 import '../styles/Slider.scss';
-import '../components/MenuCatalogue/MenuCatalogue.scss';
+import '../styles/SortMenu.scss';
+import '../styles/ProductImageSlider.scss'
 
 const App = ({ Component, pageProps }) => {
   const router = useRouter()
