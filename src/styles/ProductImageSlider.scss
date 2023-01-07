@@ -1,0 +1,101 @@
+.Product-page-slider {
+  height: 500px;
+  .Product-page-slider__mobile {
+    display: none;
+    @media screen and (max-width: 1024px) {
+      display: flex;
+      flex-direction: column;
+      margin: 0 -2em;
+      position: relative;
+
+      .swiper {
+        width: 100vw;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-self: center;
+
+        .swiper-slide {
+          width: 100vw;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          img {
+            width: 100%;
+            max-width: 522px;
+            height: auto;
+          }
+        }
+      }
+    }
+  }
+
+  .Product-page-sliper__desktop {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 10fr;
+    gap: 30px;
+    max-height: 522px;
+    align-items: center;
+
+    .Product-page-sliper__mainSlider {
+      max-height: 522px;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-self: center;
+
+      .swiper-slide {
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        img {
+          width: 100%;
+          max-width: 522px;
+          height: auto;
+        }
+      }
+    }
+
+    .Product-page-slider__thumbs {
+      max-height: 522px;
+      width: 100%;
+
+      .swiper-wrapper {
+        .swiper-slide {
+          opacity: 0.4;
+          text-align: center;
+          font-size: 18px;
+          background: #fff;
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: -webkit-flex;
+          display: flex;
+          -webkit-box-pack: center;
+          -ms-flex-pack: center;
+          -webkit-justify-content: center;
+          justify-content: center;
+          -webkit-box-align: center;
+          -ms-flex-align: center;
+          -webkit-align-items: center;
+          align-items: center;
+
+          img {
+            width: 80px;
+            height: auto;
+          }
+        }
+
+        .swiper-slide-thumb-active {
+          opacity: 1;
+        }
+      }
+    }
+
+    @media screen and (max-width: 1024px) {
+      display: none;
+    }
+  }
+}
