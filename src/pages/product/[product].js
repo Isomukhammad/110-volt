@@ -13,6 +13,7 @@ import PagePath from '../../components/PagePath/PagePath';
 import data from '../../products.json';
 
 import styles from './Product.module.scss';
+import ProductPageSlider from '../../components/ProductPageSlider/ProductPageSlider';
 
 const ProductPage = () => {
     const [isHidden, setIsHidden] = useState(true);
@@ -57,84 +58,82 @@ const ProductPage = () => {
     return (
         <>
             <HeadInfo title={query.product} />
-            <div className={styles.container}>
-                <ProductHeader product={product} show={show} />
-                <PagePath
-                    paths={[
-                        {
-                            "url": "",
-                            "name": "Главная"
-                        },
-                        {
-                            "url": "category/",
-                            "name": "Компьютерная техника"
-                        },
-                        {
-                            "url": "category/noutbuki",
-                            "name": "Ноутбуки"
-                        },
-                        {
-                            "url": "",
-                            "name": `${product?.subtitle}`
-                        }
-                    ]}
-                />
+            {product ? (
+                <div className={styles.container}>
+                    <ProductHeader product={product} show={show} />
+                    <PagePath
+                        paths={[
+                            {
+                                "url": "",
+                                "name": "Главная"
+                            },
+                            {
+                                "url": "category/",
+                                "name": "Компьютерная техника"
+                            },
+                            {
+                                "url": "category/noutbuki",
+                                "name": "Ноутбуки"
+                            },
+                            {
+                                "url": "",
+                                "name": `${product?.subtitle}`
+                            }
+                        ]}
+                    />
 
-                <section className={styles.headline} ref={ref}>
-                    <div className={styles.image}>
-                        <ImageComponent
-                            src={'/images/Rectangle 1177.png'} alt="заглушка"
-                        />
-                    </div>
+                    <section className={styles.headline} ref={ref}>
+                        <ProductPageSlider images={product.img} />
 
-                    <div className={styles.mainInfo}>
-                        <div className={styles.titleInfo}>
-                            <h2>{product?.subtitle}</h2>
-                            <div className={styles.additional}>
-                                <p className={styles.brand}>{product?.brand}</p>
-                                <p className={styles.code}>Код товара: 5811965165</p>
+                        <div className={styles.mainInfo}>
+                            <div className={styles.titleInfo}>
+                                <h2>{product?.subtitle}</h2>
+                                <div className={styles.additional}>
+                                    <p className={styles.brand}>{product?.brand}</p>
+                                    <p className={styles.code}>Код товара: 5811965165</p>
+                                </div>
+                            </div>
+
+                            <div className={styles.prices}>
+                                <p className={styles.monthly}>{product?.monthly} сум/мес <span>x 12 месяцев</span></p>
+                                <p className={styles.discounted}>{product?.discounted} сум</p>
+                                <p className={styles.price}>{product?.price} сум</p>
+                            </div>
+
+                            <div className={styles.buttons}>
+                                <Button style={{ width: "fit-content" }}>
+                                    Добавить корзину
+                                </Button>
+                                <Button
+                                    type="reverse"
+                                >
+                                    Купить в рассрочку
+                                </Button>
                             </div>
                         </div>
+                    </section>
 
-                        <div className={styles.prices}>
-                            <p className={styles.monthly}>{product?.monthly} сум/мес <span>x 12 месяцев</span></p>
-                            <p className={styles.discounted}>{product?.discounted} сум</p>
-                            <p className={styles.price}>{product?.price} сум</p>
+                    <section className={styles.description}>
+                        <h1>Описание</h1>
+                        <p className={isHidden ? `${styles.hide}` : null}>{product?.description}</p>
+                        <div>
+                            <button onClick={() => { setIsHidden(!isHidden) }}>
+                                {
+                                    isHidden ? 'Читать далее' : 'Скрыть'
+                                }
+                            </button>
                         </div>
+                    </section>
 
-                        <div className={styles.buttons}>
-                            <Button style={{ width: "fit-content" }}>
-                                Добавить корзину
-                            </Button>
-                            <Button
-                                type="reverse"
-                            >
-                                Купить в рассрочку
-                            </Button>
-                        </div>
+                    <div className={styles.bottomButton}>
+                        <Button>В корзину</Button>
                     </div>
-                </section>
-
-                <section className={styles.description}>
-                    <h1>Описание</h1>
-                    <p className={isHidden ? `${styles.hide}` : null}>{product?.description}</p>
-                    <div>
-                        <button onClick={() => { setIsHidden(!isHidden) }}>
-                            {
-                                isHidden ? 'Читать далее' : 'Скрыть'
-                            }
-                        </button>
-                    </div>
-                </section>
-
-                <div className={styles.bottomButton}>
-                    <Button>В корзину</Button>
-                </div>
-                <ProductCharasteristic />
-                <PopularGoods title={'Популярные товары'} margin={'80px'} />
-                <PopularGoods title={'С этим товаром покупали'} margin={'80px'} />
-                <DiscountTabs />
-            </div >
+                    <ProductCharasteristic />
+                    <PopularGoods title={'Популярные товары'} margin={'80px'} />
+                    <PopularGoods title={'С этим товаром покупали'} margin={'80px'} />
+                    <DiscountTabs />
+                </div >
+            ) : null}
             {/* <PopularGoods /> */}
         </>
     )
