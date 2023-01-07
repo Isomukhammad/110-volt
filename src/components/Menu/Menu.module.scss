@@ -146,40 +146,6 @@
   @media screen and (max-width: 1024px) {
     .menu {
       width: 100%;
-      grid-template-columns: 1fr 1fr;
-
-      .menuCatalogue {
-        button {
-          z-index: 100;
-          svg {
-            stroke: #828282;
-            fill: #828282;
-          }
-        }
-      }
-      .catalogueItems {
-        .img {
-          display: none;
-        }
-      }
-    }
-
-    .close {
-      width: 32px;
-      height: 32px;
-      right: 1em;
-      top: 1em;
-      z-index: 99999;
-
-      svg {
-        fill: #242424;
-        stroke: #242424;
-      }
-    }
-  }
-
-  @media screen and (max-width: 768px) {
-    .menu {
       display: flex;
       flex-direction: column;
 
@@ -223,22 +189,6 @@
         }
       }
 
-      .menuCatalogue {
-        .catalogueItem {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          justify-content: space-between;
-          button {
-            width: 70%;
-          }
-
-          .itemIcon {
-            display: flex;
-          }
-        }
-      }
-
       .catalogueItems {
         h1 {
           display: none;
@@ -251,6 +201,30 @@
 
       .showItems {
         display: none;
+      }
+
+      .menuCatalogue {
+        .catalogueItem {
+          cursor: pointer;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          button {
+            width: 70%;
+            cursor: pointer;
+          }
+
+          .itemIcon {
+            display: flex;
+          }
+        }
+      }
+
+      .catalogueItems {
+        .img {
+          display: none;
+        }
       }
     }
 
