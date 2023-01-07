@@ -32,6 +32,7 @@ const Menu = ({ menuOpen, setMenuOpen, searchFocus, setSearchFocus }) => {
             const handleClickOutside = (event) => {
                 if (ref.current && !ref.current.contains(event.target)) {
                     setMenuOpen(false);
+                    setSearchFocus(false);
                 }
             }
 
