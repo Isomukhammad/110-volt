@@ -16,7 +16,6 @@ const ContactUs = () => {
         },
         reset
     } = useForm();
-    console.log(errors);
 
     const onSubmit = data => console.log(data);
 
