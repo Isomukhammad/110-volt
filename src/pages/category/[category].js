@@ -15,6 +15,7 @@ import PageButtons from "../../components/PageButtons/PageButtons";
 const Category = () => {
     const { query } = useRouter();
     const [data, setData] = useState();
+    const [filterOpen, setFilterOpen] = useState(false)
 
     useEffect(() => {
         const products = product.find((item) => {
@@ -33,9 +34,9 @@ const Category = () => {
                     <p>458 товаров</p>
                 </div>
                 <div className={styles.content}>
-                    <FilterMenu />
+                    <FilterMenu filterOpen={filterOpen} setFilterOpen={setFilterOpen} />
                     <div className={styles.productsColumn}>
-                        <SortMenu />
+                        <SortMenu setFilterOpen={setFilterOpen} />
                         {
                             data ? (
                                 <ProductsList
