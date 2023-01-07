@@ -4,7 +4,7 @@ import FormCheckbox from '../FormCheckbox/FormCheckbox';
 import styles from './FilterMenu.module.scss';
 import FilterOption from '../FilterOption/FilterOption';
 
-const FilterMenu = ({ products }) => {
+const FilterMenu = ({ products, filterOpen, setFilterOpen }) => {
     const [brands, setBrands] = useState([]);
     const [space, setSpace] = useState([]);
     const [sim, setSim] = useState([]);
@@ -60,11 +60,20 @@ const FilterMenu = ({ products }) => {
         }
     }
 
-    useEffect(() => {
-        console.log(sim)
-    }, [sim])
     return (
-        <div className={styles.container}>
+        <div className={`${styles.container} ${filterOpen ? styles.filterOpen : ''}`}>
+            <div className={styles.closeButton} onClick={() => setFilterOpen(false)}>
+                <h2>Фильтры</h2>
+                <svg
+                    viewBox='0 0 24 24'
+                    width={24}
+                    height={24}
+                    fill="#BDBDBD"
+                    onClick={() => setFilterOpen(false)}
+                >
+                    <use xlinkHref='#close'></use>
+                </svg>
+            </div>
             <FilterOption title={'Бренды'}>
                 <form>
                     <FormCheckbox
