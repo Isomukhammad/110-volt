@@ -12,12 +12,12 @@ const Menu = ({ menuOpen, setMenuOpen, searchFocus, setSearchFocus }) => {
     const [btn, setBtn] = useState(0);
     const { catalogues } = data;
     const { title, catalogue } = catalogues[btn];
-    const { isTablet } = useContext(ScreenSize);
+    const { isMobile, isTablet } = useContext(ScreenSize);
     const [showItems, setShowItems] = useState(true);
     const searchRef = useRef(null);
 
     useEffect(() => {
-        if (isTablet === true) {
+        if (isTablet || isMobile === true) {
             setShowItems(false);
         }
 
@@ -25,7 +25,7 @@ const Menu = ({ menuOpen, setMenuOpen, searchFocus, setSearchFocus }) => {
             console.log(searchFocus)
             searchRef.current.focus();
         }
-    }, [isTablet, searchFocus])
+    }, [isTablet, isMobile, searchFocus])
 
     const useOutsideAlerter = (ref) => {
         useEffect(() => {
@@ -56,7 +56,7 @@ const Menu = ({ menuOpen, setMenuOpen, searchFocus, setSearchFocus }) => {
         >
             <div className={styles.menu} ref={wrapperRef}>
                 {
-                    isTablet ? (
+                    isTablet || isMobile ? (
                         <div className={styles.header}>
                             <div
                                 onClick={() => {
