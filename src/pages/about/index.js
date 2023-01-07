@@ -9,7 +9,6 @@ import styles from './about.module.scss'
 const AboutPage = () => {
     const router = useRouter();
 
-    console.log(router);
     return (
         <div className={styles.container}>
             <HeadInfo title="О Компании" />
