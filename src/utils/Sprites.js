@@ -3,7 +3,7 @@ const Sprites = () => {
         <svg style={{ display: "none" }}>
             <defs>
                 <symbol id="search">
-                    <path d="M16.5652 16.5652L21 21M18.0435 11.0217C18.0435 14.8997 14.8997 18.0435 11.0217 18.0435C7.14374 18.0435 4 14.8997 4 11.0217C4 7.14374 7.14374 4 11.0217 4C14.8997 4 18.0435 7.14374 18.0435 11.0217Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M16.5652 16.5652L21 21M18.0435 11.0217C18.0435 14.8997 14.8997 18.0435 11.0217 18.0435C7.14374 18.0435 4 14.8997 4 11.0217C4 7.14374 7.14374 4 11.0217 4C14.8997 4 18.0435 7.14374 18.0435 11.0217Z" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </symbol>
 
                 <symbol id="plus">
