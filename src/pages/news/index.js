@@ -30,7 +30,7 @@ const NewsPage = () => {
                 ]}
             />
             {
-                !news ? (
+                news ? (
                     <div className={styles.container}>
                         <h1 className={styles.title}>Новости</h1>
                         <div className={styles.headline}>
