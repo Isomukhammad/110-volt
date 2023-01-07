@@ -60,7 +60,7 @@ const PersonalInfo = () => {
                                                 name="payment-method"
                                                 value="cash"
                                             />
-                                            <label for="cash">Наличные</label>
+                                            <label htmlFor="cash">Наличные</label>
                                         </div>
                                         <div className={styles.radio}>
                                             <input
@@ -69,7 +69,7 @@ const PersonalInfo = () => {
                                                 name="payment-method"
                                                 value="uzcard"
                                             />
-                                            <label for="uzcard">Картой Uzcard</label>
+                                            <label htmlFor="uzcard">Картой Uzcard</label>
                                         </div>
                                         <div className={styles.radio}>
                                             <input
@@ -78,7 +78,7 @@ const PersonalInfo = () => {
                                                 name="payment-method"
                                                 value="humo"
                                             />
-                                            <label for="humo">Картой Humo</label>
+                                            <label htmlFor="humo">Картой Humo</label>
                                         </div>
                                     </div>
                                     <div className={styles.column}>
@@ -89,7 +89,7 @@ const PersonalInfo = () => {
                                                 name="payment-method"
                                                 value="payme"
                                             />
-                                            <label for="payme">Онлайн - PayMe</label>
+                                            <label htmlFor="payme">Онлайн - PayMe</label>
                                         </div>
                                         <div className={styles.radio}>
                                             <input
@@ -98,7 +98,7 @@ const PersonalInfo = () => {
                                                 name="payment-method"
                                                 value="click"
                                             />
-                                            <label for="click">Онлайн - Click</label>
+                                            <label htmlFor="click">Онлайн - Click</label>
                                         </div>
                                     </div>
                                 </div>
