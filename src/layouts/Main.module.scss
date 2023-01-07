@@ -19,6 +19,7 @@
     flex: 1;
     border-radius: 32px;
     background-color: white;
+    overflow-x: hidden;
   }
 
   .header,
@@ -33,31 +34,23 @@
 
   @media screen and (max-width: 1599px) {
     .content {
-      padding: 0 3em;
+      padding: 0 2em;
     }
   }
 
   @media screen and (max-width: 768px) {
-    .content {
-      padding: 0;
-    }
     .cheader,
     .content,
     .cfooter {
-      padding: 0 2em;
+      padding: 0 1em;
       max-width: 100%;
     }
+
     .children {
       border-radius: 0;
-    }
-  }
-
-  @media screen and (max-width: 768px) {
-    .cheader,
-    .content,
-    .cfooter {
-      padding: 0 2em;
-      max-width: 100%;
+      .content {
+        padding: 0 2em;
+      }
     }
   }
 }
