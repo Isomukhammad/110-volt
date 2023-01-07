@@ -12,6 +12,7 @@ import styles from './Header.module.scss';
 
 const Header = () => {
     const { isMobile, isTablet } = useContext(ScreenSize)
+    const [searchFocus, setSearchFocus] = useState(false);
     const ref = useRef(false)
     const [firstOpen, setFirstOpen] = useState(false); //state which is used for opening menu for the first time
     const [menuOpen, setMenuOpen] = useState(false); //state which is used to control classes of menu component which is always active after initial opening, so it has animation in closing
@@ -81,6 +82,7 @@ const Header = () => {
                     onClick={() => {
                         setFirstOpen(true);
                         setMenuOpen(true);
+                        setSearchFocus(true);
                     }}
                 >
                     <svg
@@ -123,7 +125,7 @@ const Header = () => {
                 </div>
             </nav>
             {
-                firstOpen ? <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen} refs={ref} /> : null
+                firstOpen ? <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen} refs={ref} searchFocus={searchFocus} setSearchFocus={setSearchFocus} /> : null
             }
         </header >
     )
