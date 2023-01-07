@@ -8,18 +8,24 @@ import ImageComponent from '../ImageComponent/ImageComponent';
 
 import styles from './Menu.module.scss';
 
-const Menu = ({ menuOpen, setMenuOpen }) => {
+const Menu = ({ menuOpen, setMenuOpen, searchFocus, setSearchFocus }) => {
     const [btn, setBtn] = useState(0);
     const { catalogues } = data;
     const { title, catalogue } = catalogues[btn];
     const { isMobile } = useContext(ScreenSize);
     const [showItems, setShowItems] = useState(true);
+    const searchRef = useRef(null);
 
     useEffect(() => {
         if (isMobile === true) {
             setShowItems(false);
         }
-    }, [isMobile])
+
+        if (searchFocus) {
+            console.log(searchFocus)
+            searchRef.current.focus();
+        }
+    }, [isMobile, searchFocus])
 
     const useOutsideAlerter = (ref) => {
         useEffect(() => {
@@ -80,7 +86,7 @@ const Menu = ({ menuOpen, setMenuOpen }) => {
                                         <use xlinkHref='#search'></use>
                                     </svg>
                                 </div>
-                                <input type="text" placeholder='Я ищу ...' />
+                                <input ref={searchRef} type="text" placeholder='Я ищу ...' />
                             </div>
                         </div>
                     ) : null
@@ -92,10 +98,10 @@ const Menu = ({ menuOpen, setMenuOpen }) => {
                                 key={item.id}
                                 className={styles.catalogueItem}
                                 onMouseOver={() => setBtn(item.id)}
+                                onClick={() => setShowItems(true)}
                             >
                                 <button
                                     className={item.id === btn ? styles.active : null}
-                                    onClick={() => setShowItems(true)}
                                 >
                                     <svg width={24} height={24} viewBox='0 0 24 24' fill='#828282' stroke="#828282"
                                     >
