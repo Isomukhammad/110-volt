@@ -33,8 +33,8 @@ const ImageDrop = ({ image }) => {
     return (
         <div className={styles.container}>
             <ImageComponent src={image} alt="" />
-            <div className={styles.description}>
-                <p> <span {...getRootProps()} className={styles.input}>Нажмите на ссылку</span>, чтобы выбрать фотографии или просто перетащите их сюда</p>
+            <div className={styles.description} {...getRootProps()}>
+                <p> <input {...getInputProps()} className={styles.input} />, чтобы выбрать фотографии или просто перетащите их сюда</p>
             </div>
 
             <aside>
