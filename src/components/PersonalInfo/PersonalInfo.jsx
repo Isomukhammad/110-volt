@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import ConnectOption from '../ConnectOption/ConnectOption';
 import FormTextarea from '../FormTextarea/Formtextarea';
+import ImageDrop from '../ImageDrop/ImageDrop';
 
 import styles from './PersonalInfo.module.scss'
 
@@ -124,15 +125,15 @@ const PersonalInfo = () => {
                                 </div>
                                 <div className={`${styles.instalment} ${styles.file}`}>
                                     <h4>Фото пасспорта</h4>
-                                    <input type="file" />
+                                    <ImageDrop image="/images/Passport.png" />
                                 </div>
                                 <div className={`${styles.instalment} ${styles.file}`}>
                                     <h4>Селфи с пасспортом</h4>
-                                    <input type="file" />
+                                    <ImageDrop image="/images/selfie with passport 1.png" />
                                 </div>
                                 <div className={`${styles.instalment} ${styles.file}`}>
                                     <h4>Страница прописки</h4>
-                                    <input type="file" />
+                                    <ImageDrop image="/images/Propiska.png" />
                                 </div>
                                 <div className={`${styles.instalment} ${styles.wishes}`}>
                                     <h4>Ваши пожелание</h4>
