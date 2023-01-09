@@ -3,6 +3,7 @@ import InputRadio from '../InputRadio/InputRadio';
 import FormCheckbox from '../FormCheckbox/FormCheckbox';
 import styles from './FilterMenu.module.scss';
 import FilterOption from '../FilterOption/FilterOption';
+import FormInputRange from '../FormInputRange/FormInputRange';
 
 const FilterMenu = ({ products, filterOpen, setFilterOpen }) => {
     const [brands, setBrands] = useState([]);
@@ -112,7 +113,10 @@ const FilterMenu = ({ products, filterOpen, setFilterOpen }) => {
             </FilterOption>
 
             <FilterOption title="Цена">
-                <input type="range" min="0" max="100000000" step="10" onChange={handleRangeChange} />
+                <FormInputRange
+                    min={0}
+                    max={100000000}
+                />
             </FilterOption>
 
             <FilterOption title="Объем встроенной памяти">
