@@ -10,8 +10,8 @@
     &:after {
       width: 24px;
       height: 24px;
-      border-radius: 15px;
-      top: -2px;
+      border-radius: 50px;
+      top: -1px;
       left: -1px;
       position: relative;
       background-color: #d1d3d1;
@@ -22,11 +22,9 @@
     }
 
     &:checked:after {
-      width: 22px;
+      width: 24px;
       height: 22spx;
       border-radius: 15px;
-      top: -2px;
-      left: -1px;
       position: relative;
       content: "";
       display: inline-block;
