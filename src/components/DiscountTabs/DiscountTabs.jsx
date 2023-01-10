@@ -1,6 +1,6 @@
 import { useContext, useEffect, useRef, useState } from "react";
 
-import { ScreenSize } from "../../context/screenContext";
+import { ScreenContext } from "../../context/screenContext";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -16,7 +16,7 @@ import styles from './DiscountTabs.module.scss'
 import Image from "next/image";
 
 const DiscountTabs = () => {
-    const { isMobile } = useContext(ScreenSize)
+    const { isMobile } = useContext(ScreenContext)
 
     const swiperRef = useRef();
 
