@@ -1,14 +1,16 @@
 .container {
+  padding: 24px 0;
   position: fixed;
   height: fit-content;
-  top: -100%;
+  top: 0;
+  opacity: 0;
   left: 0;
   width: 100%;
   background-color: white;
   z-index: 5;
   display: flex;
   justify-content: center;
-  animation: headerMenuOut 1s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
 
   .content {
     width: 1600px;
@@ -95,27 +97,5 @@
 }
 
 .show {
-  padding: 24px 0;
-  top: 0;
-  animation: headerMenu 1s ease-in-out;
-}
-
-@keyframes headerMenu {
-  0% {
-    top: -100%;
-  }
-
-  100% {
-    top: 0;
-  }
-}
-
-@keyframes headerMenuOut {
-  0% {
-    top: 0%;
-  }
-
-  100% {
-    top: -100%;
-  }
+  opacity: 1;
 }
