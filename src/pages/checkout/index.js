@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 
 import HeadInfo from '../../utils/HeadInfo';
-import { ScreenSize } from '../../context/screenContext'
+import { ScreenContext } from '../../context/screenContext'
 
 import products from '../../products.json';
 
@@ -16,7 +16,7 @@ import styles from './Checkout.module.scss';
 import PopUp from '../../components/PopUp/PopUp';
 
 const CheckoutPage = () => {
-    const { isMobile } = useContext(ScreenSize)
+    const { isMobile } = useContext(ScreenContext)
     const [popUp, setPopUp] = useState(true)
     return (
         <>
@@ -42,28 +42,26 @@ const CheckoutPage = () => {
                     products ? (
                         <>
                             {
-                                !isMobile ? (
-                                    <div className={styles.content}>
-                                        <h1 className={styles.title}>Корзина</h1>
+                                <div className={styles.content}>
+                                    <h1 className={styles.title}>Корзина</h1>
 
-                                        <div className={styles.cart}>
-                                            <div className={styles.cartItems}>
-                                                <CartItem info={products[0].products[0]} checkout={true} />
-                                                <CartItem info={products[0].products[0]} checkout={true} />
-                                                <CartItem info={products[0].products[0]} checkout={true} />
-                                                <hr />
-                                                <div className={styles.amount}>
-                                                    <div></div>
-                                                    <div>Итого:</div>
-                                                    <div>63 114 300 сум</div>
-                                                </div>
-                                            </div>
-                                            <div className={styles.cartTotal}>
-                                                <CartTotal offer={true} />
+                                    <div className={styles.cart}>
+                                        <div className={styles.cartItems}>
+                                            <CartItem info={products[0].products[0]} checkout={true} />
+                                            <CartItem info={products[0].products[0]} checkout={true} />
+                                            <CartItem info={products[0].products[0]} checkout={true} />
+                                            <hr />
+                                            <div className={styles.amount}>
+                                                <div></div>
+                                                <div>Итого:</div>
+                                                <div>63 114 300 сум</div>
                                             </div>
                                         </div>
+                                        <div className={styles.cartTotal}>
+                                            <CartTotal offer={true} />
+                                        </div>
                                     </div>
-                                ) : null
+                                </div>
                             }
                         </>
                     ) : (
