@@ -115,7 +115,7 @@ const FilterMenu = ({ products, filterOpen, setFilterOpen }) => {
             <FilterOption title="Цена">
                 <FormInputRange
                     min={0}
-                    max={100000000}
+                    max={999999999}
                 />
             </FilterOption>
 
