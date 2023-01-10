@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 
-import { ScreenSize } from '../../context/screenContext';
+import { ScreenContext } from '../../context/screenContext';
 
 import Menu from '../Menu/Menu';
 import SearchInput from '../SearchInput/SearchInput';
@@ -11,7 +11,7 @@ import SearchInput from '../SearchInput/SearchInput';
 import styles from './Header.module.scss';
 
 const Header = () => {
-    const { isMobile, isTablet } = useContext(ScreenSize)
+    const { isMobile, isTablet } = useContext(ScreenContext)
     const [searchFocus, setSearchFocus] = useState(false);
     const ref = useRef(false)
     const [firstOpen, setFirstOpen] = useState(false); //state which is used for opening menu for the first time
@@ -117,7 +117,7 @@ const Header = () => {
                         href='/signin'
                         className={styles.navButton}
                     >
-                        <svg viewBox="0 0 21 22" fill="none" className={styles.languageButton}>
+                        <svg viewBox="0 0 21 22" width={21} height={22} fill="none" className={styles.languageButton}>
                             <use xlinkHref='#profile-logo'></use>
                         </svg>
                         <div>Войти</div >
