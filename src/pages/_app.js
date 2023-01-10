@@ -4,6 +4,7 @@ import NProgress from 'nprogress';
 
 //context 
 import ScreenContext from '../context/screenContext';
+import DataContext from '../context/dataContext';
 
 //layout
 import MainLayout from '../layouts/Main';
@@ -14,7 +15,8 @@ import '../styles/globals.scss';
 import '../styles/colors.scss';
 import '../styles/Slider.scss';
 import '../styles/SortMenu.scss';
-import '../styles/ProductImageSlider.scss'
+import '../styles/ProductImageSlider.scss';
+import '../styles/PageButtons.scss';
 
 const App = ({ Component, pageProps }) => {
   const router = useRouter()
@@ -36,11 +38,13 @@ const App = ({ Component, pageProps }) => {
 
   return (
     <>
-      <ScreenContext>
-        <MainLayout>
-          <Component {...pageProps} />
-        </MainLayout>
-      </ScreenContext>
+      <DataContext>
+        <ScreenContext>
+          <MainLayout>
+            <Component {...pageProps} />
+          </MainLayout>
+        </ScreenContext>
+      </DataContext>
     </>
   )
 }
