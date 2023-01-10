@@ -1,14 +1,14 @@
 import { useContext } from "react";
 import Link from "next/link";
 
-import { ScreenSize } from "../../context/screenContext";
+import { ScreenContext } from "../../context/screenContext";
 
 import Button from "../Button/Button";
 
 import styles from './PopUp.module.scss'
 
 const PopUp = ({ result, setPopUp }) => {
-    const { isMobile } = useContext(ScreenSize)
+    const { isMobile } = useContext(ScreenContext)
     return (
         <div className={styles.container}>
             <div className={styles.content}>
