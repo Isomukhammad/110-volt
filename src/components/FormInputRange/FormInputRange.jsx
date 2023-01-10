@@ -57,7 +57,6 @@ const FormInputRange = ({ min, max, onChange }) => {
     }
 
     const handleMaxValueChange = (event) => {
-        console.log(event.target.value)
         let value = event.target.value;
 
 
