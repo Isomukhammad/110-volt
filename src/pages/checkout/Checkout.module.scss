@@ -52,20 +52,22 @@
           }
         }
       }
-
-      .cartTotal {
-        flex: 1;
-      }
     }
   }
 
   @media screen and (max-width: 1024px) {
     .content {
+      position: relative;
+
+      .title {
+        display: none;
+      }
       .cart {
         gap: 30px;
         flex-direction: column;
 
         .cartItems {
+          display: none;
           .amount {
             display: inline;
             div {
@@ -73,10 +75,6 @@
               margin-right: 1em;
             }
           }
-        }
-
-        .cartTotal {
-          display: none;
         }
       }
     }
