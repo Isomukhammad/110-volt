@@ -15,6 +15,10 @@
     z-index: 1;
     cursor: pointer;
     transform: translateY(-50%);
+
+    svg {
+      scale: 1.6;
+    }
   }
 
   .swiperPrev {
