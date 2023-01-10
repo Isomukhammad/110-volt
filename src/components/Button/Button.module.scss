@@ -52,9 +52,8 @@
     outline: 1px solid #e0e0e0;
 
     &:hover:enabled {
-      background: #7b54c9;
-      outline: none;
-      color: white;
+      outline: 1px solid #7b54c9;
+      color: #7b54c9;
     }
 
     &:disabled {
