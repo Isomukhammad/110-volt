@@ -1,8 +1,8 @@
 import { createContext, useEffect, useState } from "react";
 
-export const ScreenSize = createContext(null);
+export const ScreenContext = createContext(null);
 
-const ScreenContext = ({ children }) => {
+const ScreenProvider = ({ children }) => {
     const [isMobile, setIsMobile] = useState(false);
     const [isTablet, setIsTablet] = useState(false);
 
@@ -38,10 +38,10 @@ const ScreenContext = ({ children }) => {
     }
 
     return (
-        <ScreenSize.Provider value={values}>
+        <ScreenContext.Provider value={values}>
             {children}
-        </ScreenSize.Provider>
+        </ScreenContext.Provider>
     )
 }
 
-export default ScreenContext;
+export default ScreenProvider;
