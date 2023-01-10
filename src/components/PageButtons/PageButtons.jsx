@@ -1,10 +1,20 @@
+import { useEffect, useState } from 'react';
+import ReactPaginate from 'react-paginate';
+
 import styles from './PageButtons.module.scss'
 
 const PageButtons = () => {
+    const [itemOffset, setItemOffset] = useState(0);
+    const handlePageClick = (event) => {
+        const newOffset = event.selected * 20 % 60;
+        console.log(`User requested page number ${event.selected}, which is offset ${newOffset}`);
+        setItemOffset(newOffset);
+    };
+
     return (
         <div className={styles.container}>
-            <div className={styles.numbers}>
-                <button className={styles.prevPage}>
+            <ReactPaginate
+                previousLabel={
                     <svg
                         viewBox="0 0 17 16"
                         width={17}
@@ -14,14 +24,8 @@ const PageButtons = () => {
                     >
                         <use xlinkHref="#arrow-right"></use>
                     </svg>
-                </button>
-                <button className={styles.active}><span>1</span></button>
-                <button><span>2</span></button>
-                <button><span>3</span></button>
-                <button><span>...</span></button>
-                <button><span>998</span></button>
-                <button><span>999</span></button>
-                <button className={styles.nextPage}>
+                }
+                nextLabel={
                     <svg
                         viewBox="0 0 17 16"
                         width={17}
@@ -31,11 +35,28 @@ const PageButtons = () => {
                     >
                         <use xlinkHref="#arrow-right"></use>
                     </svg>
-                </button>
-            </div>
+                }
+                onPageChange={handlePageClick}
+                pageRangeDisplayed={3}
+                marginPagesDisplayed={1}
+                pageCount={20}
+                pageClassName="page-item"
+                pageLinkClassName="page-link"
+                previousClassName="page-item"
+                previousLinkClassName="page-link previous-page"
+                nextClassName="page-item"
+                nextLinkClassName="page-link next-page"
+                breakLabel="..."
+                breakClassName="page-item"
+                breakLinkClassName="page-link"
+                containerClassName="pagination"
+                activeClassName="active"
+                renderOnZeroPageCount={null}
+            />
             <div className={styles.showMore}>
                 Показать ещё
             </div>
+
         </div>
     )
 }
