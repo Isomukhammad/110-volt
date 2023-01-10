@@ -1,11 +1,11 @@
 import { useContext, useState } from 'react';
 import ReactDropdown from 'react-dropdown';
-import { ScreenSize } from '../../context/screenContext';
+import { ScreenContext } from '../../context/screenContext';
 import styles from './SortMenu.module.scss';
 
 const SortMenu = ({ setFilterOpen }) => {
     const [listView, setListView] = useState(false);
-    const { isTablet } = useContext(ScreenSize);
+    const { isTablet } = useContext(ScreenContext);
 
     const options = [
         {
