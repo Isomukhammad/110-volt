@@ -15,10 +15,10 @@ import { Pagination, Navigation, Autoplay, Grid } from 'swiper'
 
 import styles from './BrandCategories.module.scss'
 import { useContext, useEffect, useState } from 'react'
-import { ScreenSize } from '../../context/screenContext'
+import { ScreenContext } from '../../context/screenContext'
 
 const BrandCategories = () => {
-	const { isMobile } = useContext(ScreenSize)
+	const { isMobile } = useContext(ScreenContext)
 	const { brands } = data;
 
 	return (
