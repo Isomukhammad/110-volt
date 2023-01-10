@@ -10,14 +10,14 @@ import "swiper/css/navigation";
 import "swiper/css/free-mode";
 import "swiper/css/thumbs";
 
-import { ScreenSize } from "../../context/screenContext";
+import { ScreenContext } from "../../context/screenContext";
 
 import ImageComponent from "../ImageComponent/ImageComponent";
 
 import styles from './ProductPageSlider.module.scss'
 
 const ProductPageSlider = ({ images }) => {
-    const { isTablet } = useContext(ScreenSize);
+    const { isTablet } = useContext(ScreenContext);
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
     const [mobileCurrent, setMobileCurrent] = useState(0);
     const [desktopCurrent, setDesktopCurrent] = useState(0)
@@ -83,7 +83,6 @@ const ProductPageSlider = ({ images }) => {
                         "--swiper-pagination-color": "#fff",
                     }}
                     spaceBetween={10}
-                    navigation={true}
                     thumbs={{
                         swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
                     }}
