@@ -2,7 +2,7 @@ import { useContext, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 
 import data from '../../data.json';
-import { ScreenSize } from '../../context/screenContext';
+import { ScreenContext } from '../../context/screenContext';
 
 import ImageComponent from '../ImageComponent/ImageComponent';
 
@@ -12,7 +12,7 @@ const Menu = ({ menuOpen, setMenuOpen, searchFocus, setSearchFocus }) => {
     const [btn, setBtn] = useState(0);
     const { catalogues } = data;
     const { title, catalogue } = catalogues[btn];
-    const { isMobile, isTablet } = useContext(ScreenSize);
+    const { isMobile, isTablet } = useContext(ScreenContext);
     const [showItems, setShowItems] = useState(true);
     const searchRef = useRef(null);
 
@@ -22,7 +22,6 @@ const Menu = ({ menuOpen, setMenuOpen, searchFocus, setSearchFocus }) => {
         }
 
         if (searchFocus) {
-            console.log(searchFocus)
             searchRef.current.focus();
         }
     }, [isTablet, isMobile, searchFocus])
