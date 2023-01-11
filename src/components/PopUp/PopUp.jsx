@@ -6,6 +6,7 @@ import { ScreenContext } from "../../context/screenContext";
 import Button from "../Button/Button";
 
 import styles from './PopUp.module.scss'
+import ImageComponent from "../ImageComponent/ImageComponent";
 
 const PopUp = ({ result, setPopUp }) => {
     const { isMobile } = useContext(ScreenContext)
@@ -15,7 +16,11 @@ const PopUp = ({ result, setPopUp }) => {
                 {
                     result === 'success' ? (
                         <>
-                            <div className={styles.image}></div>
+                            <div className={styles.image}>
+                                <ImageComponent
+                                    src={'/gifs/animation_300_l92q1ps4 1.gif'}
+                                />
+                            </div>
                             <div className={styles.description}>
                                 <h4>Ура, вы это сделали!</h4>
                                 <p>Ваш заказ успешно оформлен</p>
@@ -23,7 +28,11 @@ const PopUp = ({ result, setPopUp }) => {
                         </>
                     ) : (
                         <>
-                            <div className={styles.image}></div>
+                            <div className={styles.image}>
+                                <ImageComponent
+                                    src={"/gifs/76705-error-animation 1.gif"}
+                                />
+                            </div>
                             <div className={styles.description}>
                                 <h4>Упс, кажется что-то пошло не так</h4>
                                 <p>Наши модераторы свяжутся с вами</p>

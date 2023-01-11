@@ -24,7 +24,6 @@
 
       p {
         font-weight: 500;
-        font-size: 16px;
         line-height: 19px;
         color: #828282;
       }
@@ -107,15 +106,15 @@
 
 .bottomTotal {
   position: fixed;
-  bottom: 94px;
+  height: 109px;
+  bottom: 81px;
   left: 0;
   width: 100%;
-  padding: 1em;
   background-color: white;
   z-index: 4;
   display: flex;
   justify-content: center;
-  box-shadow: 4px -15px 40px rgba(35, 35, 35, 0.1);
+  box-shadow: 4px -20px 20px rgba(35, 35, 35, 0.1);
   border-radius: 12px 12px 0px 0px;
 
   .content {
@@ -124,6 +123,18 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+
+    .bottomButtons {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding: 15px 0;
+
+      button {
+        width: 100%;
+        padding: 12px 2em;
+      }
+    }
 
     .prices {
       display: flex;

@@ -5,7 +5,7 @@ import styles from './SortMenu.module.scss';
 
 const SortMenu = ({ setFilterOpen }) => {
     const [listView, setListView] = useState(false);
-    const { isTablet } = useContext(ScreenContext);
+    const { isMobile } = useContext(ScreenContext);
 
     const options = [
         {
@@ -32,7 +32,7 @@ const SortMenu = ({ setFilterOpen }) => {
     const [isAscending, setIsAscending] = useState(true);
 
     const handleViewChange = (boolean) => {
-        if (isTablet) {
+        if (isMobile) {
             setListView(!listView)
         } else {
             setListView(boolean)
@@ -128,7 +128,7 @@ const SortMenu = ({ setFilterOpen }) => {
                     fill="none"
                     style={{
                         stroke: listView === true ? "#7B54C9" : "#BDBDBD",
-                        display: !listView && isTablet ? "none" : ''
+                        display: !listView && isMobile ? "none" : ''
                     }}
                     onClick={() => handleViewChange(true)}
                 >
@@ -142,7 +142,7 @@ const SortMenu = ({ setFilterOpen }) => {
                     stroke="#7B54C9"
                     style={{
                         stroke: !listView === true ? "#7B54C9" : "#BDBDBD",
-                        display: listView && isTablet ? "none" : ''
+                        display: listView && isMobile ? "none" : ''
                     }}
                     onClick={() => handleViewChange(false)}
                 >

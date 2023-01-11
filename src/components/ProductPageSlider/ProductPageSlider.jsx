@@ -21,6 +21,7 @@ const ProductPageSlider = ({ images }) => {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
     const [mobileCurrent, setMobileCurrent] = useState(0);
     const [desktopCurrent, setDesktopCurrent] = useState(0)
+
     const swiperBtnRef = useRef();
 
     return (

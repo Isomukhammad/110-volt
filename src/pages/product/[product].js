@@ -1,24 +1,25 @@
 import { useRouter } from 'next/router';
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 
 import HeadInfo from '../../utils/HeadInfo';
-import ImageComponent from '../../components/ImageComponent/ImageComponent';
 import Button from '../../components/Button/Button'
 import PopularGoods from '../../components/PopularGoods/PopularGoods';
 import ProductCharasteristic from '../../components/ProductCharasteristic/ProductCharasteristic';
 import ProductHeader from '../../components/ProductHeader/ProductHeader';
 import DiscountTabs from '../../components/DiscountTabs/DiscountTabs';
 import PagePath from '../../components/PagePath/PagePath';
+import ProductPageSlider from '../../components/ProductPageSlider/ProductPageSlider';
 
+import { ScreenContext } from '../../context/screenContext';
 import data from '../../products.json';
 
 import styles from './Product.module.scss';
-import ProductPageSlider from '../../components/ProductPageSlider/ProductPageSlider';
 
 const ProductPage = () => {
     const [isHidden, setIsHidden] = useState(true);
     const [height, setHeight] = useState(0);
     const [show, setShow] = useState('false');
+    const { isMobile } = useContext(ScreenContext)
 
     const ref = useRef(null);
     const [product, setProduct] = useState();
@@ -83,7 +84,9 @@ const ProductPage = () => {
                     />
 
                     <section className={styles.headline} ref={ref}>
-                        <ProductPageSlider images={product.img} />
+                        <div>
+                            <ProductPageSlider images={product.img} />
+                        </div>
 
                         <div className={styles.mainInfo}>
                             <div className={styles.titleInfo}>
@@ -130,7 +133,7 @@ const ProductPage = () => {
                     </div>
                     <ProductCharasteristic />
                     <PopularGoods title={'Популярные товары'} margin={'80px'} />
-                    <PopularGoods title={'С этим товаром покупали'} margin={'80px'} />
+                    <PopularGoods title={`${!isMobile ? "С этим товаром покупали" : "С этим покупают"}`} margin={'80px'} />
                     <DiscountTabs />
                 </div >
             ) : null}

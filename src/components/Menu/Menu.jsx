@@ -80,7 +80,7 @@ const Menu = ({ menuOpen, setMenuOpen, searchFocus, setSearchFocus }) => {
                                         viewBox='0 0 24 24'
                                         width={24}
                                         height={24}
-                                        stroke="#242424"
+                                        stroke="#828282"
                                         fill='none'
                                     >
                                         <use xlinkHref='#search'></use>
@@ -114,6 +114,7 @@ const Menu = ({ menuOpen, setMenuOpen, searchFocus, setSearchFocus }) => {
                                     width={24}
                                     height={24}
                                     className={styles.itemIcon}
+                                    fill="#828282"
                                 >
                                     <use xlinkHref='#arrow-ios-forward'></use>
                                 </svg>

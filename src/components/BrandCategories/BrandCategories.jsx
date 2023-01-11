@@ -14,12 +14,13 @@ import 'swiper/css/thumbs'
 import { Pagination, Navigation, Autoplay, Grid } from 'swiper'
 
 import styles from './BrandCategories.module.scss'
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import { ScreenContext } from '../../context/screenContext'
 
 const BrandCategories = () => {
 	const { isMobile } = useContext(ScreenContext)
 	const { brands } = data;
+	const brandsRef = useRef();
 
 	return (
 		<div className={`brands ${styles.brands}`}>
@@ -33,13 +34,13 @@ const BrandCategories = () => {
 						fill: 'rows',
 						rows: 2,
 					}}
-					loop={true}
-					// loopFillGroupWithBlank={true}
-					autoplay={{
-						delay: 2000,
-						disableOnInteraction: false,
-					}}
+					loopFillGroupWithBlank={true}
+					onSlideChange={(e) => console.log(e.activeIndex)}
 					className={styles.slider}
+
+					onBeforeInit={(swiper) => {
+						brandsRef.current = swiper;
+					}}
 				>
 					{brands.map((brand) => (
 						<SwiperSlide key={brand.id} className={styles.swiperSlide}>
@@ -57,6 +58,22 @@ const BrandCategories = () => {
 						</SwiperSlide>
 					))}
 				</Swiper>
+				<div className={styles.swiperPrev} onClick={() => {
+					brandsRef.current?.slidePrev()
+				}}>
+					<svg width={18.67} height={16.33} viewBox='0 0 28 28' fill='none' stroke="white"
+					>
+						<use xlinkHref={`#arrow-left`}></use>
+					</svg>
+				</div>
+				<div className={styles.swiperNext} onClick={() => {
+					brandsRef.current?.slideNext()
+				}}>
+					<svg width={18.67} height={16.33} viewBox='0 0 28 28' fill='none' stroke="white"
+					>
+						<use xlinkHref={`#arrow-left`}></use>
+					</svg>
+				</div>
 			</div>
 		</div>
 	)

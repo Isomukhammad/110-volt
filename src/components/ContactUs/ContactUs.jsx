@@ -30,11 +30,6 @@ const ContactUs = () => {
                     register={register}
                     required="Поле выше обязательно к заполнению!"
                 />
-                <div className={styles.error}>
-                    {
-                        errors?.name && <p>{errors?.name?.message}</p>
-                    }
-                </div>
                 <FormInput
                     type='number'
                     name='number'
@@ -42,22 +37,12 @@ const ContactUs = () => {
                     register={register}
                     required="Поле выше обязательно к заполнению!"
                 />
-                <div className={styles.error}>
-                    {
-                        errors?.number && <p>{errors?.number?.message}</p>
-                    }
-                </div>
                 <FormTextarea
                     placeholder="Ваше сообщение"
                     name="description"
                     register={register}
                     required="Поле выше обязательно к заполнению!"
                 />
-                <div className={styles.error}>
-                    {
-                        errors?.description && <p>{errors?.description?.message}</p>
-                    }
-                </div>
                 <Button>Отправить</Button>
             </form>
         </div>

@@ -1,10 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
+import { ScreenContext } from '../../context/screenContext';
 
 import styles from './PageButtons.module.scss'
 
 const PageButtons = () => {
     const [itemOffset, setItemOffset] = useState(0);
+    const { isMobile } = useContext(ScreenContext);
+
     const handlePageClick = (event) => {
         const newOffset = event.selected * 20 % 60;
         console.log(`User requested page number ${event.selected}, which is offset ${newOffset}`);
@@ -37,7 +40,7 @@ const PageButtons = () => {
                     </svg>
                 }
                 onPageChange={handlePageClick}
-                pageRangeDisplayed={3}
+                pageRangeDisplayed={isMobile ? 1 : 2}
                 marginPagesDisplayed={1}
                 pageCount={20}
                 pageClassName="page-item"

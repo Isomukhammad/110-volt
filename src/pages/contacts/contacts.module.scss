@@ -40,6 +40,7 @@
   @media screen and (max-width: 768px) {
     .informations {
       flex-direction: column;
+      gap: 80px;
 
       .contactInfo {
         max-width: 100%;
@@ -47,7 +48,7 @@
       }
       .map {
         iframe {
-          height: 300px;
+          height: 520px;
         }
       }
     }

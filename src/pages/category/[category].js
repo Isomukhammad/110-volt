@@ -28,7 +28,22 @@ const Category = () => {
         <>
             <HeadInfo title={`Купить ${data?.title.toLowerCase()} в Ташкенте`} />
             <div className={styles.container}>
-                <PagePath category={data?.title} subcategory={data?.title} />
+                <PagePath
+                    paths={[
+                        {
+                            "url": "/",
+                            "name": "Главная"
+                        }, {
+                            "url": "/",
+                            "name": `Компьютерная техника`
+                        }, {
+
+                            "url": "",
+                            "name": `Ноутбуки`
+
+                        }
+                    ]}
+                />
                 <div className={styles.title}>
                     <h1>{data?.title}</h1>
                     <p>458 товаров</p>

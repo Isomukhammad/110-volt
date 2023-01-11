@@ -16,7 +16,7 @@ const MobileBottomMenu = () => {
                     viewBox="0 0 24 24"
                     fill="none"
                     strokeWidth="2"
-                    stroke="#242424"
+                    stroke="#9499A5"
                 >
                     <use xlinkHref='#home'></use>
                 </svg>
@@ -29,8 +29,8 @@ const MobileBottomMenu = () => {
                 <svg
                     width="24"
                     height="24"
-                    fill="#242424"
-                    stroke="#242424"
+                    fill="#9499A5"
+                    stroke="none"
                     viewBox="0 0 24 24"
                 >
                     <use xlinkHref='#menu'></use>

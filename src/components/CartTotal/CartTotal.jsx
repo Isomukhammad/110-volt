@@ -9,12 +9,7 @@ const CartTotal = ({ offer }) => {
     const router = useRouter();
     const { isMobile, isTablet } = useContext(ScreenContext)
 
-    useEffect(() => {
-        console.log(isTablet);
-        console.log(isMobile)
-    }, [isMobile, isTablet])
-
-    if (isMobile) {
+    if (isMobile || isTablet) {
         return (
             <div className={styles.bottomTotal}>
                 <div className={styles.content}>
@@ -22,7 +17,26 @@ const CartTotal = ({ offer }) => {
                         <p>3 товара</p>
                         <h4>75 266 000 cум</h4>
                     </div>
-                    <Button>Заказать</Button>
+
+                    {
+                        router.pathname === '/cart' ? (
+                            <>
+                                <div className={styles.bottomButtons}>
+                                    <Link href='/checkout'>
+                                        <Button>Оформить заказ</Button>
+                                    </Link>
+                                    <Link href='/checkout'>
+                                        <Button type="reverse">Рассрочка</Button>
+                                    </Link>
+                                </div>
+                            </>
+                        ) : (
+                            <Link href='/checkout'>
+                                <Button>Заказать</Button>
+                            </Link>
+                        )
+                    }
+
                 </div>
             </div>
         )

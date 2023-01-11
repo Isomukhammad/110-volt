@@ -34,7 +34,6 @@
           padding: 1em;
           border-radius: 16px;
           font-weight: 500;
-          font-size: 16px;
           line-height: 19px;
           color: #828282;
           display: flex;
@@ -85,7 +84,6 @@
 
           a {
             font-weight: 500;
-            font-size: 16px;
             line-height: 19px;
             color: #828282;
             transition: 0.3s;
@@ -116,7 +114,6 @@
           font-weight: 600;
           margin-top: 24px;
           text-align: center;
-          font-size: 16px;
           line-height: 19px;
           color: #242424;
         }
@@ -213,10 +210,24 @@
           button {
             width: 70%;
             cursor: pointer;
+
+            &.active {
+              color: #828282;
+              background-color: transparent;
+
+              svg {
+                stroke: #828282;
+                fill: #828282;
+              }
+            }
           }
 
           .itemIcon {
             display: flex;
+          }
+
+          p {
+            text-align: left;
           }
         }
       }

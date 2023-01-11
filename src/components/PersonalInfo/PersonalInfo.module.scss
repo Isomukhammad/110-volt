@@ -188,6 +188,11 @@
             }
           }
         }
+
+        .chosePayment {
+          flex-direction: column;
+          gap: 24px;
+        }
       }
 
       .immediately {

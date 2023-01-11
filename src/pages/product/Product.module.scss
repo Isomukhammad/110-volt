@@ -49,7 +49,6 @@
 
           .code {
             font-weight: 400;
-            font-size: 16px;
             letter-spacing: 0.05em;
             color: #bdbdbd;
           }
@@ -73,7 +72,6 @@
 
           span {
             line-height: 19px;
-            font-size: 16px;
             color: #bdbdbd;
           }
         }
@@ -143,9 +141,7 @@
       }
 
       .mainInfo {
-        .buttons {
-          display: none;
-        }
+        padding-top: 522px;
       }
     }
 
@@ -171,10 +167,13 @@
     }
 
     .bottomButton {
+      border-radius: 12px 12px 0px 0px;
+      box-shadow: 4px -20px 20px rgba(35, 35, 35, 0.1);
+
       display: flex;
       position: fixed;
-      bottom: 94px;
-      z-index: 5;
+      bottom: 81px;
+      z-index: 4;
       background-color: white;
       width: 100%;
       left: 0;

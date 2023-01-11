@@ -83,6 +83,7 @@
 
   .pageButtons {
     margin-top: 80px;
+    margin-bottom: -180px;
   }
 
   @media screen and (max-width: 1025px) {
@@ -138,17 +139,24 @@
 
         .info {
           h1 {
+            width: 145px;
             font-weight: 700;
             font-size: 24px;
             line-height: 30px;
+          }
+
+          button {
+            width: 120%;
+            padding: 12px 0;
           }
         }
 
         .image {
           position: absolute;
           z-index: -2;
-          right: -4.5em;
-          width: 100%;
+          right: -5em;
+          height: 280px;
+          // width: 100%;
         }
       }
 

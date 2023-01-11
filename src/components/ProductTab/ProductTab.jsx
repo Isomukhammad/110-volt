@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -6,6 +6,7 @@ import Button from '../Button/Button';
 import QuickView from '../QuickView/QuickView';
 
 import styles from './ProductTab.module.scss'
+import { ScreenContext } from '../../context/screenContext';
 
 const ProductTab = ({
     index,
@@ -26,6 +27,8 @@ const ProductTab = ({
             setQuickView('true')
         }
     }, [productId, index])
+
+    const { isMobile } = useContext(ScreenContext)
 
     return (
         <>
@@ -63,27 +66,33 @@ const ProductTab = ({
 
                 <p className={styles.description}>{description}</p>
 
-                <div
-                    className={styles.buttons}
-                    onClick={(e) => e.preventDefault()}
-                >
-                    <div
+                {
+                    isMobile ? (
+                        null
+                    ) : (
+                        <div
+                            className={styles.buttons}
+                            onClick={(e) => e.preventDefault()}
+                        >
+                            <div
 
-                    >
-                        <Button>
-                            В корзину
-                        </Button>
-                    </div>
-                    <svg
-                        viewBox='0 0 24 24'
-                        width={24}
-                        height={24}
-                        fill="none"
-                        stroke="#BDBDBD"
-                    >
-                        <use xlinkHref="#heart"></use>
-                    </svg>
-                </div>
+                            >
+                                <Button>
+                                    В корзину
+                                </Button>
+                            </div>
+                            <svg
+                                viewBox='0 0 24 24'
+                                width={24}
+                                height={24}
+                                fill="none"
+                                stroke="#BDBDBD"
+                            >
+                                <use xlinkHref="#heart"></use>
+                            </svg>
+                        </div>
+                    )
+                }
             </Link >
             <QuickView
                 setQuickView={setQuickView}

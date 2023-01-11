@@ -5,7 +5,6 @@
 
   .dropdown {
     font-weight: 600;
-    // font-size: 16px;
     line-height: 17px;
     color: #828282;
     position: relative;
@@ -48,7 +47,6 @@
         cursor: pointer;
         list-style: none;
         font-weight: 500;
-        font-size: 16px;
         line-height: 19px;
         color: #242424;
         border-bottom: 1px dashed #242424;
@@ -111,15 +109,18 @@
       align-items: center;
       gap: 4px;
       font-weight: 600;
-      font-size: 16px;
       line-height: 17px;
       color: #828282;
       order: 3;
-      cursor: pointer;
+      font-size: 14px;
     }
 
     .viewType {
       order: 1;
     }
+  }
+
+  @media screen and (max-width: 480px) {
+    font-size: 14px;
   }
 }
