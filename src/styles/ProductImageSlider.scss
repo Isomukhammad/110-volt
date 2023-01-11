@@ -1,5 +1,4 @@
 .Product-page-slider {
-  display: none;
   height: 500px;
   .Product-page-slider__mobile {
     display: none;
@@ -34,13 +33,14 @@
   .Product-page-sliper__desktop {
     position: relative;
     display: grid;
-    grid-template-columns: auto 10fr;
-    gap: 30px;
+    grid-template-columns: auto 1fr;
     max-height: 522px;
     align-items: center;
+    // gap: 30px;
 
     .Product-page-sliper__mainSlider {
       max-height: 522px;
+      max-width: 522px;
       width: 100%;
       display: flex;
       flex-direction: row;
@@ -48,10 +48,10 @@
       justify-self: center;
 
       .swiper-slide {
-        width: 100vw;
         display: flex;
         flex-direction: column;
         align-items: center;
+
         img {
           width: 100%;
           max-width: 522px;

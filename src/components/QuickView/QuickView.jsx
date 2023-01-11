@@ -92,7 +92,6 @@ const QuickView = ({
                         viewBox="0 0 24 24"
                         width="32px"
                         height="32px"
-                        stroke="none"
                         fill="#BDBDBD"
                     >
                         <use xlinkHref='#close'></use>

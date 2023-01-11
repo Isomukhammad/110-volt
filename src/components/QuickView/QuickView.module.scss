@@ -78,7 +78,7 @@
     .nextBtn {
       position: absolute;
       background: #ffffff;
-      padding: 20px;
+      padding: 16px;
       border-radius: 500px;
       border: none;
       transform: translateY(-50%);
@@ -86,15 +86,15 @@
       svg {
         padding-left: 3px;
         padding-top: 1px;
-        scale: 1.4;
+        scale: 1;
       }
     }
 
     .disabled {
-      background: rgba(36, 36, 36, 0.5);
+      background: rgba(35, 35, 35, 0.5);
 
       svg {
-        stroke: #bdbdbd;
+        stroke: white;
       }
     }
 
@@ -117,6 +117,10 @@
       border: none;
       top: 38px;
       right: 38px;
+
+      svg {
+        scale: 0.8;
+      }
     }
 
     .moreInfoBtn {
