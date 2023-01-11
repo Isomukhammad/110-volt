@@ -17,87 +17,87 @@
       width: 522px;
       height: 522px;
     }
+  }
 
-    .mainInfo {
+  .mainInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+    flex: 1;
+
+    .titleInfo {
       display: flex;
       flex-direction: column;
-      gap: 80px;
-      flex: 1;
+      gap: 16px;
 
-      .titleInfo {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-
-        h2 {
-          font-weight: 500;
-          font-size: 24px;
-          line-height: 150%;
-        }
-
-        .additional {
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-          line-height: 140%;
-
-          .brand {
-            font-weight: 500;
-            font-size: 20px;
-            color: #7b54c9;
-          }
-
-          .code {
-            font-weight: 400;
-            letter-spacing: 0.05em;
-            color: #bdbdbd;
-          }
-        }
+      h2 {
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 150%;
       }
 
-      .prices {
+      .additional {
         display: flex;
-        flex-direction: column;
-        gap: 12px;
+        flex-direction: row;
+        justify-content: space-between;
+        line-height: 140%;
 
-        .monthly {
-          color: #e91d24;
-          font-weight: 700;
-          font-size: 32px;
-          display: flex;
-          flex-direction: row;
-          align-items: flex-end;
-          gap: 24px;
-          line-height: 30px;
-
-          span {
-            line-height: 19px;
-            color: #bdbdbd;
-          }
-        }
-
-        .discounted {
-          font-size: 24px;
-          line-height: 28px;
-        }
-
-        .price {
+        .brand {
           font-weight: 500;
           font-size: 20px;
-          line-height: 24px;
-          text-decoration-line: line-through;
+          color: #7b54c9;
+        }
+
+        .code {
+          font-weight: 400;
+          letter-spacing: 0.05em;
+          color: #bdbdbd;
+        }
+      }
+    }
+
+    .prices {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+
+      .monthly {
+        color: #e91d24;
+        font-weight: 700;
+        font-size: 32px;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        gap: 24px;
+        line-height: 30px;
+
+        span {
+          line-height: 19px;
           color: #bdbdbd;
         }
       }
 
-      .buttons {
-        display: flex;
-        flex-direction: row;
-        gap: 24px;
+      .discounted {
+        font-size: 24px;
+        line-height: 28px;
+      }
 
-        button {
-          width: fit-content;
-        }
+      .price {
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 24px;
+        text-decoration-line: line-through;
+        color: #bdbdbd;
+      }
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: row;
+      gap: 24px;
+
+      button {
+        width: fit-content;
       }
     }
   }
@@ -123,6 +123,7 @@
   @media screen and (max-width: 1024px) {
     .headline {
       flex-direction: column;
+      gap: 30px;
     }
   }
 
@@ -139,9 +140,42 @@
           height: auto;
         }
       }
+    }
 
-      .mainInfo {
-        padding-top: 522px;
+    .mainInfo {
+      .titleInfo {
+        margin-top: 24px;
+        h2 {
+          font-size: 16px;
+        }
+
+        .additional {
+          .brand {
+            font-size: 16px;
+          }
+        }
+      }
+
+      .prices {
+        .monthly {
+          font-size: 24px;
+
+          span {
+            font-size: 16px;
+          }
+        }
+
+        .discounted {
+          font-size: 20px;
+        }
+
+        .price {
+          font-size: 16px;
+        }
+      }
+
+      .buttons {
+        display: none;
       }
     }
 
@@ -191,12 +225,5 @@
   }
 
   @media screen and (max-width: 480px) {
-    .headline {
-      .mainInfo {
-        .buttons {
-          display: none;
-        }
-      }
-    }
   }
 }

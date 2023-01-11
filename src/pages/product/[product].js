@@ -19,7 +19,7 @@ const ProductPage = () => {
     const [isHidden, setIsHidden] = useState(true);
     const [height, setHeight] = useState(0);
     const [show, setShow] = useState('false');
-    const { isMobile } = useContext(ScreenContext)
+    const { isMobile, isTablet } = useContext(ScreenContext)
 
     const ref = useRef(null);
     const [product, setProduct] = useState();
@@ -84,7 +84,7 @@ const ProductPage = () => {
                     />
 
                     <section className={styles.headline} ref={ref}>
-                        <div>
+                        <div className={styles.slider}>
                             <ProductPageSlider images={product.img} />
                         </div>
 
@@ -115,7 +115,36 @@ const ProductPage = () => {
                             </div>
                         </div>
                     </section>
+                    {
+                        isMobile || isTablet ? (
+                            <div className={styles.mainInfo}>
+                                <div className={styles.titleInfo}>
+                                    <h2>{product?.subtitle}</h2>
+                                    <div className={styles.additional}>
+                                        <p className={styles.brand}>{product?.brand}</p>
+                                        <p className={styles.code}>Код товара: 5811965165</p>
+                                    </div>
+                                </div>
 
+                                <div className={styles.prices}>
+                                    <p className={styles.monthly}>{product?.monthly} сум/мес <span>x 12 месяцев</span></p>
+                                    <p className={styles.discounted}>{product?.discounted} сум</p>
+                                    <p className={styles.price}>{product?.price} сум</p>
+                                </div>
+
+                                <div className={styles.buttons}>
+                                    <Button style={{ width: "fit-content" }}>
+                                        Добавить корзину
+                                    </Button>
+                                    <Button
+                                        type="reverse"
+                                    >
+                                        Купить в рассрочку
+                                    </Button>
+                                </div>
+                            </div>
+                        ) : null
+                    }
                     <section className={styles.description}>
                         <h1>Описание</h1>
                         <p className={isHidden ? `${styles.hide}` : null}>{product?.description}</p>
