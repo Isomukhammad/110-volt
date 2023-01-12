@@ -1,3 +1,4 @@
+import { TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
 
 import Button from '../Button/Button';
@@ -22,75 +23,165 @@ const SignupForm = () => {
     return (
         <div className={styles.container}>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <FormInput
-                    type='text'
-                    name='name'
-                    placeholder="Имя и фамилия"
-                    register={register}
-                    required="Введите своё имя и фамилию!"
-                    minLength="6"
-                    maxLength="12"
-                    error={errors?.name}
+                <TextField
+                    {...register("Full name", { required: true, maxLength: 80 })}
+                    id="outlined-basic"
+                    label="Имя и фамилия"
+                    variant="outlined"
+                    sx={{
+                        ".MuiOutlinedInput-notchedOutline": {
+                            border: "1px solid #E0E0E0",
+                            borderRadius: "16px"
+                        },
+                        "label": {
+                            color: "#C0C0C0",
+                            "&.Mui-focused": {
+                                color: '#C0C0C0'
+                            }
+                        },
+                        ".MuiFormControl-root.MuiFormLabel-root": {
+                            color: "#C0C0C0"
+                        },
+                        ".MuiOutlinedInput-root.Mui-focused": {
+                            "& > fieldset": {
+                                border: "1px solid#C0C0C0"
+                            }
+                        },
+                        ".MuiOutlinedInput-root:hover": {
+                            "& > fieldset": {
+                                borderColor: "#C0C0C0"
+                            }
+                        }
+                    }}
                 />
 
-                {
-                    errors?.name && <p className={styles.error}>{errors?.name?.message}</p>
-                }
-
-                <FormInput
-                    type='number'
-                    name='mobile'
-                    placeholder="Номер телефона"
-                    register={register}
-                    required="Введите свой номер телефона!"
-                    minLength="6"
-                    maxLength="12"
-                    error={errors?.mobile}
+                <TextField
+                    {...register("Phone number", { required: true, maxLength: 80 })}
+                    id="outlined-basic"
+                    label="Номер телефона"
+                    variant="outlined"
+                    type="number"
+                    sx={{
+                        ".MuiOutlinedInput-notchedOutline": {
+                            border: "1px solid #E0E0E0",
+                            borderRadius: "16px"
+                        },
+                        "label": {
+                            color: "#C0C0C0",
+                            "&.Mui-focused": {
+                                color: '#C0C0C0'
+                            }
+                        },
+                        ".MuiFormControl-root.MuiFormLabel-root": {
+                            color: "#C0C0C0"
+                        },
+                        ".MuiOutlinedInput-root.Mui-focused": {
+                            "& > fieldset": {
+                                border: "1px solid#C0C0C0"
+                            }
+                        },
+                        ".MuiOutlinedInput-root:hover": {
+                            "& > fieldset": {
+                                borderColor: "#C0C0C0"
+                            }
+                        }
+                    }}
                 />
 
-                {
-                    errors?.mobile && <p className={styles.error}>{errors?.mobile?.message}</p>
-                }
-
-                <FormInput
-                    type='email'
-                    name='email'
-                    placeholder="E-mail"
-                    register={register}
-                    required="Введите свой почтовый адрес!"
-                    error={errors?.email}
+                <TextField
+                    id="outlined-basic"
+                    label="E-mail"
+                    variant="outlined"
+                    sx={{
+                        ".MuiOutlinedInput-notchedOutline": {
+                            border: "1px solid #E0E0E0",
+                            borderRadius: "16px"
+                        },
+                        "label": {
+                            color: "#C0C0C0",
+                            "&.Mui-focused": {
+                                color: '#C0C0C0'
+                            }
+                        },
+                        ".MuiFormControl-root.MuiFormLabel-root": {
+                            color: "#C0C0C0"
+                        },
+                        ".MuiOutlinedInput-root.Mui-focused": {
+                            "& > fieldset": {
+                                border: "1px solid#C0C0C0"
+                            }
+                        },
+                        ".MuiOutlinedInput-root:hover": {
+                            "& > fieldset": {
+                                borderColor: "#C0C0C0"
+                            }
+                        }
+                    }}
                 />
 
-                {
-                    errors?.email && <p className={styles.error}>{errors?.email?.message}</p>
-                }
-
-                <FormInput
-                    type='password'
-                    name='password'
-                    placeholder="Пароль"
-                    register={register}
-                    minLength="6"
-                    maxLength="12"
-                    required="Введите свой пароль!"
-                    error={errors?.password}
+                <TextField
+                    id="outlined-basic"
+                    label="Пароль"
+                    variant="outlined"
+                    type="password"
+                    sx={{
+                        ".MuiOutlinedInput-notchedOutline": {
+                            border: "1px solid #E0E0E0",
+                            borderRadius: "16px"
+                        },
+                        "label": {
+                            color: "#C0C0C0",
+                            "&.Mui-focused": {
+                                color: '#C0C0C0'
+                            }
+                        },
+                        ".MuiFormControl-root.MuiFormLabel-root": {
+                            color: "#C0C0C0"
+                        },
+                        ".MuiOutlinedInput-root.Mui-focused": {
+                            "& > fieldset": {
+                                border: "1px solid#C0C0C0"
+                            }
+                        },
+                        ".MuiOutlinedInput-root:hover": {
+                            "& > fieldset": {
+                                borderColor: "#C0C0C0"
+                            }
+                        }
+                    }}
                 />
 
-                {
-                    errors?.password && <p className={styles.error}>{errors?.password?.message}</p>
-                }
-
-                <FormInput
-                    type='password'
-                    name='confirmPassword'
-                    placeholder="Подтвердите пароль"
-                    register={register}
-                    required="Подтвердите ваш пароль!"
-                    error={errors?.confirmPassword}
+                <TextField
+                    id="outlined-basic"
+                    label="Подтвердите пароль"
+                    variant="outlined"
+                    type="password"
+                    sx={{
+                        ".MuiOutlinedInput-notchedOutline": {
+                            border: "1px solid #E0E0E0",
+                            borderRadius: "16px"
+                        },
+                        "label": {
+                            color: "#C0C0C0",
+                            "&.Mui-focused": {
+                                color: '#C0C0C0'
+                            }
+                        },
+                        ".MuiFormControl-root.MuiFormLabel-root": {
+                            color: "#C0C0C0"
+                        },
+                        ".MuiOutlinedInput-root.Mui-focused": {
+                            "& > fieldset": {
+                                border: "1px solid#C0C0C0"
+                            }
+                        },
+                        ".MuiOutlinedInput-root:hover": {
+                            "& > fieldset": {
+                                borderColor: "#C0C0C0"
+                            }
+                        }
+                    }}
                 />
-                {
-                    errors?.confirmPassword && <p className={styles.error}>{errors?.confirmPassword?.message}</p>
-                }
                 <Button active={!isValid}>Войти</Button>
             </form>
         </div>
