@@ -66,7 +66,6 @@ const ProfileForm = () => {
                     required="Введите своё имя!"
                     minLength="6"
                     maxLength="30"
-                    error={errors?.name}
                 />
                 <FormInput
                     type='number'
@@ -76,7 +75,6 @@ const ProfileForm = () => {
                     required="Введите свой номер телефона!"
                     minLength="6"
                     maxLength="20"
-                    error={errors?.mobile}
                 />
                 <FormInput
                     type='email'
@@ -86,7 +84,6 @@ const ProfileForm = () => {
                     required="Введите ваш E-mail!"
                     minLength="6"
                     maxLength="30"
-                    error={errors?.email}
                 />
                 <Button type="submit" active={!isValid}>Сохранить изменения</Button>
             </form>
