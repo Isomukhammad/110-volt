@@ -2,6 +2,20 @@
   margin-bottom: 120px;
   margin-top: 40px;
 
+  .wrapper {
+    display: grid;
+    grid-template-columns: 6fr 2fr;
+    gap: 120px;
+    position: relative;
+    z-index: 2;
+    .cartTotal {
+      position: -webkit-sticky; /* for Safari */
+      position: sticky;
+      top: 42%;
+      align-self: flex-start;
+    }
+  }
+
   .content {
     display: flex;
     flex-direction: column;
@@ -16,6 +30,7 @@
       flex-direction: row;
       justify-content: space-between;
       gap: 100px;
+      // position: relative;
 
       .cartItems {
         flex: 3;
@@ -56,6 +71,10 @@
   }
 
   @media screen and (max-width: 1024px) {
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+    }
     .content {
       position: relative;
 

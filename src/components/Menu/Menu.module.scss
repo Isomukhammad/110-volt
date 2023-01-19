@@ -14,6 +14,7 @@
     color: #242424;
     border: 2px solid #f2f2f2;
     display: grid;
+    z-index: 100;
     grid-template-columns: 1fr 2fr auto;
 
     .menuCatalogue {
@@ -28,6 +29,7 @@
         cursor: pointer;
 
         button {
+          cursor: pointer;
           width: 100%;
           background: none;
           border: none;
@@ -40,6 +42,7 @@
           flex-direction: row;
           align-items: center;
           justify-content: flex-start;
+          text-align: start;
           gap: 22px;
 
           &.active {
@@ -207,6 +210,7 @@
           flex-direction: row;
           align-items: center;
           justify-content: space-between;
+
           button {
             width: 70%;
             cursor: pointer;

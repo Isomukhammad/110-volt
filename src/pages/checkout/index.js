@@ -38,40 +38,44 @@ const CheckoutPage = () => {
                 ]}
             />
             <div className={styles.container}>
-                {
-                    products ? (
-                        <>
-                            {
-                                <div className={styles.content}>
-                                    <h1 className={styles.title}>Корзина</h1>
+                <div className={styles.wrapper}>
+                    <div>
+                        {
+                            products ? (
+                                <>
+                                    {
+                                        <div className={styles.content}>
+                                            <h1 className={styles.title}>Корзина</h1>
 
-                                    <div className={styles.cart}>
-                                        <div className={styles.cartItems}>
-                                            <CartItem info={products[0].products[0]} checkout={true} />
-                                            <CartItem info={products[0].products[0]} checkout={true} />
-                                            <CartItem info={products[0].products[0]} checkout={true} />
-                                            <hr />
-                                            <div className={styles.amount}>
-                                                <div></div>
-                                                <div>Итого:</div>
-                                                <div>63 114 300 сум</div>
+                                            <div className={styles.cart}>
+                                                <div className={styles.cartItems}>
+                                                    <CartItem info={products[0].products[0]} checkout={true} />
+                                                    <CartItem info={products[0].products[0]} checkout={true} />
+                                                    <CartItem info={products[0].products[0]} checkout={true} />
+                                                    <hr />
+                                                    <div className={styles.amount}>
+                                                        <div></div>
+                                                        <div>Итого:</div>
+                                                        <div>63 114 300 сум</div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div className={styles.cartTotal}>
-                                            <CartTotal offer={true} />
-                                        </div>
-                                    </div>
-                                </div>
-                            }
-                        </>
-                    ) : (
-                        <CartError />
-                    )
-                }
-                <PersonalInfo />
-                {
-                    popUp ? <PopUp result='success' setPopUp={setPopUp} /> : null
-                }
+                                    }
+                                </>
+                            ) : (
+                                <CartError />
+                            )
+                        }
+                        <PersonalInfo />
+                        {
+                            popUp ? <PopUp result='success' setPopUp={setPopUp} /> : null
+                        }
+                    </div>
+                    <div className={styles.cartTotal}>
+                        <CartTotal offer={true} />
+                    </div>
+                </div>
                 <DiscountTabs />
             </div>
         </>
