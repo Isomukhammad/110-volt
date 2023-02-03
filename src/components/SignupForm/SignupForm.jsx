@@ -1,4 +1,3 @@
-import { TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
 
 import Button from '../Button/Button';
@@ -23,165 +22,57 @@ const SignupForm = () => {
     return (
         <div className={styles.container}>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <TextField
-                    {...register("Full name", { required: true, maxLength: 80 })}
-                    id="outlined-basic"
-                    label="Имя и фамилия"
-                    variant="outlined"
-                    sx={{
-                        ".MuiOutlinedInput-notchedOutline": {
-                            border: "1px solid #E0E0E0",
-                            borderRadius: "16px"
-                        },
-                        "label": {
-                            color: "#C0C0C0",
-                            "&.Mui-focused": {
-                                color: '#C0C0C0'
-                            }
-                        },
-                        ".MuiFormControl-root.MuiFormLabel-root": {
-                            color: "#C0C0C0"
-                        },
-                        ".MuiOutlinedInput-root.Mui-focused": {
-                            "& > fieldset": {
-                                border: "1px solid#C0C0C0"
-                            }
-                        },
-                        ".MuiOutlinedInput-root:hover": {
-                            "& > fieldset": {
-                                borderColor: "#C0C0C0"
-                            }
-                        }
-                    }}
-                />
+                <div className="relative">
+                    <input
+                        {...register("fullName", { required: true, maxLength: 80 })}
+                        type="text"
+                        id="fullName"
+                        className="block py-4 px-[14px] w-full text-[15px] text-gray-900 bg-transparent rounded-[16px] border-1 border-gray-300 appearance-none focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-transparent peer"
+                        placeholder=" "
+                    />
+                    <label for="fullName" className="absolute text-[15px] text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-100 top-1.5 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray5 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1">Имя и фамилия</label>
+                </div>
 
-                <TextField
-                    {...register("Phone number", { required: true, maxLength: 80 })}
-                    id="outlined-basic"
-                    label="Номер телефона"
-                    variant="outlined"
-                    type="number"
-                    sx={{
-                        ".MuiOutlinedInput-notchedOutline": {
-                            border: "1px solid #E0E0E0",
-                            borderRadius: "16px"
-                        },
-                        "label": {
-                            color: "#C0C0C0",
-                            "&.Mui-focused": {
-                                color: '#C0C0C0'
-                            }
-                        },
-                        ".MuiFormControl-root.MuiFormLabel-root": {
-                            color: "#C0C0C0"
-                        },
-                        ".MuiOutlinedInput-root.Mui-focused": {
-                            "& > fieldset": {
-                                border: "1px solid#C0C0C0"
-                            }
-                        },
-                        ".MuiOutlinedInput-root:hover": {
-                            "& > fieldset": {
-                                borderColor: "#C0C0C0"
-                            }
-                        }
-                    }}
-                />
-
-                <TextField
-                    id="outlined-basic"
-                    label="E-mail"
-                    variant="outlined"
-                    sx={{
-                        ".MuiOutlinedInput-notchedOutline": {
-                            border: "1px solid #E0E0E0",
-                            borderRadius: "16px"
-                        },
-                        "label": {
-                            color: "#C0C0C0",
-                            "&.Mui-focused": {
-                                color: '#C0C0C0'
-                            }
-                        },
-                        ".MuiFormControl-root.MuiFormLabel-root": {
-                            color: "#C0C0C0"
-                        },
-                        ".MuiOutlinedInput-root.Mui-focused": {
-                            "& > fieldset": {
-                                border: "1px solid#C0C0C0"
-                            }
-                        },
-                        ".MuiOutlinedInput-root:hover": {
-                            "& > fieldset": {
-                                borderColor: "#C0C0C0"
-                            }
-                        }
-                    }}
-                />
-
-                <TextField
-                    id="outlined-basic"
-                    label="Пароль"
-                    variant="outlined"
-                    type="password"
-                    sx={{
-                        ".MuiOutlinedInput-notchedOutline": {
-                            border: "1px solid #E0E0E0",
-                            borderRadius: "16px"
-                        },
-                        "label": {
-                            color: "#C0C0C0",
-                            "&.Mui-focused": {
-                                color: '#C0C0C0'
-                            }
-                        },
-                        ".MuiFormControl-root.MuiFormLabel-root": {
-                            color: "#C0C0C0"
-                        },
-                        ".MuiOutlinedInput-root.Mui-focused": {
-                            "& > fieldset": {
-                                border: "1px solid#C0C0C0"
-                            }
-                        },
-                        ".MuiOutlinedInput-root:hover": {
-                            "& > fieldset": {
-                                borderColor: "#C0C0C0"
-                            }
-                        }
-                    }}
-                />
-
-                <TextField
-                    id="outlined-basic"
-                    label="Подтвердите пароль"
-                    variant="outlined"
-                    type="password"
-                    sx={{
-                        ".MuiOutlinedInput-notchedOutline": {
-                            border: "1px solid #E0E0E0",
-                            borderRadius: "16px"
-                        },
-                        "label": {
-                            color: "#C0C0C0",
-                            "&.Mui-focused": {
-                                color: '#C0C0C0'
-                            }
-                        },
-                        ".MuiFormControl-root.MuiFormLabel-root": {
-                            color: "#C0C0C0"
-                        },
-                        ".MuiOutlinedInput-root.Mui-focused": {
-                            "& > fieldset": {
-                                border: "1px solid#C0C0C0"
-                            }
-                        },
-                        ".MuiOutlinedInput-root:hover": {
-                            "& > fieldset": {
-                                borderColor: "#C0C0C0"
-                            }
-                        }
-                    }}
-                />
+                <div className="relative">
+                    <input
+                        {...register("phone-number", { required: true, maxLength: 80 })}
+                        type="number"
+                        id="phone-number"
+                        className="block py-4 px-[14px] w-full text-[15px] text-gray-900 bg-transparent rounded-[16px] border-1 border-gray-300 appearance-none focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-transparent peer"
+                        placeholder=" "
+                    />
+                    <label for="phone-number" className="absolute text-[15px] text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-100 top-1.5 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray5 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1">Номер телефона</label>
+                </div>
+                <div className="relative">
+                    <input
+                        {...register("e-mail", { required: true, maxLength: 80 })}
+                        type="email"
+                        id="email"
+                        className="block py-4 px-[14px] w-full text-[15px] text-gray-900 bg-transparent rounded-[16px] border-1 border-gray-300 appearance-none focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-transparent peer"
+                        placeholder=" "
+                    />
+                    <label for="email" className="absolute text-[15px] text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-100 top-1.5 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray5 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1">E-mail</label>
+                </div>
+                <div className="relative">
+                    <input
+                        {...register("password", { required: true, maxLength: 80 })}
+                        type="password"
+                        id="password"
+                        className="block py-4 px-[14px] w-full text-[15px] text-gray-900 bg-transparent rounded-[16px] border-1 border-gray-300 appearance-none focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-transparent peer"
+                        placeholder=" "
+                    />
+                    <label for="password" className="absolute text-[15px] text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-100 top-1.5 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray5 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1">Пароль</label>
+                </div>
+                <div className="relative">
+                    <input
+                        {...register("confirmPassword", { required: true, maxLength: 80 })}
+                        type="password"
+                        id="confirm-password"
+                        className="block py-4 px-[14px] w-full text-[15px] text-gray-900 bg-transparent rounded-[16px] border-1 border-gray-300 appearance-none focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-transparent peer"
+                        placeholder=" "
+                    />
+                    <label for="confirmpassword" className="absolute text-[15px] text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-100 top-1.5 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray5 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1">Подтвердите пароль</label>
+                </div>
                 <Button active={!isValid}>Войти</Button>
             </form>
         </div>
