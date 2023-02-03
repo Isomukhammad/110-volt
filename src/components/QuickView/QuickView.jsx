@@ -25,11 +25,11 @@ const QuickView = ({
                 className={styles.content}
                 onClick={(e) => e.stopPropagation()}
             >
-                <QuickViewSlider images={data.img} />
+                <QuickViewSlider data={data.gallery} />
                 <div className={styles.information}>
                     <div className={styles.title}>
-                        <h2>{data.subtitle}</h2>
-                        <p>Код товара: 32207121</p>
+                        <h2>{data.h1_name}</h2>
+                        <p>Код товара: {data.id}</p>
                     </div>
                     <div className={styles.buttons}>
                         <Button>Добавить в корзину</Button>
