@@ -10,17 +10,12 @@ import { ScreenContext } from '../../context/screenContext';
 
 const ProductTab = ({
     index,
-    info,
+    data,
     setProductId,
     productId,
     arrLength
 }) => {
-    let { subtitle, description, monthly, price, discounted, img } = info;
     const [quickView, setQuickView] = useState('false');
-
-    if (typeof img !== 'string') {
-        img = info.img[0];
-    }
 
     useEffect(() => {
         if (productId === index) {
@@ -33,7 +28,7 @@ const ProductTab = ({
     return (
         <>
             <Link
-                href={`/product/${subtitle}`}
+                href={data.url}
                 className={styles.container}
             >
                 <div className={styles.preview}>
@@ -49,8 +44,8 @@ const ProductTab = ({
                     </div>
                     <div className={styles.image}>
                         <Image
-                            src={img}
-                            alt={description}
+                            src={data.img}
+                            alt={data.name}
                             sizes="100vh"
                             width={0}
                             height={0}
@@ -59,12 +54,16 @@ const ProductTab = ({
                 </div>
 
                 <div className={styles.prices}>
-                    <p>{monthly} сум/мес</p>
-                    <p>{discounted} сум</p>
-                    <p>{price} сум</p>
+                    {
+                        data.installment_prices[0] ? (
+                            <p>{monthly} сум/мес</p>
+                        ) : null
+                    }
+                    <p>{data.current_price_formatted}</p>
+                    <p>{data.old_price_formatted}</p>
                 </div>
 
-                <p className={styles.description}>{description}</p>
+                <p className={styles.description}>{data.description}</p>
 
                 {
                     isMobile ? (
@@ -96,7 +95,7 @@ const ProductTab = ({
             </Link >
             <QuickView
                 setQuickView={setQuickView}
-                data={info}
+                data={data}
                 quickView={quickView}
                 index={index}
                 productId={productId}
