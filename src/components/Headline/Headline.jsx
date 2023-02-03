@@ -1,38 +1,63 @@
-import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import data from '../../data.json'
+import useSWR from 'swr'
+import fetcher from '../../utils/fetcher'
+
+import ImageComponent from '../ImageComponent/ImageComponent'
+import HeadlineSlider from '../HeadlineSlider/HeadlineSlider'
 
 import styles from './Headline.module.scss'
-import Slider from '../Slider/Slider'
-import ImageComponent from '../ImageComponent/ImageComponent'
 
 const Headline = () => {
-	const { slider } = data
-	const [image, setImage] = useState(2)
-	const imageName = `url("/images/image ${image}.png")`
+	const { data: sidebanner, error: sidebannerError, isValidating: sidebarValidating, mutate: mutateSidenanner } = useSWR('/banners?type=home_block_1_2',
+		(url) =>
+			fetcher(url),
+		{
+			revalidateIfStale: false,
+			revalidateOnFocus: false,
+			revalidateOnReconnect: false,
+		}
+	)
+
+	const { data: slider, error: sliderError, isValidating: sliderValidating, mutate: mutateSlider } = useSWR('/banners?type=home_slide',
+		(url) =>
+			fetcher(url),
+		{
+			revalidateIfStale: false,
+			revalidateOnFocus: false,
+			revalidateOnReconnect: false,
+		}
+	)
 
 	return (
 		<>
 			<div className={styles.container}>
-				<div className={styles.slider}>
-					<Slider />
-				</div>
-				<div className={styles.side}>
-					<Link href={'#'} className={styles.sideImg}>
-						<Image src={'/images/image 3.png'} alt='img' fill sizes='100vw' />
-					</Link>
-				</div>
+				{!sliderValidating ? (
+					<div className={styles.slider}>
+						<HeadlineSlider data={slider} />
+					</div>
+				) : (null)
+				}
+				{!sidebarValidating ? (
+					<div className={styles.side}>
+						<Link href={sidebanner.data[0].url} className={styles.sideImg}>
+							<Image src={sidebanner.data[0].img} alt='img' fill sizes='100vw' />
+						</Link>
+					</div>
+				) : (null)
+				}
 				<div className={styles.scroll}>
-					{
-						data?.slider.map((image) => (
-							<ImageComponent
-								src={image.img}
-								key={image.id}
-								alt=""
-							/>
-						))
+					{!sliderValidating ?
+						(
+							slider.data.map((image) => (
+								<ImageComponent
+									src={image.img}
+									key={image.id}
+									alt=""
+								/>
+							))
+						) : (null)
 					}
 				</div>
 			</div>
