@@ -6,12 +6,25 @@ const AuthContext = createContext({})
 export const AuthProvider = ({ children }) => {
     const handleLogin = async ({ phone_number, password }) => {
         try {
-            const res = await nextAxios.post('/login', {
-                phone_number,
-                password,
-            })
+            // const res = await nextAxios.post('/login', {
+            //     phone_number,
+            //     password,
+            // })
 
-            console.log(res);
+            // console.log(res);
+            fetch(`${process.env.API}/login`, {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json'
+                },
+                body: {
+                    "phone_number": phone_number,
+                    "password": password
+                }
+            })
+                .then(res => res.json())
+                .then(data => console.log(data))
+                .catch(error => console.log('error', error));
         } catch (error) {
             throw error;
         }
