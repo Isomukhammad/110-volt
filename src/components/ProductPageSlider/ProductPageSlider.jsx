@@ -40,10 +40,10 @@ const ProductPageSlider = ({ images }) => {
                     modules={[Pagination, Navigation]}
                 >
                     {
-                        images?.map((img, index) => (
+                        images?.map((item, index) => (
                             <SwiperSlide key={index}>
                                 <ImageComponent
-                                    src={'/images/Rectangle 1177.png'}
+                                    src={item.original}
                                     placeholder=""
                                 />
                             </SwiperSlide>
@@ -68,10 +68,10 @@ const ProductPageSlider = ({ images }) => {
                     className="Product-page-slider__thumbs"
                 >
                     {
-                        images?.map((img, index) => (
+                        images?.map((item, index) => (
                             <SwiperSlide key={index}>
                                 <ImageComponent
-                                    src={'/images/Rectangle 1177.png'}
+                                    src={item.original}
                                     placeholder=""
                                 />
                             </SwiperSlide>
@@ -96,10 +96,10 @@ const ProductPageSlider = ({ images }) => {
                     }}
                 >
                     {
-                        images?.map((img, index) => (
+                        images?.map((item, index) => (
                             <SwiperSlide key={index}>
                                 <ImageComponent
-                                    src={'/images/Rectangle 1177.png'}
+                                    src={item.original}
                                     placeholder=""
                                 />
                             </SwiperSlide>
