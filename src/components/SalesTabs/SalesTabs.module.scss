@@ -10,10 +10,19 @@
     gap: 24px;
 
     .tab {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+
       img {
         border-radius: 8px;
         width: 100%;
         height: auto;
+      }
+
+      .timer {
+        width: 60%;
       }
     }
   }
