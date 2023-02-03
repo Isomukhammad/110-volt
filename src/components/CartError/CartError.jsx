@@ -2,7 +2,6 @@ import Link from 'next/link';
 import Button from '../Button/Button';
 import DiscountTabs from '../DiscountTabs/DiscountTabs';
 import ImageComponent from '../ImageComponent/ImageComponent';
-import PopularGoods from '../PopularGoods/PopularGoods';
 import styles from './CartError.module.scss'
 
 const CartError = () => {
