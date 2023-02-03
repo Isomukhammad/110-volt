@@ -19,9 +19,9 @@ export default function Home() {
       <Headline />
       <PopularCategories />
       <DiscountTabs />
-      <Recommendations title="Хиты продаж" link="/" linkTitle="Все хиты" />
-      <Recommendations title="Лучшие новинки" link="/" linkTitle="Все новинки" />
-      <Recommendations title="Успейте купить" />
+      <Recommendations title="Хиты продаж" linkTitle="Все хиты" link="/products?is_bestseller=1&quantity=12" />
+      <Recommendations title="Лучшие новинки" linkTitle="Все новинки" link="/products?is_new=1&quantity=12" />
+      <Recommendations title="Успейте купить" link="/products?is_promotion=1&quantity=12" />
       <SalesTabs />
       <ReviewCategories />
       <BrandCategories />
