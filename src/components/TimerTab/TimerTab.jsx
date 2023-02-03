@@ -2,17 +2,20 @@ import { useEffect, useState } from 'react';
 import getCountdown from '../../utils/getCoundown';
 import styles from './TimerTab.module.scss';
 
-const TimerTab = ({ deadline }) => {
+const TimerTab = ({ end }) => {
     const [coundown, setCountdown] = useState();
+
+    const dateStart = new Date(end);
+    const timestamp = dateStart.getTime();
 
     useEffect(() => {
         const timer = setInterval(() => {
-            const time = getCountdown(deadline);
+            const time = getCountdown(timestamp);
             setCountdown(time);
         }, 1000)
 
         return () => clearInterval(timer);
-    }, [deadline]);
+    }, [timestamp]);
 
     return (
         <div className={styles.timerTab}>
