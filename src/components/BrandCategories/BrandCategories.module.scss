@@ -62,5 +62,22 @@
     // .tabs {
     //   margin-right: -1000px;
     // }
+
+    .tabs {
+      position: relative;
+
+      &:hover {
+        .swiperPrev,
+        .swiperNext {
+          visibility: visible;
+          opacity: 1;
+        }
+      }
+
+      .swiperPrev,
+      .swiperNext {
+        display: none;
+      }
+    }
   }
 }
