@@ -3,22 +3,24 @@ import Button from '../Button/Button';
 import ImageComponent from '../ImageComponent/ImageComponent';
 import styles from './ProductHeader.module.scss'
 
-const ProductHeader = ({ product, show }) => {
+const ProductHeader = ({ product, show, data }) => {
+    console.log(data)
     return (
         <div className={`${styles.container} ${show === 'true' ? styles.show : ''}`}>
             <div className={styles.content}>
                 <div className={styles.product}>
                     <ImageComponent
-                        src={product?.img[0]}
-                        alt={product?.subtitle}
+                        src={data.img}
+                        alt={data.name}
                     />
-                    <p>{product?.subtitle}</p>
+                    <p>{data.h1_name}</p>
                 </div>
                 <div className={styles.line}></div>
                 <div className={styles.prices}>
                     <p className={styles.monthly}>{product?.monthly} сум/мес <span>x 12 месяцев</span></p>
-                    <p className={styles.discounted}>{product?.discounted} сум</p>
-                    <p className={styles.price}>{product?.price} сум</p>
+                    <p className={styles.discounted}>{data.current_price_formatted
+                    }</p>
+                    <p className={styles.price}>{data.old_price_formatted}</p>
                 </div>
                 <div className={styles.buttons}>
                     <Button>Добавить в корзину</Button>
