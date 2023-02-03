@@ -31,9 +31,9 @@ const Cart = () => {
             />
             <div className={styles.container}>
                 {
-                    products ? (
+                    !products ? (
                         <div className={styles.content}>
-                            <h1 className={styles.title}>Корзина</h1>
+                            <h1 className={`${styles.title} font-bold text-[24px] md:text-[32px]`}>Корзина</h1>
 
                             <div className={styles.cart}>
                                 <div className={styles.cartItems}>
@@ -51,7 +51,7 @@ const Cart = () => {
                     )
                 }
                 <PopularGoods
-                    title="Популярные товары"
+                    title={'Популярные товары'} link="/products?is_popular-1&quantity=6"
                 />
                 <DiscountTabs />
             </div>
