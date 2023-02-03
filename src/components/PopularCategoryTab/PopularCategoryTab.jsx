@@ -1,12 +1,13 @@
+import Link from 'next/link';
 import ImageComponent from '../ImageComponent/ImageComponent';
 
 import styles from './PopularCategoryTab.module.scss'
 
-const PopularCategoryTab = ({ info }) => {
-    const { name, img } = info;
+const PopularCategoryTab = ({ data }) => {
+    const { name, img, id, slug } = data;
 
     return (
-        <div className={styles.container}>
+        <Link href={`/categories/${id}-${slug}`} className={styles.container}>
             <ImageComponent src={img} alt="" />
             <div className={styles.title}>
                 <p>{name}</p>
@@ -14,7 +15,7 @@ const PopularCategoryTab = ({ info }) => {
                     <use xlinkHref='#arrow-right'></use>
                 </svg>
             </div>
-        </div>
+        </Link>
     )
 }
 
