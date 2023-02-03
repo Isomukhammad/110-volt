@@ -1,0 +1,17 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 76px;
+  row-gap: 80px;
+
+  @media screen and (max-width: 1024px) {
+    column-gap: 30px;
+    row-gap: 30px;
+  }
+
+  @media screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+  }
+}

@@ -1,0 +1,48 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  color: #242424;
+
+  .image {
+    overflow: hidden;
+    border-radius: 16px;
+
+    img {
+      margin-top: 0px;
+      width: 100%;
+      height: auto;
+    }
+  }
+  &:hover {
+    img {
+      scale: 1.1;
+    }
+  }
+
+  img {
+    transition: 0.5s;
+  }
+
+  h3 {
+    font-size: 20px;
+    line-height: 150%;
+    font-weight: 600;
+  }
+
+  div {
+    font-size: 18px;
+    line-height: 150%;
+    font-weight: 400;
+    color: #828282;
+    p {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
