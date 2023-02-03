@@ -19,7 +19,6 @@
     margin-top: 64px;
     .tabs {
       grid-template-columns: repeat(2, 49%);
-      grid-template-rows: repeat(4, 1fr);
       gap: 16px;
     }
   }
