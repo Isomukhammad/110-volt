@@ -4,10 +4,11 @@ import NProgress from 'nprogress';
 
 //context 
 import ScreenContext from '../context/screenContext';
-import DataContext from '../context/dataContext';
+import DataContext, { DataProvider } from '../context/dataContext';
+import { AuthProvider } from '../context/auth';
 
 //layout
-import MainLayout from '../layouts/Main';
+import MainLayout from '../layouts/Layout/Main';
 
 //styles
 import '../styles/nprogress.css'
@@ -38,13 +39,15 @@ const App = ({ Component, pageProps }) => {
 
   return (
     <>
-      <DataContext>
-        <ScreenContext>
-          <MainLayout>
-            <Component {...pageProps} />
-          </MainLayout>
-        </ScreenContext>
-      </DataContext>
+      <AuthProvider>
+        <DataProvider>
+          <ScreenContext>
+            <MainLayout>
+              <Component {...pageProps} />
+            </MainLayout>
+          </ScreenContext>
+        </DataProvider>
+      </AuthProvider>
     </>
   )
 }
