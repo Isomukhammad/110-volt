@@ -128,6 +128,7 @@
 
   @media screen and (max-width: 768px) {
     .headline {
+      display: flex;
       flex-direction: column;
       margin-top: 25px;
 
