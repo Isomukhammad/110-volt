@@ -10,7 +10,7 @@ import 'swiper/css/thumbs'
 import { Pagination, Navigation, Autoplay, Thumbs, FreeMode } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
-import styles from './Slider.module.scss'
+import styles from './HeadlineSlider.module.scss'
 
 
 const HeadlineSlider = ({ data }) => {
