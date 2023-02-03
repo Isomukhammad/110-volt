@@ -1,44 +1,47 @@
 import ContactsInfo from '../../components/ContactsInfo/ContactsInfo';
 import DiscountTabs from '../../components/DiscountTabs/DiscountTabs';
 import PagePath from '../../components/PagePath/PagePath'
+import { useData } from '../../context/dataContext';
 import HeadInfo from '../../utils/HeadInfo';
 
 import styles from './contacts.module.scss'
 
 const ContactsPage = () => {
-    return (
-        <>
-            <HeadInfo title="Наши контакты" />
+    const { settings, settingsVal } = useData();
 
-            <div className={styles.container}>
-                <PagePath
-                    paths={[
-                        {
-                            "url": "/",
-                            "name": "Главная"
-                        },
-                        {
-                            "url": "",
-                            "name": `Контакты`
-                        }
-                    ]}
-                />
-                <h1>Наши контакты</h1>
-                <div className={styles.informations}>
-                    <div className={styles.contactInfo}>
-                        <ContactsInfo />
+    if (!settingsVal) {
+        return (
+            <>
+                <HeadInfo title="Наши контакты" />
+
+                <div className={styles.container}>
+                    <PagePath
+                        paths={[
+                            {
+                                "url": "/",
+                                "name": "Главная"
+                            },
+                            {
+                                "url": "",
+                                "name": `Контакты`
+                            }
+                        ]}
+                    />
+                    <h1>Наши контакты</h1>
+                    <div className={styles.informations}>
+                        <div className={styles.contactInfo}>
+                            <ContactsInfo />
+                        </div>
+
+                        <div className={styles.map} dangerouslySetInnerHTML={{ __html: settings.map }} />
                     </div>
-
-                    <div className={styles.map}>
-                        <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A14f7af4a8cb4a7e1f03d71f822ec528a05c8512cb0392b616d6f85bd84676f7d&amp;source=constructor"></iframe>
+                    <div className={styles.dicountTab}>
+                        <DiscountTabs />
                     </div>
                 </div>
-                <div className={styles.dicountTab}>
-                    <DiscountTabs />
-                </div>
-            </div>
-        </>
-    )
+            </>
+        )
+    }
 }
 
 export default ContactsPage; 
