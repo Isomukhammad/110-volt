@@ -1,5 +1,3 @@
-//Custom buttons
-
 import styles from './Button.module.scss'
 
 const Button = ({ children, type, active }) => {
