@@ -4,14 +4,13 @@ import { ScreenContext } from '../../context/screenContext';
 
 import styles from './PageButtons.module.scss'
 
-const PageButtons = () => {
+const PageButtons = ({ data }) => {
+    console.log(data);
     const [itemOffset, setItemOffset] = useState(0);
     const { isMobile } = useContext(ScreenContext);
 
     const handlePageClick = (event) => {
-        const newOffset = event.selected * 20 % 60;
-        console.log(`User requested page number ${event.selected}, which is offset ${newOffset}`);
-        setItemOffset(newOffset);
+        console.log(event);
     };
 
     return (
@@ -42,7 +41,7 @@ const PageButtons = () => {
                 onPageChange={handlePageClick}
                 pageRangeDisplayed={isMobile ? 1 : 2}
                 marginPagesDisplayed={1}
-                pageCount={20}
+                pageCount={data.meta.last_page}
                 pageClassName="page-item"
                 pageLinkClassName="page-link"
                 previousClassName="page-item"
