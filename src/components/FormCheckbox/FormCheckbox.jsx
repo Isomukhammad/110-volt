@@ -14,6 +14,7 @@ const FormCheckbox = ({ name, handleChange }) => {
                     handleChange(event);
                     setChecked(!checked);
                 }}
+                className='focus:ring-0 focus:ring-transparent ring-0 ring-transparent'
             />
             <label htmlFor={name}>{name}</label>
             {checked ? (
