@@ -5,7 +5,7 @@ import { useState } from "react";
 import styles from './CategoryItem.module.scss';
 
 const CategoryItem = ({ info }) => {
-    const { img, price, discounted, monthly, name } = info;
+    const { h1_name, old_price_formatted, current_price_formatted, url, img, price, discounted, monthly, name } = info;
     const [width, setWidth] = useState(100);
 
     const increaseWidth = () => {
@@ -34,8 +34,8 @@ const CategoryItem = ({ info }) => {
             </div>
             <div className={styles.name}>{name}</div>
             <div className={styles.prices}>
-                <p>{price} сум</p>
-                <p>{discounted} сум</p>
+                <p>{current_price_formatted} сум</p>
+                <p>{old_price_formatted} сум</p>
             </div>
             <div className={styles.cart}>
                 <svg
