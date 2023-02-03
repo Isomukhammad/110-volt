@@ -8,7 +8,7 @@ import ImageComponent from "../ImageComponent/ImageComponent";
 
 import styles from './QuickViewSlider.module.scss'
 
-const QuickViewSlider = ({ images }) => {
+const QuickViewSlider = ({ data }) => {
     const swiperBtnRef = useRef()
     const [thumbsSwiper, setThumbsSwiper] = useState(null)
 
@@ -27,9 +27,9 @@ const QuickViewSlider = ({ images }) => {
                 }}
             >
                 {
-                    images.map((item, index) => (
+                    data.map((item, index) => (
                         <SwiperSlide key={index}>
-                            <ImageComponent src={item} alt="" />
+                            <ImageComponent src={item.original} alt="" />
                         </SwiperSlide>
                     ))
                 }
