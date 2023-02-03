@@ -1,0 +1,94 @@
+.container {
+  .title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 40px;
+    cursor: pointer;
+
+    h2 {
+      margin-bottom: 0;
+    }
+
+    svg {
+      display: none;
+    }
+  }
+
+  .links {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  @media screen and (max-width: 1024px) {
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+
+    .title {
+      margin-bottom: 0;
+      padding-bottom: 24px;
+      svg {
+        display: flex;
+        transform: rotate(90deg);
+        animation: rotateBack 0.3s;
+      }
+    }
+
+    .links {
+      opacity: 0;
+      height: 0;
+      overflow: hidden;
+    }
+  }
+}
+
+.open {
+  .title {
+    svg {
+      transform: rotate(270deg);
+      animation: rotateForward 0.3s;
+    }
+  }
+
+  .links {
+    opacity: 1;
+    margin: 24px 0;
+    height: 100%;
+    animation: menuOpen 1s;
+  }
+}
+
+@keyframes rotateForward {
+  0% {
+    transform: rotate(90deg);
+  }
+
+  50% {
+    transform: rotate(180deg);
+  }
+
+  100% {
+    transform: rotate(270deg);
+  }
+}
+
+@keyframes rotateBack {
+  0% {
+    transform: rotate(270deg);
+  }
+
+  100% {
+    transform: rotate(90deg);
+  }
+}
+
+@keyframes menuOpen {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
