@@ -26,9 +26,8 @@ const SigninForm = () => {
 
         try {
             await handleLogin({ phone_number, password })
-        } catch (err) {
-            console.log(err);
-            setFormError(err);
+        } catch (error) {
+            throw error;
         }
     }
 
