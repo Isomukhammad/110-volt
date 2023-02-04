@@ -1,5 +1,11 @@
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 import { useMemo } from 'react';
-import news from '../../data.json';
+import useSWR from 'swr';
+
+import fetcher from '../../utils/fetcher';
+import { useData } from '../../context/dataContext';
 
 import PagePath from "../../components/PagePath/PagePath";
 import HeadInfo from "../../utils/HeadInfo";
@@ -8,19 +14,14 @@ import ImageComponent from "../../components/ImageComponent/ImageComponent";
 import NewsTabs from '../../components/News/NewsTabs'
 import DiscountTabs from '../../components/DiscountTabs/DiscountTabs'
 import PopularGoods from '../../components/PopularGoods/PopularGoods'
+import PageButtons from '../../components/PageButtons/PageButtons';
 
 import styles from './News.module.scss'
-import Link from 'next/link';
-import Image from 'next/image';
-import PageButtons from '../../components/PageButtons/PageButtons';
-import { useRouter } from 'next/router';
-import useSWR from 'swr';
-import fetcher from '../../utils/fetcher';
 
 const NewsPage = () => {
     const router = useRouter()
+    const { settings } = useData();
 
-    // url
     const url = useMemo(() => {
         return `/publications?type=2&page=${router.query.page || 1}&quantity=${router.query.quantity || 12
             }`
@@ -78,7 +79,9 @@ const NewsPage = () => {
                                     <p>По всем интересующим вас вопросом можете обращаться по телефону <span>+99855 501 56 56</span> или написав нам на почту <span>info@110volt.uz</span></p>
                                     <div className={styles.buttons}>
                                         <Button>Написать</Button>
-                                        <Button type="reverse">Позвонить</Button>
+                                        <Link href={`tel:${settings.phone}`}>
+                                            <Button type="reverse">Позвонить</Button>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
