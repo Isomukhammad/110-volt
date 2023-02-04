@@ -3,9 +3,9 @@ import Link from 'next/link'
 import styles from './BrandTap.module.scss'
 
 const BrandTab = ({ info }) => {
-	const { img, name } = info
+	const { img, name, id, slug } = info;
 	return (
-		<Link href='/' className={styles.tab}>
+		<Link href={`/categories/${id}-${slug}`} className={styles.tab}>
 			<Image
 				src={img}
 				alt={name}
