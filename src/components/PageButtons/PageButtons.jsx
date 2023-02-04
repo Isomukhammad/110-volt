@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { useContext, useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import { ScreenContext } from '../../context/screenContext';
@@ -5,12 +6,11 @@ import { ScreenContext } from '../../context/screenContext';
 import styles from './PageButtons.module.scss'
 
 const PageButtons = ({ data }) => {
-    console.log(data);
-    const [itemOffset, setItemOffset] = useState(0);
+    const router = useRouter();
     const { isMobile } = useContext(ScreenContext);
 
     const handlePageClick = (event) => {
-        console.log(event);
+        router.push(`${router.pathname}?page=${event.selected + 1}`)
     };
 
     return (
@@ -42,6 +42,7 @@ const PageButtons = ({ data }) => {
                 pageRangeDisplayed={isMobile ? 1 : 2}
                 marginPagesDisplayed={1}
                 pageCount={data.meta.last_page}
+                forcePage={router.query.page - 1}
                 pageClassName="page-item"
                 pageLinkClassName="page-link"
                 previousClassName="page-item"
