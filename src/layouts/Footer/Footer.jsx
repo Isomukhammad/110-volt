@@ -30,9 +30,13 @@ const Footer = () => {
 
                 {
                     !menuValidation ? (
-                        menu.data.map((item) => (
-                            <FooterCategory data={item} key={item.id} />
-                        ))
+                        menu.data.map((item, index) => {
+                            if (index < 3) {
+                                return (
+                                    <FooterCategory data={item} key={item.id} />
+                                )
+                            }
+                        })
                     ) : (null)
                 }
 
