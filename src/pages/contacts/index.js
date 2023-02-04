@@ -2,45 +2,70 @@ import ContactsInfo from '../../components/ContactsInfo/ContactsInfo';
 import DiscountTabs from '../../components/DiscountTabs/DiscountTabs';
 import PagePath from '../../components/PagePath/PagePath'
 import { useData } from '../../context/dataContext';
+import { nextAxios } from '../../utils/axios';
 import HeadInfo from '../../utils/HeadInfo';
 
-import styles from './contacts.module.scss'
-
-const ContactsPage = () => {
+const ContactsPage = ({ contacts }) => {
     const { settings, settingsVal } = useData();
+
+    console.log(contacts);
 
     if (!settingsVal) {
         return (
             <>
-                <HeadInfo title="Наши контакты" />
+                <HeadInfo
+                    title={contacts.seo_title}
+                    description={contacts.meta_description}
+                    keywords={contacts.meta_keywords}
+                />
 
-                <div className={styles.container}>
-                    <PagePath
-                        paths={[
-                            {
-                                "url": "/",
-                                "name": "Главная"
-                            },
-                            {
-                                "url": "",
-                                "name": `Контакты`
-                            }
-                        ]}
-                    />
-                    <h1>Наши контакты</h1>
-                    <div className={styles.informations}>
-                        <div className={styles.contactInfo}>
+                <PagePath
+                    paths={[
+                        {
+                            "url": "/",
+                            "name": "Главная"
+                        },
+                        {
+                            "url": "",
+                            "name": contacts.name
+                        }
+                    ]}
+                />
+
+                <div className='mb-20'>
+                    <h1 className='font-bold text-[24px] lg:text-[32px] mt-10 mb-12'>{contacts.seo_title}</h1>
+                    <div className='flex flex-col gap-20 lg:grid lg:grid-cols-[25%_75%]'>
+                        <div className='lg:max-w-[344px]'>
                             <ContactsInfo />
                         </div>
 
-                        <div className={styles.map} dangerouslySetInnerHTML={{ __html: settings.map }} />
+                        <div className='rounded-base overflow-hidden lg:[&>iframe]:h-full' dangerouslySetInnerHTML={{ __html: settings.map }} />
                     </div>
-                    <div className={styles.dicountTab}>
+                    <div className='lg:hidden'>
                         <DiscountTabs />
                     </div>
                 </div>
             </>
         )
+    }
+}
+
+export const getServerSideProps = async ({ params }) => {
+    const contacts = await nextAxios
+        .get(`/pages/2`)
+        .then(res => res.data.data)
+        .catch(error => console.log(error))
+
+    if (!contacts) {
+        return {
+            notFound: true
+        }
+    }
+
+    return {
+        props: {
+            contacts
+        }
     }
 }
 
