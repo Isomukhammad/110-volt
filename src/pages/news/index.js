@@ -78,7 +78,9 @@ const NewsPage = () => {
                                     <h2 className='font-semibold text-[24px]'>Контакты</h2>
                                     <p>По всем интересующим вас вопросом можете обращаться по телефону <span>+99855 501 56 56</span> или написав нам на почту <span>info@110volt.uz</span></p>
                                     <div className={styles.buttons}>
-                                        <Button>Написать</Button>
+                                        <Link href={`mailto:${settings.email}`}>
+                                            <Button>Написать</Button>
+                                        </Link>
                                         <Link href={`tel:${settings.phone}`}>
                                             <Button type="reverse">Позвонить</Button>
                                         </Link>
