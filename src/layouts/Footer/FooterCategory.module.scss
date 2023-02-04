@@ -4,7 +4,6 @@
     flex-direction: row;
     justify-content: space-between;
     padding-bottom: 40px;
-    cursor: pointer;
 
     h2 {
       margin-bottom: 0;
@@ -28,6 +27,8 @@
     .title {
       margin-bottom: 0;
       padding-bottom: 24px;
+      cursor: pointer;
+
       svg {
         display: flex;
         transform: rotate(90deg);
@@ -44,18 +45,20 @@
 }
 
 .open {
-  .title {
-    svg {
-      transform: rotate(270deg);
-      animation: rotateForward 0.3s;
+  @media screen and (max-width: 1024px) {
+    .title {
+      svg {
+        transform: rotate(270deg);
+        animation: rotateForward 0.3s;
+      }
     }
-  }
 
-  .links {
-    opacity: 1;
-    margin: 24px 0;
-    height: 100%;
-    animation: menuOpen 1s;
+    .links {
+      opacity: 1;
+      margin: 24px 0;
+      height: 100%;
+      animation: menuOpen 1s;
+    }
   }
 }
 
