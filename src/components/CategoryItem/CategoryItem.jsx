@@ -5,7 +5,7 @@ import { useState } from "react";
 import styles from './CategoryItem.module.scss';
 
 const CategoryItem = ({ info }) => {
-    const { h1_name, old_price_formatted, current_price_formatted, url, img, price, discounted, monthly, name } = info;
+    const { h1_name, old_price_formatted, current_price_formatted, url, img, price, discounted, monthly, name, id, slug } = info;
     const [width, setWidth] = useState(100);
     const [imgSrc, setImgSrc] = useState(img);
 
@@ -17,8 +17,12 @@ const CategoryItem = ({ info }) => {
         setWidth(-100);
     }
 
+    const stopProp = (event) => {
+        event.preventDefault();
+    }
+
     return (
-        <div
+        <Link href={`/product/${id}-${slug}`}
             className={styles.tab}
             onMouseEnter={increaseWidth}
             onMouseLeave={decreaseWidth}
@@ -45,7 +49,7 @@ const CategoryItem = ({ info }) => {
                 <p>{current_price_formatted}</p>
                 <p>{old_price_formatted}</p>
             </div>
-            <div className={styles.cart}>
+            <button className={styles.cart} onClick={(e) => stopProp(e)}>
                 <svg
                     viewBox="0 0 24 24"
                     width={24}
@@ -54,8 +58,8 @@ const CategoryItem = ({ info }) => {
                 >
                     <use xlinkHref="#bag-logo"></use>
                 </svg>
-            </div>
-        </div>
+            </button>
+        </Link>
     )
 }
 
