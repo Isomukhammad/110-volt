@@ -8,8 +8,6 @@ import HeadInfo from '../../utils/HeadInfo';
 const ContactsPage = ({ contacts }) => {
     const { settings, settingsVal } = useData();
 
-    console.log(contacts);
-
     if (!settingsVal) {
         return (
             <>

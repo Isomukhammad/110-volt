@@ -1,17 +1,21 @@
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import Button from '../Button/Button';
 import ImageComponent from '../ImageComponent/ImageComponent';
 import styles from './ProductHeader.module.scss'
 
 const ProductHeader = ({ product, show, data }) => {
-    console.log(data)
+    const [imgSrc, setImgSrc] = useState(data.img)
     return (
         <div className={`${styles.container} ${show === 'true' ? styles.show : ''}`}>
             <div className={styles.content}>
                 <div className={styles.product}>
-                    <ImageComponent
-                        src={data.img}
+                    <Image
+                        src={imgSrc}
                         alt={data.name}
+                        width={104}
+                        height={104}
+                        onError={() => { setImgSrc('/images/placeholder.jpg') }}
                     />
                     <p>{data.h1_name}</p>
                 </div>

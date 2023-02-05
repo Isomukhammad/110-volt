@@ -24,7 +24,7 @@ const ProductCharasteristic = ({ data }) => {
                 <div className={styles.content}>
                     <h1>Характеристики</h1>
                     {
-                        attr.data.map((item) => (
+                        attr?.data.map((item) => (
                             <div key={item.id} className={styles.general}>
                                 <h4>{item.name}</h4>
                                 <div className={styles.charasteristic}>

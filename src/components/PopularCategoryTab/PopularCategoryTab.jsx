@@ -8,7 +8,7 @@ const PopularCategoryTab = ({ data }) => {
 
     return (
         <Link href={`/categories/${id}-${slug}`} className={styles.container}>
-            <ImageComponent src={img} alt="" />
+            <ImageComponent src={img || 'images/placeholder.png'} alt="" />
             <div className={styles.title}>
                 <p>{name}</p>
                 <svg viewBox="0 0 16 16" fill="none" className={styles.arrowIcon} width="16px" height="16" stroke="#242424">

@@ -16,6 +16,7 @@ const ProductTab = ({
     arrLength
 }) => {
     const [quickView, setQuickView] = useState('false');
+    const [imgSrc, setImgSrc] = useState(data.img);
 
     useEffect(() => {
         if (productId === index) {
@@ -23,12 +24,11 @@ const ProductTab = ({
         }
     }, [productId, index])
 
-    const { isMobile } = useContext(ScreenContext)
-
+    const { isMobile } = useContext(ScreenContext);
     return (
         <>
             <Link
-                href={data.url}
+                href={`/product/${data.id}-${data.slug}`}
                 className={styles.container}
             >
                 <div className={styles.preview}>
@@ -44,11 +44,14 @@ const ProductTab = ({
                     </div>
                     <div className={styles.image}>
                         <Image
-                            src={data.img}
+                            src={imgSrc}
                             alt={data.name}
                             sizes="100vh"
                             width={0}
                             height={0}
+                            onError={() => {
+                                setImgSrc('/images/placeholder.jpg')
+                            }}
                         />
                     </div>
                 </div>

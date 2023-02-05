@@ -7,6 +7,7 @@ import styles from './CategoryItem.module.scss';
 const CategoryItem = ({ info }) => {
     const { h1_name, old_price_formatted, current_price_formatted, url, img, price, discounted, monthly, name } = info;
     const [width, setWidth] = useState(100);
+    const [imgSrc, setImgSrc] = useState(img);
 
     const increaseWidth = () => {
         setWidth(0)
@@ -23,7 +24,14 @@ const CategoryItem = ({ info }) => {
             onMouseLeave={decreaseWidth}
         >
             <div href='/' className={styles.image}>
-                <Image src={img} alt={name} sizes="100vw" width="0" height="0" placeholder="blurDataURL" />
+                <Image
+                    src={imgSrc || '/images/placeholder.jpg'}
+                    alt={name}
+                    sizes="100vw"
+                    width="0"
+                    height="0"
+                    onError={() => setImgSrc('/images/placeholder.jpg')}
+                />
             </div>
             <div className={styles.monthly}>
                 <div
@@ -34,8 +42,8 @@ const CategoryItem = ({ info }) => {
             </div>
             <div className={styles.name}>{name}</div>
             <div className={styles.prices}>
-                <p>{current_price_formatted} сум</p>
-                <p>{old_price_formatted} сум</p>
+                <p>{current_price_formatted}</p>
+                <p>{old_price_formatted}</p>
             </div>
             <div className={styles.cart}>
                 <svg

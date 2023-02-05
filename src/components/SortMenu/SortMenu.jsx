@@ -97,7 +97,7 @@ const SortMenu = ({ setFilterOpen }) => {
                             stroke="#242424"
                             fill="none"
                             style={{
-                                stroke: choice == 'price' ? '#7B54C9' : null,
+                                stroke: choice == 'price' ? '#7B54C9' : '#242424',
                             }}
                             className={`${isAscending ? styles.ascend : ''}`}
                         >

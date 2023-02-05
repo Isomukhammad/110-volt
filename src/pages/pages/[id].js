@@ -5,7 +5,6 @@ import { nextAxios } from "../../utils/axios";
 import HeadInfo from "../../utils/HeadInfo";
 
 const AboutPage = ({ page }) => {
-    console.log(page);
     return (
         <div className='mb-20'>
             <HeadInfo

@@ -1,39 +1,33 @@
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-
+import { useEffect, useMemo, useState } from "react";
 import HeadInfo from '../../utils/HeadInfo';
 import { nextAxios } from '../../utils/axios';
-
-import product from '../../products.json';
-
-import styles from './Categories.module.scss'
+import { useParams } from '../../hooks/useParams'
 import ProductsList from "../../components/ProductsList/ProductsList";
 import FilterMenu from "../../components/FilterMenu/FilterMenu";
 import SortMenu from "../../components/SortMenu/SortMenu";
 import PagePath from "../../components/PagePath/PagePath";
-import PageButtons from "../../components/PageButtons/PageButtons";
+
+import styles from './Categories.module.scss'
+import { SortProvider } from "../../context/sort";
 
 const Category = ({ category }) => {
-    console.log(category)
-    const { query } = useRouter();
     const [data, setData] = useState();
     const [filterOpen, setFilterOpen] = useState(false)
     const [isLoading, setIsLoading] = useState(true);
+    const { getParams } = useParams();
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                //fetching prices
                 await nextAxios
                     .get(`/categories/${category.data.id}/prices`)
                     .then(res => setData(prevData => ({ ...prevData, prices: res.data })))
 
-                //fetching brands
                 await nextAxios
                     .get(`/categories/${category.data.id}/brands`)
                     .then(res => setData(prevData => ({ ...prevData, brands: res.data.data })))
 
-                //fetching attributes
                 await nextAxios
                     .get(`/categories/${category.data.id}/attributes`)
                     .then(res => setData(prevData => ({ ...prevData, attributes: res.data.data })))
@@ -47,51 +41,61 @@ const Category = ({ category }) => {
         fetchData();
     }, [category.data.id])
 
-    useEffect(() => {
-        console.log(category);
-    }, [category]);
+    // const baseUrl = 'https://topmall.uz/categories/'
+    // const url = useMemo(() => {
+    //     return baseUrl + getParams(['page']).join('/')
+    // }, [getParams])
+    // console.log(getParams(['page']));
 
-    return (
-        <>
-            <HeadInfo title={`Купить as в Ташкенте`} />
-            <div className={styles.container}>
-                <PagePath
-                    paths={[
-                        {
-                            "url": "/",
-                            "name": "Главная"
-                        }, {
-                            "url": "/",
-                            "name": `Компьютерная техника`
-                        }, {
+    if (!isLoading) {
 
-                            "url": "",
-                            "name": `Ноутбуки`
-
-                        }
-                    ]}
+        return (
+            <>
+                <HeadInfo
+                    title={category.seo_title}
+                    description={category.meta_description}
+                    keywords={category.meta_keywords}
                 />
-                <div className={styles.title}>
-                    <h1>Title</h1>
-                    <p>458 товаров</p>
-                </div>
-                <div className={styles.content}>
-                    <FilterMenu filterOpen={filterOpen} setFilterOpen={setFilterOpen} />
-                    <div className={styles.productsColumn}>
-                        <SortMenu setFilterOpen={setFilterOpen} />
-                        {/* {
-                            data ? (
+                <div className={styles.container}>
+                    <PagePath
+                        paths={[
+                            {
+                                "url": "/",
+                                "name": "Главная"
+                            }, {
+                                "url": "#",
+                                "name": `Компьютерная техника`
+                            }, {
+
+                                "url": "",
+                                "name": `Ноутбуки`
+
+                            }
+                        ]}
+                    />
+                    <div className={styles.title}>
+                        <h1>Title</h1>
+                        <p>458 товаров</p>
+                    </div>
+                    <div className={styles.content}>
+                        <FilterMenu filterOpen={filterOpen} setFilterOpen={setFilterOpen} />
+                        <div className={styles.productsColumn}>
+                            <SortMenu setFilterOpen={setFilterOpen} />
+                            <SortProvider>
                                 <ProductsList
-                                    info={data?.products}
+                                    attributes={data.attributes}
+                                    prices={data.prices}
+                                    brands={data.brands}
+                                    category={category.data}
+                                    dataLoading={isLoading}
                                 />
-                            ) : null
-                        } */}
-                        {/* <PageButtons /> */}
+                            </SortProvider>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </>
-    )
+            </>
+        )
+    }
 }
 
 export const getServerSideProps = async ({ params }) => {
