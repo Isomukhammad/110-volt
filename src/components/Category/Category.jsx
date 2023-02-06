@@ -126,7 +126,7 @@ const Category = ({
                                                     <ProductTab
                                                         index={index}
                                                         key={info.id}
-                                                        data={info}
+                                                        product={info}
                                                         setProductId={setProductId}
                                                         productId={productId}
                                                         arrLength={20}
@@ -134,7 +134,7 @@ const Category = ({
                                                 ))
                                             }
                                         </div>
-                                        <PageButtons data={products} />
+                                        {/* <PageButtons data={products} /> */}
                                     </>
                                 ) : null
                             }

@@ -5,11 +5,11 @@ import { ScreenContext } from '../../context/screenContext'
 
 import products from '../../products.json';
 
-import CartError from '../../components/CartError/CartError';
-import CartItem from '../../components/CartItem/CartItem';
+import CartItem from '../../components/Cart/CartItem';
+import CartError from '../../components/Cart/CartEmpty';
 import DiscountTabs from '../../components/DiscountTabs/DiscountTabs';
 import PagePath from '../../components/PagePath/PagePath';
-import CartTotal from '../../components/CartTotal/CartTotal';
+import CartTotal from '../../components/Cart/CartTotal';
 import PersonalInfo from '../../components/PersonalInfo/PersonalInfo';
 
 import styles from './Checkout.module.scss';

@@ -7,16 +7,24 @@ import QuickView from '../QuickView/QuickView';
 
 import styles from './ProductTab.module.scss'
 import { ScreenContext } from '../../context/screenContext';
+import { useCart } from '../../context/cart';
 
 const ProductTab = ({
     index,
-    data,
+    product,
     setProductId,
     productId,
     arrLength
 }) => {
     const [quickView, setQuickView] = useState('false');
-    const [imgSrc, setImgSrc] = useState(data.img);
+    const [imgSrc, setImgSrc] = useState(product.img);
+    const { handleCart, cartReqLoading, cart, localCart } = useCart();
+
+    const store = cart || localCart;
+
+    useEffect(() => {
+        console.log(store);
+    }, [store])
 
     useEffect(() => {
         if (productId === index) {
@@ -28,7 +36,7 @@ const ProductTab = ({
     return (
         <>
             <Link
-                href={`/product/${data.id}-${data.slug}`}
+                href={`/product/${product.id}-${product.slug}`}
                 className={styles.container}
             >
                 <div className={styles.preview}>
@@ -45,7 +53,7 @@ const ProductTab = ({
                     <div className={styles.image}>
                         <Image
                             src={imgSrc}
-                            alt={data.name}
+                            alt={product.name}
                             sizes="100vh"
                             width={0}
                             height={0}
@@ -58,15 +66,15 @@ const ProductTab = ({
 
                 <div className={styles.prices}>
                     {
-                        data.installment_prices[0] ? (
+                        product.installment_prices[0] ? (
                             <p>{monthly} сум/мес</p>
                         ) : null
                     }
-                    <p>{data.current_price_formatted}</p>
-                    <p>{data.old_price_formatted}</p>
+                    <p>{product.current_price_formatted}</p>
+                    <p>{product.old_price_formatted}</p>
                 </div>
 
-                <p className={styles.description}>{data.description}</p>
+                <p className={styles.description}>{product.description}</p>
 
                 {
                     isMobile ? (
@@ -79,9 +87,9 @@ const ProductTab = ({
                             <div
 
                             >
-                                <Button>
+                                <button className="bg-accent padding-1 text-white" onClick={() => handleCart({ type: 'SWITCH', product })}>
                                     В корзину
-                                </Button>
+                                </button>
                             </div>
                             <svg
                                 viewBox='0 0 24 24'
@@ -98,7 +106,7 @@ const ProductTab = ({
             </Link >
             <QuickView
                 setQuickView={setQuickView}
-                data={data}
+                data={product}
                 quickView={quickView}
                 index={index}
                 productId={productId}

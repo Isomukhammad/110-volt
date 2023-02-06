@@ -95,15 +95,9 @@ const CategoryPage = ({ category }) => {
 }
 
 export const getServerSideProps = async ({ params }) => {
-    // const category = await nextAxios
-    // 	.get(`/categories/${params.category[0].split('-')[0]}`, {
-    // 		headers: { 'Accept-Language': locale },
-    // 	})
-    // 	.then((res) => res.data.data)
-    // 	.catch((err) => console.error(err))
     const category = await nextAxios.get(`/categories/${params.category[0].split('-')[0]}`)
         .then((res) => res.data)
-        .catch((err) => console.log(err))
+        .catch((err) => console.error(err))
 
     if (!category) {
         return {

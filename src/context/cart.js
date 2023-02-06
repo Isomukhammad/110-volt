@@ -231,9 +231,6 @@ export const CartProvider = ({ children }) => {
         setLocalCart({
             quantity: localCart.quantity - quantity,
             total: localCart.total - product.current_price * quantity,
-            subtotal: product.old_price
-                ? localCart.subtotal - product.old_price * quantity
-                : localCart.subtotal,
             items: localCart.items.filter((item) => item.id !== product.id),
         })
     }
@@ -265,12 +262,10 @@ export const CartProvider = ({ children }) => {
     }
 
     function addLocalCart(product, quantity) {
+        console.log('Adding to cart', product, quantity)
         setLocalCart({
             quantity: localCart.quantity + quantity,
             total: localCart.total + product.current_price * quantity,
-            subtotal: product.old_price
-                ? localCart.subtotal + product.old_price * quantity
-                : localCart.subtotal,
             items: [
                 ...localCart.items,
                 {

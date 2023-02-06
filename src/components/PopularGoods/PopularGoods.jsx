@@ -40,7 +40,7 @@ const PopularGoods = ({ title, margin, link }) => {
                                     <ProductTab
                                         index={index}
                                         key={item.id}
-                                        data={item}
+                                        product={item}
                                         setProductId={setProductId}
                                         productId={productId}
                                         arrLength={arrLength}

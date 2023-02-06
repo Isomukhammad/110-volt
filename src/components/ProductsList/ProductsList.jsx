@@ -81,7 +81,7 @@ const ProductsList = ({
                             <ProductTab
                                 index={index}
                                 key={info.id}
-                                data={info}
+                                product={info}
                                 setProductId={setProductId}
                                 productId={productId}
                             // arrLength={arrLength}
