@@ -11,7 +11,7 @@ import styles from './Header.module.scss';
 import { useData } from '../../context/dataContext';
 
 const Header = () => {
-    const { settings, settingsError, menu, menuValidating } = useData();
+    const { settings, settingsError, tree, treeValidating } = useData();
     const { isMobile, isTablet } = useContext(ScreenContext)
     const [searchFocus, setSearchFocus] = useState(false);
     const ref = useRef(false)
@@ -42,8 +42,8 @@ const Header = () => {
 
                 <div className={styles.categories}>
                     {
-                        !menuValidating ? (
-                            menu.data.map((category) => (
+                        !treeValidating ? (
+                            tree.data.map((category) => (
                                 <Link href={`/categories/${category.id}-${category.slug}`} key={category.id}>{category.name}</Link>
                             ))
                         ) : (null)

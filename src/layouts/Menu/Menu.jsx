@@ -11,7 +11,7 @@ import { useData } from '../../context/dataContext';
 import styles from './Menu.module.scss';
 
 const Menu = ({ menuOpen, setMenuOpen, searchFocus, setSearchFocus }) => {
-    const { menu, menuValidating } = useData();
+    const { tree, treeValidating } = useData();
     const [btn, setBtn] = useState(null);
     const { isMobile, isTablet } = useContext(ScreenContext);
     const [showItems, setShowItems] = useState(true);
@@ -28,8 +28,8 @@ const Menu = ({ menuOpen, setMenuOpen, searchFocus, setSearchFocus }) => {
     }, [isTablet, isMobile, searchFocus])
 
     useEffect(() => {
-        setBtn(menu.data[0].id);
-    }, [menu]);
+        setBtn(tree.data[0].id);
+    }, [tree]);
 
     const useOutsideAlerter = (ref) => {
         useEffect(() => {
@@ -54,7 +54,7 @@ const Menu = ({ menuOpen, setMenuOpen, searchFocus, setSearchFocus }) => {
         event.stopProagation();
     }
 
-    if (!menuValidating) {
+    if (!treeValidating) {
         return (
             <div
                 className={`${styles.container} ${menuOpen ? styles.menuIsOpen : styles.menuIsClosed}`}
@@ -99,7 +99,7 @@ const Menu = ({ menuOpen, setMenuOpen, searchFocus, setSearchFocus }) => {
                     }
                     <div className={`${styles.menuCatalogue} ${showItems ? styles.showCategory : ''}`}>
                         {
-                            menu.data.map((item) => (
+                            tree.data.map((item) => (
                                 <div
                                     key={item.id}
                                     className={styles.catalogueItem}
@@ -130,7 +130,7 @@ const Menu = ({ menuOpen, setMenuOpen, searchFocus, setSearchFocus }) => {
                             className={styles.items}
                         >
                             {
-                                menu.data.filter(item => item.id === btn).map(sub => (
+                                tree.data.filter(item => item.id === btn).map(sub => (
                                     <>
                                         <h1>{sub.h1_name}</h1>
                                         <div className={styles.links}>

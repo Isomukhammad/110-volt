@@ -1,27 +1,38 @@
 import { useEffect, useState } from 'react';
 import InputRadio from '../InputRadio/InputRadio';
 import FormCheckbox from '../FormCheckbox/FormCheckbox';
-import styles from './FilterMenu.module.scss';
 import FilterOption from '../FilterOption/FilterOption';
 import FormInputRange from '../FormInputRange/FormInputRange';
+import { useData } from '../../context/dataContext';
+import styles from './FilterMenu.module.scss';
+import useSWR from 'swr';
+import fetcher from '../../utils/fetcher';
 
-const FilterMenu = ({ products, filterOpen, setFilterOpen }) => {
-    const [brands, setBrands] = useState([]);
+const FilterMenu = ({ attributes, brands, prices, loading, category, products, filterOpen, setFilterOpen }) => {
+    // const [brands, setBrands] = useState([]);
     const [space, setSpace] = useState([]);
     const [sim, setSim] = useState([]);
     const [checkedRadio, setCheckedRadio] = useState(null);
+    const [maxValue, setMaxValue] = useState('');
+    const [minValue, setMinValue] = useState('');
+    const { tree } = useData();
 
-    const handleBrandChange = (event) => {
-        if (brands.includes(event.target.name)) {
-            const filteredList = brands.filter((item) => {
-                return item !== event.target.name;
-            })
-            setBrands(filteredList);
+    // const handleBrandChange = (event) => {
+    //     if (brands.includes(event.target.name)) {
+    //         const filteredList = brands.filter((item) => {
+    //             return item !== event.target.name;
+    //         })
+    //         setBrands(filteredList);
 
-        } else if (!brands.includes(event.target.name)) {
-            setBrands((oldList) => [...oldList, event.target.name])
-        }
-    }
+    //     } else if (!brands.includes(event.target.name)) {
+    //         setBrands((oldList) => [...oldList, event.target.name])
+    //     }
+    // }
+
+    const { data: subcast } = useSWR(
+        `categories/${category.id}/subcategories`,
+        fetcher
+    )
 
     const handleRangeChange = (event) => {
         console.log(event.target.value);
@@ -79,35 +90,35 @@ const FilterMenu = ({ products, filterOpen, setFilterOpen }) => {
                 <form>
                     <FormCheckbox
                         name="Apple"
-                        handleChange={handleBrandChange}
+                        handleChange={null}
                     />
                     <FormCheckbox
                         name="Samsung"
-                        handleChange={handleBrandChange}
+                        handleChange={null}
                     />
                     <FormCheckbox
                         name="Xiaomi"
-                        handleChange={handleBrandChange}
+                        handleChange={null}
                     />
                     <FormCheckbox
                         name="Huawei"
-                        handleChange={handleBrandChange}
+                        handleChange={null}
                     />
                     <FormCheckbox
                         name="Lenovo"
-                        handleChange={handleBrandChange}
+                        handleChange={null}
                     />
                     <FormCheckbox
                         name="HP"
-                        handleChange={handleBrandChange}
+                        handleChange={null}
                     />
                     <FormCheckbox
                         name="Sony"
-                        handleChange={handleBrandChange}
+                        handleChange={null}
                     />
                     <FormCheckbox
                         name="OnePlus"
-                        handleChange={handleBrandChange}
+                        handleChange={null}
                     />
                 </form>
             </FilterOption>

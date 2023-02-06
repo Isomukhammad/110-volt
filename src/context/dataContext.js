@@ -28,9 +28,9 @@ export const DataProvider = ({ children }) => {
     )
 
     const {
-        data: menu,
-        error: menuError,
-        isValidating: menuValidating
+        data: tree,
+        error: treeError,
+        isValidating: treeValidating
     } = useSWR(
         '/categories/tree', (url) => fetcher(url),
         disableRevalidation
@@ -38,7 +38,7 @@ export const DataProvider = ({ children }) => {
 
     return (
         <DataContext.Provider
-            value={{ settings, settingsError, settingsVal, menu, menuError, menuValidating }}
+            value={{ settings, settingsError, settingsVal, tree, treeError, treeValidating }}
         >
             {children}
         </DataContext.Provider>
