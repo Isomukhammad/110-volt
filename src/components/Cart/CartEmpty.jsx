@@ -4,7 +4,7 @@ import DiscountTabs from '../DiscountTabs/DiscountTabs';
 import ImageComponent from '../ImageComponent/ImageComponent';
 import styles from './CartError.module.scss'
 
-const CartError = () => {
+const CartEmpty = () => {
     return (
         <div className={styles.container}>
             <div className={styles.content}>
@@ -14,7 +14,7 @@ const CartError = () => {
                         alt=""
                     />
                 </div>
-                <h2>Здесь пока ничего нет</h2>
+                <h2 className='font-semibold text-[24px]'>Здесь пока ничего нет</h2>
                 <p>Загляните а главую или воспользуйтесь поиском</p>
                 <Link href="/">
                     <Button>Вернуться на главную</Button>
@@ -25,4 +25,4 @@ const CartError = () => {
     );
 }
 
-export default CartError;
+export default CartEmpty;

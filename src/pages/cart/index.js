@@ -1,19 +1,24 @@
-import { useState } from 'react';
-import products from '../../products.json';
-import data from '../../data.json'
-
+import { useEffect, useState } from 'react';
+import { useCart } from '../../context/cart';
 import HeadInfo from '../../utils/HeadInfo';
-
 import DiscountTabs from '../../components/DiscountTabs/DiscountTabs';
 import PagePath from '../../components/PagePath/PagePath'
 import PopularGoods from '../../components/PopularGoods/PopularGoods';
-import CartError from '../../components/CartError/CartError';
-import CartItem from '../../components/CartItem/CartItem';
-
+import CartItem from '../../components/Cart/CartItem';
+import CartEmpty from '../../components/Cart/CartEmpty';
+import CartTotal from '../../components/Cart/CartTotal';
 import styles from './Cart.module.scss'
-import CartTotal from '../../components/CartTotal/CartTotal';
 
-const Cart = () => {
+import products from '../../products.json';
+
+const CartPage = () => {
+    const { cartLoading, cart, localCart } = useCart();
+
+    const store = cart || localCart;
+
+    useEffect(() => {
+        console.log(store)
+    }, [store])
     return (
         <>
             <HeadInfo title="Корзина" />
@@ -29,9 +34,12 @@ const Cart = () => {
                     }
                 ]}
             />
+
             <div className={styles.container}>
                 {
-                    !products ? (
+                    store && store.items.length < 1 ? (
+                        <CartEmpty />
+                    ) : (
                         <div className={styles.content}>
                             <h1 className={`${styles.title} font-bold text-[24px] md:text-[32px]`}>Корзина</h1>
 
@@ -46,8 +54,6 @@ const Cart = () => {
                                 </div>
                             </div>
                         </div>
-                    ) : (
-                        <CartError />
                     )
                 }
                 <PopularGoods
@@ -59,4 +65,4 @@ const Cart = () => {
     )
 }
 
-export default Cart;
+export default CartPage;

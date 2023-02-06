@@ -1,5 +1,8 @@
-import BrandTab from '../BrandTab/BrandTap'
-
+import { useRouter } from 'next/router'
+import { useContext, useEffect, useRef, useState } from 'react'
+import useSWR from 'swr'
+import fetcher from '../../utils/fetcher'
+import { ScreenContext } from '../../context/screenContext'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/grid'
@@ -8,13 +11,8 @@ import 'swiper/css/navigation'
 import 'swiper/css/free-mode'
 import 'swiper/css/thumbs'
 import { Pagination, Navigation, Autoplay, Grid } from 'swiper'
-
+import BrandTab from './BrandTap'
 import styles from './BrandCategories.module.scss'
-import { useContext, useEffect, useRef, useState } from 'react'
-import { ScreenContext } from '../../context/screenContext'
-import useSWR from 'swr'
-import { useRouter } from 'next/router'
-import fetcher from '../../utils/fetcher'
 
 const BrandCategories = () => {
 	const router = useRouter();

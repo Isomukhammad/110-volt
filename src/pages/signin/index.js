@@ -1,18 +1,18 @@
 import Link from 'next/link';
-import SigninForm from '../../components/SigninForm/SigninForm';
+import SignIn from '../../components/SignIn/SignIn';
 
 import HeadInfo from '../../utils/HeadInfo'
 
 import styles from './SignIn.module.scss'
 
-const SignIn = () => {
+const SignInPage = () => {
     return (
         <>
             <HeadInfo title="Авторизация" />
             <div className={styles.container}>
                 <div className={styles.signIn}>
                     <h2>Войти</h2>
-                    <SigninForm />
+                    <SignIn />
                     <p className={styles.account}>
                         Нет аккаунта?
                         <Link href="/signup">Зарегестрироваться</Link>
@@ -35,4 +35,4 @@ const SignIn = () => {
     )
 }
 
-export default SignIn;
+export default SignInPage;

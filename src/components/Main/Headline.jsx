@@ -5,7 +5,7 @@ import useSWR from 'swr'
 import fetcher from '../../utils/fetcher'
 
 import ImageComponent from '../ImageComponent/ImageComponent'
-import HeadlineSlider from '../HeadlineSlider/HeadlineSlider'
+import HeadlineSlider from './HeadlineSlider'
 
 import styles from './Headline.module.scss'
 

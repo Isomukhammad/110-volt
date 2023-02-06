@@ -3,9 +3,10 @@ import { useRouter } from 'next/router';
 import NProgress from 'nprogress';
 
 //context 
-import ScreenContext from '../context/screenContext';
-import DataContext, { DataProvider } from '../context/dataContext';
 import { AuthProvider } from '../context/auth';
+import { CartProvider } from '../context/cart';
+import DataContext, { DataProvider } from '../context/dataContext';
+import ScreenContext from '../context/screenContext';
 
 //layout
 import MainLayout from '../layouts/Layout/Main';
@@ -40,13 +41,15 @@ const App = ({ Component, pageProps }) => {
   return (
     <>
       <AuthProvider>
-        <DataProvider>
-          <ScreenContext>
-            <MainLayout>
-              <Component {...pageProps} />
-            </MainLayout>
-          </ScreenContext>
-        </DataProvider>
+        <CartProvider>
+          <DataProvider>
+            <ScreenContext>
+              <MainLayout>
+                <Component {...pageProps} />
+              </MainLayout>
+            </ScreenContext>
+          </DataProvider>
+        </CartProvider>
       </AuthProvider>
     </>
   )

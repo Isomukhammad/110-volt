@@ -1,20 +1,19 @@
 import Link from 'next/link';
 import { useState } from 'react';
-import MsgCodeForm from '../../components/MsgCodeForm/MsgCodeForm';
-import SignupForm from '../../components/SignupForm/SignupForm';
+import MsgCodeForm from '../../components/SignUp/MsgCodeForm';
+import SignUp from '../../components/SignUp/SignUp';
 import HeadInfo from '../../utils/HeadInfo';
 
 import styles from './SignUp.module.scss';
 
-const SignUp = () => {
-    const [msg, setMsg] = useState(false);
+const SignUpPage = () => {
     return (
         <>
             <HeadInfo title="Регистрация" />
             <div className={styles.container}>
                 <div className={styles.signUn}>
-                    <h2>Регистрация</h2>
-                    {msg ? <MsgCodeForm /> : <SignupForm />}
+                    <h2 className='text-[24px] font-semibold'>Регистрация</h2>
+                    <SignUp />
                     <p className={styles.account}>Уже есть аккаунт? <Link href="/signin">Войти</Link></p>
                     <div className={styles.conditions}>
                         <svg
@@ -34,4 +33,4 @@ const SignUp = () => {
     )
 }
 
-export default SignUp;
+export default SignUpPage;

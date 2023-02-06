@@ -3,9 +3,9 @@ import { useForm } from 'react-hook-form';
 import { useAuth } from '../../context/auth';
 import Button from '../Button/Button';
 import FormInput from '../FormInput/FormInput';
-import styles from './SigninForm.module.scss'
+import styles from './SignIn.module.scss'
 
-const SigninForm = () => {
+const SignIn = () => {
     const { handleLogin } = useAuth();
     const [formError, setFormError] = useState(null);
     const {
@@ -61,4 +61,4 @@ const SigninForm = () => {
     )
 }
 
-export default SigninForm;
+export default SignIn;

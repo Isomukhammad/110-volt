@@ -45,7 +45,7 @@ const QuickView = ({
                     </div>
                 </div>
 
-                <Link href={`/product/${data.subtitle}`} className={styles.moreInfoBtn}>
+                <Link href={`/product/${data.id}-${data.slug}`} className={styles.moreInfoBtn} onClick={() => setQuickView('false')}>
                     Больше информации
                 </Link>
 
@@ -86,7 +86,7 @@ const QuickView = ({
                 </button>
                 <button
                     className={styles.closeBtn}
-                    onClick={() => setQuickView('flase')}
+                    onClick={() => setQuickView('false')}
                 >
                     <svg
                         viewBox="0 0 24 24"

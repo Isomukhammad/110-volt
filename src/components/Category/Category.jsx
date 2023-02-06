@@ -129,7 +129,7 @@ const Category = ({
                                                         data={info}
                                                         setProductId={setProductId}
                                                         productId={productId}
-                                                    // arrLength={arrLength}
+                                                        arrLength={20}
                                                     />
                                                 ))
                                             }
