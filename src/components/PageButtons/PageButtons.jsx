@@ -57,9 +57,9 @@ const PageButtons = ({ data }) => {
                 activeClassName="active"
                 renderOnZeroPageCount={null}
             />
-            <div className={styles.showMore}>
+            <button className={styles.showMore}>
                 Показать ещё
-            </div>
+            </button>
 
         </div>
     )

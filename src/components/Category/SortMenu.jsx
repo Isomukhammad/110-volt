@@ -1,10 +1,13 @@
 import { useContext, useState } from 'react';
 import ReactDropdown from 'react-dropdown';
 import { ScreenContext } from '../../context/screenContext';
+import { useSort } from '../../context/sort'
+
 import styles from './SortMenu.module.scss';
 
 const SortMenu = ({ setFilterOpen }) => {
     const [listView, setListView] = useState(false);
+    const { setIsPopular, isPopular, sortBy, setSortBy } = useSort();
     const { isMobile } = useContext(ScreenContext);
 
     const options = [
@@ -71,23 +74,41 @@ const SortMenu = ({ setFilterOpen }) => {
                 <p className={styles.title}>Сортировать по: </p>
                 <ul className={styles.choices}>
                     <li
-                        onClick={() => setChoice('popularity')}
-                        style={{ color: choice == 'popularity' ? '#7B54C9' : null }}
+                        onClick={() => {
+                            setChoice('popularity');
+                            setSortBy({ "by": "", "direction": "" });
+                            setIsPopular(true);
+                        }}
+                        style={{ color: isPopular ? '#7B54C9' : null }}
                     >Популярности</li>
                     <li
-                        style={{ color: choice == 'new' ? '#7B54C9' : null }}
-                        onClick={() => setChoice('new')}
+                        style={{ color: sortBy.by == 'created_at' ? '#7B54C9' : null }}
+                        onClick={() => {
+                            setIsPopular(false);
+                            setSortBy({ "by": "created_at", "direaction": "desc" })
+                        }}
                     >Новинкам</li>
-                    <li onClick={() => setChoice('rating')}
-                        style={{ color: choice == 'rating' ? '#7B54C9' : null }}
+                    <li
+                        onClick={() => {
+                            setChoice('rating')
+                            setIsPopular(false);
+                            setSortBy({ "by": "rating", "direction": "asc" })
+                        }}
+                        style={{ color: sortBy.by == 'rating' ? '#7B54C9' : null }}
                     >Рейтингу</li>
                     <li
                         className={styles.price}
                         onClick={() => {
                             setChoice('price');
                             setIsAscending(!isAscending);
+                            setIsPopular(false)
+                            if (isAscending) {
+                                setSortBy({ "by": "price", "direction": "asc" })
+                            } else {
+                                setSortBy({ "by": "price", "direction": "desc" })
+                            }
                         }}
-                        style={{ color: choice == 'price' ? '#7B54C9' : null }}
+                        style={{ color: sortBy.by == 'price' ? '#7B54C9' : null }}
                     >
                         <p>Цене</p>
                         <svg
@@ -97,9 +118,9 @@ const SortMenu = ({ setFilterOpen }) => {
                             stroke="#242424"
                             fill="none"
                             style={{
-                                stroke: choice == 'price' ? '#7B54C9' : '#242424',
+                                stroke: sortBy.by == 'price' ? '#7B54C9' : '#242424',
                             }}
-                            className={`${isAscending ? styles.ascend : ''}`}
+                            className={`${sortBy.by == 'price' && sortBy.direction == 'desc' ? styles.ascend : ''}`}
                         >
                             <use xlinkHref='#arrow-right'></use>
                         </svg>
@@ -110,7 +131,7 @@ const SortMenu = ({ setFilterOpen }) => {
                     >Скидкам</li>
                 </ul>
             </div>
-            <div className={styles.filterButton} onClick={() => setFilterOpen(true)}>
+            <button className={styles.filterButton} onClick={() => setFilterOpen(true)}>
                 <svg
                     viewBox='0 0 24 24'
                     width={24}
@@ -119,7 +140,7 @@ const SortMenu = ({ setFilterOpen }) => {
                     <use xlinkHref='#filter'></use>
                 </svg>
                 <p>Фильтры</p>
-            </div>
+            </button>
             <div className={styles.viewType}>
                 <svg
                     width="24"

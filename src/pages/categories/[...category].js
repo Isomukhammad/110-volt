@@ -4,16 +4,16 @@ import HeadInfo from '../../utils/HeadInfo';
 import { nextAxios } from '../../utils/axios';
 import { useParams } from '../../hooks/useParams'
 import ProductsList from "../../components/ProductsList/ProductsList";
-import FilterMenu from "../../components/FilterMenu/FilterMenu";
-import SortMenu from "../../components/SortMenu/SortMenu";
+import FilterMenu from "../../components/Category/FilterMenu";
+import SortMenu from "../../components/Category/SortMenu";
 import PagePath from "../../components/PagePath/PagePath";
 
 import styles from './Categories.module.scss'
 import { SortProvider } from "../../context/sort";
+import Category from '../../components/Category/Category'
 
-const Category = ({ category }) => {
+const CategoryPage = ({ category }) => {
     const [data, setData] = useState();
-    const [filterOpen, setFilterOpen] = useState(false)
     const [isLoading, setIsLoading] = useState(true);
     const { getParams } = useParams();
 
@@ -57,24 +57,9 @@ const Category = ({ category }) => {
                     keywords={category.meta_keywords}
                 />
                 <div className={styles.container}>
-                    <PagePath
-                        paths={[
-                            {
-                                "url": "/",
-                                "name": "Главная"
-                            }, {
-                                "url": "#",
-                                "name": `Компьютерная техника`
-                            }, {
 
-                                "url": "",
-                                "name": `Ноутбуки`
-
-                            }
-                        ]}
-                    />
-                    <div className={styles.title}>
-                        <h1>Title</h1>
+                    {/* <div className={styles.title}>
+                        <h1></h1>
                         <p>458 товаров</p>
                     </div>
                     <div className={styles.content}>
@@ -82,7 +67,7 @@ const Category = ({ category }) => {
                         <div className={styles.productsColumn}>
                             <SortMenu setFilterOpen={setFilterOpen} />
                             <SortProvider>
-                                <ProductsList
+                                <Category
                                     attributes={data.attributes}
                                     prices={data.prices}
                                     brands={data.brands}
@@ -91,6 +76,17 @@ const Category = ({ category }) => {
                                 />
                             </SortProvider>
                         </div>
+                    </div> */}
+                    <div className="">
+                        <SortProvider>
+                            <Category
+                                attributes={data.attributes}
+                                prices={data.prices}
+                                brands={data.brands}
+                                category={category.data}
+                                dataLoading={isLoading}
+                            />
+                        </SortProvider>
                     </div>
                 </div>
             </>
@@ -122,4 +118,4 @@ export const getServerSideProps = async ({ params }) => {
     }
 }
 
-export default Category;
+export default CategoryPage;
