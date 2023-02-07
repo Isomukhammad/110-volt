@@ -1,10 +1,21 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import Button from '../Button/Button';
+import { useCart } from '../../context/cart';
 import ImageComponent from '../ImageComponent/ImageComponent';
 import styles from './ProductHeader.module.scss'
+import { isActive } from '../../utils/funcs';
 
 const ProductHeader = ({ product, show, data }) => {
+    const { handleCart, cartReqLoading, cart, localCart } = useCart();
+
+    const store = cart || localCart;
+
+    const productInCart = isActive({
+        product: product,
+        store: cart,
+        localStore: localCart
+    })
     const [imgSrc, setImgSrc] = useState(data.img)
     return (
         <div className={`${styles.container} ${show === 'true' ? styles.show : ''}`}>
@@ -27,7 +38,9 @@ const ProductHeader = ({ product, show, data }) => {
                     <p className={styles.price}>{data.old_price_formatted}</p>
                 </div>
                 <div className={styles.buttons}>
-                    <Button>Добавить в корзину</Button>
+                    <div onClick={() => handleCart({ type: 'SWITCH', product })}>
+                        <Button>{productInCart ? 'Уже в коризне' : 'Добавить в корзину'}</Button>
+                    </div>
                     <Button type="reverse">Купить в рассрочку</Button>
                 </div>
             </div>
