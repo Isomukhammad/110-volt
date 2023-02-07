@@ -14,6 +14,7 @@ module.exports = {
         placeholder: '#BDBDBD',
         accent: '#7B54C9',
         accentDark: '#4D2D8E',
+        error: '#E95050',
       },
       borderRadius: {
         'base': "16px",

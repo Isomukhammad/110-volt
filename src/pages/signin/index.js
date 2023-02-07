@@ -11,7 +11,7 @@ const SignInPage = () => {
             <HeadInfo title="Авторизация" />
             <div className={styles.container}>
                 <div className={styles.signIn}>
-                    <h2>Войти</h2>
+                    <h2 className='text-[24px] font-semibold'>Войти</h2>
                     <SignIn />
                     <p className={styles.account}>
                         Нет аккаунта?

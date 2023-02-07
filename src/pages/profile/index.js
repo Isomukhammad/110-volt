@@ -10,16 +10,13 @@ import OrderTab from '../../components/OrderTab/OrderTab';
 import ProfileForm from '../../components/ProfileForm/ProfileForm';
 
 import styles from './Profile.module.scss';
+import { useAuth } from '../../context/auth';
 
 const ProfilePage = () => {
     const [section, setSection] = useState('profile');
+    const { handleLogout } = useAuth()
 
     const router = useRouter();
-
-    const handleClick = (e) => {
-        e.preventDefault()
-        router.push('/')
-    }
 
     return (
         <>
@@ -38,7 +35,6 @@ const ProfilePage = () => {
                     ]}
                 />
                 <h1>Мой аккаунт</h1>
-
                 <div className={`${styles.content} ${section === 'order' ? styles.space : ''}`}>
                     <div className={styles.sidebar}>
                         <div
@@ -55,7 +51,7 @@ const ProfilePage = () => {
                         </div>
                         <div
                             className={styles.section}
-                            onClick={handleClick}
+                            onClick={handleLogout}
                         >
                             Выйти из аккунта
                         </div>
@@ -79,5 +75,7 @@ const ProfilePage = () => {
         </>
     )
 }
+
+ProfilePage.requireAuth = true
 
 export default ProfilePage;

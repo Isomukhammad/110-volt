@@ -8,8 +8,10 @@ import SearchInput from '../../components/SearchInput/SearchInput';
 import styles from './Header.module.scss';
 import { useData } from '../../context/dataContext';
 import { useCart } from '../../context/cart';
+import { useAuth } from '../../context/auth';
 
 const Header = () => {
+    const { user, userLoading } = useAuth();
     const { settings, settingsError, tree, treeValidating, cartLoading } = useData();
     const { isMobile, isTablet } = useContext(ScreenContext)
     const [searchFocus, setSearchFocus] = useState(false);
@@ -126,15 +128,17 @@ const Header = () => {
                         }
                         <div>Корзина</div>
                     </Link>
-                    <Link
-                        href='/signin'
-                        className={styles.navButton}
-                    >
-                        <svg viewBox="0 0 21 22" width={21} height={22} fill="none" className={styles.languageButton}>
-                            <use xlinkHref='#profile-logo'></use>
-                        </svg>
-                        <div>Войти</div >
-                    </Link>
+                    {!userLoading ? (
+                        <Link
+                            href={user ? '/profile' : '/signin'}
+                            className={styles.navButton}
+                        >
+                            <svg viewBox="0 0 21 22" width={21} height={22} fill="none" className={styles.languageButton}>
+                                <use xlinkHref='#profile-logo'></use>
+                            </svg>
+                            <div>{user ? 'Профиль' : 'Войти'}</div >
+                        </Link>
+                    ) : (null)}
                 </div>
             </nav>
             {

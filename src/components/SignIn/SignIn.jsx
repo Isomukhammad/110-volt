@@ -27,8 +27,8 @@ const SignIn = () => {
         try {
             setReqLoading(true);
             setFormError(null);
-            const phone_number = data.phone_number.replace(/\D/g, '')
-            await handleLogin({ phone_number, password })
+            const phone_number = data.phone_number.replace(/\D/g, '');
+            await handleLogin({ phone_number, password: data.password });
             getAndSetCart();
         } catch (error) {
             setFormError(err?.response?.data)

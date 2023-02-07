@@ -13,7 +13,8 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
-    width: fit-content;
+    width: 100%;
+    max-width: 360px;
 
     .error {
       color: red;

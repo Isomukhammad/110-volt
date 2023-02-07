@@ -13,7 +13,7 @@ import styles from './SignUp.module.scss'
 const SignUp = () => {
     const [otpOpen, setOtpOpen] = useState(false);
     const [formError, setFormError] = useState(null);
-    const { sendOtp, checkOtp } = useAuth();
+    const { sendOtp, checkOtp, handleRegister, handleLogin } = useAuth();
 
     const {
         register,
@@ -44,7 +44,7 @@ const SignUp = () => {
                 }))
             }
 
-            const phone_number = data.phone_number;
+            const phone_number = data.phone_number.replace(/\D/g, '');
 
             const loginCheck = await nextAxios.post('/login/check', {
                 phone_number
@@ -78,8 +78,8 @@ const SignUp = () => {
             } else {
                 alert('Correct!!!!!!!!!!')
             }
-            // await handleRegister({ name, password, phone_number, email, opt })
-            // await handleLogin({ phone_number, password })
+            await handleRegister({ name, password, phone_number, email, opt })
+            await handleLogin({ phone_number, password })
             reset()
         } catch (error) {
             console.error(error);

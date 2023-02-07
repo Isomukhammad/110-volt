@@ -3,9 +3,9 @@ import { useRouter } from 'next/router';
 import NProgress from 'nprogress';
 
 //context 
-import { AuthProvider } from '../context/auth';
+import AuthGuard, { AuthProvider } from '../context/auth';
 import { CartProvider } from '../context/cart';
-import DataContext, { DataProvider } from '../context/dataContext';
+import { DataProvider } from '../context/dataContext';
 import ScreenContext from '../context/screenContext';
 
 //layout
@@ -22,6 +22,7 @@ import '../styles/PageButtons.scss';
 import { WishProvider } from '../context/wish';
 
 const App = ({ Component, pageProps }) => {
+  console.log(Component.requireAuth)
   const router = useRouter()
 
   useEffect(() => {
@@ -47,7 +48,15 @@ const App = ({ Component, pageProps }) => {
             <DataProvider>
               <ScreenContext>
                 <MainLayout>
-                  <Component {...pageProps} />
+                  {
+                    Component.requireAuth === true ? (
+                      <AuthGuard>
+                        <Component {...pageProps} />
+                      </AuthGuard>
+                    ) : (
+                      <Component {...pageProps} />
+                    )
+                  }
                 </MainLayout>
               </ScreenContext>
             </DataProvider>

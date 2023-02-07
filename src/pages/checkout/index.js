@@ -91,4 +91,6 @@ const CheckoutPage = () => {
     );
 }
 
+CheckoutPage.requireAuth = true;
+
 export default CheckoutPage;

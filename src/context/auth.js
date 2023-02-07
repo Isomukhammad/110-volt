@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { createContext, useContext, useEffect, useState } from "react"
 import { nextAxios, authAxios } from '../utils/axios'
+import HeadInfo from '../utils/HeadInfo';
 
 const AuthContext = createContext({})
 
@@ -12,26 +13,28 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const loadUser = async () => {
-            const token = localStorage.getItem('token');
+            const token = localStorage.getItem('token')
 
             if (token) {
                 authAxios.defaults.headers.Authorization = `Bearer ${token}`
                 try {
                     const {
-                        data: { data: user }
-                    } = await authAxios.get('/profile');
-                    user && setUser(user);
-                    setUserLoading(false);
-                } catch (error) {
-                    console.error(error);
-                    localStorage.removeItem('token');
-                    setUserLoading(false);
+                        data: { data: user },
+                    } = await authAxios.get('/profile')
+                    user && setUser(user)
+                    setUserLoading(false)
+                } catch (err) {
+                    console.error(err)
+                    localStorage.removeItem('token')
+                    setUserLoading(false)
                 }
             } else {
-                setUser(null);
-                setUserLoading(false);
+                setUser(null)
+                setUserLoading(false)
             }
         }
+
+        loadUser();
     }, []);
 
     const handleRegister = async ({ name, phone_number, password, email, otp }) => {
@@ -54,18 +57,6 @@ export const AuthProvider = ({ children }) => {
                 "phone_number": phone_number,
                 "password": password,
             })
-
-
-        } catch (error) {
-            console.error(error);
-        }
-    }
-
-    const sendOtp = async ({ phone_number }) => {
-        try {
-            await nextAxios.post('/otp'), {
-                phone_number
-            }
 
             localStorage.setItem('token', res.data.token);
             authAxios.defaults.headers.Authorization = `Bearer ${res.data.token}`
@@ -113,6 +104,17 @@ export const AuthProvider = ({ children }) => {
             router.push(redirect);
         } catch (error) {
             console.error(error);
+        }
+    }
+
+    const sendOtp = async ({ phone_number }) => {
+        alert(phone_number);
+        try {
+            await nextAxios.post('/otp'), {
+                phone_number: phone_number
+            }
+        } catch (error) {
+            console.error(error);
             throw error;
         }
     }
@@ -128,11 +130,22 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
+    const handleLogout = (event) => {
+        event.preventDefault;
+        localStorage.removeItem('token');
+        setUser(null);
+        delete authAxios.defaults.headers.Authorization;
+    }
+
     const values = {
+        user,
+        userLoading,
         handleLogin,
         handleRegister,
         sendOtp,
-        checkOtp
+        checkOtp,
+        handleLogout,
+        setRedirect
     }
 
     return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>
@@ -140,17 +153,35 @@ export const AuthProvider = ({ children }) => {
 
 export const useAuth = () => useContext(AuthContext)
 
-// export const AuthGuard = ({children}) => {
-//     const {user, userLoading, setRedirect} = useAuth();
-//     const router = useRouter();
+const AuthGuard = ({ children }) => {
+    const { user, userLoading, setRedirect } = useAuth()
+    const router = useRouter();
 
-//     useEffect(() => {
-//         if(!userLoading) {
-//             if(!user) {
-//                 setRedirect(router.isReady ? router.asPath : '/');
-//                 router.push('/signin');
-//             }
-//         }
-//     }, [userLoading, router, user, setRedirect])
+    useEffect(() => {
+        if (!userLoading) {
+            if (!user) {
+                setRedirect(router.isReady ? router.asPath : '/')
+                router.push('/signin')
+            }
+        }
+    }, [userLoading, router, user, setRedirect])
 
-// }
+    if (userLoading) {
+        return (
+            <div className='fixed-layer'>
+                <HeadInfo title="Загрузка..." />
+                Загрузка
+            </div>
+        )
+    }
+
+    if (!userLoading && user) {
+        return <>{children}</>
+    }
+
+    console.log('Hello')
+
+    return null
+}
+
+export default AuthGuard;   
