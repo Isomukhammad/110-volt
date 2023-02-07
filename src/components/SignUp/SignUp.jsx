@@ -128,7 +128,10 @@ const SignUp = () => {
                             <input
                                 {...register("password", {
                                     required: true,
-                                    minLength: 6,
+                                    minLength: {
+                                        value: 8,
+                                        message: "Пароль должен быть не менее 8 символов"
+                                    },
                                     maxLength: 20
                                 })}
                                 type="password"
@@ -142,7 +145,10 @@ const SignUp = () => {
                             <input
                                 {...register("confirm_password", {
                                     required: true,
-                                    minLength: 6,
+                                    minLength: {
+                                        value: 8,
+                                        message: "Пароль должен быть не менее 8 символов"
+                                    },
                                     maxLength: 20
                                 })}
                                 type="password"

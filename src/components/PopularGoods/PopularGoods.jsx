@@ -44,6 +44,7 @@ const PopularGoods = ({ title, margin, link }) => {
                                         setProductId={setProductId}
                                         productId={productId}
                                         arrLength={arrLength}
+                                        width={true}
                                     />
                                 )
                             }

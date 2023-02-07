@@ -1,30 +1,41 @@
 import { useContext, useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-
-import Button from '../Button/Button';
-import QuickView from '../QuickView/QuickView';
-
-import styles from './ProductTab.module.scss'
 import { ScreenContext } from '../../context/screenContext';
 import { useCart } from '../../context/cart';
+import QuickView from '../QuickView/QuickView';
+import styles from './ProductTab.module.scss'
+import { isActive } from '../../utils/funcs';
+import { useWish } from '../../context/wish'
 
 const ProductTab = ({
     index,
     product,
     setProductId,
     productId,
-    arrLength
+    arrLength,
+    width
 }) => {
     const [quickView, setQuickView] = useState('false');
     const [imgSrc, setImgSrc] = useState(product.img);
     const { handleCart, cartReqLoading, cart, localCart } = useCart();
+    const { handleWish, wishReqLoading, wish, localWish } = useWish();
+
+    console.log(localStorage);
 
     const store = cart || localCart;
 
-    useEffect(() => {
-        console.log(store);
-    }, [store])
+    const productInCart = isActive({
+        product: product,
+        store: cart,
+        localStore: localCart
+    })
+
+    const productInWish = isActive({
+        product,
+        store: wish,
+        localStore: localWish,
+    })
 
     useEffect(() => {
         if (productId === index) {
@@ -39,7 +50,8 @@ const ProductTab = ({
                 href={`/product/${product.id}-${product.slug}`}
                 className={styles.container}
             >
-                <div className={styles.preview}>
+                <div
+                    className={`${styles.preview} ${width ? 'w-[254px]' : ''}`}>
                     <div
                         className={styles.quickReview}
                         onClick={(e) => {
@@ -87,16 +99,17 @@ const ProductTab = ({
                             <div
 
                             >
-                                <button className="bg-accent padding-1 text-white" onClick={() => handleCart({ type: 'SWITCH', product })}>
-                                    В корзину
+                                <button className="bg-accent padding-1 text-white hover:bg-accentDark transition duration-300" onClick={() => handleCart({ type: 'SWITCH', product })}>
+                                    {productInCart ? 'Уже в корзине' : 'В корзину'}
                                 </button>
                             </div>
                             <svg
                                 viewBox='0 0 24 24'
                                 width={24}
                                 height={24}
-                                fill="none"
-                                stroke="#BDBDBD"
+                                fill={productInWish ? "red" : "none"}
+                                stroke={productInWish ? "none" : "#BDBDBD"}
+                                onClick={() => handleWish({ type: 'ADD', product })}
                             >
                                 <use xlinkHref="#heart"></use>
                             </svg>

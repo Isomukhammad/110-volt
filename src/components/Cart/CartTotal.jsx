@@ -2,10 +2,11 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useContext, useEffect } from 'react';
 import { ScreenContext } from '../../context/screenContext';
+import { thousandSeperate } from '../../utils/funcs';
 import Button from '../Button/Button';
 import styles from './CartTotal.module.scss'
 
-const CartTotal = ({ offer }) => {
+const CartTotal = ({ offer, store, handleCart }) => {
     const router = useRouter();
     const { isMobile, isTablet } = useContext(ScreenContext)
 
@@ -14,8 +15,8 @@ const CartTotal = ({ offer }) => {
             <div className={styles.bottomTotal}>
                 <div className={styles.content}>
                     <div className={styles.prices}>
-                        <p>3 товара</p>
-                        <h4>75 266 000 cум</h4>
+                        <p>{store.quantity} {store.quantity === 1 ? 'товар' : 'товара'}</p>
+                        <h4 className='font-bold text-[20px]'>{thousandSeperate(store.total)} cум</h4>
                     </div>
 
                     {
@@ -45,10 +46,10 @@ const CartTotal = ({ offer }) => {
             <div className={styles.totalContainer}>
                 <div className={styles.content}>
                     <div className={styles.quantity}>
-                        <h3>В корзине</h3>
-                        <p>3 товара</p>
+                        <h3 className='font-bold'>В корзине</h3>
+                        <p>{store.quantity} {store.quantity === 1 ? 'товар' : 'товара'}</p>
                     </div>
-                    <h2 className={styles.price}>76 266 000 сум</h2>
+                    <h2 className={styles.price}>{thousandSeperate(store.total)} сум</h2>
                     <div className={styles.actionButtons}>
                         {
                             router.pathname === '/checkout' ? (
@@ -94,7 +95,9 @@ const CartTotal = ({ offer }) => {
                         <>
                             <div className={styles.cartButtons}>
                                 <Button type="cart" active={true}>Добавить всё в избранное</Button>
-                                <Button type="cart">Очистить корзину</Button>
+                                <div onClick={() => { handleCart({ type: 'CLEAR' }) }}>
+                                    <Button type="cart">Очистить корзину</Button>
+                                </div>
                             </div>
                         </>
                     )

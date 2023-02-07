@@ -7,7 +7,7 @@ const AuthContext = createContext({})
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [userLoading, setUserLoading] = useState(true);
-    const [redirect, setRedirect] = useState('/profile');
+    const [redirect, setRedirect] = useState('/');
     const router = useRouter();
 
     useEffect(() => {
@@ -16,39 +16,23 @@ export const AuthProvider = ({ children }) => {
 
             if (token) {
                 authAxios.defaults.headers.Authorization = `Bearer ${token}`
+                try {
+                    const {
+                        data: { data: user }
+                    } = await authAxios.get('/profile');
+                    user && setUser(user);
+                    setUserLoading(false);
+                } catch (error) {
+                    console.error(error);
+                    localStorage.removeItem('token');
+                    setUserLoading(false);
+                }
             } else {
                 setUser(null);
                 setUserLoading(false);
             }
         }
-    })
-
-    const handleLogin = async ({ phone_number, password }) => {
-        try {
-            const res = await nextAxios.post('/login', {
-                "phone_number": phone_number,
-                "password": password,
-            })
-
-            alert(res)
-
-            // fetch(`${process.env.API}/login`, {
-            //     method: 'POST',
-            //     headers: {
-            //         Accept: 'application/json'
-            //     },
-            //     body: {
-            //         "phone_number": phone_number,
-            //         "password": password
-            //     }
-            // })
-            //     .then(res => res.json())
-            //     .then(data => console.log(data))
-            //     .catch(error => console.log('error', error));
-        } catch (error) {
-            throw error;
-        }
-    }
+    }, []);
 
     const handleRegister = async ({ name, phone_number, password, email, otp }) => {
         try {
@@ -60,7 +44,20 @@ export const AuthProvider = ({ children }) => {
                 otp
             })
         } catch (error) {
-            console.log(error);
+            console.error(error);
+        }
+    }
+
+    const handleLogin = async ({ phone_number, password }) => {
+        try {
+            const res = await nextAxios.post('/login', {
+                "phone_number": phone_number,
+                "password": password,
+            })
+
+
+        } catch (error) {
+            console.error(error);
         }
     }
 
@@ -69,7 +66,53 @@ export const AuthProvider = ({ children }) => {
             await nextAxios.post('/otp'), {
                 phone_number
             }
+
+            localStorage.setItem('token', res.data.token);
+            authAxios.defaults.headers.Authorization = `Bearer ${res.data.token}`
+            const {
+                data: { data: user },
+            } = await authAxios.get('/profile');
+            user && setUser(user);
+
+            //save cart
+            if (
+                window &&
+                JSON.parse(localStorage.getItem('localCart'))?.items.length > 0
+            ) {
+                const cartArray = JSON.parse(
+                    localStorage.getItem('localCart')
+                ).items.map((item) => ({
+                    id: item.id,
+                    quantity: item.quantity
+                }))
+                await authAxios({
+                    method: 'POST',
+                    url: '/cart',
+                    data: { products: cartArray },
+                }).then(() => localStorage.removeItem('localCart'));
+            }
+
+            //save wish
+            if (
+                window &&
+                JSON.parse(localStorage.getItem('localWish'))?.items.length > 0
+            ) {
+                const wishArray = JSON.parse(
+                    localStorage.getItem('localWish')
+                ).items.map((item) => ({
+                    id: item.id,
+                }))
+                await authAxios({
+                    method: 'POST',
+                    url: '/wishlist',
+                    data: { products: wishArray },
+                }).then(() => localStorage.removeItem('localWish'))
+            }
+
+            //redirect to main page after successful login
+            router.push(redirect);
         } catch (error) {
+            console.error(error);
             throw error;
         }
     }

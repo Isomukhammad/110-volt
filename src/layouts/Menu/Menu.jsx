@@ -28,7 +28,9 @@ const Menu = ({ menuOpen, setMenuOpen, searchFocus, setSearchFocus }) => {
     }, [isTablet, isMobile, searchFocus])
 
     useEffect(() => {
-        setBtn(tree.data[0].id);
+        tree ? (
+            setBtn(tree.data[0].id)
+        ) : null
     }, [tree]);
 
     const useOutsideAlerter = (ref) => {

@@ -43,7 +43,7 @@ export const getServerSideProps = async ({ params }) => {
     const page = await nextAxios
         .get(`/pages/${params.id.split('-')[0]}`)
         .then(res => res.data.data)
-        .catch(error => console.log(error))
+        .catch(error => console.error(error))
 
     if (!page) {
         return {

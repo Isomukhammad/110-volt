@@ -31,6 +31,13 @@
 
     .buttons {
       visibility: visible;
+
+      svg {
+        transition: 0.3s all;
+        &:hover {
+          scale: 1.2;
+        }
+      }
     }
   }
   .preview {

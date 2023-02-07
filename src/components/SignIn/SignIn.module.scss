@@ -3,6 +3,12 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
+
+    input {
+      &:-webkit-autofill {
+        background-color: transparent;
+      }
+    }
   }
 
   .error {

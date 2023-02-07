@@ -12,12 +12,23 @@ import DiscountTabs from '../../components/DiscountTabs/DiscountTabs';
 import PagePath from '../../components/PagePath/PagePath';
 import ProductPageSlider from '../../components/ProductPageSlider/ProductPageSlider';
 import styles from './Product.module.scss';
+import { useCart } from '../../context/cart';
+import { isActive } from '../../utils/funcs';
 
 const ProductPage = ({ product }) => {
+    console.log(product)
     const [isHidden, setIsHidden] = useState(true);
     const [height, setHeight] = useState(0);
     const [show, setShow] = useState('false');
     const { isMobile, isTablet } = useContext(ScreenContext)
+    const { handleCart, cartReqLoading, cart, localCart } = useCart();
+
+    const store = cart || localCart;
+    const productInCart = isActive({
+        product: product,
+        store: cart,
+        localStore: localCart
+    })
 
     const ref = useRef(null);
     const { query } = useRouter();
@@ -95,9 +106,13 @@ const ProductPage = ({ product }) => {
                         </div>
 
                         <div className={styles.buttons}>
-                            <Button style={{ width: "fit-content" }}>
-                                Добавить корзину
-                            </Button>
+                            <div onClick={() => handleCart({ type: 'SWITCH', product })}>
+                                <Button
+                                    style={{ width: "fit-content" }}
+                                >
+                                    {productInCart ? 'Уже в корзине' : 'Добавить в корзину'}
+                                </Button>
+                            </div>
                             <Button
                                 type="reverse"
                             >

@@ -1,7 +1,5 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-
-
 import { ScreenContext } from '../../context/screenContext';
 
 import Menu from '../Menu/Menu';
@@ -9,14 +7,19 @@ import SearchInput from '../../components/SearchInput/SearchInput';
 
 import styles from './Header.module.scss';
 import { useData } from '../../context/dataContext';
+import { useCart } from '../../context/cart';
 
 const Header = () => {
-    const { settings, settingsError, tree, treeValidating } = useData();
+    const { settings, settingsError, tree, treeValidating, cartLoading } = useData();
     const { isMobile, isTablet } = useContext(ScreenContext)
     const [searchFocus, setSearchFocus] = useState(false);
     const ref = useRef(false)
     const [firstOpen, setFirstOpen] = useState(false); //state which is used for opening menu for the first time
     const [menuOpen, setMenuOpen] = useState(false); //state which is used to control classes of menu component which is always active after initial opening, so it has animation in closing
+    const { cart, localCart } = useCart();
+    const store = cart || localCart;
+    console.log(store);
+
     const stopProp = (e) => {
         e.stopPropagation();
     }
@@ -116,7 +119,12 @@ const Header = () => {
                         <svg viewBox="0 0 21 22" fill="none" className={styles.languageButton}>
                             <use xlinkHref='#bag-logo'></use>
                         </svg>
-                        <div className={styles.itemsNumber}>3</div>
+                        {
+                            !cartLoading && store ? (
+                                store.quantity !== 0 ? (
+                                    <div className={styles.itemsNumber}>{store.quantity}</div>) : (null)
+                            ) : null
+                        }
                         <div>Корзина</div>
                     </Link>
                     <Link

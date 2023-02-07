@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useAuth } from '../../context/auth';
-import Button from '../Button/Button';
-import FormInput from '../FormInput/FormInput';
+import { useCart } from '../../context/cart';
+import FormError from '../Form/FormError';
 import styles from './SignIn.module.scss'
 
 const SignIn = () => {
+    const [reqLoading, setReqLoading] = useState(false);
     const { handleLogin } = useAuth();
     const [formError, setFormError] = useState(null);
+    const { getAndSetCart } = useCart();
     const {
         register,
         handleSubmit,
@@ -22,17 +24,23 @@ const SignIn = () => {
     });
 
     const onSubmit = async (data) => {
-        const { phone_number, password } = data;
-
         try {
+            setReqLoading(true);
+            setFormError(null);
+            const phone_number = data.phone_number.replace(/\D/g, '')
             await handleLogin({ phone_number, password })
+            getAndSetCart();
         } catch (error) {
-            throw error;
+            setFormError(err?.response?.data)
+            console.error(error);
+        } finally {
+            setReqLoading(false);
         }
     }
 
     return (
         <div className={styles.container}>
+            <FormError error={formError} />
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="relative">
                     <input

@@ -262,7 +262,6 @@ export const CartProvider = ({ children }) => {
     }
 
     function addLocalCart(product, quantity) {
-        console.log('Adding to cart', product, quantity)
         setLocalCart({
             quantity: localCart.quantity + quantity,
             total: localCart.total + product.current_price * quantity,

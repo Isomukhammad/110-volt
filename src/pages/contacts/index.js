@@ -52,7 +52,7 @@ export const getServerSideProps = async ({ params }) => {
     const contacts = await nextAxios
         .get(`/pages/2`)
         .then(res => res.data.data)
-        .catch(error => console.log(error))
+        .catch(error => console.error(error))
 
     if (!contacts) {
         return {

@@ -12,13 +12,10 @@ import styles from './Cart.module.scss'
 import products from '../../products.json';
 
 const CartPage = () => {
-    const { cartLoading, cart, localCart } = useCart();
+    const { cartLoading, cart, localCart, handleCart } = useCart();
 
     const store = cart || localCart;
 
-    useEffect(() => {
-        console.log(store)
-    }, [store])
     return (
         <>
             <HeadInfo title="Корзина" />
@@ -44,14 +41,24 @@ const CartPage = () => {
                             <h1 className={`${styles.title} font-bold text-[24px] md:text-[32px]`}>Корзина</h1>
 
                             <div className={styles.cart}>
-                                <div className={styles.cartItems}>
-                                    <CartItem info={products[0].products[0]} />
-                                    <CartItem info={products[0].products[0]} />
-                                    <CartItem info={products[0].products[0]} />
-                                </div>
-                                <div className={styles.cartTotal}>
-                                    <CartTotal />
-                                </div>
+                                {!cartLoading && store ? (
+                                    <>
+                                        <div className={styles.cartItems}>
+                                            {
+
+                                                store.items.map((item) => (
+                                                    <CartItem key={item.id} item={item} />
+                                                ))
+                                            }
+                                        </div>
+                                        <div className={styles.cartTotal}>
+                                            <CartTotal store={store} handleCart={handleCart} />
+                                        </div>
+                                    </>
+                                ) : (
+                                    <p>Загрузка продуктов...</p>
+                                )
+                                }
                             </div>
                         </div>
                     )

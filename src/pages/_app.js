@@ -19,6 +19,7 @@ import '../styles/Slider.scss';
 import '../styles/SortMenu.scss';
 import '../styles/ProductImageSlider.scss';
 import '../styles/PageButtons.scss';
+import { WishProvider } from '../context/wish';
 
 const App = ({ Component, pageProps }) => {
   const router = useRouter()
@@ -42,13 +43,15 @@ const App = ({ Component, pageProps }) => {
     <>
       <AuthProvider>
         <CartProvider>
-          <DataProvider>
-            <ScreenContext>
-              <MainLayout>
-                <Component {...pageProps} />
-              </MainLayout>
-            </ScreenContext>
-          </DataProvider>
+          <WishProvider>
+            <DataProvider>
+              <ScreenContext>
+                <MainLayout>
+                  <Component {...pageProps} />
+                </MainLayout>
+              </ScreenContext>
+            </DataProvider>
+          </WishProvider>
         </CartProvider>
       </AuthProvider>
     </>
