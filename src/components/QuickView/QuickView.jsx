@@ -1,4 +1,7 @@
 import Link from 'next/link';
+import { useCart } from '../../context/cart';
+import { useWish } from '../../context/wish';
+import { isActive } from '../../utils/funcs';
 import Button from '../Button/Button';
 import QuickViewSlider from '../QuickViewSlider/QuickViewSlider';
 
@@ -13,6 +16,23 @@ const QuickView = ({
     setProductId,
     arrLength
 }) => {
+    const { handleCart, cartReqLoading, cart, localCart } = useCart();
+    const { handleWish, wishReqLoading, wish, localWish } = useWish();
+
+    const store = cart || localCart;
+
+    const productInCart = isActive({
+        product: data,
+        store: cart,
+        localStore: localCart
+    })
+
+    const productInWish = isActive({
+        product: data,
+        store: wish,
+        localStore: localWish,
+    })
+
     return (
         <div
             className={`
@@ -32,13 +52,16 @@ const QuickView = ({
                         <p>Код товара: {data.id}</p>
                     </div>
                     <div className={styles.buttons}>
-                        <Button>Добавить в корзину</Button>
+                        <div onClick={() => handleCart({ type: 'SWITCH', product: data })}>
+                            <Button>{productInCart ? "Уже в корзине" : 'Добавить в корзину'}</Button>
+                        </div>
                         <svg
                             viewBox="0 0 24 24"
                             width="24"
                             height="24"
-                            fill="none"
-                            stroke="#BDBDBD"
+                            fill={productInWish ? "red" : "none"}
+                            stroke={productInWish ? "none" : "#BDBDBD"}
+                            onClick={() => handleWish({ type: 'ADD', product: data })}
                         >
                             <use xlinkHref='#heart'></use>
                         </svg>

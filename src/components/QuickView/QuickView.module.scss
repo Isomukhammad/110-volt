@@ -71,6 +71,13 @@
           width: fit-content;
           padding: 17px 56px;
         }
+
+        svg {
+          transition: 0.3s all;
+          &:hover {
+            scale: 1.2;
+          }
+        }
       }
     }
 
