@@ -103,10 +103,10 @@ const Sprites = () => {
                 </symbol>
 
                 <symbol id="bag-logo">
-                    <path d="M5.5714 6.617H15.0952C16.5238 6.617 17.7143 8.02126 17.9523 9.42552L19.3809 18.7872C19.6191 20.1922 17.9523 21.5957 16.5238 21.5957H4.14283C2.71425 21.5957 1.04746 20.1922 1.28568 18.7872L2.71425 9.42552C2.95235 8.02126 4.14283 6.617 5.5714 6.617Z" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    <path d="M6.04758 10.3617V6.13257" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    <path d="M14.6191 6.14893V10.3617" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    <path d="M14.619 6.14892C14.619 4.74467 13.7887 3.248 12.4678 2.49837C11.147 1.74875 9.5196 1.74875 8.19873 2.49837C6.87787 3.248 6.04758 4.74467 6.04758 6.14892" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M5.5714 6.617H15.0952C16.5238 6.617 17.7143 8.02126 17.9523 9.42552L19.3809 18.7872C19.6191 20.1922 17.9523 21.5957 16.5238 21.5957H4.14283C2.71425 21.5957 1.04746 20.1922 1.28568 18.7872L2.71425 9.42552C2.95235 8.02126 4.14283 6.617 5.5714 6.617Z" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M6.04758 10.3617V6.13257" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M14.6191 6.14893V10.3617" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M14.619 6.14892C14.619 4.74467 13.7887 3.248 12.4678 2.49837C11.147 1.74875 9.5196 1.74875 8.19873 2.49837C6.87787 3.248 6.04758 4.74467 6.04758 6.14892" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </symbol>
 
                 <symbol id="bag-mobile">

@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { useCart } from "../../context/cart";
+import { isActive } from "../../utils/funcs";
 
 import styles from './CategoryItem.module.scss';
 
@@ -8,6 +10,15 @@ const CategoryItem = ({ info }) => {
     const { h1_name, old_price_formatted, current_price_formatted, url, img, price, discounted, monthly, name, id, slug } = info;
     const [width, setWidth] = useState(100);
     const [imgSrc, setImgSrc] = useState(img);
+    const { handleCart, cartReqLoading, cart, localCart } = useCart();
+
+    const store = cart || localCart;
+
+    const productInCart = isActive({
+        product: info,
+        store: cart,
+        localStore: localCart
+    })
 
     const increaseWidth = () => {
         setWidth(0)
@@ -49,12 +60,16 @@ const CategoryItem = ({ info }) => {
                 <p>{current_price_formatted}</p>
                 <p>{old_price_formatted}</p>
             </div>
-            <button className={styles.cart} onClick={(e) => stopProp(e)}>
+            <button className={`${styles.cart} ${productInCart ? styles.active : ''}`} onClick={(e) => {
+                stopProp(e)
+                handleCart({ type: 'SWITCH', product: info })
+            }}>
                 <svg
                     viewBox="0 0 24 24"
                     width={24}
                     height={24}
-                    fill="none"
+                    fill={productInCart ? "none" : "none"}
+                    stroke={productInCart ? "#7B54C9" : "white"}
                 >
                     <use xlinkHref="#bag-logo"></use>
                 </svg>
