@@ -14,10 +14,15 @@ import PersonalInfo from '../../components/PersonalInfo/PersonalInfo';
 
 import styles from './Checkout.module.scss';
 import PopUp from '../../components/PopUp/PopUp';
+import { useCart } from '../../context/cart';
 
 const CheckoutPage = () => {
     const { isMobile } = useContext(ScreenContext)
-    const [popUp, setPopUp] = useState(true)
+    const [popUp, setPopUp] = useState(false);
+    const { cartLoading, cart, localCart, handleCart } = useCart();
+
+    const store = cart || localCart;
+
     return (
         <>
             <HeadInfo title="Оформить заказ" />
@@ -47,19 +52,23 @@ const CheckoutPage = () => {
                                         <div className={styles.content}>
                                             <h1 className={styles.title}>Корзина</h1>
 
-                                            <div className={styles.cart}>
-                                                <div className={styles.cartItems}>
-                                                    <CartItem info={products[0].products[0]} checkout={true} />
-                                                    <CartItem info={products[0].products[0]} checkout={true} />
-                                                    <CartItem info={products[0].products[0]} checkout={true} />
-                                                    <hr />
-                                                    <div className={styles.amount}>
-                                                        <div></div>
-                                                        <div>Итого:</div>
-                                                        <div>63 114 300 сум</div>
+                                            {!cartLoading && store ? (
+                                                <div className={styles.cart}>
+                                                    <div className={styles.cartItems}>
+                                                        {
+
+                                                            store.items.map((item) => (
+                                                                <CartItem key={item.id} item={item} />
+                                                            ))
+                                                        }
+                                                        <hr />
+                                                        <div className={styles.amount}>
+                                                            <div></div>
+                                                            <div>Итого:</div>
+                                                            <div>63 114 300 сум</div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </div>
+                                                </div>) : (<p>Загрузка товаров...</p>)}
                                         </div>
                                     }
                                 </>
@@ -73,7 +82,7 @@ const CheckoutPage = () => {
                         }
                     </div>
                     <div className={styles.cartTotal}>
-                        <CartTotal offer={true} />
+                        {!cartLoading && store ? (<CartTotal offer={true} store={store} />) : null}
                     </div>
                 </div>
                 <DiscountTabs />
