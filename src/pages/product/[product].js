@@ -16,7 +16,6 @@ import { useCart } from '../../context/cart';
 import { isActive } from '../../utils/funcs';
 
 const ProductPage = ({ product }) => {
-    console.log(product)
     const [isHidden, setIsHidden] = useState(true);
     const [height, setHeight] = useState(0);
     const [show, setShow] = useState('false');

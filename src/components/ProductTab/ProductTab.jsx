@@ -16,7 +16,6 @@ const ProductTab = ({
     arrLength,
     width
 }) => {
-    console.log(product)
     const [quickView, setQuickView] = useState('false');
     const [imgSrc, setImgSrc] = useState(product.img);
     const { handleCart, cartReqLoading, cart, localCart } = useCart();

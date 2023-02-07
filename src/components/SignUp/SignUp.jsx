@@ -62,7 +62,7 @@ const SignUp = () => {
             await sendOtp({ phone_number });
             setOtpOpen(true);
         } catch (error) {
-            console.log(error)
+            console.error(error)
             throw error;
         }
     }
@@ -71,7 +71,6 @@ const SignUp = () => {
         try {
             const { name, password, email, phone_number, otp } = data;
             setFormError(null)
-            console.log(phone_number, otp);
             const otpCheck = await checkOtp({ phone_number, otp });
 
             if (otpCheck.errors) {
@@ -83,7 +82,7 @@ const SignUp = () => {
             // await handleLogin({ phone_number, password })
             reset()
         } catch (error) {
-            console.log(error);
+            console.error(error);
         }
     }
 

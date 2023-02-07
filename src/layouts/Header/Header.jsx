@@ -18,7 +18,6 @@ const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false); //state which is used to control classes of menu component which is always active after initial opening, so it has animation in closing
     const { cart, localCart } = useCart();
     const store = cart || localCart;
-    console.log(store);
 
     const stopProp = (e) => {
         e.stopPropagation();
@@ -116,7 +115,7 @@ const Header = () => {
                         href="/cart"
                         className={styles.navButton}
                     >
-                        <svg viewBox="0 0 21 22" fill="none" className={styles.languageButton}>
+                        <svg viewBox="0 0 21 22" fill="none" stroke="white" className={styles.languageButton}>
                             <use xlinkHref='#bag-logo'></use>
                         </svg>
                         {
