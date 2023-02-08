@@ -52,7 +52,7 @@ const CartItem = ({ item, info, checkout }) => {
             <div className={`${styles.quantity} ${checkout ? styles.centrelized : ''}`}>
                 {
                     checkout ? (
-                        <div className={styles.checkoutQuantity}>x 1</div>
+                        <div className={styles.checkoutQuantity}>x{item.quantity}</div>
                     ) : (
                         <>
                             <button onClick={handleItemDecrement}>
@@ -76,7 +76,7 @@ const CartItem = ({ item, info, checkout }) => {
             <div className={styles.prices}>
                 {
                     checkout ? (
-                        <div className={styles.checkoutPrice}>{info.price} сум</div>
+                        <div className={styles.checkoutPrice}>{item.product.current_price_formatted}</div>
                     ) : (
                         <>
                             <div className={styles.monthly}> сум/мес<span>x 12 месяцев</span>
