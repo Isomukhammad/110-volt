@@ -41,7 +41,7 @@ const ProductHeader = ({ product, show, data }) => {
                     <div onClick={() => handleCart({ type: 'SWITCH', product })}>
                         <Button>{productInCart ? 'Уже в коризне' : 'Добавить в корзину'}</Button>
                     </div>
-                    <Button type="reverse">Купить в рассрочку</Button>
+                    <Button variant="reverse">Купить в рассрочку</Button>
                 </div>
             </div>
         </div>

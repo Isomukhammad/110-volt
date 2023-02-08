@@ -1,17 +1,21 @@
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 
 import ConnectOption from '../ConnectOption/ConnectOption';
 import FormTextarea from '../FormTextarea/Formtextarea';
 import ImageDrop from '../ImageDrop/ImageDrop';
+import CheckoutInstallment from './CheckoutInstallment';
+import CheckoutPayment from './CheckoutPayment';
 
 import styles from './PersonalInfo.module.scss'
 
-const PersonalInfo = () => {
+const PersonalInfo = ({ register, errors }) => {
     const [method, setMethod] = useState('immediately');
+    const [formError, setFormError] = useState(null)
 
     return (
         <div className={styles.container}>
-            <h1>Личный данные</h1>
+            <h1 className='text-[24px] font-bold lg:text-[32px]'>Личный данные</h1>
             <div className={styles.contactInfo}>
                 <div className={styles.category}>
                     <h4>Контактная информация</h4>
@@ -40,10 +44,12 @@ const PersonalInfo = () => {
                         <button
                             className={`${styles.buyNow} ${method === 'immediately' ? styles.active : ''}`}
                             onClick={() => setMethod('immediately')}
+                            type="button"
                         >Купить сразу</button>
                         <button
                             className={`${styles.installment} ${method === 'instalment' ? styles.active : ''}`}
                             onClick={() => setMethod('instalment')}
+                            type="button"
                         >Купить в рассрочку</button>
                     </div>
                 </div>
@@ -53,13 +59,15 @@ const PersonalInfo = () => {
                             <>
                                 <h4>Метод оплаты</h4>
                                 <div className={styles.chosePayment}>
-                                    <div className={styles.column}>
+                                    <CheckoutPayment register={register} errors={errors} />
+                                    {/* <div className={styles.column}>
                                         <div className={styles.radio}>
                                             <input
                                                 type="radio"
                                                 id="cash"
                                                 name="payment-method"
                                                 value="cash"
+                                                className='focus:ring-transparent'
                                             />
                                             <label htmlFor="cash">Наличные</label>
                                         </div>
@@ -69,6 +77,7 @@ const PersonalInfo = () => {
                                                 id="uzcard"
                                                 name="payment-method"
                                                 value="uzcard"
+                                                className='focus:ring-transparent'
                                             />
                                             <label htmlFor="uzcard">Картой Uzcard</label>
                                         </div>
@@ -78,6 +87,7 @@ const PersonalInfo = () => {
                                                 id="humo"
                                                 name="payment-method"
                                                 value="humo"
+                                                className='focus:ring-transparent'
                                             />
                                             <label htmlFor="humo">Картой Humo</label>
                                         </div>
@@ -89,6 +99,7 @@ const PersonalInfo = () => {
                                                 id="payme"
                                                 name="payment-method"
                                                 value="payme"
+                                                className='focus:ring-transparent'
                                             />
                                             <label htmlFor="payme">Онлайн - PayMe</label>
                                         </div>
@@ -98,52 +109,16 @@ const PersonalInfo = () => {
                                                 id="click"
                                                 name="payment-method"
                                                 value="click"
+                                                className='focus:ring-transparent'
                                             />
                                             <label htmlFor="click">Онлайн - Click</label>
                                         </div>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </>
                         ) : (
                             <>
-                                <div className={styles.instalment}>
-                                    <h4>Оформление рассрочки</h4>
-                                    <div className={styles.cardInfo}>
-                                        <input
-                                            type='number'
-                                            placeholder='Номер телефона привязанного к карте'
-                                        />
-                                        <input
-                                            type='number'
-                                            placeholder="Номер карты"
-                                        />
-                                        <input
-                                            type="number"
-                                            placeholder='Срок действия карты'
-                                        />
-                                    </div>
-                                </div>
-                                <div className={`${styles.instalment} ${styles.file}`}>
-                                    <h4>Фото пасспорта</h4>
-                                    <ImageDrop image="/images/Passport.png" />
-                                </div>
-                                <div className={`${styles.instalment} ${styles.file}`}>
-                                    <h4>Селфи с пасспортом</h4>
-                                    <ImageDrop image="/images/selfie with passport 1.png" />
-                                </div>
-                                <div className={`${styles.instalment} ${styles.file}`}>
-                                    <h4>Страница прописки</h4>
-                                    <ImageDrop image="/images/Propiska.png" />
-                                </div>
-                                <div className={`${styles.instalment} ${styles.wishes}`}>
-                                    <h4>Ваши пожелание</h4>
-                                    <textarea
-                                        name="" id=""
-                                        cols="30"
-                                        rows="10"
-                                        placeholder='Сообщение'
-                                    ></textarea>
-                                </div>
+                                <CheckoutInstallment />
                             </>
                         )
                     }

@@ -30,7 +30,7 @@ const ProductPage = ({ product }) => {
     })
 
     const ref = useRef(null);
-    const { query } = useRouter();
+    const router = useRouter();
 
     const handleScroll = () => {
         const position = window.pageYOffset + 160;
@@ -59,6 +59,15 @@ const ProductPage = ({ product }) => {
             name: cat.name,
         }
     })
+
+    const handleInstantBuy = async () => {
+        if (productInCart) {
+            return null;
+        } else {
+            await handleCart({ type: 'CREATE', product, quantity: 1 })
+            router.push('/checkout');
+        }
+    }
 
     return (
         <>
@@ -113,7 +122,8 @@ const ProductPage = ({ product }) => {
                                 </Button>
                             </div>
                             <Button
-                                type="reverse"
+                                onClick={() => handleInstantBuy()}
+                                variant="reverse"
                             >
                                 Купить в рассрочку
                             </Button>
@@ -142,7 +152,7 @@ const ProductPage = ({ product }) => {
                                     Добавить корзину
                                 </Button>
                                 <Button
-                                    type="reverse"
+                                    variant="reverse"
                                 >
                                     Купить в рассрочку
                                 </Button>

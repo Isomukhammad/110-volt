@@ -1,5 +1,5 @@
 import { useData } from '../../context/dataContext';
-import ContactUs from '../ContactUs/ContactUs';
+import ContactUs from './ContactUs';
 import styles from './ContactsInfo.module.scss'
 
 const ContactsInfo = () => {

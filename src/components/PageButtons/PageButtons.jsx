@@ -7,7 +7,6 @@ import styles from './PageButtons.module.scss'
 
 const PageButtons = ({ data }) => {
     const router = useRouter();
-    console.log(router);
     const { isMobile } = useContext(ScreenContext);
 
     const handlePageClick = (event) => {
@@ -43,7 +42,7 @@ const PageButtons = ({ data }) => {
                 pageRangeDisplayed={isMobile ? 1 : 2}
                 marginPagesDisplayed={1}
                 pageCount={data.meta.last_page}
-                forcePage={router.query.page - 1}
+                forcePage={router.query.page ? router.query.page - 1 : null}
                 pageClassName="page-item"
                 pageLinkClassName="page-link"
                 previousClassName="page-item"

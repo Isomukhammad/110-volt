@@ -1,4 +1,4 @@
-import ContactsInfo from '../../components/ContactsInfo/ContactsInfo';
+import ContactsInfo from '../../components/Contacts/ContactsInfo';
 import DiscountTabs from '../../components/DiscountTabs/DiscountTabs';
 import PagePath from '../../components/PagePath/PagePath'
 import { useData } from '../../context/dataContext';

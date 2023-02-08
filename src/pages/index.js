@@ -2,7 +2,7 @@ import HeadInfo from '../utils/HeadInfo'
 import Headline from '../components/Main/Headline'
 import PopularCategories from '../components/PopularCategories/PopularCategories'
 import Recommendations from '../components/Recommendations/Recommendations';
-import CompanyDescription from '../components/CompanyDescription/CompanyDescription'
+import CompanyDescription from '../components/Main/CompanyDescription'
 import BrandCategories from '../components/Main/BrandCategories'
 import ReviewCategories from '../components/ReviewCategories/ReviewCategories'
 import DiscountTabs from '../components/DiscountTabs/DiscountTabs';

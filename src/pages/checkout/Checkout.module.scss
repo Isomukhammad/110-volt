@@ -21,10 +21,6 @@
     flex-direction: column;
     gap: 80px;
 
-    .title {
-      line-height: 40px;
-    }
-
     .cart {
       display: flex;
       flex-direction: row;
@@ -78,9 +74,6 @@
     .content {
       position: relative;
 
-      .title {
-        display: none;
-      }
       .cart {
         gap: 30px;
         flex-direction: column;

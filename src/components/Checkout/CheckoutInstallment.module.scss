@@ -1,0 +1,33 @@
+.container {
+  .instalment {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    .cardInfo {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+
+      input {
+        padding: 16px 18px;
+        border: 1px solid #e0e0e0;
+        border-radius: 16px;
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+
+    textarea {
+      border: 1px solid #e0e0e0;
+      border-radius: 16px;
+      padding: 16px 18px;
+      font-size: 15px;
+      line-height: 18px;
+      resize: none;
+      width: 70%;
+    }
+  }
+}

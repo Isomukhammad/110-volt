@@ -111,7 +111,7 @@ export const AuthProvider = ({ children }) => {
         alert(phone_number);
         try {
             await nextAxios.post('/otp'), {
-                phone_number: phone_number
+                "phone_number": phone_number
             }
         } catch (error) {
             console.error(error);
@@ -125,8 +125,8 @@ export const AuthProvider = ({ children }) => {
                 phone_number,
                 otp,
             })
-        } catch (err) {
-            throw err;
+        } catch (error) {
+            throw error;
         }
     }
 

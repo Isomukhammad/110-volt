@@ -1,27 +1,29 @@
-import { useContext, useState } from 'react';
-
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useCart } from '../../context/cart';
 import HeadInfo from '../../utils/HeadInfo';
-import { ScreenContext } from '../../context/screenContext'
-
-import products from '../../products.json';
-
 import CartItem from '../../components/Cart/CartItem';
 import CartError from '../../components/Cart/CartEmpty';
 import DiscountTabs from '../../components/DiscountTabs/DiscountTabs';
 import PagePath from '../../components/PagePath/PagePath';
 import CartTotal from '../../components/Cart/CartTotal';
-import PersonalInfo from '../../components/PersonalInfo/PersonalInfo';
+import PersonalInfo from '../../components/Checkout/PersonalInfo';
+import PopUp from '../../components/PopUp/PopUp';
 
 import styles from './Checkout.module.scss';
-import PopUp from '../../components/PopUp/PopUp';
-import { useCart } from '../../context/cart';
 
 const CheckoutPage = () => {
-    const { isMobile } = useContext(ScreenContext)
     const [popUp, setPopUp] = useState(false);
     const { cartLoading, cart, localCart, handleCart } = useCart();
+    const { register, handleSubmit, formState: { errors }, reset } = useForm({
+        defaultValues: { "phone_number": "", "password": "" }
+    });
 
     const store = cart || localCart;
+
+    const onSubmit = (data) => {
+        alert(JSON.stringify(data))
+    }
 
     return (
         <>
@@ -32,7 +34,7 @@ const CheckoutPage = () => {
                         "url": "",
                         "name": "Главная"
                     }, {
-                        "url": "cart",
+                        "url": "/cart",
                         "name": `Корзина`
                     }, {
 
@@ -43,48 +45,50 @@ const CheckoutPage = () => {
                 ]}
             />
             <div className={styles.container}>
-                <div className={styles.wrapper}>
-                    <div>
-                        {
-                            products ? (
-                                <>
-                                    {
-                                        <div className={styles.content}>
-                                            <h1 className={styles.title}>Корзина</h1>
+                {
+                    cartLoading ? (
+                        <div>Загрузка</div>
+                    ) : (cart && cart.quantity !== 0 ? (
 
-                                            {!cartLoading && store ? (
-                                                <div className={styles.cart}>
-                                                    <div className={styles.cartItems}>
-                                                        {
+                        <form onSubmit={handleSubmit(onSubmit)} className={styles.wrapper}>
+                            <div>
+                                <div className={styles.content}>
+                                    <h1 className="text-[24px] font-bold lg:text-[32px]">Оформление заказа</h1>
 
-                                                            store.items.map((item) => (
-                                                                <CartItem key={item.id} item={item} />
-                                                            ))
-                                                        }
-                                                        <hr />
-                                                        <div className={styles.amount}>
-                                                            <div></div>
-                                                            <div>Итого:</div>
-                                                            <div>63 114 300 сум</div>
-                                                        </div>
-                                                    </div>
-                                                </div>) : (<p>Загрузка товаров...</p>)}
-                                        </div>
-                                    }
-                                </>
-                            ) : (
-                                <CartError />
-                            )
-                        }
-                        <PersonalInfo />
-                        {
-                            popUp ? <PopUp result='success' setPopUp={setPopUp} /> : null
-                        }
-                    </div>
-                    <div className={styles.cartTotal}>
-                        {!cartLoading && store ? (<CartTotal offer={true} store={store} />) : null}
-                    </div>
-                </div>
+                                    {!cartLoading && store ? (
+                                        <div className={styles.cart}>
+                                            <div className={styles.cartItems}>
+                                                {
+
+                                                    store.items.map((item) => (
+                                                        <CartItem key={item.id} item={item} checkout={true} />
+                                                    ))
+                                                }
+                                                <hr />
+                                                <div className={styles.amount}>
+                                                    <div></div>
+                                                    <div>Итого:</div>
+                                                    <div>63 114 300 сум</div>
+                                                </div>
+                                            </div>
+                                        </div>) : (<p>Загрузка товаров...</p>)}
+                                </div>
+                                <PersonalInfo register={register} errors={errors} />
+                                {
+                                    popUp ? <PopUp result='success' setPopUp={setPopUp} /> : null
+                                }
+                            </div>
+                            <div className={styles.cartTotal}>
+                                {!cartLoading && store ? (<CartTotal offer={true} store={store} handleSubmit={handleSubmit} onSubmit={onSubmit} />) : null}
+                            </div>
+                        </form>
+                    ) : (
+                        <div className='flex flex-col items-center justify-center'>
+                            <CartError />
+                        </div>
+                    )
+                    )
+                }
                 <DiscountTabs />
             </div>
         </>
