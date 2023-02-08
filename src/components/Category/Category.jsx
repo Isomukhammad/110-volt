@@ -134,7 +134,7 @@ const Category = ({
                                                 ))
                                             }
                                         </div>
-                                        {/* <PageButtons data={products} /> */}
+                                        <PageButtons data={products} />
                                     </>
                                 ) : null
                             }
