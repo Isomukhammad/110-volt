@@ -6,7 +6,9 @@ import { thousandSeperate } from '../../utils/funcs';
 import Button from '../Button/Button';
 import styles from './CartTotal.module.scss'
 
-const CartTotal = ({ offer, store, handleCart }) => {
+const CartTotal = ({ offer, store, handleCart, handleSubmit, onSubmit }) => {
+    console.log('HandleSubmit:', handleSubmit);
+    console.log('onSubmit', onSubmit);
     const router = useRouter();
     const { isMobile, isTablet } = useContext(ScreenContext)
 
@@ -27,7 +29,7 @@ const CartTotal = ({ offer, store, handleCart }) => {
                                         <Button>Оформить заказ</Button>
                                     </Link>
                                     <Link href='/checkout'>
-                                        <Button type="reverse">Рассрочка</Button>
+                                        <Button variant="reverse">Рассрочка</Button>
                                     </Link>
                                 </div>
                             </>
@@ -54,11 +56,9 @@ const CartTotal = ({ offer, store, handleCart }) => {
                         {
                             router.pathname === '/checkout' ? (
                                 <>
-                                    <Link href="/checkout">
-                                        <Button>Оформить заказ</Button>
-                                    </Link>
+                                    <Button type="submit">Оформить заказ</Button>
                                     <Link href="/cart">
-                                        <Button type="reverse">Назад</Button>
+                                        <Button variant="reverse" tyle="button">Назад</Button>
                                     </Link>
                                 </>
                             ) : (
@@ -66,7 +66,7 @@ const CartTotal = ({ offer, store, handleCart }) => {
                                     <Link href="/checkout">
                                         <Button>Перейти к оформлению</Button>
                                     </Link>
-                                    <Button type="reverse">Купить в рассрочку</Button>
+                                    <Button variant="reverse">Купить в рассрочку</Button>
                                 </>
                             )
                         }
