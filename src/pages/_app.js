@@ -19,10 +19,11 @@ import '../styles/Slider.scss';
 import '../styles/SortMenu.scss';
 import '../styles/ProductImageSlider.scss';
 import '../styles/PageButtons.scss';
+import 'react-toastify/dist/ReactToastify.min.css';
+
 import { WishProvider } from '../context/wish';
 
 const App = ({ Component, pageProps }) => {
-  console.log(Component.requireAuth)
   const router = useRouter()
 
   useEffect(() => {

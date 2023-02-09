@@ -15,10 +15,10 @@ const PersonalInfo = ({ register, errors }) => {
 
     return (
         <div className={styles.container}>
-            <h1 className='text-[24px] font-bold lg:text-[32px]'>Личный данные</h1>
+            <h1 className='hidden lg:flex text-[24px] font-bold lg:text-[32px]'>Личный данные</h1>
             <div className={styles.contactInfo}>
                 <div className={styles.category}>
-                    <h4>Контактная информация</h4>
+                    <h4 className='font-semibold'>Контактная информация</h4>
                     <div className={styles.personalInformation}>
                         <input
                             type="text"
@@ -35,11 +35,11 @@ const PersonalInfo = ({ register, errors }) => {
                     </div>
                 </div>
                 <div className={styles.category}>
-                    <h4>Как с вами связаться</h4>
+                    <h4 className='font-semibold'>Как с вами связаться</h4>
                     <ConnectOption />
                 </div>
                 <div className={styles.category}>
-                    <h4>Тип заказа</h4>
+                    <h4 className='font-semibold'>Тип заказа</h4>
                     <div className={styles.orderType}>
                         <button
                             className={`${styles.buyNow} ${method === 'immediately' ? styles.active : ''}`}
@@ -57,7 +57,7 @@ const PersonalInfo = ({ register, errors }) => {
                     {
                         method === 'immediately' ? (
                             <>
-                                <h4>Метод оплаты</h4>
+                                <h4 className='font-semibold'>Метод оплаты</h4>
                                 <div className={styles.chosePayment}>
                                     <CheckoutPayment register={register} errors={errors} />
                                     {/* <div className={styles.column}>

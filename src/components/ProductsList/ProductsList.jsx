@@ -8,7 +8,7 @@ import styles from './ProductsList.module.scss';
 import { useRouter } from 'next/router';
 import { useParams } from '../../hooks/useParams';
 import { useSort } from '../../context/sort';
-import useSWR from 'swr';
+import useSWRInfinite from 'swr';
 import fetcher from '../../utils/fetcher';
 import Link from 'next/link';
 
@@ -19,9 +19,11 @@ const ProductsList = ({
     const [productId, setProductId] = useState(null);
     const { view, sortBy } = useSort();
     const { findParams, updateParams } = useParams()
+    const [page, setPage] = useState(1);
     // const arrLength = info.length - 1;
 
     const url = useMemo(() => {
+        setPage(page + 1);
         const brandParams = findParams('brand')
             ? findParams('brands')
                 .split('=')[1]
@@ -55,7 +57,7 @@ const ProductsList = ({
             : ''
 
         return `/products?category_id=${category.id
-            }&page=${router.query.page || 1
+            }&page=${router.query.page || page
             }&quantity=${router.query.quantity || 25}`
     }, [
         category.id,
@@ -66,16 +68,19 @@ const ProductsList = ({
         findParams
     ])
 
-    const { data: products, isValidating } = useSWR(url, (url) => fetcher(url), {
+    const { data: products, isValidating, size, setSize } = useSWRInfinite(url, fetcher, {
         revalidateIfStale: false,
         revalidateOnFocus: false,
         revalidateOnReconnect: false,
     })
 
+    console.log(size, setSize)
+
     if (products) {
         return (
             <>
                 <div className={styles.container}>
+                    sww
                     {
                         products?.data.map((info, index) => (
                             <ProductTab
@@ -89,7 +94,7 @@ const ProductsList = ({
                         ))
                     }
                 </div>
-                <PageButtons data={products} />
+                <PageButtons data={products} size={size} setSize={setSize} />
             </>
         )
     }

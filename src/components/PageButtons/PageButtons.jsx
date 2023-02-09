@@ -5,7 +5,7 @@ import { ScreenContext } from '../../context/screenContext';
 
 import styles from './PageButtons.module.scss'
 
-const PageButtons = ({ data }) => {
+const PageButtons = ({ data, setSize }) => {
     const router = useRouter();
     const { isMobile } = useContext(ScreenContext);
 
@@ -56,7 +56,14 @@ const PageButtons = ({ data }) => {
                 activeClassName="active"
                 renderOnZeroPageCount={null}
             />
-            <button className={styles.showMore}>
+            <button
+                className={styles.showMore}
+                onClick={() => {
+                    if (setSize) {
+                        setSize(size + 1)
+                    }
+                }}
+            >
                 Показать ещё
             </button>
 

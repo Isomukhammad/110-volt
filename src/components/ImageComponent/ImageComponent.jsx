@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import styles from './ImageComponent.module.scss'
 
-const ImageComponent = ({ src, alt }) => {
+const ImageComponent = ({ src, alt, ...otherProps }) => {
     const [imgSrc, setImgSrc] = useState(src);
     const handleImgError = () => {
         setImgSrc('/images/placeholder.jpg')
@@ -18,6 +18,7 @@ const ImageComponent = ({ src, alt }) => {
             placeholder="blurDataURL"
             className={styles.container}
             onError={(handleImgError)}
+            {...otherProps}
         />
     )
 }

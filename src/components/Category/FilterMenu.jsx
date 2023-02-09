@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import InputRadio from '../InputRadio/InputRadio';
 import FormCheckbox from '../FormCheckbox/FormCheckbox';
-import FilterOption from '../FilterOption/FilterOption';
-import FormInputRange from '../FormInputRange/FormInputRange';
+import FilterOption from './FilterOption';
+import InputRange from '../Input/InputRange';
 import { useData } from '../../context/dataContext';
 import styles from './FilterMenu.module.scss';
 import useSWR from 'swr';
@@ -30,7 +30,7 @@ const FilterMenu = ({ attributes, brands, prices, loading, category, products, f
     // }
 
     const { data: subcast } = useSWR(
-        `categories/${category.id}/subcategories`,
+        `/categories/${category.id}/subcategories`,
         fetcher
     )
 
@@ -113,6 +113,18 @@ const FilterMenu = ({ attributes, brands, prices, loading, category, products, f
                         handleChange={null}
                     />
                     <FormCheckbox
+                        name="HP"
+                        handleChange={null}
+                    />
+                    <FormCheckbox
+                        name="HP"
+                        handleChange={null}
+                    />
+                    <FormCheckbox
+                        name="HP"
+                        handleChange={null}
+                    />
+                    <FormCheckbox
                         name="Sony"
                         handleChange={null}
                     />
@@ -124,9 +136,9 @@ const FilterMenu = ({ attributes, brands, prices, loading, category, products, f
             </FilterOption>
 
             <FilterOption title="Цена">
-                <FormInputRange
-                    min={0}
-                    max={999999999}
+                <InputRange
+                    min={prices.min}
+                    max={prices.max}
                 />
             </FilterOption>
 

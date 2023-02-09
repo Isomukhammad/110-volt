@@ -94,15 +94,15 @@ const CartTotal = ({ offer, store, handleCart, handleSubmit, onSubmit }) => {
                     ) : (
                         <>
                             <div className={styles.cartButtons}>
-                                <Button type="cart" active={true}>Добавить всё в избранное</Button>
+                                <Button variant="cart" active={true}>Добавить всё в избранное</Button>
                                 <div onClick={() => { handleCart({ type: 'CLEAR' }) }}>
-                                    <Button type="cart">Очистить корзину</Button>
+                                    <Button variant="cart">Очистить корзину</Button>
                                 </div>
                             </div>
                         </>
                     )
                 }
-            </div>
+            </div >
         )
     }
 }

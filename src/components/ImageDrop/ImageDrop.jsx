@@ -1,13 +1,11 @@
-import { useCallback } from "react";
+import Image from "next/image";
+import { useCallback, useState } from "react";
 import Dropzone, { useDropzone } from "react-dropzone";
-import ImageComponent from "../ImageComponent/ImageComponent";
 
 import styles from './ImageDrop.module.scss'
 
 const ImageDrop = ({ image }) => {
-    const onDrop = useCallback(acceptedFiles => {
-        console.log(acceptedFiles)
-    }, [])
+    const [imgSrc, setImgSrc] = useState(image);
 
     const {
         acceptedFiles,
@@ -16,7 +14,11 @@ const ImageDrop = ({ image }) => {
         getInputProps,
         isDragActive
     } = useDropzone({
-        onDrop,
+        onDrop: acceptedFiles => {
+            setImgSrc(Object.assign(acceptedFiles[0], {
+                preview: URL.createObjectURL(acceptedFiles[0])
+            }));
+        },
         accept: {
             'image/jpeg': [],
             'image/png': []
@@ -32,7 +34,14 @@ const ImageDrop = ({ image }) => {
 
     return (
         <div className={styles.container}>
-            <ImageComponent src={image} alt="" />
+            <Image
+                src={imgSrc.preview ? imgSrc.preview : imgSrc}
+                sizes="100vw"
+                width={0}
+                height={0}
+                alt=""
+                onLoad={() => { URL.revokeObjectURL(imgSrc.preview) }}
+            />
             <div className={styles.description}>
                 <p><span className={styles.input} {...getRootProps()}><input {...getInputProps()} />Нажмите на ссылку</span>, чтобы выбрать фотографии или просто перетащите их сюда</p>
             </div>

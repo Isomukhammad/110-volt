@@ -62,7 +62,7 @@ const NewsPage = () => {
                                 <div className={styles.subtitle}>
                                     <div className={styles.info}>
                                         <h1 className='font-bold text-[24px] lg:text-[32px]'>110 volt - на рынке Узбекистана</h1>
-                                        <Button type="news">Подробнее</Button>
+                                        <Button variant="news">Подробнее</Button>
                                     </div>
                                     <div className={styles.image}>
                                         <Image

@@ -1,16 +1,17 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 
+import { useAuth } from '../../context/auth';
 import HeadInfo from '../../utils/HeadInfo';
 
 import PagePath from '../../components/PagePath/PagePath'
+import ProfileForm from '../../components/Profile/ProfileForm';
+import OrderTab from '../../components/Profile/OrderTab';
 import PopularGoods from '../../components/PopularGoods/PopularGoods';
 import DiscountTabs from '../../components/DiscountTabs/DiscountTabs';
-import OrderTab from '../../components/OrderTab/OrderTab';
-import ProfileForm from '../../components/ProfileForm/ProfileForm';
 
 import styles from './Profile.module.scss';
-import { useAuth } from '../../context/auth';
+import { toast, ToastContainer } from 'react-toastify';
 
 const ProfilePage = () => {
     const [section, setSection] = useState('profile');

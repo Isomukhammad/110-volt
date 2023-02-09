@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useState, useRef } from "react";
 
-import styles from "./FormInputRange.module.scss";
+import styles from "./InputRange.module.scss";
 
-const FormInputRange = ({ min, max, onChange }) => {
+const InputRange = ({ min, max, onChange }) => {
     const [minVal, setMinVal] = useState(min);
     const [maxVal, setMaxVal] = useState(max);
     const minValRef = useRef(null);
@@ -113,7 +113,6 @@ const FormInputRange = ({ min, max, onChange }) => {
                             event.preventDefault();
                         }
                     }}
-                    value={minVal}
                     placeholder={`От ${min}`}
                 />
                 -
@@ -125,12 +124,12 @@ const FormInputRange = ({ min, max, onChange }) => {
                             event.preventDefault();
                         }
                     }}
-                    value={maxVal}
                     placeholder={`До ${max}`}
+                    className="outline-none focus:outline-none ring-none focus:ring-none"
                 />
             </div>
         </div>
     );
 };
 
-export default FormInputRange;
+export default InputRange;

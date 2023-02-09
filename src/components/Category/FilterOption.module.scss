@@ -20,6 +20,18 @@
 
   .options {
     height: fit-content;
+    max-height: 218px;
+    overflow: hidden;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgb(206, 206, 206);
+      border-radius: 10px;
+    }
   }
 
   .close {

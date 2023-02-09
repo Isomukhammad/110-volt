@@ -31,7 +31,7 @@ const Category = ({
 
     const url = useMemo(() => {
         const brandParams = findParams('brand')
-            ? findParams('brands')
+            ? findParams('brand')
                 .split('=')[1]
                 .split(',')
                 .map((brand) => `&brands[]=${brand.split('-')[0]}`)
@@ -112,6 +112,7 @@ const Category = ({
                             setFilterOpen={setFilterOpen}
                             attributes={attributes}
                             prices={prices}
+                            brands={brands}
                             category={category}
                             loading={dataLoading}
                         />

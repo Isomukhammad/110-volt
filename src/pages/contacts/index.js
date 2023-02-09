@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import ContactsInfo from '../../components/Contacts/ContactsInfo';
 import DiscountTabs from '../../components/DiscountTabs/DiscountTabs';
 import PagePath from '../../components/PagePath/PagePath'
@@ -7,6 +8,8 @@ import HeadInfo from '../../utils/HeadInfo';
 
 const ContactsPage = ({ contacts }) => {
     const { settings, settingsVal } = useData();
+    const router = useRouter();
+    console.log(router)
 
     if (!settingsVal) {
         return (

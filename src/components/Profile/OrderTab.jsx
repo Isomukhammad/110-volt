@@ -1,4 +1,4 @@
-import OrderedProduct from "../OrderedProduct/OrderedProduct";
+import OrderedProduct from "./OrderedProduct";
 
 import styles from './OrderTab.module.scss'
 
