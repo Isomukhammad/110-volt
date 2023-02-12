@@ -61,12 +61,10 @@ const ProductPage = ({ product }) => {
     })
 
     const handleInstantBuy = async () => {
-        if (productInCart) {
-            return null;
-        } else {
+        if (!productInCart) {
             await handleCart({ type: 'CREATE', product, quantity: 1 })
-            router.push('/checkout');
         }
+        router.push('/checkout?instalment=1');
     }
 
     return (

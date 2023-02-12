@@ -1,11 +1,12 @@
-import { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
+import { PatternFormat } from 'react-number-format';
 import { useAuth } from '../../context/auth';
-import { nextAxios } from '../../utils/axios';
+import { authAxios, nextAxios } from '../../utils/axios';
 
 import Button from '../Button/Button';
 import FormError from '../Form/FormError';
-import FormInput from '../FormInput/FormInput';
+import Input from '../Input/Input';
 import MsgCodeForm from './MsgCodeForm';
 
 import styles from './SignUp.module.scss'
@@ -18,6 +19,7 @@ const SignUp = () => {
     const {
         register,
         handleSubmit,
+        control,
         formState: {
             errors,
             isValid
@@ -26,7 +28,7 @@ const SignUp = () => {
     } = useForm({
         defaultValues: {
             "name": '',
-            "phone-number": '',
+            "phone_number": '',
             "email": '',
             "password": '',
             "confirm_password": ''
@@ -35,6 +37,7 @@ const SignUp = () => {
 
     const onSubmit = async (data) => {
         try {
+            setFormError(null);
             if (data.password !== data.confirm_password) {
                 return setFormError((prevVal) => ({
                     ...prevVal,
@@ -44,42 +47,62 @@ const SignUp = () => {
                 }))
             }
 
-            const phone_number = data.phone_number.replace(/\D/g, '');
 
-            const loginCheck = await nextAxios.post('/login/check', {
-                phone_number
+            const phone = data.phone_number.replace(/\D/g, '');
+
+            // const loginCheck = await nextAxios.post('/login/check', {
+            //     phone_number: phone
+            // })
+
+            // if (loginCheck.data.user_exists) {
+            //     return setFormError((prevError) => ({
+            //         ...prevError,
+            //         errors: {
+            //             logincheck: ['Пользователь с таким номером уже существует!'],
+            //         },
+            //     }))
+            // }
+
+            const otp = await nextAxios.post('/otp', {
+                phone_number: phone
             })
 
-            if (loginCheck.data.user_exists) {
-                return setFormError((prevError) => ({
-                    ...prevError,
-                    errors: {
-                        logincheck: ['Пользователь с таким номером уже существует!'],
-                    },
-                }))
-            }
+            // if (otp.data.message) {
+            //     return setFormError((prevError) => ({
+            //         ...prevError,
+            //         errors: {
+            //             otpsend: ['Слишком много попыток!']
+            //         }
+            //     }))
+            // }
 
-            await sendOtp({ phone_number });
             setOtpOpen(true);
         } catch (error) {
             console.error(error)
-            throw error;
         }
     }
 
     const onSubmit2 = async (data) => {
         try {
-            const { name, password, email, phone_number, otp } = data;
+            const { name, password, email, phone_number } = data;
             setFormError(null)
-            const otpCheck = await checkOtp({ phone_number, otp });
+            const phone = phone_number.replace(/\D/g, '');
 
-            if (otpCheck.errors) {
-                otpCheck
-            } else {
-                alert('Correct!!!!!!!!!!')
-            }
-            await handleRegister({ name, password, phone_number, email, opt })
-            await handleLogin({ phone_number, password })
+            // const otpCheck = await checkOtp({ phone_number: phone, otp });
+
+            console.log(otp)
+
+            // if (otpCheck.errors) {
+            //     return setFormError((prevError) => ({
+            //         ...prevError,
+            //         errors: {
+            //             otpcheck: ['Неправильный код!'],
+            //         },
+            //     }))
+            // }
+
+            await handleRegister({ name, password, phone_number: phone, email, opt: data.otp })
+            await handleLogin({ phone_number: phone, password })
             reset()
         } catch (error) {
             console.error(error);
@@ -94,7 +117,7 @@ const SignUp = () => {
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="relative">
                             <input
-                                {...register("name", { required: true, maxLength: 80 })}
+                                {...register("name", { required: true, maxLength: 255 })}
                                 type="text"
                                 id="fullName"
                                 className="block py-4 px-[14px] w-full text-[15px] text-gray-900 bg-transparent rounded-[16px] border-1 border-gray-300 appearance-none focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-transparent peer"
@@ -104,18 +127,32 @@ const SignUp = () => {
                         </div>
 
                         <div className="relative">
-                            <input
-                                {...register("phone_number", { required: true, maxLength: 80 })}
-                                type="number"
-                                id="phone-number"
-                                className="block py-4 px-[14px] w-full text-[15px] text-gray-900 bg-transparent rounded-[16px] border-1 border-gray-300 appearance-none focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-transparent peer"
-                                placeholder=" "
+                            <Controller
+                                control={control}
+                                name="phone_number"
+                                rules={{
+                                    required: true,
+                                    maxlength: 5
+                                }}
+                                render={({ field: { onChange, name, value } }) => (
+                                    <PatternFormat
+                                        format="+998 (##) ### ## ##" allowEmptyFormatting
+                                        mask="_"
+                                        id="phone-number"
+                                        className="block py-4 px-[14px] w-full text-[15px] text-gray-900 bg-transparent rounded-[16px] border-1 border-gray-300 appearance-none focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-transparent peer"
+                                        placeholder=" "
+                                        name={name}
+                                        value={value}
+                                        onChange={onChange}
+                                    />
+                                )}
                             />
                             <label htmlFor="phone-number" className="absolute text-[15px] text-gray-500 duration-300 transform -translate-y-4 scale-100 top-1.5 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1">Номер телефона</label>
                         </div>
+
                         <div className="relative">
                             <input
-                                {...register("email", { required: true, maxLength: 80 })}
+                                {...register("email", { required: true, maxLength: 30 })}
                                 type="email"
                                 id="email"
                                 className="block py-4 px-[14px] w-full text-[15px] text-gray-900 bg-transparent rounded-[16px] border-1 border-gray-300 appearance-none focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-transparent peer"
@@ -128,10 +165,10 @@ const SignUp = () => {
                                 {...register("password", {
                                     required: true,
                                     minLength: {
-                                        value: 8,
+                                        value: 3,
                                         message: "Пароль должен быть не менее 8 символов"
                                     },
-                                    maxLength: 20
+                                    maxLength: 30
                                 })}
                                 type="password"
                                 id="password"
@@ -145,10 +182,10 @@ const SignUp = () => {
                                 {...register("confirm_password", {
                                     required: true,
                                     minLength: {
-                                        value: 8,
+                                        value: 3,
                                         message: "Пароль должен быть не менее 8 символов"
                                     },
-                                    maxLength: 20
+                                    maxLength: 30
                                 })}
                                 type="password"
                                 id="confirm-password"
@@ -157,7 +194,7 @@ const SignUp = () => {
                             />
                             <label htmlFor="confirm-password" className="absolute text-[15px] text-gray-500 duration-300 transform -translate-y-4 scale-100 top-1.5 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1 cursor-text">Подтвердите пароль</label>
                         </div>
-                        <Button active={!isValid}>Войти</Button>
+                        <Button active={!isValid} type="submit">Войти</Button>
                     </form>
                 ) : (
                     <form onSubmit={handleSubmit(onSubmit2)}>
@@ -177,7 +214,12 @@ const SignUp = () => {
                         {
                             errors?.otp && <p className='text-red-500'>{errors?.otp?.message}</p>
                         }
-                        <Button active={!isValid}>Войти</Button>
+
+                        <Button active={!isValid} type="submit">Войти</Button>
+                        <button
+                            onClick={() => setOtpOpen(false)}
+                            className="text-accent font-semibold hover:text-accentDark transition duration-300"
+                        >Назад</button>
                     </form>
                 )
             }

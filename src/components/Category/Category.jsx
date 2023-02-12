@@ -82,6 +82,8 @@ const Category = ({
         revalidateOnReconnect: false,
     })
 
+    console.log(brands);
+
     return (
         <>
             <HeadInfo

@@ -7,6 +7,7 @@ import AuthGuard, { AuthProvider } from '../context/auth';
 import { CartProvider } from '../context/cart';
 import { DataProvider } from '../context/dataContext';
 import ScreenContext from '../context/screenContext';
+import { WishProvider } from '../context/wish';
 
 //layout
 import MainLayout from '../layouts/Layout/Main';
@@ -19,9 +20,9 @@ import '../styles/Slider.scss';
 import '../styles/SortMenu.scss';
 import '../styles/ProductImageSlider.scss';
 import '../styles/PageButtons.scss';
+
 import 'react-toastify/dist/ReactToastify.min.css';
 
-import { WishProvider } from '../context/wish';
 
 const App = ({ Component, pageProps }) => {
   const router = useRouter()

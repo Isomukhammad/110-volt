@@ -5,12 +5,12 @@ import { ScreenContext } from '../../context/screenContext';
 
 import styles from './PageButtons.module.scss'
 
-const PageButtons = ({ data, setSize }) => {
+const PageButtons = ({ data, setSize, search }) => {
     const router = useRouter();
     const { isMobile } = useContext(ScreenContext);
 
     const handlePageClick = (event) => {
-        router.push(`${router.asPath.split('?')[0]}?page=${event.selected + 1}`)
+        router.push(`${router.asPath.split('?')[0]}?${search ? `value=${search}&` : ''}page=${event.selected + 1}`)
     };
 
     return (

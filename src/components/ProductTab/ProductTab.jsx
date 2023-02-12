@@ -7,6 +7,7 @@ import QuickView from '../QuickView/QuickView';
 import styles from './ProductTab.module.scss'
 import { isActive } from '../../utils/funcs';
 import { useWish } from '../../context/wish'
+import Button from '../Button/Button';
 
 const ProductTab = ({
     index,
@@ -35,12 +36,6 @@ const ProductTab = ({
         localStore: localWish,
     })
 
-    useEffect(() => {
-        if (productId === index) {
-            setQuickView('true')
-        }
-    }, [productId, index])
-
     const { isMobile } = useContext(ScreenContext);
     return (
         <>
@@ -49,7 +44,7 @@ const ProductTab = ({
                 className={styles.container}
             >
                 <div
-                    className={`${styles.preview} ${width ? 'w-[254px]' : ''}`}>
+                    className={`${styles.preview} ${width ? 'w-[254px] lg:w-full' : ''}`}>
                     <div
                         className={styles.quickReview}
                         onClick={(e) => {
@@ -67,9 +62,12 @@ const ProductTab = ({
                             sizes="100vh"
                             width={0}
                             height={0}
+                            placeholder="blur"
+                            blurDataURL='/images/placeholderBlur.webp'
                             onError={() => {
                                 setImgSrc('/images/placeholder.jpg')
                             }}
+                            priority
                         />
                     </div>
                 </div>
@@ -97,7 +95,10 @@ const ProductTab = ({
                             <div
 
                             >
-                                <button className="bg-accent padding-1 text-white hover:bg-accentDark transition duration-300" onClick={() => handleCart({ type: 'SWITCH', product })}>
+                                <button
+                                    className="bg-accent padding-1 text-white hover:bg-accentDark transition duration-300"
+                                    onClick={() => handleCart({ type: 'SWITCH', product })}
+                                >
                                     {productInCart ? 'Уже в корзине' : 'В корзину'}
                                 </button>
                             </div>

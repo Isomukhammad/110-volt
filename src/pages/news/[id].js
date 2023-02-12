@@ -8,6 +8,7 @@ import NewSlider from '../../components/News/NewSlider';
 import styles from './Article.module.scss'
 import PopularGoods from '../../components/PopularGoods/PopularGoods';
 import DiscountTabs from '../../components/DiscountTabs/DiscountTabs';
+import { useForm } from 'react-hook-form';
 
 const NewsBlog = ({ pub }) => {
     return (

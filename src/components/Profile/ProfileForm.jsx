@@ -9,7 +9,6 @@ const ProfileForm = () => {
             <h3>Личные данные</h3>
             <PersonalEdit />
             <PasswordEdit />
-            <button className='bg-red-600 py-[12px] text-[16px] mt-10 text-white w-full max-w-[360px] rounded-[16px] font-semibold hover:bg-red-700 transition duration-300'>Удалить аккаунт</button>
         </div>
     )
 }

@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import Button from '../Button/Button';
-import FormInput from '../FormInput/FormInput';
+import Input from '../Input/Input';
 
 import styles from './MsgCodeForm.module.scss'
 

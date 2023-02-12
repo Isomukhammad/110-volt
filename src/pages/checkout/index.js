@@ -11,6 +11,7 @@ import PersonalInfo from '../../components/Checkout/PersonalInfo';
 import PopUp from '../../components/PopUp/PopUp';
 
 import styles from './Checkout.module.scss';
+import Button from '../../components/Button/Button';
 
 const CheckoutPage = () => {
     const [popUp, setPopUp] = useState(false);
@@ -23,6 +24,7 @@ const CheckoutPage = () => {
 
     const onSubmit = (data) => {
         alert(JSON.stringify(data))
+        reset();
     }
 
     return (
@@ -49,7 +51,6 @@ const CheckoutPage = () => {
                     cartLoading ? (
                         <div>Загрузка</div>
                     ) : (cart && cart.quantity !== 0 ? (
-
                         <form onSubmit={handleSubmit(onSubmit)} className={styles.wrapper}>
                             <div>
                                 <div className={styles.content}>
@@ -79,7 +80,7 @@ const CheckoutPage = () => {
                                 }
                             </div>
                             <div className={styles.cartTotal}>
-                                {!cartLoading && store ? (<CartTotal offer={true} store={store} handleSubmit={handleSubmit} onSubmit={onSubmit} />) : null}
+                                {!cartLoading && store ? (<CartTotal offer={true} store={store} />) : null}
                             </div>
                         </form>
                     ) : (

@@ -3,7 +3,6 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { Autoplay, FreeMode, Navigation, Pagination, Thumbs } from "swiper";
-
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
@@ -68,10 +67,10 @@ const ProductPageSlider = ({ images }) => {
                     className="Product-page-slider__thumbs"
                 >
                     {
-                        images?.map((item, index) => (
+                        images.map((item, index) => (
                             <SwiperSlide key={index}>
                                 <ImageComponent
-                                    src={item.original}
+                                    src={item}
                                     placeholder=""
                                 />
                             </SwiperSlide>
@@ -96,10 +95,10 @@ const ProductPageSlider = ({ images }) => {
                     }}
                 >
                     {
-                        images?.map((item, index) => (
+                        images.map((item, index) => (
                             <SwiperSlide key={index}>
                                 <ImageComponent
-                                    src={item.original}
+                                    src={item}
                                     placeholder=""
                                 />
                             </SwiperSlide>

@@ -1,16 +1,14 @@
 import Image from 'next/image';
-import { useEffect } from 'react';
 import useSWR from 'swr';
 import data from '../../data.json';
 import fetcher from '../../utils/fetcher';
-import getCountdown from '../../utils/getCoundown';
 import TimerTab from '../TimerTab/TimerTab';
 
-import styles from './SalesTabs.module.scss'
+import styles from './Promotions.module.scss'
 
-const SalesTabs = () => {
+const Promotions = () => {
     const { sales } = data;
-    const { data: promotions, error: promotionsError, isValidating } = useSWR('/promotions?page=1&quantity=3', (url) => fetcher(url),
+    const { data: promotions, error: promotionsError, isValidating } = useSWR('/promotions?type=active&quantity=3', (url) => fetcher(url),
         {
             revalidateIfStale: false,
             revalidateOnFocus: false,
@@ -40,4 +38,4 @@ const SalesTabs = () => {
     }
 }
 
-export default SalesTabs;
+export default Promotions;

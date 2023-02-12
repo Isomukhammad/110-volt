@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 @import "./colors.scss";
-@import "/src/design/fonts/Gilroy2/stylesheet.css";
 
 body {
   // overflow-x: hidden;
@@ -62,4 +61,8 @@ input::-webkit-inner-spin-button {
 }
 .text-four-line {
   -webkit-line-clamp: 4;
+}
+
+.Toastify__toast {
+  border-radius: 12px;
 }

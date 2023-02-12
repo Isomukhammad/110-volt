@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast, ToastContainer } from "react-toastify";
+import { authAxios } from "../../utils/axios";
 
 import Button from "../Button/Button";
 import FormError from "../Form/FormError";
@@ -13,13 +14,12 @@ const ProfilePassword = () => {
     const {
         register: register,
         handleSubmit: handleSubmit,
-        watch: watch,
         formState: {
             errors: errors,
             isValid: isValid,
         },
         getValues,
-        reset: reset
+        reset
     } = useForm({
         mode: "onChange",
         defaultValues: {
@@ -30,11 +30,12 @@ const ProfilePassword = () => {
     });
 
     const onSubmit = async (data) => {
+        console.log(data);
         if (isValid) {
             try {
                 setFormError(null);
 
-                if (data.password !== data.confirm_password) {
+                if (data.new_password !== data.confirm_password) {
                     return setFormError((prevVal) => ({
                         ...prevVal,
                         errors: {
@@ -49,6 +50,7 @@ const ProfilePassword = () => {
                 })
 
                 toast.success('Пароль изменён!');
+                reset();
             } catch (error) {
                 console.error(error);
                 setFormError(error?.response?.data)

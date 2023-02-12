@@ -6,11 +6,13 @@ import { thousandSeperate } from '../../utils/funcs';
 import Button from '../Button/Button';
 import styles from './CartTotal.module.scss'
 
-const CartTotal = ({ offer, store, handleCart, handleSubmit, onSubmit }) => {
-    console.log('HandleSubmit:', handleSubmit);
-    console.log('onSubmit', onSubmit);
+const CartTotal = ({ offer, store, handleCart }) => {
     const router = useRouter();
     const { isMobile, isTablet } = useContext(ScreenContext)
+
+    const handleInstalmentPush = () => {
+        router.push('/checkout?instalment=1');
+    }
 
     if (isMobile || isTablet) {
         return (
@@ -66,7 +68,7 @@ const CartTotal = ({ offer, store, handleCart, handleSubmit, onSubmit }) => {
                                     <Link href="/checkout">
                                         <Button>Перейти к оформлению</Button>
                                     </Link>
-                                    <Button variant="reverse">Купить в рассрочку</Button>
+                                    <Button variant="reverse" onClick={handleInstalmentPush}>Купить в рассрочку</Button>
                                 </>
                             )
                         }

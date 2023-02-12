@@ -1,6 +1,6 @@
-import styles from './FormInput.module.scss'
+import styles from './Input.module.scss'
 
-const FormInput = ({ name, register, placeholder, required, type, maxLength, minLength, error, value }) => {
+const Input = ({ name, register, placeholder, required, type, maxLength, minLength, error, value }) => {
     if (!name || !register || !placeholder || !required) {
         return null;
     }
@@ -26,4 +26,4 @@ const FormInput = ({ name, register, placeholder, required, type, maxLength, min
     )
 }
 
-export default FormInput;
+export default Input;
