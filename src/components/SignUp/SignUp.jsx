@@ -12,6 +12,7 @@ import MsgCodeForm from './MsgCodeForm';
 import styles from './SignUp.module.scss'
 
 const SignUp = () => {
+    const [isLoading, setIsLoading] = useState(false);
     const [otpOpen, setOtpOpen] = useState(false);
     const [formError, setFormError] = useState(null);
     const { sendOtp, checkOtp, handleRegister, handleLogin } = useAuth();
@@ -37,6 +38,7 @@ const SignUp = () => {
 
     const onSubmit = async (data) => {
         try {
+            setIsLoading(true);
             setFormError(null);
             if (data.password !== data.confirm_password) {
                 return setFormError((prevVal) => ({
@@ -50,68 +52,83 @@ const SignUp = () => {
 
             const phone = data.phone_number.replace(/\D/g, '');
 
-            // const loginCheck = await nextAxios.post('/login/check', {
-            //     phone_number: phone
-            // })
+            if (phone.length !== 12) {
+                return setFormError((prevVal) => ({
+                    ...prevVal,
+                    errors: {
+                        phone_number: ['Напишите полностью номер телефона!']
+                    }
+                }))
 
-            // if (loginCheck.data.user_exists) {
-            //     return setFormError((prevError) => ({
-            //         ...prevError,
-            //         errors: {
-            //             logincheck: ['Пользователь с таким номером уже существует!'],
-            //         },
-            //     }))
-            // }
+            }
+
+            const loginCheck = await nextAxios.post('/login/check', {
+                phone_number: phone
+            })
+
+            if (loginCheck.data.user_exists) {
+                return setFormError((prevError) => ({
+                    ...prevError,
+                    errors: {
+                        logincheck: ['Пользователь с таким номером уже существует!'],
+                    },
+                }))
+            }
 
             const otp = await nextAxios.post('/otp', {
                 phone_number: phone
             })
 
-            // if (otp.data.message) {
-            //     return setFormError((prevError) => ({
-            //         ...prevError,
-            //         errors: {
-            //             otpsend: ['Слишком много попыток!']
-            //         }
-            //     }))
-            // }
+            if (otp.data.message) {
+                return setFormError((prevError) => ({
+                    ...prevError,
+                    errors: {
+                        otpsend: ['Слишком много попыток!']
+                    }
+                }))
+            }
 
             setOtpOpen(true);
         } catch (error) {
             console.error(error)
+        } finally {
+            setIsLoading(false);
         }
     }
 
     const onSubmit2 = async (data) => {
         try {
+            setIsLoading(true);
             const { name, password, email, phone_number } = data;
             setFormError(null)
             const phone = phone_number.replace(/\D/g, '');
 
-            // const otpCheck = await checkOtp({ phone_number: phone, otp });
+            const otpCheck = await checkOtp({ phone_number: phone, otp });
 
-            console.log(otp)
-
-            // if (otpCheck.errors) {
-            //     return setFormError((prevError) => ({
-            //         ...prevError,
-            //         errors: {
-            //             otpcheck: ['Неправильный код!'],
-            //         },
-            //     }))
-            // }
+            if (otpCheck.errors) {
+                return setFormError((prevError) => ({
+                    ...prevError,
+                    errors: {
+                        otpcheck: ['Неправильный код!'],
+                    },
+                }))
+            }
 
             await handleRegister({ name, password, phone_number: phone, email, opt: data.otp })
             await handleLogin({ phone_number: phone, password })
             reset()
         } catch (error) {
             console.error(error);
+        } finally {
+            setIsLoading(false);
         }
     }
 
     return (
         <div className={styles.container}>
-            <FormError error={formError} />
+            {formError ? (
+                <FormError error={formError} />
+            ) : null}
             {
                 !otpOpen ? (
                     <form onSubmit={handleSubmit(onSubmit)}>
@@ -131,8 +148,7 @@ const SignUp = () => {
                                 control={control}
                                 name="phone_number"
                                 rules={{
-                                    required: true,
-                                    maxlength: 5
+                                    required: true
                                 }}
                                 render={({ field: { onChange, name, value } }) => (
                                     <PatternFormat
@@ -194,7 +210,11 @@ const SignUp = () => {
                             />
                             <label htmlFor="confirm-password" className="absolute text-[15px] text-gray-500 duration-300 transform -translate-y-4 scale-100 top-1.5 z-[1] origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1 cursor-text">Подтвердите пароль</label>
                         </div>
-                        <Button active={!isValid} type="submit">Войти</Button>
+                        <Button
+                            active={!isValid}
+                            type="submit"
+                            loading={isLoading}
+                        >Войти</Button>
                     </form>
                 ) : (
                     <form onSubmit={handleSubmit(onSubmit2)}>
