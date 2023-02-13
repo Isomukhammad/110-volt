@@ -12,7 +12,7 @@ import styles from './Cart.module.scss'
 import products from '../../products.json';
 
 const CartPage = () => {
-    const { cartLoading, cart, localCart, handleCart } = useCart();
+    const { cartLoading, cart, localCart, handleCart, cartReqLoading } = useCart();
 
     const store = cart || localCart;
 
@@ -52,7 +52,7 @@ const CartPage = () => {
                                             }
                                         </div>
                                         <div className={styles.cartTotal}>
-                                            <CartTotal store={store} handleCart={handleCart} />
+                                            <CartTotal store={store} handleCart={handleCart} cartReqLoading={cartReqLoading} />
                                         </div>
                                     </>
                                 ) : (

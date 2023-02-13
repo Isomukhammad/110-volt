@@ -1,7 +1,7 @@
 import { ClipLoader } from 'react-spinners';
 import styles from './Button.module.scss'
 
-const Button = ({ children, variant, active, loading, spinColor, ...props }) => {
+const Button = ({ children, variant, active, loading, spinColor, customStyles, ...props }) => {
     const reverseVariant = variant === 'reverse' ? styles.reverse : '';
     const newsVariant = variant === 'news' ? styles.news : '';
     const cartVariant = variant === "cart" ? styles.cart : '';

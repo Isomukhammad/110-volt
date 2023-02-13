@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast, ToastContainer } from "react-toastify";
 
@@ -16,6 +16,8 @@ const PersonalEdit = () => {
     const [formError, setFormError] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
     const { sendOtp } = useAuth();
+    const [isDisabled, setIsDisabled] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const {
         register,
@@ -37,6 +39,8 @@ const PersonalEdit = () => {
 
     const onSubmit = async (data) => {
         const phone = data.phone_number.replace(/\D/g, '');
+        setIsDisabled(false);
+        setIsLoading(true);
         try {
             if (phone_number !== phone) {
                 const loginCheck = await nextAxios.post('/login/check', {
@@ -70,8 +74,15 @@ const PersonalEdit = () => {
         } catch (error) {
             console.error(error);
             setFormError(error?.response?.data)
+        } finally {
+            setIsLoading(false);
+            setIsDisabled(false);
         }
     };
+
+    useEffect(() => {
+        setIsDisabled(isDirty)
+    }, [isDirty]);
 
     return (
         <>
@@ -124,7 +135,7 @@ const PersonalEdit = () => {
                     />
                     <label htmlFor="name" className="absolute text-[15px] text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-100 top-1.5 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500  peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1 cursor-text">E-mail</label>
                 </div>
-                <Button type="submit" active={!isDirty}>Сохранить изменения</Button>
+                <Button type="submit" active={!isDisabled} loading={isLoading} spinColor="#000000">Сохранить изменения</Button>
             </form>
             <OtpPopUp
                 isOpen={isOpen}

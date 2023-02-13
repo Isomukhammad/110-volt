@@ -39,7 +39,7 @@ const ProductHeader = ({ product, show, data }) => {
                 </div>
                 <div className={styles.buttons}>
                     <div onClick={() => handleCart({ type: 'SWITCH', product })}>
-                        <Button>{productInCart ? 'Уже в коризне' : 'Добавить в корзину'}</Button>
+                        <Button loading={cartReqLoading.id == product.id && cartReqLoading.type == 'SWITCH'}>{productInCart ? 'Уже в коризне' : 'Добавить в корзину'}</Button>
                     </div>
                     <Button variant="reverse">Купить в рассрочку</Button>
                 </div>

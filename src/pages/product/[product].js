@@ -67,10 +67,6 @@ const ProductPage = ({ product }) => {
         router.push('/checkout?instalment=1');
     }
 
-    useEffect(() => {
-        console.log(cartReqLoading);
-    }, [cartReqLoading])
-
     return (
         <>
             <HeadInfo
@@ -122,6 +118,7 @@ const ProductPage = ({ product }) => {
                             >
                                 <Button
                                     style={{ width: "fit-content" }}
+                                    loading={cartReqLoading.type == 'SWITCH' && cartReqLoading.id == product.id}
                                 >
                                     {productInCart ? 'Уже в корзине' : 'Добавить в корзину'}
                                 </Button>
@@ -178,7 +175,7 @@ const ProductPage = ({ product }) => {
                 </section>
 
                 <div className={styles.bottomButton}>
-                    <Button onClick={() => handleCart({ type: 'SWITCH', product })} loading={cartReqLoading}>
+                    <Button onClick={() => handleCart({ type: 'SWITCH', product })} loading={cartReqLoading.type == 'SWITCH' && cartReqLoading.id == product.id}>
                         {productInCart ? 'Уже в корзине' : 'В корзину'}
                     </Button>
                 </div>

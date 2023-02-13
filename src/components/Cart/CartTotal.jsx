@@ -1,16 +1,30 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { ScreenContext } from '../../context/screenContext';
 import { thousandSeperate } from '../../utils/funcs';
 import Button from '../Button/Button';
 import styles from './CartTotal.module.scss'
 
-const CartTotal = ({ offer, store, handleCart }) => {
+const defaultIsLoading = [{
+    id: 0,
+    isLoading: false
+}, {
+    id: 1,
+    isLoading: false
+}, {
+    id: 2,
+    isLoading: false
+}]
+
+const CartTotal = ({ offer, store, handleCart, cartReqLoading }) => {
     const router = useRouter();
     const { isMobile, isTablet } = useContext(ScreenContext)
+    const [isLoading, setIsLoading] = useState(defaultIsLoading);
+    console.log(isLoading)
 
     const handleInstalmentPush = () => {
+
         router.push('/checkout?instalment=1');
     }
 
@@ -65,8 +79,8 @@ const CartTotal = ({ offer, store, handleCart }) => {
                                 </>
                             ) : (
                                 <>
-                                    <Link href="/checkout">
-                                        <Button>Перейти к оформлению</Button>
+                                    <Link href="/checkout" s>
+                                        <Button defaultLinkButtons>Перейти к оформлению</Button>
                                     </Link>
                                     <Button variant="reverse" onClick={handleInstalmentPush}>Купить в рассрочку</Button>
                                 </>
@@ -98,7 +112,12 @@ const CartTotal = ({ offer, store, handleCart }) => {
                             <div className={styles.cartButtons}>
                                 <Button variant="cart" active={true}>Добавить всё в избранное</Button>
                                 <div onClick={() => { handleCart({ type: 'CLEAR' }) }}>
-                                    <Button variant="cart">Очистить корзину</Button>
+                                    <Button
+                                        variant="cart"
+                                        type="button"
+                                        loading={cartReqLoading.type == 'CLEAR'}
+                                        spinColor="#7B54C9"
+                                    >Очистить корзину</Button>
                                 </div>
                             </div>
                         </>

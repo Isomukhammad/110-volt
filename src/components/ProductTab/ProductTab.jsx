@@ -8,6 +8,7 @@ import styles from './ProductTab.module.scss'
 import { isActive } from '../../utils/funcs';
 import { useWish } from '../../context/wish'
 import Button from '../Button/Button';
+import { ClipLoader } from 'react-spinners';
 
 const ProductTab = ({
     index,
@@ -95,12 +96,14 @@ const ProductTab = ({
                             <div
 
                             >
-                                <button
+                                <Button
                                     className="bg-accent padding-1 text-white hover:bg-accentDark transition duration-300"
                                     onClick={() => handleCart({ type: 'SWITCH', product })}
+                                    loading={cartReqLoading.id == product.id && cartReqLoading.type == 'SWITCH'}
+                                    customStyles="w-[128px] flex flex-col items-center justify-center"
                                 >
                                     {productInCart ? 'Уже в корзине' : 'В корзину'}
-                                </button>
+                                </Button>
                             </div>
                             <svg
                                 viewBox='0 0 24 24'
@@ -110,7 +113,16 @@ const ProductTab = ({
                                 stroke={productInWish ? "none" : "#BDBDBD"}
                                 onClick={() => handleWish({ type: 'ADD', product })}
                             >
-                                <use xlinkHref="#heart"></use>
+                                {
+                                    wishReqLoading.id == product.id && wishReqLoading.type == 'ADD' ? (
+                                        <ClipLoader
+                                            color="#7B54C9"
+                                            size={16}
+                                        />
+                                    ) : (
+                                        <use xlinkHref="#heart"></use>
+                                    )
+                                }
                             </svg>
                         </div>
                     )
