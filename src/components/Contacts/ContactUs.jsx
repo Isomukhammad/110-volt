@@ -83,7 +83,7 @@ const ContactUs = () => {
                         })}
                         type="text"
                         id="message"
-                        className="min-h-full block px-[14px] w-full text-[15px] text-gray-900 bg-transparent rounded-[16px] border-1 border-gray-300 appearance-none focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-transparent peer"
+                        className="py-3 min-h-full block px-[14px] w-full text-[15px] text-gray-900 bg-transparent rounded-[16px] border-1 border-gray-300 appearance-none focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-transparent peer"
                         placeholder=" "
                         maxLength={10}
                     />
