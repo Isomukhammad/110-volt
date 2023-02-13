@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
-import ConnectOption from '../ConnectOption/ConnectOption';
+import ConnectOption from './ConnectOption';
 import FormTextarea from '../FormTextarea/Formtextarea';
 import ImageDrop from '../ImageDrop/ImageDrop';
 import CheckoutInstallment from './CheckoutInstallment';
