@@ -10,7 +10,7 @@ const ReviewCategories = () => {
     return (
         <section className={styles.reviews}>
             <div className={styles.header}>
-                <h1>Что думают клиенты о 110-volt?</h1>
+                <h1 className='font-bold text-[32px]'>Что думают клиенты о 110-volt?</h1>
                 <CategoriesTabsLink linkTitle="Все отзывы" />
             </div>
             <div className={styles.tabs}>

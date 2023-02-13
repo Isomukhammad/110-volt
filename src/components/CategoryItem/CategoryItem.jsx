@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useCart } from "../../context/cart";
 import { isActive } from "../../utils/funcs";
 
@@ -31,6 +31,10 @@ const CategoryItem = ({ info }) => {
     const stopProp = (event) => {
         event.preventDefault();
     }
+
+    useEffect(() => {
+        console.log(cartReqLoading)
+    }, [cartReqLoading])
 
     return (
         <Link href={`/product/${id}-${slug}`}

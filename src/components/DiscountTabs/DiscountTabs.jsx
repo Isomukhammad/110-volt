@@ -30,21 +30,6 @@ const DiscountTabs = () => {
 
     const swiperRef = useRef();
 
-    // if (isMobile) {
-    //     return (
-    //         <>
-    //             {!isValidating ? (
-    //                 <div className={styles.containerMobile}>
-    //                     {
-    //                         data.data.map((item) => (
-    //                             <Image src={item.img} key={item.id} alt={item.description} width="0" height="0" sizes="100vw" placeholder="blurDataURL" />
-    //                         ))
-    //                     }
-    //                 </div>
-    //             ) : (null)}
-    //         </>
-    //     )
-    // } else {
     return (
         <>
             {!isValidating ? (

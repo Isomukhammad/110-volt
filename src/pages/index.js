@@ -22,7 +22,7 @@ export default function Home() {
       <Recommendations title="Лучшие новинки" linkTitle="Все новинки" link="/products?is_new=1&quantity=12" />
       <Recommendations title="Успейте купить" link="/products?is_promotion=1&quantity=12" />
       <Promotions />
-      <ReviewCategories />
+      {/* <ReviewCategories /> */}
       <BrandCategories />
       <CompanyDescription />
     </main>
