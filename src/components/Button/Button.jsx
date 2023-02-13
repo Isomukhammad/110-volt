@@ -1,7 +1,7 @@
 import { ClipLoader } from 'react-spinners';
 import styles from './Button.module.scss'
 
-const Button = ({ children, variant, active, loading, ...props }) => {
+const Button = ({ children, variant, active, loading, spinColor, ...props }) => {
     const reverseVariant = variant === 'reverse' ? styles.reverse : '';
     const newsVariant = variant === 'news' ? styles.news : '';
     const cartVariant = variant === "cart" ? styles.cart : '';
@@ -19,11 +19,13 @@ const Button = ({ children, variant, active, loading, ...props }) => {
         >
             {
                 loading ? (
-                    <ClipLoader
-                        color="#FFFFFF"
-                        loading={loading}
-                        size={16}
-                    />
+                    <div className='flex flex-col items-center justify-center py-[1px]'>
+                        <ClipLoader
+                            color={spinColor ? spinColor : "#FFFFFF"}
+                            loading={loading}
+                            size={16}
+                        />
+                    </div>
                 ) : (
                     <div>
                         {children}

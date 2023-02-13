@@ -67,6 +67,10 @@ const ProductPage = ({ product }) => {
         router.push('/checkout?instalment=1');
     }
 
+    useEffect(() => {
+        console.log(cartReqLoading);
+    }, [cartReqLoading])
+
     return (
         <>
             <HeadInfo
@@ -112,7 +116,10 @@ const ProductPage = ({ product }) => {
                         </div>
 
                         <div className={styles.buttons}>
-                            <div onClick={() => handleCart({ type: 'SWITCH', product })}>
+                            <div
+                                loading={cartReqLoading}
+                                onClick={() => handleCart({ type: 'SWITCH', product })}
+                            >
                                 <Button
                                     style={{ width: "fit-content" }}
                                 >
@@ -171,7 +178,9 @@ const ProductPage = ({ product }) => {
                 </section>
 
                 <div className={styles.bottomButton}>
-                    <Button>В корзину</Button>
+                    <Button onClick={() => handleCart({ type: 'SWITCH', product })} loading={cartReqLoading}>
+                        {productInCart ? 'Уже в корзине' : 'В корзину'}
+                    </Button>
                 </div>
                 <ProductCharasteristic data={product} />
                 <PopularGoods margin={'80px'} title={'Популярные товары'} link="/products?is_popular-1&quantity=6" />
