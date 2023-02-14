@@ -3,7 +3,6 @@ import { nextAxios } from '../../utils/axios';
 
 import Button from '../Button/Button';
 import Input from '../Input/Input';
-import FormTextarea from '../FormTextarea/Formtextarea';
 
 
 import styles from './ContactUs.module.scss'

@@ -1,17 +1,19 @@
 import { useEffect, useState } from 'react';
-import InputRadio from '../InputRadio/InputRadio';
-import FormCheckbox from '../FormCheckbox/FormCheckbox';
+import InputRadio from '../Input/InputRadio';
+import InputCheckbox from '../Input/InputCheckbox';
 import FilterOption from './FilterOption';
 import InputRange from '../Input/InputRange';
 import { useData } from '../../context/dataContext';
 import styles from './FilterMenu.module.scss';
 import useSWR from 'swr';
 import fetcher from '../../utils/fetcher';
+import { useParams } from '../../hooks/useParams';
 
 const FilterMenu = ({ attributes, brands, prices, loading, category, products, filterOpen, setFilterOpen }) => {
-    // const [brands, setBrands] = useState([]);
+    console.log(attributes, brands, prices, loading, category)
     const [space, setSpace] = useState([]);
     const [sim, setSim] = useState([]);
+    const { updateParams, checkParams, findParams, resetParams } = useParams();
     const [checkedRadio, setCheckedRadio] = useState(null);
     const [maxValue, setMaxValue] = useState('');
     const [minValue, setMinValue] = useState('');
@@ -87,52 +89,21 @@ const FilterMenu = ({ attributes, brands, prices, loading, category, products, f
                 </svg>
             </div>
             <FilterOption title={'Бренды'}>
-                <form>
-                    <FormCheckbox
-                        name="Apple"
-                        handleChange={null}
-                    />
-                    <FormCheckbox
-                        name="Samsung"
-                        handleChange={null}
-                    />
-                    <FormCheckbox
-                        name="Xiaomi"
-                        handleChange={null}
-                    />
-                    <FormCheckbox
-                        name="Huawei"
-                        handleChange={null}
-                    />
-                    <FormCheckbox
-                        name="Lenovo"
-                        handleChange={null}
-                    />
-                    <FormCheckbox
-                        name="HP"
-                        handleChange={null}
-                    />
-                    <FormCheckbox
-                        name="HP"
-                        handleChange={null}
-                    />
-                    <FormCheckbox
-                        name="HP"
-                        handleChange={null}
-                    />
-                    <FormCheckbox
-                        name="HP"
-                        handleChange={null}
-                    />
-                    <FormCheckbox
-                        name="Sony"
-                        handleChange={null}
-                    />
-                    <FormCheckbox
-                        name="OnePlus"
-                        handleChange={null}
-                    />
-                </form>
+                <div className='flex flex-col gap-3'>
+                    {
+                        brands.map((brand) => (
+                            <InputCheckbox
+                                name={brand.name}
+                                key={brand.id}
+                                id={`brand-${brand.id}`}
+                                onChange={() => {
+                                    updateParams('brand', `${brand.id}-${brand.slug}`)
+                                }}
+                                checked={checkParams('brand', `${brand.id}-${brand.slug}`)}
+                            />
+                        ))
+                    }
+                </div>
             </FilterOption>
 
             <FilterOption title="Цена">
@@ -144,23 +115,23 @@ const FilterMenu = ({ attributes, brands, prices, loading, category, products, f
 
             <FilterOption title="Объем встроенной памяти">
                 <form>
-                    <FormCheckbox
+                    <InputCheckbox
                         name="1 ТБ"
                         handleChange={handleSpaceChange}
                     />
-                    <FormCheckbox
+                    <InputCheckbox
                         name="256 ГБ"
                         handleChange={handleSpaceChange}
                     />
-                    <FormCheckbox
+                    <InputCheckbox
                         name="128 ГБ"
                         handleChange={handleSpaceChange}
                     />
-                    <FormCheckbox
+                    <InputCheckbox
                         name="64 ГБ"
                         handleChange={handleSpaceChange}
                     />
-                    <FormCheckbox
+                    <InputCheckbox
                         name="32 ГБ"
                         handleChange={handleSpaceChange}
                     />
@@ -169,19 +140,19 @@ const FilterMenu = ({ attributes, brands, prices, loading, category, products, f
 
             <FilterOption title="Количество и тип SIM-карты">
                 <form>
-                    <FormCheckbox
+                    <InputCheckbox
                         name="Dual-Sim (nano-sim)"
                         handleChange={handleSimChange}
                     />
-                    <FormCheckbox
+                    <InputCheckbox
                         name="1 (Nano Sim)"
                         handleChange={handleSimChange}
                     />
-                    <FormCheckbox
+                    <InputCheckbox
                         name="2 (Nano-SIM + eSIM)"
                         handleChange={handleSimChange}
                     />
-                    <FormCheckbox
+                    <InputCheckbox
                         name="2 nano-SIM"
                         handleChange={handleSimChange}
                     />

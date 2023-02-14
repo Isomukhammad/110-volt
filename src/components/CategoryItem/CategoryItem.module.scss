@@ -103,7 +103,6 @@
   }
 
   .cart {
-    transition: 0.2s ease-in;
     visibility: hidden;
     cursor: pointer;
     position: absolute;
@@ -114,7 +113,11 @@
     background: #7b54c9;
     padding: 1em;
     opacity: 0;
-    transition: 0.3s all;
+    transition: 0.3s background;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
     &:hover {
       background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
@@ -140,6 +143,10 @@
           ),
           #7b54c9;
       }
+    }
+
+    &.loading {
+      padding: 1.255em;
     }
   }
   @media screen and (max-width: 1024px) {
@@ -168,7 +175,9 @@
     }
 
     .cart {
-      display: none;
+      visibility: visible;
+      opacity: 1;
+      // display: none;
     }
   }
 }

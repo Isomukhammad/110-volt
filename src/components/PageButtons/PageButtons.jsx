@@ -5,13 +5,15 @@ import { ScreenContext } from '../../context/screenContext';
 
 import styles from './PageButtons.module.scss'
 
-const PageButtons = ({ data, setSize, search }) => {
+const PageButtons = ({ data, setSize, search, setPage, page }) => {
     const router = useRouter();
     const { isMobile } = useContext(ScreenContext);
 
     const handlePageClick = (event) => {
         router.push(`${router.asPath.split('?')[0]}?${search ? `value=${search}&` : ''}page=${event.selected + 1}`)
     };
+
+    console.log()
 
     return (
         <div className={styles.container}>
@@ -61,6 +63,8 @@ const PageButtons = ({ data, setSize, search }) => {
                 onClick={() => {
                     if (setSize) {
                         setSize(size + 1)
+                    } else if (page) {
+                        setPage(page + 1)
                     }
                 }}
             >

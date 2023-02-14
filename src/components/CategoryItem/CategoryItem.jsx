@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { ClipLoader } from "react-spinners";
 import { useCart } from "../../context/cart";
 import { isActive } from "../../utils/funcs";
 
@@ -32,10 +33,6 @@ const CategoryItem = ({ info }) => {
         event.preventDefault();
     }
 
-    useEffect(() => {
-        console.log(cartReqLoading)
-    }, [cartReqLoading])
-
     return (
         <Link href={`/product/${id}-${slug}`}
             className={styles.tab}
@@ -64,19 +61,28 @@ const CategoryItem = ({ info }) => {
                 <p>{current_price_formatted}</p>
                 <p>{old_price_formatted}</p>
             </div>
-            <button className={`${styles.cart} ${productInCart ? styles.active : ''}`} onClick={(e) => {
+            <button className={`${styles.cart} ${productInCart ? styles.active : ''} ${cartReqLoading.id == info.id && cartReqLoading.type == 'SWITCH' ? styles.loading : ''}`} onClick={(e) => {
                 stopProp(e)
                 handleCart({ type: 'SWITCH', product: info })
             }}>
-                <svg
-                    viewBox="0 0 24 24"
-                    width={24}
-                    height={24}
-                    fill={productInCart ? "none" : "none"}
-                    stroke={productInCart ? "#7B54C9" : "white"}
-                >
-                    <use xlinkHref="#bag-logo"></use>
-                </svg>
+                {
+                    cartReqLoading.id == info.id && cartReqLoading.type == 'SWITCH' ? (
+                        <ClipLoader
+                            color={productInCart ? "#7B54C9" : "#FFFFFF"}
+                            size={16}
+                        />
+                    ) : (
+                        <svg
+                            viewBox="0 0 24 24"
+                            width={24}
+                            height={24}
+                            fill={productInCart ? "none" : "none"}
+                            stroke={productInCart ? "#7B54C9" : "white"}
+                        >
+                            <use xlinkHref="#bag-logo"></use>
+                        </svg>
+                    )
+                }
             </button>
         </Link>
     )

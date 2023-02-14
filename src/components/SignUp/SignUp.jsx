@@ -75,21 +75,13 @@ const SignUp = () => {
                 }))
             }
 
-            const otp = await nextAxios.post('/otp', {
+            await nextAxios.post('/otp', {
                 phone_number: phone
             })
 
-            if (otp.data.message) {
-                return setFormError((prevError) => ({
-                    ...prevError,
-                    errors: {
-                        otpsend: ['Слишком много попыток!']
-                    }
-                }))
-            }
-
             setOtpOpen(true);
         } catch (error) {
+            setFormError(err?.response?.data)
             console.error(error)
         } finally {
             setIsLoading(false);

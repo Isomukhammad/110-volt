@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import useSWR from 'swr';
 
 import fetcher from '../../utils/fetcher';
@@ -21,11 +21,13 @@ import styles from './News.module.scss'
 const NewsPage = () => {
     const router = useRouter()
     const { settings } = useData();
+    const [news, setNews] = useState([]);
+    const [page, setPage] = useState(router.query.page ? router.query.page : 1);
 
     const url = useMemo(() => {
-        return `/publications?type=2&page=${router.query.page || 1}&quantity=${router.query.quantity || 12
+        return `/publications?type=2&page=${router.query.page || page}&quantity=${router.query.quantity || 12
             }`
-    }, [router.query.page, router.query.quantity])
+    }, [router.query.page, router.query.quantity, page])
 
     const { data: publications, error: publicationsError, isValidating, mutate: mutatePublications } = useSWR(
         [url, router.locale],
@@ -35,8 +37,13 @@ const NewsPage = () => {
         refreshWhenHidden: 0,
         refreshWhenHidden: false,
         refreshWhenOffline: false,
-    }
-    )
+    })
+
+    useEffect(() => {
+        setNews((prevVal) => [...prevVal, publications])
+    }, [publications])
+
+    console.log(news)
 
     if (!isValidating) {
         return (
@@ -93,7 +100,7 @@ const NewsPage = () => {
                             </div>
 
                             <div className={styles.pageButtons}>
-                                <PageButtons data={publications} />
+                                <PageButtons data={publications} page={page} setPage={setPage} />
                             </div>
 
                             <div className='lg:hidden'>

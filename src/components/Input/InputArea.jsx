@@ -1,6 +1,6 @@
-import styles from './Formtextarea.module.scss'
+import styles from './InputArea.module.scss'
 
-const FormTextarea = ({ register, name, placeholder, required }) => {
+const InputArea = ({ register, name, placeholder, required }) => {
     return (
         <textarea
             cols="30"
@@ -14,4 +14,4 @@ const FormTextarea = ({ register, name, placeholder, required }) => {
     )
 }
 
-export default FormTextarea;
+export default InputArea;

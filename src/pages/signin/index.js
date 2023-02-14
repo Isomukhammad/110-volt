@@ -15,7 +15,9 @@ const SignInPage = () => {
                     <SignIn />
                     <p className={styles.account}>
                         Нет аккаунта?
-                        <Link href="/signup">Зарегестрироваться</Link>
+                        <Link href="/signup">
+                            <button className='ml-1 text-accent hover:text-accentDark'>Зарегестрироваться</button>
+                        </Link>
                     </p>
                     <div className={styles.conditions}>
                         <svg

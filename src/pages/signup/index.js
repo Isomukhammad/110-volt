@@ -14,7 +14,7 @@ const SignUpPage = () => {
                 <div className={styles.signUn}>
                     <h2 className='text-[24px] font-semibold'>Регистрация</h2>
                     <SignUp />
-                    <p className={styles.account}>Уже есть аккаунт? <Link href="/signin">Войти</Link></p>
+                    <p className={styles.account}>Уже есть аккаунт? <Link href="/signin"><button className='ml-1 text-accent hover:text-accentDark'>Войти</button></Link></p>
                     <div className={styles.conditions}>
                         <svg
                             viewBox='0 0 16 13'
