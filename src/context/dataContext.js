@@ -22,8 +22,8 @@ export const DataProvider = ({ children }) => {
         error: settingsError,
         isValidating: settingsVal
     } = useSWR(
-        '/settings',
-        (url) => fetcher(url),
+        ['/settings', router.locale],
+        (url) => fetcher(url, { headers: { 'Accept-Language': router.locale } }),
         disableRevalidation
     )
 
@@ -32,7 +32,7 @@ export const DataProvider = ({ children }) => {
         error: treeError,
         isValidating: treeValidating
     } = useSWR(
-        '/categories/tree', (url) => fetcher(url),
+        ['/categories/tree', router.locale], (url) => fetcher(url, { headers: { 'Accept-Language': router.locale } }),
         disableRevalidation
     );
 

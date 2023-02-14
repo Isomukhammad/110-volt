@@ -63,8 +63,6 @@ const ProductTab = ({
                             sizes="100vh"
                             width={0}
                             height={0}
-                            placeholder="blur"
-                            blurDataURL='/images/placeholderBlur.webp'
                             onError={() => {
                                 setImgSrc('/images/placeholder.jpg')
                             }}

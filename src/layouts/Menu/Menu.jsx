@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import { useContext, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import useSWR from 'swr';
 
 import fetcher from '../../utils/fetcher';
 import data from '../../data.json';

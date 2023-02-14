@@ -4,10 +4,12 @@ import Link from "next/link";
 import styles from './FooterCategory.module.scss'
 import useSWR from "swr";
 import fetcher from "../../utils/fetcher";
+import { useRouter } from "next/router";
 
 const FooterCategory = ({ data }) => {
+    const router = useRouter();
     const [open, setOpen] = useState(false);
-    const { data: category, error: categoryError, isValidating: categoryValidating } = useSWR(`/menus/${data.id}`, (url) => fetcher(url), {
+    const { data: category, error: categoryError, isValidating: categoryValidating } = useSWR([`/menus/${data.id}`, 'uz'], (url) => fetcher(url, { headers: { 'Accept-Language': router.locale } }), {
         revalidateOnFocus: false,
         revalidateOnReconnect: false,
         refreshWhenHidden: 0,

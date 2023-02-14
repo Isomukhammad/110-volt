@@ -1,6 +1,11 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: true,
+  i18n: {
+    defaultLocale: 'uz',
+    locales: ['uz', 'ru'],
+    localeDetection: false
+  },
   images: {
     remotePatterns: [
       {
@@ -12,8 +17,4 @@ module.exports = {
   env: {
     API: 'https://shop.inweb.uz/api/v2',
   },
-  i18n: {
-    defaultLocale: 'ru',
-    locales: ['ru', 'uz'],
-  }
 }

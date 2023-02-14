@@ -8,11 +8,13 @@ import ImageComponent from '../ImageComponent/ImageComponent'
 import HeadlineSlider from './HeadlineSlider'
 
 import styles from './Headline.module.scss'
+import { useRouter } from 'next/router'
 
 const Headline = () => {
-	const { data: sidebanner, error: sidebannerError, isValidating: sidebarValidating, mutate: mutateSidenanner } = useSWR('/banners?type=home_block_1_2',
-		(url) =>
-			fetcher(url),
+	const router = useRouter();
+	const { data: sidebanner, error: sidebannerError, isValidating: sidebarValidating, mutate: mutateSidenanner } = useSWR(['/banners?type=home_block_1_2', router.locale],
+		(url,) =>
+			fetcher(url, { headers: { 'Accept-Language': router.locale } }),
 		{
 			revalidateIfStale: false,
 			revalidateOnFocus: false,
@@ -20,9 +22,9 @@ const Headline = () => {
 		}
 	)
 
-	const { data: slider, error: sliderError, isValidating: sliderValidating, mutate: mutateSlider } = useSWR('/banners?type=home_slide',
+	const { data: slider, error: sliderError, isValidating: sliderValidating, mutate: mutateSlider } = useSWR(['/banners?type=home_slide', router.locale],
 		(url) =>
-			fetcher(url),
+			fetcher(url, { headers: { 'Accept-Language': router.locale } }),
 		{
 			revalidateIfStale: false,
 			revalidateOnFocus: false,

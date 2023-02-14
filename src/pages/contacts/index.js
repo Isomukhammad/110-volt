@@ -9,7 +9,6 @@ import HeadInfo from '../../utils/HeadInfo';
 const ContactsPage = ({ contacts }) => {
     const { settings, settingsVal } = useData();
     const router = useRouter();
-    console.log(router)
 
     if (!settingsVal) {
         return (

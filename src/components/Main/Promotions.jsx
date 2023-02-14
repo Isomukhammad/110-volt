@@ -1,14 +1,14 @@
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import useSWR from 'swr';
-import data from '../../data.json';
 import fetcher from '../../utils/fetcher';
 import TimerTab from '../TimerTab/TimerTab';
 
 import styles from './Promotions.module.scss'
 
 const Promotions = () => {
-    const { sales } = data;
-    const { data: promotions, error: promotionsError, isValidating } = useSWR('/promotions?type=active&quantity=3', (url) => fetcher(url),
+    const router = useRouter;
+    const { data: promotions, error: promotionsError, isValidating } = useSWR(['/promotions?type=active&quantity=3', router.locale], (url) => fetcher(url, { header: { 'Accept-Language': router.locale } }),
         {
             revalidateIfStale: false,
             revalidateOnFocus: false,

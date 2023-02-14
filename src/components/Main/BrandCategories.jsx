@@ -20,6 +20,7 @@ const BrandCategories = () => {
 	// const { brands } = data;
 	const brandsRef = useRef();
 	const { data: brands, error, mutateBrands } = useSWR('/brands', (url) => fetcher(url))
+	console.log(router);
 
 	if (error)
 		return (

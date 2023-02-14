@@ -17,9 +17,11 @@ import Image from "next/image";
 import useSWR from "swr";
 import fetcher from "../../utils/fetcher";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const DiscountTabs = () => {
-    const { data, error, isValidating, mutate } = useSWR('/banners?type=home_block_3_slide', (url) => fetcher(url),
+    const router = useRouter();
+    const { data, error, isValidating, mutate } = useSWR(['/banners?type=home_block_3_slide', router.locale], (url) => fetcher(url, { headers: { 'Accept-Language': router.locale } }),
         {
             revalidateIfStale: false,
             revalidateOnFocus: false,

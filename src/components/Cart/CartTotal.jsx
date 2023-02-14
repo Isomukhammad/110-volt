@@ -21,7 +21,6 @@ const CartTotal = ({ offer, store, handleCart, cartReqLoading }) => {
     const router = useRouter();
     const { isMobile, isTablet } = useContext(ScreenContext)
     const [isLoading, setIsLoading] = useState(defaultIsLoading);
-    console.log(isLoading)
 
     const handleInstalmentPush = () => {
 

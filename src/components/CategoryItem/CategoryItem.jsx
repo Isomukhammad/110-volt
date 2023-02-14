@@ -54,7 +54,7 @@ const CategoryItem = ({ info }) => {
                     className={styles.background}
                     style={{ right: `${width}%` }}
                 ></div>
-                <p>{monthly} сум/мес</p>
+                <p>сум/мес</p>
             </div>
             <div className={styles.name}>{name}</div>
             <div className={styles.prices}>

@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import useSWR from 'swr';
 import fetcher from '../../utils/fetcher';
 import PopularCategoryTab from '../PopularCategoryTab/PopularCategoryTab'
@@ -5,7 +6,8 @@ import PopularCategoryTab from '../PopularCategoryTab/PopularCategoryTab'
 import styles from './PopularCategories.module.scss';
 
 const PopularCategories = () => {
-    const { data: categories, error, isValidating, mutate } = useSWR('/categories', (url) => fetcher(url),
+    const router = useRouter();
+    const { data: categories, error, isValidating, mutate } = useSWR(['/categories', router.locale], (url) => fetcher(url, { headers: { 'Accept-Language': router.locale } }),
         {
             revalidateIfStale: false,
             revalidateOnFocus: false,

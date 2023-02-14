@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { useRouter } from "next/router"
 import useSWR from "swr"
 import fetcher from "../../utils/fetcher"
 import CategoriesTabsLink from "../CategoriesTabsLink/CategoriesTabLink"
@@ -9,7 +10,8 @@ import ProductTab from "../ProductsList/ProductsList"
 import styles from './Recommendations.module.scss'
 
 const Recommendations = ({ title, link, linkTitle }) => {
-    const { data, error, isValidating, mutate } = useSWR(link, (url) => fetcher(url),
+    const router = useRouter();
+    const { data, error, isValidating, mutate } = useSWR([link, router.locale], (url) => fetcher(url, { headers: { 'Accept-Language': router.locale } }),
         {
             revalidateIfStale: false,
             revalidateOnFocus: false,
