@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useContext, useEffect, useRef, useState } from "react";
 
 import { ScreenContext } from "../../context/screenContext";
@@ -16,7 +17,6 @@ import styles from './DiscountTabs.module.scss'
 import Image from "next/image";
 import useSWR from "swr";
 import fetcher from "../../utils/fetcher";
-import Link from "next/link";
 import { useRouter } from "next/router";
 
 const DiscountTabs = () => {

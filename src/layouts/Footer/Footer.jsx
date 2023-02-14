@@ -1,15 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { useLang } from '../../hooks/useLang';
 import FooterCategory from "./FooterCategory";
 
 import styles from './Footer.module.scss'
 import useSWR from "swr";
 import fetcher from "../../utils/fetcher";
 import { useData } from "../../context/dataContext";
-import { useRouter } from "next/router";
 
 const Footer = () => {
     const router = useRouter();
+    const lang = useLang();
     const { settings } = useData();
     const { data: menu, error: menuError, isValidating: menuValidation } = useSWR(['/menus', router.locale], (url) => fetcher(url, { headers: { 'Accept-Language': router.locale } }), {
         revalidateOnFocus: false,
@@ -19,17 +21,15 @@ const Footer = () => {
         refreshWhenOffline: false,
     });
 
-    console.log(menu)
-
     return (
         <footer className={styles.footer}>
             <div className={styles.links}>
                 <div className={styles.contactUs}>
-                    <h2 className="font-semibold text-[24px]">Свяжитесь с нами</h2>
-                    <p>Телефон: <span><Link href={`tel:${settings?.phone}`}>{settings?.phone}</Link></span></p>
-                    <p>Режим работы: <span>9:00–21:00</span></p>
-                    <p>E-mail: <span><Link href={`mailto:${settings?.email}`}>{settings?.email}</Link></span></p>
-                    <p>Адрес: <span>{settings?.address}</span></p>
+                    <h2 className="font-semibold text-[24px]">{lang?.['Свяжитесь с нами']}</h2>
+                    <p>{lang?.['Телефон']}: <span><Link href={`tel:${settings?.phone}`}>{settings?.phone}</Link></span></p>
+                    <p>{lang?.['Режим работы']}: <span>9:00–21:00</span></p>
+                    <p>{lang?.['E-mail']}: <span><Link href={`mailto:${settings?.email}`}>{settings?.email}</Link></span></p>
+                    <p>{lang?.['Адрес']}: <span>{settings?.address}</span></p>
                 </div>
 
                 {
@@ -76,8 +76,8 @@ const Footer = () => {
                 <Link href='/'>
                     <div dangerouslySetInnerHTML={{ __html: settings?.logo_light_svg }}></div>
                 </Link>
-                <p>© 2022 110-volt. Все права защищены</p>
-                <Link href="http://inweb.uz/" className={styles.devs}>Разработка -
+                <p>© 2022 110-volt. {lang?.['Все права защищены']}</p>
+                <Link href="http://inweb.uz/" className={styles.devs}>{lang?.['Разработка']} -
                     <span>
                         <svg viewBox="0 0 15 18" fill="none" width={15} height={18} className={styles.devLogo}>
                             <use xlinkHref='#dev-logo'></use>

@@ -1,16 +1,21 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import { useLang } from '../../hooks/useLang';
+
 import { ScreenContext } from '../../context/screenContext';
+import { useData } from '../../context/dataContext';
+import { useCart } from '../../context/cart';
+import { useAuth } from '../../context/auth';
 
 import Menu from '../Menu/Menu';
 import SearchInput from '../../components/SearchInput/SearchInput';
 
 import styles from './Header.module.scss';
-import { useData } from '../../context/dataContext';
-import { useCart } from '../../context/cart';
-import { useAuth } from '../../context/auth';
+import { useRouter } from 'next/router';
 
 const Header = () => {
+    const router = useRouter();
+    const lang = useLang();
     const { user, userLoading } = useAuth();
     const { settings, settingsError, tree, treeValidating, cartLoading } = useData();
     const { isMobile, isTablet } = useContext(ScreenContext)
@@ -111,7 +116,19 @@ const Header = () => {
                         <svg viewBox="0 0 21 22" fill="none" className={styles.languageButton}>
                             <use xlinkHref='#language-logo'></use>
                         </svg>
-                        <p>Русский</p>
+                        {
+                            (() => {
+                                if (router.locale === 'ru') {
+                                    return (
+                                        <p>Русский</p>
+                                    )
+                                } else if (router.locale === 'uz') {
+                                    return (
+                                        <p>O&apos;zbekcha</p>
+                                    )
+                                }
+                            })()
+                        }
                     </div>
                     <Link
                         href="/cart"
@@ -126,7 +143,7 @@ const Header = () => {
                                     <div className={styles.itemsNumber}>{store.quantity}</div>) : (null)
                             ) : null
                         }
-                        <div>Корзина</div>
+                        <div>{lang?.['Корзина']}</div>
                     </Link>
                     {!userLoading ? (
                         <Link
@@ -136,7 +153,7 @@ const Header = () => {
                             <svg viewBox="0 0 21 22" width={21} height={22} fill="none" className={styles.languageButton}>
                                 <use xlinkHref='#profile-logo'></use>
                             </svg>
-                            <div>{user ? 'Профиль' : 'Войти'}</div >
+                            <div>{user ? lang?.['Профиль'] : lang?.['Войти']}</div >
                         </Link>
                     ) : (null)}
                 </div>

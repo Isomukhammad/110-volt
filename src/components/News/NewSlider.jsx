@@ -11,9 +11,11 @@ import { Pagination, Navigation, Autoplay } from "swiper";
 import styles from './NewSlider.module.scss';
 import useSWR from 'swr';
 import fetcher from '../../utils/fetcher';
+import { useRouter } from 'next/router';
 
 const NewSlider = () => {
-    const { data, error, isValidating } = useSWR('/publications?type=2&quantity=6', (url) => fetcher(url),
+    const router = useRouter();
+    const { data, error, isValidating } = useSWR(['/publications?type=2&quantity=6', router.locale], (url) => fetcher(url, { headers: { 'Accept-Language': router.locale } }),
         {
             revalidateIfStale: false,
             revalidateOnFocus: false,

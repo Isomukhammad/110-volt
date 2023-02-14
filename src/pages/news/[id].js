@@ -8,21 +8,19 @@ import NewSlider from '../../components/News/NewSlider';
 import styles from './Article.module.scss'
 import PopularGoods from '../../components/PopularGoods/PopularGoods';
 import DiscountTabs from '../../components/DiscountTabs/DiscountTabs';
-import { useForm } from 'react-hook-form';
+import { useLang } from '../../hooks/useLang';
 
 const NewsBlog = ({ pub }) => {
+    const lang = useLang();
     return (
         <>
             <HeadInfo title="Новости" />
             <PagePath
                 paths={[
-                    {
-                        "url": "/",
-                        "name": "Главная"
-                    },
+                    {},
                     {
                         "url": "",
-                        "name": `Новости`
+                        "name": lang?.['Новости']
                     }
                 ]}
             />
@@ -52,7 +50,9 @@ const NewsBlog = ({ pub }) => {
 
 export async function getServerSideProps({ params, locale }) {
     const pub = await nextAxios
-        .get(`/publications/${params.id.split('-')[0]}`)
+        .get(`/publications/${params.id.split('-')[0]}`, {
+            headers: { 'Accept-Language': locale }
+        })
         .then((res) => res.data.data)
         .catch((err) => console.error(err))
 

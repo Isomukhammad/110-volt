@@ -29,7 +29,7 @@ const QuickViewSlider = ({ data }) => {
                 {
                     data.map((item, index) => (
                         <SwiperSlide key={index}>
-                            <ImageComponent src={item.original} alt="" />
+                            <ImageComponent src={item.medium} alt="" />
                         </SwiperSlide>
                     ))
                 }

@@ -7,7 +7,6 @@ export const useLang = () => {
 
     const disableRevalidation = {
         revalidateOnFocus: false,
-        // revalidateOnMount:false,
         revalidateOnReconnect: false,
         refreshWhenOffline: false,
         refreshWhenHidden: false,
@@ -22,7 +21,7 @@ export const useLang = () => {
 
     if (lang) {
         const words = {}
-        lang.data.map((word) => (words[word.ley] = word.value))
+        lang.data.map((word) => (words[word.key] = word.value))
         return words;
     }
 }

@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
 import fetcher from '../../utils/fetcher';
-import TimerTab from '../TimerTab/TimerTab';
+import TimerTab from './TimerTab';
 
 import styles from './Promotions.module.scss'
 
@@ -24,7 +24,7 @@ const Promotions = () => {
                     {
                         promotions.data.map(item => (
                             <div key={item.id} className={styles.tab}>
-                                <Image src={item.img} alt={item.name} width="0" height="0" sizes="100vw" placeholder="blurDataURL" />
+                                <Image src={item.img} alt={item.name || ''} width="0" height="0" sizes="100vw" placeholder="blurDataURL" />
 
                                 <div className={styles.timer}>
                                     <TimerTab start={item.start_at} end={item.end_at} />

@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 import useSWR from 'swr';
+import { useLang } from '../../hooks/useLang';
 
 import fetcher from '../../utils/fetcher';
 import { useData } from '../../context/dataContext';
@@ -17,9 +18,11 @@ import PopularGoods from '../../components/PopularGoods/PopularGoods'
 import PageButtons from '../../components/PageButtons/PageButtons';
 
 import styles from './News.module.scss'
+import { nextAxios } from '../../utils/axios';
 
-const NewsPage = () => {
-    const router = useRouter()
+const NewsPage = ({ pageInfo }) => {
+    const router = useRouter();
+    const lang = useLang();
     const { settings } = useData();
     const [news, setNews] = useState([]);
     const [page, setPage] = useState(router.query.page ? router.query.page : 1);
@@ -31,7 +34,7 @@ const NewsPage = () => {
 
     const { data: publications, error: publicationsError, isValidating, mutate: mutatePublications } = useSWR(
         [url, router.locale],
-        url => fetcher(url), {
+        url => fetcher(url, { headers: { 'Accept-Language': router.locale } }), {
         revalidateOnFocus: false,
         revalidateOnReconnect: false,
         refreshWhenHidden: 0,
@@ -39,37 +42,37 @@ const NewsPage = () => {
         refreshWhenOffline: false,
     })
 
-    useEffect(() => {
-        setNews((prevVal) => [...prevVal, publications])
-    }, [publications])
-
-    console.log(news)
+    console.log(pageInfo)
 
     if (!isValidating) {
         return (
             <>
-                <HeadInfo title="Новости" />
+                <HeadInfo
+                    title={pageInfo.seo_title}
+                    description={pageInfo.meta_description}
+                    keywords={pageInfo.meta_keywords}
+                />
                 <PagePath
                     paths={[
                         {
                             "url": "/",
-                            "name": "Главная"
+                            "name": lang?.['Главная']
                         },
                         {
                             "url": "",
-                            "name": `Новости`
+                            "name": pageInfo.name
                         }
                     ]}
                 />
                 {
                     publications ? (
                         <div className={styles.container}>
-                            <h1 className={`${styles.title} hidden lg:flex font-bold text-[32px]`}>Новости</h1>
+                            <h1 className={`${styles.title} hidden lg:flex font-bold text-[32px]`}>{pageInfo.seo_title}</h1>
                             <div className={styles.headline}>
                                 <div className={styles.subtitle}>
                                     <div className={styles.info}>
                                         <h1 className='font-bold text-[24px] lg:text-[32px]'>110 volt - на рынке Узбекистана</h1>
-                                        <Button variant="news">Подробнее</Button>
+                                        <Button variant="news">{lang?.['ПОДРОБНЕЕ']}</Button>
                                     </div>
                                     <div className={styles.image}>
                                         <Image
@@ -86,10 +89,10 @@ const NewsPage = () => {
                                     <p>По всем интересующим вас вопросом можете обращаться по телефону <span>+99855 501 56 56</span> или написав нам на почту <span>info@110volt.uz</span></p>
                                     <div className={styles.buttons}>
                                         <Link href={`mailto:${settings?.email}`}>
-                                            <Button>Написать</Button>
+                                            <Button>{lang?.['Написать']}</Button>
                                         </Link>
                                         <Link href={`tel:${settings?.phone}`}>
-                                            <Button variant="reverse">Позвонить</Button>
+                                            <Button variant="reverse">{lang?.['Позвонить']}</Button>
                                         </Link>
                                     </div>
                                 </div>
@@ -132,6 +135,27 @@ const NewsPage = () => {
                 }
             </>
         )
+    }
+}
+
+export const getServerSideProps = async ({ locale }) => {
+    const pageInfo = await nextAxios
+        .get(`pages/9`, {
+            headers: { 'Accept-Language': locale },
+        })
+        .then((res) => res.data.data)
+        .catch((err) => console.error(err))
+
+    if (!pageInfo) {
+        return {
+            notFound: true,
+        }
+    }
+
+    return {
+        props: {
+            pageInfo,
+        },
     }
 }
 

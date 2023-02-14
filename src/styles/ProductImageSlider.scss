@@ -64,6 +64,9 @@
     .Product-page-slider__thumbs {
       max-height: 522px;
       width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
 
       .swiper-wrapper {
         .swiper-slide {

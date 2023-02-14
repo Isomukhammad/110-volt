@@ -15,6 +15,7 @@ import ImageComponent from "../ImageComponent/ImageComponent";
 
 import styles from './ProductPageSlider.module.scss'
 
+
 const ProductPageSlider = ({ images }) => {
     const { isTablet } = useContext(ScreenContext);
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
@@ -22,6 +23,12 @@ const ProductPageSlider = ({ images }) => {
     const [desktopCurrent, setDesktopCurrent] = useState(0);
 
     const swiperBtnRef = useRef();
+
+    useEffect(() => {
+        images.map((item) => {
+            console.log(item)
+        })
+    }, [images])
 
     return (
         <div className="Product-page-slider">
@@ -39,11 +46,12 @@ const ProductPageSlider = ({ images }) => {
                     modules={[Pagination, Navigation]}
                 >
                     {
-                        images?.map((item, index) => (
+                        images.map((item, index) => (
                             <SwiperSlide key={index}>
                                 <ImageComponent
                                     src={item.original}
                                     placeholder=""
+                                    alt=""
                                 />
                             </SwiperSlide>
                         ))
@@ -61,8 +69,8 @@ const ProductPageSlider = ({ images }) => {
                     onSwiper={setThumbsSwiper}
                     direction="vertical"
                     spaceBetween={0}
-                    slidesPerView={5}
-                    freeMode={true}
+                    slidesPerView="auto"
+                    // freeMode={true}
                     modules={[FreeMode, Navigation, Thumbs]}
                     className="Product-page-slider__thumbs"
                 >
@@ -70,8 +78,9 @@ const ProductPageSlider = ({ images }) => {
                         images.map((item, index) => (
                             <SwiperSlide key={index}>
                                 <ImageComponent
-                                    src={item}
+                                    src={item.original}
                                     placeholder=""
+                                    alt=""
                                 />
                             </SwiperSlide>
                         ))
@@ -98,7 +107,7 @@ const ProductPageSlider = ({ images }) => {
                         images.map((item, index) => (
                             <SwiperSlide key={index}>
                                 <ImageComponent
-                                    src={item}
+                                    src={item.medium}
                                     placeholder=""
                                 />
                             </SwiperSlide>

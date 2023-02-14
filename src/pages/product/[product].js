@@ -181,16 +181,18 @@ const ProductPage = ({ product }) => {
                 </div>
                 <ProductCharasteristic data={product} />
                 <PopularGoods margin={'80px'} title={'Популярные товары'} link="/products?is_popular-1&quantity=6" />
-                <PopularGoods title={`${!isMobile ? "С этим товаром покупали" : "С этим покупают"}`} margin={'80px'} link="/products?is_popular-1&quantity=6" />
+                <PopularGoods title="Похожие товары" margin={'80px'} link={`/products/${product.id}/similar?quantity=3`} />
                 <DiscountTabs />
             </div >
         </>
     )
 }
 
-export const getServerSideProps = async ({ params }) => {
+export const getServerSideProps = async ({ params, locale }) => {
     const product = await nextAxios
-        .get(`/products/${params.product.split('-')[0]}`)
+        .get(`/products/${params.product.split('-')[0]}`, {
+            headers: { 'Accept-Language': locale },
+        })
         .then((res) => res.data.data)
         .catch((err) => console.error(err))
 

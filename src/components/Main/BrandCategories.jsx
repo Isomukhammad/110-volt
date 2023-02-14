@@ -19,8 +19,7 @@ const BrandCategories = () => {
 	const { isMobile } = useContext(ScreenContext)
 	// const { brands } = data;
 	const brandsRef = useRef();
-	const { data: brands, error, mutateBrands } = useSWR('/brands', (url) => fetcher(url))
-	console.log(router);
+	const { data: brands, error, mutateBrands } = useSWR(['/brands', router.locale], (url) => fetcher(url, { headers: { 'Accept-Language': router.locale } }))
 
 	if (error)
 		return (

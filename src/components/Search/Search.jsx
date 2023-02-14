@@ -2,7 +2,8 @@ import { useRouter } from "next/router";
 import { useEffect, useMemo, useState } from "react";
 import useSWR from "swr";
 import { useSort } from "../../context/sort";
-import { setQuery, useParams } from '../../hooks/useParams'
+import { setQuery, useParams } from '../../hooks/useParams';
+import { useLang } from '../../hooks/useLang';
 import fetcher from "../../utils/fetcher";
 import HeadInfo from "../../utils/HeadInfo";
 import SortMenu from "../Category/SortMenu";
@@ -11,11 +12,12 @@ import PagePath from "../PagePath/PagePath";
 import ProductTab from "../ProductTab/ProductTab";
 
 const Search = () => {
+    const lang = useLang();
+    const router = useRouter();
     const [productId, setProductId] = useState(null);
     const [value, setValue] = useState('');
     const [formError, setFormError] = useState(null);
     const { view, sortBy, setSortBy } = useSort();
-    const router = useRouter();
     const { setQuery } = useParams();
     const [filterOpen, setFilterOpen] = useState(false)
 
@@ -76,7 +78,7 @@ const Search = () => {
                         <input
                             type="text"
                             onChange={handleChange}
-                            className="rounded-tl-[12px] rounded-bl-[12px] border-1 border-gray5 w-full py-[7px] focus:ring-0 focus:border-gray-400" placeholder="Я ищу..."
+                            className="rounded-tl-[12px] rounded-bl-[12px] border-1 border-gray5 w-full py-[7px] focus:ring-0 focus:border-gray-400" placeholder={`${lang?.['Я ищу']}...`}
                             value={value}
                         />
                         <button type="sybmit" className="h-full border-accent border-l-0 bg-accent w-10 flex flex-row items-center justify-center rounded-tr-[12px] rounded-br-[12px]">

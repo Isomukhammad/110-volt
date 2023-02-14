@@ -1,8 +1,10 @@
 import { useData } from '../../context/dataContext';
+import { useLang } from '../../hooks/useLang';
 import ContactUs from './ContactUs';
 import styles from './ContactsInfo.module.scss'
 
 const ContactsInfo = () => {
+    const lang = useLang();
     const { settings, settingsError } = useData();
 
     return (
@@ -13,19 +15,19 @@ const ContactsInfo = () => {
                         <svg width={24} height={24} viewBox="0 0 24 24">
                             <use xlinkHref='#location'></use>
                         </svg>
-                        Адрес: {settings?.address}
+                        {lang?.['Адрес']}: {settings?.address}
                     </p>
                     <p>
                         <svg width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="#7B54C9">
                             <use xlinkHref="#phone-handset" ></use>
                         </svg>
-                        Колл-центр: {settings?.phone}
+                        {lang?.['Колл-центр']}: {settings?.phone}
                     </p>
                     <p>
                         <svg width={24} height={24} viewBox="0 0 24 24">
                             <use xlinkHref="#mail"></use>
                         </svg>
-                        E-mail: {settings?.email}
+                        {lang?.['E-mail']}: {settings?.email}
                     </p>
                 </div >
                 <div>

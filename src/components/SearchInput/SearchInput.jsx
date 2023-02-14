@@ -6,10 +6,10 @@ import { useParams } from '../../hooks/useParams';
 import styles from './SearchInput.module.scss'
 
 const SearchInput = ({ placeholder, onChange }) => {
+    const router = useRouter();
     // const { view, sortBy, setSortBy } = useSort();
     const [value, setValue] = useState('');
     const { setQuery } = useParams();
-    const router = useRouter();
 
     const handleChange = (e) => {
         setValue(e.target.value);

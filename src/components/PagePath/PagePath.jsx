@@ -1,8 +1,9 @@
 import Link from 'next/link';
-import { useEffect } from 'react';
+import { useLang } from '../../hooks/useLang';
 import styles from './PagePath.module.scss';
 
 const PagePath = ({ paths }) => {
+    const lang = useLang();
     return (
         <nav className={styles.container}>
             {
@@ -10,7 +11,7 @@ const PagePath = ({ paths }) => {
                     <div key={index}>
                         {
                             index === 0 ? (
-                                <Link href="/">Главная</Link>
+                                <Link href="/">{lang?.['Главная']}</Link>
                             ) : (
                                 item.url ? (
                                     <Link

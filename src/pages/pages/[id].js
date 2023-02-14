@@ -39,9 +39,11 @@ const AboutPage = ({ page }) => {
     )
 }
 
-export const getServerSideProps = async ({ params }) => {
+export const getServerSideProps = async ({ params, locale }) => {
     const page = await nextAxios
-        .get(`/pages/${params.id.split('-')[0]}`)
+        .get(`/pages/${params.id.split('-')[0]}`, {
+            headers: { 'Accept-Language': locale },
+        })
         .then(res => res.data.data)
         .catch(error => console.error(error))
 

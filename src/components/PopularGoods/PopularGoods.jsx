@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import useSWR from 'swr';
 import fetcher from '../../utils/fetcher';
@@ -11,7 +12,8 @@ import ProductTab from '../ProductTab/ProductTab';
 import styles from './PopularGoods.module.scss';
 
 const PopularGoods = ({ title, margin, link }) => {
-    const { data: products, error: productsError, mutate: productsMutate, isValidating } = useSWR(link, url => fetcher(url), {
+    const router = useRouter();
+    const { data: products, error: productsError, mutate: productsMutate, isValidating } = useSWR([link, router.locale], url => fetcher(url, { headers: { 'Accept-Language': router.locale } }), {
         revalidateIfStale: false,
         revalidateOnFocus: false,
         revalidateOnReconnect: false,
