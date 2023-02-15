@@ -16,8 +16,11 @@ import Button from '../../components/Button/Button';
 import { thousandSeperate } from '../../utils/funcs';
 import AddressModal from '../../components/Checkout/AddressModal';
 import { toast, ToastContainer } from 'react-toastify';
+import { authAxios } from '../../utils/axios';
+import { useRouter } from 'next/router';
 
 const CheckoutPage = () => {
+    const router = useRouter();
     const lang = useLang();
     const [popUp, setPopUp] = useState(false);
     const { cartLoading, cart, localCart, handleCart } = useCart();
@@ -28,12 +31,28 @@ const CheckoutPage = () => {
 
     const store = cart || localCart;
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
         try {
+            const phone_number = data.phone_number.replace(/\D/g, '');
+            if (phone_number.length !== 12) {
+                toast.error(lang?.['Неправильный формат номера телефона']);
+                return null;
+            }
             setIsLoading(true);
-
+            const res = await authAxios.post('/orders', {
+                name: data.name,
+                phone_number: phone_number,
+                email: data.email,
+                address_id: data.address_id,
+                payment_method_id: data.payment_method_id,
+                shipping_method_id: data.shipping_method_id
+            })
+            toast.success(lang?.['Наши операторы с вами свяжутся как только ваша заявка пройдет модерацию.'])
+            reset();
+            router.push("/profile?section='orders'")
         } catch (error) {
             console.error(error);
+            toast.error('Что-то пошло не так ☹️')
         } finally {
             setIsLoading(false);
         }
@@ -100,7 +119,7 @@ const CheckoutPage = () => {
                                     }
                                 </div>
                                 <div className={styles.cartTotal}>
-                                    {!cartLoading && store ? (<CartTotal offer={true} store={store} />) : null}
+                                    {!cartLoading && store ? (<CartTotal offer={true} store={store} loading={isLoading} />) : null}
                                 </div>
                             </form>
                             <AddressModal
@@ -120,7 +139,7 @@ const CheckoutPage = () => {
                 <DiscountTabs />
                 <ToastContainer
                     position="top-right"
-                    autoClose={3000}
+                    autoClose={10000}
                     hideProgressBar={false}
                     newestOnTop={false}
                     closeOnClick

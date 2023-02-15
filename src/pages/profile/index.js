@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
 import { useAuth } from '../../context/auth';
@@ -15,11 +15,18 @@ import { toast, ToastContainer } from 'react-toastify';
 import { useLang } from '../../hooks/useLang';
 
 const ProfilePage = () => {
+    const router = useRouter();
     const lang = useLang();
     const [section, setSection] = useState('profile');
     const { handleLogout } = useAuth()
 
-    const router = useRouter();
+    console.log(router)
+
+    useEffect(() => {
+        if (router.query.section === 'orders') {
+            setSection('orders');
+        }
+    }, [router]);
 
     return (
         <>
@@ -38,7 +45,7 @@ const ProfilePage = () => {
                     ]}
                 />
                 <h1>Мой аккаунт</h1>
-                <div className={`${styles.content} ${section === 'order' ? styles.space : ''}`}>
+                <div className={`${styles.content} ${section === 'orders' ? styles.space : ''}`}>
                     <div className={styles.sidebar}>
                         <div
                             onClick={() => setSection('profile')}
@@ -47,8 +54,8 @@ const ProfilePage = () => {
                             Профиль
                         </div>
                         <div
-                            onClick={() => setSection('order')}
-                            className={`${styles.section} ${section === 'order' ? styles.active : ''}`}
+                            onClick={() => setSection('orders')}
+                            className={`${styles.section} ${section === 'orders' ? styles.active : ''}`}
                         >
                             Мои заказы
                         </div>

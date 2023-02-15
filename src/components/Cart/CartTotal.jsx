@@ -18,7 +18,7 @@ const defaultIsLoading = [{
     isLoading: false
 }]
 
-const CartTotal = ({ offer, store, handleCart, cartReqLoading }) => {
+const CartTotal = ({ offer, store, handleCart, cartReqLoading, loading }) => {
     const router = useRouter();
     const lang = useLang();
     const { isMobile, isTablet } = useContext(ScreenContext)
@@ -43,7 +43,7 @@ const CartTotal = ({ offer, store, handleCart, cartReqLoading }) => {
                             <>
                                 <div className={styles.bottomButtons}>
                                     <Link href='/checkout'>
-                                        <Button>{lang?.['Оформить заказ']}</Button>
+                                        <Button loading={loading}>{lang?.['Оформить заказ']}</Button>
                                     </Link>
                                     <Link href='/checkout'>
                                         <Button variant="reverse">{lang?.['Купить в рассрочку']}</Button>
@@ -73,7 +73,7 @@ const CartTotal = ({ offer, store, handleCart, cartReqLoading }) => {
                         {
                             router.pathname === '/checkout' ? (
                                 <>
-                                    <Button type="submit">Оформить заказ</Button>
+                                    <Button loading={loading} type="submit">Оформить заказ</Button>
                                     <Link href="/cart">
                                         <Button variant="reverse" tyle="button">{lang?.['Вернуться назад']}</Button>
                                     </Link>
