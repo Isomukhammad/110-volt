@@ -108,7 +108,6 @@ export const AuthProvider = ({ children }) => {
     }
 
     const sendOtp = async ({ phone_number }) => {
-        console.log(phone_number);
         try {
             await nextAxios.post('/otp'), {
                 phone_number
@@ -178,8 +177,6 @@ const AuthGuard = ({ children }) => {
     if (!userLoading && user) {
         return <>{children}</>
     }
-
-    console.log('Hello')
 
     return null
 }

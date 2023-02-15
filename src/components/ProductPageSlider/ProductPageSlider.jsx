@@ -24,12 +24,6 @@ const ProductPageSlider = ({ images }) => {
 
     const swiperBtnRef = useRef();
 
-    useEffect(() => {
-        images.map((item) => {
-            console.log(item)
-        })
-    }, [images])
-
     return (
         <div className="Product-page-slider">
             <div className="Product-page-slider__mobile">

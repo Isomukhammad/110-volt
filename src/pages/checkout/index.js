@@ -33,7 +33,7 @@ const CheckoutPage = () => {
             setIsLoading(true);
 
         } catch (error) {
-            console.log(error);
+            console.error(error);
         } finally {
             setIsLoading(false);
         }

@@ -60,8 +60,8 @@ const ProductsList = ({
             }&page=${router.query.page || page
             }&quantity=${router.query.quantity || 25}`
     }, [
+        page,
         category.id,
-        sortBy,
         router.query.category,
         router.query.page,
         router.query.quantity,
@@ -73,8 +73,6 @@ const ProductsList = ({
         revalidateOnFocus: false,
         revalidateOnReconnect: false,
     })
-
-    console.log(size, setSize)
 
     if (products) {
         return (

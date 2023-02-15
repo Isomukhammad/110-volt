@@ -54,14 +54,6 @@ const Menu = ({ menuOpen, setMenuOpen, searchFocus, setSearchFocus }) => {
     const wrapperRef = useRef(null);
     useOutsideAlerter(wrapperRef);
 
-    const stopProp = (event) => {
-        event.stopProagation();
-    }
-
-    useEffect(() => {
-        console.log(tree?.data.filter(item => item.id === btn)[0].children.filter(item => item.id == sub)[0])
-    }, [btn, tree, sub])
-
     if (!treeValidating) {
         return (
             <div

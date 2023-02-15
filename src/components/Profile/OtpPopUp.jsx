@@ -20,7 +20,6 @@ const PasswordPopUp = ({ setIsOpen, isOpen, register, handleSubmit }) => {
 
     const onSubmit = async (data) => {
         const phone = data.phone_number.replace(/\D/g, '');
-        console.log(data);
         try {
             setFormError(null);
             const res = await authAxios.put('/profile/phone-number/update', {

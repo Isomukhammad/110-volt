@@ -42,8 +42,6 @@ const NewsPage = ({ pageInfo }) => {
         refreshWhenOffline: false,
     })
 
-    console.log(pageInfo)
-
     if (!isValidating) {
         return (
             <>

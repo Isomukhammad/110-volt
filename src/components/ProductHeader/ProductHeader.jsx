@@ -19,8 +19,6 @@ const ProductHeader = ({ product, show, data }) => {
         localStore: localCart
     })
 
-    console.log(product)
-
     return (
         <div className={`${styles.container} ${show === 'true' ? styles.show : ''}`}>
             <div className={styles.content}>

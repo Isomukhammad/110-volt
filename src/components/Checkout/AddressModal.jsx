@@ -49,14 +49,13 @@ const AddressModal = ({ addressOpen, register, setAddress, setAddressOpen }) => 
             const res = await authAxios.get('/addresses');
             setAddresses(res.data.data);
         } catch (error) {
-            console.log(error);
+            console.error(error);
         } finally {
             setIsLoading(false);
         }
     }
 
     const handleAddressDelete = async (id) => {
-        console.log(id, chosen)
         if (id == chosen) {
             toast.error('Вы не можете удалить активный адрес. Сначала выберите другой!')
         } else {

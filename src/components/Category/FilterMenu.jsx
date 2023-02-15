@@ -11,7 +11,6 @@ import { useParams } from '../../hooks/useParams';
 import { useLang } from '../../hooks/useLang';
 
 const FilterMenu = ({ attributes, brands, prices, loading, category, products, filterOpen, setFilterOpen }) => {
-    console.log(attributes, brands, prices, loading, category)
     const lang = useLang();
     const [space, setSpace] = useState([]);
     const [sim, setSim] = useState([]);
@@ -25,16 +24,10 @@ const FilterMenu = ({ attributes, brands, prices, loading, category, products, f
         fetcher
     )
 
-    const handleRangeChange = (event) => {
-        console.log(event.target.value);
-    }
-
     const handleRadioChange = (event) => {
         if (checkedRadio != event.target.value) {
-            console.log(event.target.value);
             setCheckedRadio(event.target.value)
         } else {
-            console.log(event.target.value);
             setCheckedRadio(null)
         }
     }

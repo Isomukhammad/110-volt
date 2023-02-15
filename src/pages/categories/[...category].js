@@ -48,7 +48,6 @@ const CategoryPage = ({ category }) => {
     const url = useMemo(() => {
         return baseUrl + getParams(['page']).join('/')
     }, [getParams])
-    console.log(getParams(['page']));
 
     if (!isLoading) {
 
