@@ -1,0 +1,37 @@
+.AddressModal {
+  &__content {
+    &--address {
+      input[type="radio"],
+      label {
+        cursor: pointer;
+      }
+
+      label {
+        padding-left: 12px;
+      }
+
+      input[type="radio"] {
+        width: 18px;
+        height: 18px;
+        &:after {
+          border: 1px solid #e0e0e0;
+        }
+
+        &:checked:after {
+          width: 14px;
+          height: 14px;
+          border-radius: 15px;
+          // top: -2px;
+          left: 1px;
+          position: relative;
+          background-color: white;
+          content: "";
+          display: inline-block;
+          visibility: visible;
+          // border: 6px solid #7b54c9;
+          outline: 4px solid #7b54c9;
+        }
+      }
+    }
+  }
+}

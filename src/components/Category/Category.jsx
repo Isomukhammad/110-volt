@@ -106,7 +106,7 @@ const Category = ({
                 <div className={styles}>
                     <div className={styles.title}>
                         <h1 className='font-bold text-[24px] lg:text-[32px] leading-8'>{category?.name}</h1>
-                        <p>{products?.meta.total} {lang?.['{{number}} товаров']}</p>
+                        {lang ? (<p>{(lang?.['{{number}} товаров']).replace('{{number}}', products?.meta.total)}</p>) : null}
                     </div>
                     <div className={styles.content}>
                         <FilterMenu

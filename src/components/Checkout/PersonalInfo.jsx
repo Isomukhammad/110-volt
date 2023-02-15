@@ -13,7 +13,7 @@ import { Controller } from 'react-hook-form';
 import { PatternFormat } from 'react-number-format';
 import AddressModal from './AddressModal';
 
-const PersonalInfo = ({ register, errors, control, setAddressOpen }) => {
+const PersonalInfo = ({ register, errors, control, address, setAddressOpen }) => {
     const router = useRouter();
     const lang = useLang();
     const [method, setMethod] = useState('immediately');
@@ -33,8 +33,8 @@ const PersonalInfo = ({ register, errors, control, setAddressOpen }) => {
                     <h4 className='font-semibold'>{lang?.['Контактная информация']}</h4>
                     <div className={styles.personalInformation}>
                         <div className="relative">
-                            <input type="text" {...register("name", { required: true, maxLength: 255 })} id="name" className="block py-4 px-[14px] w-full text-[15px] text-gray-900 bg-transparent rounded-[16px] border-1 border-gray5 appearance-none focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-transparent peer" placeholder=" " />
-                            <label htmlFor="name" className="absolute text-[15px] text-[#C0C0C0] duration-300 transform -translate-y-4 scale-100 top-1.5 z-[1] origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-[#C0C0C0] peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1 cursor-text">{lang?.['Имя и Фамилия']}</label>
+                            <input type="text" {...register("name", { required: true, maxLength: 255 })} id="name" className={`block py-4 px-[14px] w-full text-[15px] text-gray-900 bg-transparent rounded-[16px] border-1 ${errors?.name ? 'border-red-500' : 'border-gray5'} appearance-none focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-transparent peer`} placeholder=" " />
+                            <label htmlFor="name" className="absolute text-[15px] text-[#C0C0C0] duration-300 transform -translate-y-4 scale-100 top-1.5 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-[#C0C0C0] peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1 cursor-text">{lang?.['Имя и Фамилия']}</label>
                         </div>
                         <div className='relative'>
                             <Controller
@@ -50,18 +50,18 @@ const PersonalInfo = ({ register, errors, control, setAddressOpen }) => {
                                         onChange={onChange}
                                         format="+998 (##) ### ## ##" allowEmptyFormatting mask=" "
                                         id="phone_number"
-                                        className="block py-4 px-[14px] w-full text-[15px] text-gray-900 bg-transparent rounded-[16px] border-1 border-gray-300 appearance-none focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-transparent peer"
+                                        className={`block py-4 px-[14px] w-full text-[15px] text-gray-900 bg-transparent rounded-[16px] border-1 ${errors.phone_number ? 'border-red-500' : 'border-gray-300'} appearance-none focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-transparent peer`}
                                         placeholder=" "
                                     />
                                 )}
                             />
-                            <label htmlFor="phone_number" className="absolute text-[15px] text-gray-500 duration-300 transform -translate-y-4 scale-100 top-1.5 z-[1] origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1 cursor-text">{lang?.['Номер телефона']}</label>
+                            <label htmlFor="phone_number" className="absolute text-[15px] text-gray-500 duration-300 transform -translate-y-4 scale-100 top-1.5 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1 cursor-text">{lang?.['Номер телефона']}</label>
                         </div>
                         <div className="relative">
-                            <input type="email" {...register("email", { required: true, maxLength: 255 })} id="email" className="block py-4 px-[14px] w-full text-[15px] text-gray-900 bg-transparent rounded-[16px] border-1 border-gray5 appearance-none focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-transparent peer" placeholder=" " />
-                            <label htmlFor="email" className="absolute text-[15px] text-[#C0C0C0] duration-300 transform -translate-y-4 scale-100 top-1.5 z-[1] origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-[#C0C0C0] peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1 cursor-text">{lang?.['E-mail']}</label>
+                            <input type="email" {...register("email", { required: true, maxLength: 255 })} id="email" className={`block py-4 px-[14px] w-full text-[15px] text-gray-900 bg-transparent rounded-[16px] border-1 ${errors.email ? 'border-red-500' : 'border-gray5'} appearance-none focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-transparent peer`} placeholder=" " />
+                            <label htmlFor="email" className="absolute text-[15px] text-[#C0C0C0] duration-300 transform -translate-y-4 scale-100 top-1.5 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-[#C0C0C0] peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1 cursor-text">{lang?.['E-mail']}</label>
                         </div>
-                        <button className='border-accent w-full h-full text-accent border rounded-[16px] hover:text-white hover:bg-accent trnasition duration-300 font-semibold' type="button" onClick={() => setAddressOpen(true)}>Выберите адрес</button>
+                        <button className={`${errors?.address_id ? 'border-red-500' : 'border-accent'} py-4 w-full h-full ${errors?.address_id ? 'text-red-500' : 'text-accent'} border rounded-[16px] hover:text-white hover:bg-accent trnasition duration-300 font-semibold`} type="button" onClick={() => setAddressOpen(true)}>{address ? `Адрес: ${address}` : 'Выберите адрес'}</button>
                     </div>
                 </div>
                 {/* <div className={styles.category}>

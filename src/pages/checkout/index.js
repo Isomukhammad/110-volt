@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useCart } from '../../context/cart';
 import { useLang } from '../../hooks/useLang';
@@ -15,6 +15,7 @@ import styles from './Checkout.module.scss';
 import Button from '../../components/Button/Button';
 import { thousandSeperate } from '../../utils/funcs';
 import AddressModal from '../../components/Checkout/AddressModal';
+import { toast, ToastContainer } from 'react-toastify';
 
 const CheckoutPage = () => {
     const lang = useLang();
@@ -23,12 +24,28 @@ const CheckoutPage = () => {
     const { register, handleSubmit, control, formState: { errors }, reset } = useForm();
     const [address, setAddress] = useState(null);
     const [addressOpen, setAddressOpen] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const store = cart || localCart;
 
     const onSubmit = (data) => {
-        console.log(data)
+        try {
+            setIsLoading(true);
+
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setIsLoading(false);
+        }
     }
+
+    useEffect(() => {
+        if (addressOpen) {
+            document.body.style.overflow = "hidden"
+        } else {
+            document.body.style.overflow = "scroll"
+        }
+    }, [addressOpen, errors])
 
     return (
         <>
@@ -52,7 +69,7 @@ const CheckoutPage = () => {
                 {
                     cartLoading ? (
                         <div>{lang?.['Загрузка...']}</div>
-                    ) : (cart && cart.quantity == 0 ? (
+                    ) : (cart && cart.quantity !== 0 ? (
                         <>
                             <form onSubmit={handleSubmit(onSubmit)} className={styles.wrapper}>
                                 <div>
@@ -77,7 +94,7 @@ const CheckoutPage = () => {
                                                 </div>
                                             </div>) : (<p>{lang?.['Загрузка...']}</p>)}
                                     </div>
-                                    <PersonalInfo register={register} errors={errors} control={control} setAddressOpen={setAddressOpen} />
+                                    <PersonalInfo register={register} errors={errors} control={control} address={address} setAddressOpen={setAddressOpen} />
                                     {
                                         popUp ? <PopUp result='success' setPopUp={setPopUp} /> : null
                                     }
@@ -86,15 +103,12 @@ const CheckoutPage = () => {
                                     {!cartLoading && store ? (<CartTotal offer={true} store={store} />) : null}
                                 </div>
                             </form>
-                            {
-                                addressOpen ? (
-                                    <AddressModal
-                                        addressOpen={addressOpen}
-                                        setAddressOpen={setAddressOpen}
-                                        setAddress={setAddress}
-                                    />
-                                ) : (null)
-                            }
+                            <AddressModal
+                                addressOpen={addressOpen}
+                                setAddressOpen={setAddressOpen}
+                                setAddress={setAddress}
+                                register={register}
+                            />
                         </>
                     ) : (
                         <div className='flex flex-col items-center justify-center'>
@@ -104,6 +118,16 @@ const CheckoutPage = () => {
                     )
                 }
                 <DiscountTabs />
+                <ToastContainer
+                    position="top-right"
+                    autoClose={3000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    draggable
+                    theme="light"
+                />
             </div>
         </>
     );

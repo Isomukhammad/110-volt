@@ -66,7 +66,7 @@ const CartTotal = ({ offer, store, handleCart, cartReqLoading }) => {
                 <div className={styles.content}>
                     <div className={styles.quantity}>
                         <h3 className='font-bold'>{lang?.['В корзине']}</h3>
-                        <p>{store.quantity} {lang?.['{{number}} товаров']}</p>
+                        {lang ? (<p>{(lang?.['{{number}} товаров']).replace("{{number}}", store.quantity)}</p>) : null}
                     </div>
                     <h2 className={styles.price}>{thousandSeperate(store.total)} {lang?.['сум']}</h2>
                     <div className={styles.actionButtons}>
@@ -81,7 +81,7 @@ const CartTotal = ({ offer, store, handleCart, cartReqLoading }) => {
                             ) : (
                                 <>
                                     <Link href="/checkout" s>
-                                        <Button defaultLinkButtons>{lang?.['Перейти к оформлению']}</Button>
+                                        <Button>{lang?.['Перейти к оформлению']}</Button>
                                     </Link>
                                     <Button variant="cart" active={true} onClick={handleInstalmentPush}>{lang?.['Купить в рассрочку']}</Button>
                                 </>

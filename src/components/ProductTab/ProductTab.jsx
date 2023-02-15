@@ -76,7 +76,7 @@ const ProductTab = ({
                 <div className={styles.prices}>
                     {
                         product.installment_prices[0] ? (
-                            <p className={styles.monthly}>{monthly} сум/мес</p>
+                            <p className={styles.monthly}>сум/мес</p>
                         ) : null
                     }
                     <p className={styles.current}>{product.current_price_formatted}</p>

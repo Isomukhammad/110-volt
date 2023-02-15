@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 import useSWR from 'swr';
 import fetcher from '../../utils/fetcher';
 import styles from './CheckoutPayment.module.scss';
@@ -38,7 +39,7 @@ const CheckoutPayment = ({ register, errors }) => {
                         ))
                     }
                 </div>
-                {errors && <p className='text-red-600 fonr-semibold'>{errors['payment']?.message}</p>}
+                {errors && <p className='text-red-600 fonr-semibold'>{errors.payment_method_id?.message}</p>}
             </>
         )
     }

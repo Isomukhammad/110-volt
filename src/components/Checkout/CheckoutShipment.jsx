@@ -42,7 +42,7 @@ const CheckoutShipment = ({ register, errors }) => {
                         ))
                     }
                 </div>
-                {errors && <p className='text-red-600 fonr-semibold'>{errors['payment']?.message}</p>}
+                {errors && <p className='text-red-600 fonr-semibold'>{errors.shipping_method_id?.message}</p>}
             </>
         )
     }
