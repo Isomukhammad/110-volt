@@ -80,7 +80,7 @@ const CartTotal = ({ offer, store, handleCart, cartReqLoading }) => {
                                 </>
                             ) : (
                                 <>
-                                    <Link href="/checkout" s>
+                                    <Link href="/checkout">
                                         <Button>{lang?.['Перейти к оформлению']}</Button>
                                     </Link>
                                     <Button variant="cart" active={true} onClick={handleInstalmentPush}>{lang?.['Купить в рассрочку']}</Button>
