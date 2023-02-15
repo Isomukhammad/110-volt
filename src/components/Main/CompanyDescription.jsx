@@ -13,7 +13,7 @@ const CompanyDescription = ({ data }) => {
             <div>
                 <button onClick={() => { setIsHidden(!isHidden) }}>
                     {
-                        isHidden ? 'Читать далее' : 'Скрыть'
+                        isHidden ? lang?.['Читать далее'] : 'Скрыть'
                     }
                 </button>
             </div>

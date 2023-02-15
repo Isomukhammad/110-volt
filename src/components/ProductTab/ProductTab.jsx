@@ -1,14 +1,15 @@
 import { useContext, useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useLang } from '../../hooks/useLang';
+import { ClipLoader } from 'react-spinners';
 import { ScreenContext } from '../../context/screenContext';
 import { useCart } from '../../context/cart';
-import QuickView from '../QuickView/QuickView';
-import styles from './ProductTab.module.scss'
-import { isActive } from '../../utils/funcs';
 import { useWish } from '../../context/wish'
+import { isActive } from '../../utils/funcs';
+import QuickView from '../QuickView/QuickView';
 import Button from '../Button/Button';
-import { ClipLoader } from 'react-spinners';
+import styles from './ProductTab.module.scss'
 
 const ProductTab = ({
     index,
@@ -18,6 +19,7 @@ const ProductTab = ({
     arrLength,
     width
 }) => {
+    const lang = useLang();
     const [quickView, setQuickView] = useState('false');
     const [imgSrc, setImgSrc] = useState(product.img);
     const { handleCart, cartReqLoading, cart, localCart } = useCart();
@@ -74,11 +76,11 @@ const ProductTab = ({
                 <div className={styles.prices}>
                     {
                         product.installment_prices[0] ? (
-                            <p>{monthly} сум/мес</p>
+                            <p className={styles.monthly}>{monthly} сум/мес</p>
                         ) : null
                     }
-                    <p>{product.current_price_formatted}</p>
-                    <p>{product.old_price_formatted}</p>
+                    <p className={styles.current}>{product.current_price_formatted}</p>
+                    <p className={styles.oldPrice}>{product.old_price_formatted}</p>
                 </div>
 
                 <p className={styles.description}>{product.description}</p>
@@ -100,7 +102,7 @@ const ProductTab = ({
                                     loading={cartReqLoading.id == product.id && cartReqLoading.type == 'SWITCH'}
                                     customStyles="w-[128px] flex flex-col items-center justify-center"
                                 >
-                                    {productInCart ? 'Уже в корзине' : 'В корзину'}
+                                    {productInCart ? lang?.['В корзине'] : lang?.['в корзину']}
                                 </Button>
                             </div>
                             <svg

@@ -31,7 +31,7 @@ const AboutPage = ({ page }) => {
 
                 <div
                     dangerouslySetInnerHTML={{ __html: page.body }}
-                    className='flex flex-col gap-4 font-medium text-[18px] [&>ul]:pl-7 [&>ul]:list-disc'
+                    className='flex flex-col gap-4 font-medium  text-[18px] [&>ul]:pl-7 [&>ul]:list-disc'
                 />
             </div>
             <DiscountTabs />

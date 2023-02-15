@@ -12,8 +12,10 @@ import DiscountTabs from '../../components/DiscountTabs/DiscountTabs';
 
 import styles from './Profile.module.scss';
 import { toast, ToastContainer } from 'react-toastify';
+import { useLang } from '../../hooks/useLang';
 
 const ProfilePage = () => {
+    const lang = useLang();
     const [section, setSection] = useState('profile');
     const { handleLogout } = useAuth()
 
@@ -70,7 +72,7 @@ const ProfilePage = () => {
                         )
                     }
                 </div>
-                <PopularGoods title={'Популярные товары'} link="/products?is_popular-1&quantity=6" />
+                <PopularGoods title={lang?.['Популярные товары']} link="/products?is_popular-1&quantity=6" />
                 <DiscountTabs />
             </div>
         </>

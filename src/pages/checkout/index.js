@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useCart } from '../../context/cart';
+import { useLang } from '../../hooks/useLang';
 import HeadInfo from '../../utils/HeadInfo';
 import CartItem from '../../components/Cart/CartItem';
 import CartError from '../../components/Cart/CartEmpty';
@@ -12,19 +13,21 @@ import PopUp from '../../components/PopUp/PopUp';
 
 import styles from './Checkout.module.scss';
 import Button from '../../components/Button/Button';
+import { thousandSeperate } from '../../utils/funcs';
+import AddressModal from '../../components/Checkout/AddressModal';
 
 const CheckoutPage = () => {
+    const lang = useLang();
     const [popUp, setPopUp] = useState(false);
     const { cartLoading, cart, localCart, handleCart } = useCart();
-    const { register, handleSubmit, formState: { errors }, reset } = useForm({
-        defaultValues: { "phone_number": "", "password": "" }
-    });
+    const { register, handleSubmit, control, formState: { errors }, reset } = useForm();
+    const [address, setAddress] = useState(null);
+    const [addressOpen, setAddressOpen] = useState(false);
 
     const store = cart || localCart;
 
     const onSubmit = (data) => {
-        alert(JSON.stringify(data))
-        reset();
+        console.log(data)
     }
 
     return (
@@ -32,16 +35,15 @@ const CheckoutPage = () => {
             <HeadInfo title="Оформить заказ" />
             <PagePath
                 paths={[
+                    {},
                     {
-                        "url": "",
-                        "name": "Главная"
-                    }, {
-                        "url": "/cart",
-                        "name": `Корзина`
-                    }, {
+                        "url": "cart",
+                        "name": lang?.['Корзина']
+                    },
+                    {
 
                         "url": "",
-                        "name": `Оформление заказа`
+                        "name": lang?.['Оформление заказа']
 
                     }
                 ]}
@@ -49,40 +51,51 @@ const CheckoutPage = () => {
             <div className={styles.container}>
                 {
                     cartLoading ? (
-                        <div>Загрузка</div>
-                    ) : (cart && cart.quantity !== 0 ? (
-                        <form onSubmit={handleSubmit(onSubmit)} className={styles.wrapper}>
-                            <div>
-                                <div className={styles.content}>
-                                    <h1 className="text-[24px] font-bold lg:text-[32px]">Оформление заказа</h1>
+                        <div>{lang?.['Загрузка...']}</div>
+                    ) : (cart && cart.quantity == 0 ? (
+                        <>
+                            <form onSubmit={handleSubmit(onSubmit)} className={styles.wrapper}>
+                                <div>
+                                    <div className={styles.content}>
+                                        <h1 className="text-[24px] font-bold lg:text-[32px]">{lang?.['Оформление заказа']}</h1>
 
-                                    {!cartLoading && store ? (
-                                        <div className={styles.cart}>
-                                            <div className={styles.cartItems}>
-                                                {
+                                        {!cartLoading && store ? (
+                                            <div className={styles.cart}>
+                                                <div className={styles.cartItems}>
+                                                    {
 
-                                                    store.items.map((item) => (
-                                                        <CartItem key={item.id} item={item} checkout={true} />
-                                                    ))
-                                                }
-                                                <hr />
-                                                <div className={styles.amount}>
-                                                    <div></div>
-                                                    <div>Итого:</div>
-                                                    <div>63 114 300 сум</div>
+                                                        store.items.map((item) => (
+                                                            <CartItem key={item.id} item={item} checkout={true} />
+                                                        ))
+                                                    }
+                                                    <hr />
+                                                    <div className={styles.amount}>
+                                                        <div></div>
+                                                        <div>Итого:</div>
+                                                        <div className='w whitespace-nowrap'>{thousandSeperate(store.total)} {lang?.['сум']}</div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>) : (<p>Загрузка товаров...</p>)}
+                                            </div>) : (<p>{lang?.['Загрузка...']}</p>)}
+                                    </div>
+                                    <PersonalInfo register={register} errors={errors} control={control} setAddressOpen={setAddressOpen} />
+                                    {
+                                        popUp ? <PopUp result='success' setPopUp={setPopUp} /> : null
+                                    }
                                 </div>
-                                <PersonalInfo register={register} errors={errors} />
-                                {
-                                    popUp ? <PopUp result='success' setPopUp={setPopUp} /> : null
-                                }
-                            </div>
-                            <div className={styles.cartTotal}>
-                                {!cartLoading && store ? (<CartTotal offer={true} store={store} />) : null}
-                            </div>
-                        </form>
+                                <div className={styles.cartTotal}>
+                                    {!cartLoading && store ? (<CartTotal offer={true} store={store} />) : null}
+                                </div>
+                            </form>
+                            {
+                                addressOpen ? (
+                                    <AddressModal
+                                        addressOpen={addressOpen}
+                                        setAddressOpen={setAddressOpen}
+                                        setAddress={setAddress}
+                                    />
+                                ) : (null)
+                            }
+                        </>
                     ) : (
                         <div className='flex flex-col items-center justify-center'>
                             <CartError />

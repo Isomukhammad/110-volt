@@ -1,11 +1,15 @@
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
+import { useLang } from '../../hooks/useLang';
 import fetcher from '../../utils/fetcher';
-import styles from './CheckoutPayment.module.scss';
+import styles from './CheckoutShipment.module.scss';
 
-const CheckoutPayment = ({ register, errors }) => {
+const CheckoutShipment = ({ register, errors }) => {
     const router = useRouter();
-    const { data: paymentMethod, error: paymentError, isValidating: paymentValidating } = useSWR(['/payment-methods', router.locale], (url) => fetcher(url, { headers: { 'Accept-Language': router.locale } }), {
+    const lang = useLang();
+    const { data: shippingMethod, error: shippingError, isValidating: shippingValidating } = useSWR(['/shipping-methods', router.locale], (url) => fetcher(url, {
+        headers: { 'Accept-Language': router.locale }
+    }), {
         revalidateOnFocus: false,
         revalidateOnReconnect: false,
         refreshWhenHidden: 0,
@@ -13,27 +17,27 @@ const CheckoutPayment = ({ register, errors }) => {
         refreshWhenOffline: false,
     });
 
-    if (!paymentValidating) {
+    if (!shippingValidating) {
         return (
             <>
                 <div className={styles.container}>
                     {
-                        paymentMethod.data.map((method) => (
+                        shippingMethod.data.map((method) => (
                             <div className={styles.radio} key={method.id}>
                                 <input
                                     type="radio"
-                                    id={`payment-${method.id}`}
-                                    name="payment-method"
+                                    id={`shipping-${method.id}`}
+                                    name="shipping-method"
                                     value={method.id}
                                     className='focus:ring-transparent'
-                                    {...register('payment_method_id', {
+                                    {...register('shipping_method_id', {
                                         required: {
                                             value: true,
-                                            message: 'Выберите способ оплаты!'
+                                            message: 'Выберите способ доставки!'
                                         }
                                     })}
                                 />
-                                <label htmlFor={`payment-${method.id}`}>{method.name}</label>
+                                <label htmlFor={`shipping-${method.id}`}>{method.name}</label>
                             </div>
                         ))
                     }
@@ -44,4 +48,4 @@ const CheckoutPayment = ({ register, errors }) => {
     }
 }
 
-export default CheckoutPayment;
+export default CheckoutShipment;

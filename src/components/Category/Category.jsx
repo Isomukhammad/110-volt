@@ -13,6 +13,7 @@ import styles from './Category.module.scss';
 import FilterMenu from './FilterMenu';
 import SortMenu from './SortMenu';
 import HeadInfo from '../../utils/HeadInfo';
+import { useLang } from '../../hooks/useLang';
 
 const Category = ({
     attributes,
@@ -21,8 +22,9 @@ const Category = ({
     category,
     dataLoading
 }) => {
-    const [filterOpen, setFilterOpen] = useState(false)
     const router = useRouter();
+    const lang = useLang();
+    const [filterOpen, setFilterOpen] = useState(false)
     const [productId, setProductId] = useState(null);
     const { quantity, view, sortBy, isPopular, setIsPopular } = useSort();
     const { findParams, updateParams } = useParams()
@@ -76,7 +78,9 @@ const Category = ({
         findParams
     ])
 
-    const { data: products, isValidating } = useSWR(url, (url) => fetcher(url), {
+    const { data: products, isValidating } = useSWR([url, router.locale], (url) => fetcher(url, {
+        headers: { 'Accept-Language': router.locale }
+    }), {
         revalidateIfStale: false,
         revalidateOnFocus: false,
         revalidateOnReconnect: false,
@@ -92,10 +96,8 @@ const Category = ({
             <div className={styles.container}>
                 <PagePath
                     paths={[
+                        {},
                         {
-                            "url": "/",
-                            "name": "Главная"
-                        }, {
                             "name": category?.name,
                             "url": ""
                         }
@@ -104,7 +106,7 @@ const Category = ({
                 <div className={styles}>
                     <div className={styles.title}>
                         <h1 className='font-bold text-[24px] lg:text-[32px] leading-8'>{category?.name}</h1>
-                        <p>{products?.meta.total} товаров</p>
+                        <p>{products?.meta.total} {lang?.['{{number}} товаров']}</p>
                     </div>
                     <div className={styles.content}>
                         <FilterMenu

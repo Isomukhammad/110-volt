@@ -14,8 +14,10 @@ import ProductPageSlider from '../../components/ProductPageSlider/ProductPageSli
 import styles from './Product.module.scss';
 import { useCart } from '../../context/cart';
 import { isActive } from '../../utils/funcs';
+import { useLang } from '../../hooks/useLang';
 
 const ProductPage = ({ product }) => {
+    const lang = useLang();
     const [isHidden, setIsHidden] = useState(true);
     const [height, setHeight] = useState(0);
     const [show, setShow] = useState('false');
@@ -79,10 +81,7 @@ const ProductPage = ({ product }) => {
                 <ProductHeader product={product} show={show} data={product} />
                 <PagePath
                     paths={[
-                        {
-                            "url": "",
-                            "name": "Главная"
-                        },
+                        {},
                         ...path,
                         {
                             "url": '',
@@ -101,14 +100,20 @@ const ProductPage = ({ product }) => {
                             <h2>{product.h1_name}</h2>
                             <div className={styles.additional}>
                                 <p className={styles.brand}>{product.brand_name}</p>
-                                <p className={styles.code}>Код товара: {product.id}</p>
+                                <p className={styles.code}>{lang?.['Код товара']}: {product.id}</p>
                             </div>
                         </div>
 
                         <div className={styles.prices}>
-                            <p className={styles.monthly}>{product?.monthly} сум/мес <span>x 12 месяцев</span></p>
-                            <p className={styles.discounted}>{product.current_price_formatted}</p>
-                            <p className={styles.price}>{product.old_price_formatted}</p>
+                            {
+                                product?.installment_prices.length === 0 ? (
+                                    null
+                                ) : (
+                                    <p className={styles.monthly}>{product?.installment_prices[0]} сум/мес <span>x 12 месяцев</span></p>
+                                )
+                            }
+                            <p className={styles.currentPrice}>{product.current_price_formatted}</p>
+                            <p className={styles.oldPrice}>{product.old_price_formatted}</p>
                         </div>
 
                         <div className={styles.buttons}>
@@ -120,55 +125,26 @@ const ProductPage = ({ product }) => {
                                     style={{ width: "fit-content" }}
                                     loading={cartReqLoading.type == 'SWITCH' && cartReqLoading.id == product.id}
                                 >
-                                    {productInCart ? 'Уже в корзине' : 'Добавить в корзину'}
+                                    {productInCart ? lang?.['Добавлено в корзину'] : lang?.['Добавить в корзину']}
                                 </Button>
                             </div>
                             <Button
                                 onClick={() => handleInstantBuy()}
-                                variant="reverse"
+                                variant="cart"
+                                active={true}
                             >
-                                Купить в рассрочку
+                                {lang?.['Купить в рассрочку']}
                             </Button>
                         </div>
                     </div>
                 </section>
-                {/* {
-                    isMobile || isTablet ? (
-                        <div className={styles.mainInfo}>
-                            <div className={styles.titleInfo}>
-                                <h2>{product?.h1_name}</h2>
-                                <div className={styles.additional}>
-                                    <p className={styles.brand}>{product.brand_name}</p>
-                                    <p className={styles.code}>Код товара: {product.id}</p>
-                                </div>
-                            </div>
-
-                            <div className={styles.prices}>
-                                <p className={styles.monthly}>{product?.monthly} сум/мес <span>x 12 месяцев</span></p>
-                                <p className={styles.discounted}>{product?.discounted} сум</p>
-                                <p className={styles.price}>{product?.price} сум</p>
-                            </div>
-
-                            <div className={styles.buttons}>
-                                <Button style={{ width: "fit-content" }}>
-                                    Добавить корзину
-                                </Button>
-                                <Button
-                                    variant="reverse"
-                                >
-                                    Купить в рассрочку
-                                </Button>
-                            </div>
-                        </div>
-                    ) : null
-                } */}
                 <section className={styles.description}>
-                    <h1>Описание</h1>
+                    <h1>{lang?.['Описание']}</h1>
                     <div className={isHidden ? `${styles.hide}` : null} dangerouslySetInnerHTML={{ __html: product.body }} />
                     <div>
                         <button onClick={() => { setIsHidden(!isHidden) }}>
                             {
-                                isHidden ? 'Читать далее' : 'Скрыть'
+                                isHidden ? lang?.['Читать далее'] : 'Скрыть'
                             }
                         </button>
                     </div>
@@ -176,12 +152,12 @@ const ProductPage = ({ product }) => {
 
                 <div className={styles.bottomButton}>
                     <Button onClick={() => handleCart({ type: 'SWITCH', product })} loading={cartReqLoading.type == 'SWITCH' && cartReqLoading.id == product.id}>
-                        {productInCart ? 'Уже в корзине' : 'В корзину'}
+                        {productInCart ? lang?.['В корзине'] : lang?.['в корзину']}
                     </Button>
                 </div>
                 <ProductCharasteristic data={product} />
-                <PopularGoods margin={'80px'} title={'Популярные товары'} link="/products?is_popular-1&quantity=6" />
-                <PopularGoods title="Похожие товары" margin={'80px'} link={`/products/${product.id}/similar?quantity=3`} />
+                <PopularGoods margin={'80px'} title={lang?.['Популярные товары']} link="/products?is_popular-1&quantity=6" />
+                <PopularGoods title={lang?.['Похожие товары']} margin={'80px'} link={`/products/${product.id}/similar?quantity=3`} />
                 <DiscountTabs />
             </div >
         </>

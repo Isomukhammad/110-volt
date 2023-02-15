@@ -38,7 +38,7 @@ const NewsBlog = ({ pub }) => {
                 </div>
 
                 <div className={styles.ads}>
-                    <PopularGoods title={'Популярные товары'} link="/products?is_popular-1&quantity=6" />
+                    <PopularGoods title={lang?.['Популярные товары']} link="/products?is_popular-1&quantity=6" />
                     <DiscountTabs />
                 </div>
 

@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { useLang } from '../../hooks/useLang';
 
 import HeadInfo from '../../utils/HeadInfo';
 import DiscountTabs from '../../components/DiscountTabs/DiscountTabs';
@@ -10,16 +11,14 @@ import Button from '../../components/Button/Button'
 import styles from './404.module.scss';
 
 const ErrorPage = () => {
+    const lang = useLang();
     return (
         <>
             <HeadInfo title="404 error" />
             <div className={styles.container}>
                 <PagePath
                     paths={[
-                        {
-                            "url": "/",
-                            "name": "Главная"
-                        },
+                        {},
                         {
                             "url": "",
                             "name": "В дальнем космосе"
@@ -36,14 +35,14 @@ const ErrorPage = () => {
                         placeholder="blurDataURL"
                     />
                     <div className={styles.info}>
-                        <h2>Эта страница находится не в нашей вселенной </h2>
-                        <p>Нужная вам страница либо удалена либо перемещена по новому адресу</p>
+                        <h2 className='font-semibold text-[28px]'>{lang?.['Страница не найдена']}</h2>
+                        <p>{lang?.['Нужная вам страница либо удалена либо перемещена по новому адресу']}</p>
                     </div>
                     <Link href="/">
-                        <Button>Вернуться на главную</Button>
+                        <Button>{lang?.['Вернуться на главную']}</Button>
                     </Link>
                 </div>
-                <PopularGoods title={'Популярные товары'} link="/products?is_popular-1&quantity=6" />
+                <PopularGoods title={lang?.['Популярные товары']} link="/products?is_popular-1&quantity=6" />
                 <DiscountTabs />
             </div>
         </>

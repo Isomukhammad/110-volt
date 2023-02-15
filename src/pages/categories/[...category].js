@@ -1,18 +1,15 @@
-import { useRouter } from "next/router";
 import { useEffect, useMemo, useState } from "react";
 import HeadInfo from '../../utils/HeadInfo';
 import { nextAxios } from '../../utils/axios';
 import { useParams } from '../../hooks/useParams'
-import ProductsList from "../../components/ProductsList/ProductsList";
-import FilterMenu from "../../components/Category/FilterMenu";
-import SortMenu from "../../components/Category/SortMenu";
-import PagePath from "../../components/PagePath/PagePath";
 
 import styles from './Categories.module.scss'
 import { SortProvider } from "../../context/sort";
 import Category from '../../components/Category/Category'
+import { useRouter } from "next/router";
 
 const CategoryPage = ({ category }) => {
+    const router = useRouter();
     const [data, setData] = useState();
     const [isLoading, setIsLoading] = useState(true);
     const { getParams } = useParams();
@@ -21,15 +18,21 @@ const CategoryPage = ({ category }) => {
         const fetchData = async () => {
             try {
                 await nextAxios
-                    .get(`/categories/${category.data.id}/prices`)
+                    .get(`/categories/${category.data.id}/prices`, {
+                        headers: { 'Accept-Language': router.locale }
+                    })
                     .then(res => setData(prevData => ({ ...prevData, prices: res.data })))
 
                 await nextAxios
-                    .get(`/categories/${category.data.id}/brands`)
+                    .get(`/categories/${category.data.id}/brands`, {
+                        headers: { 'Accept-Language': router.locale }
+                    })
                     .then(res => setData(prevData => ({ ...prevData, brands: res.data.data })))
 
                 await nextAxios
-                    .get(`/categories/${category.data.id}/attributes`)
+                    .get(`/categories/${category.data.id}/attributes`, {
+                        headers: { 'Accept-Language': router.locale }
+                    })
                     .then(res => setData(prevData => ({ ...prevData, attributes: res.data.data })))
             } catch (err) {
                 console.error(err)
@@ -41,11 +44,11 @@ const CategoryPage = ({ category }) => {
         fetchData();
     }, [category.data.id])
 
-    // const baseUrl = 'https://topmall.uz/categories/'
-    // const url = useMemo(() => {
-    //     return baseUrl + getParams(['page']).join('/')
-    // }, [getParams])
-    // console.log(getParams(['page']));
+    const baseUrl = 'https://shop.inweb.uz/api/v2/categories/'
+    const url = useMemo(() => {
+        return baseUrl + getParams(['page']).join('/')
+    }, [getParams])
+    console.log(getParams(['page']));
 
     if (!isLoading) {
 
@@ -57,26 +60,6 @@ const CategoryPage = ({ category }) => {
                     keywords={category.meta_keywords}
                 />
                 <div className={styles.container}>
-
-                    {/* <div className={styles.title}>
-                        <h1></h1>
-                        <p>458 товаров</p>
-                    </div>
-                    <div className={styles.content}>
-                        <FilterMenu filterOpen={filterOpen} setFilterOpen={setFilterOpen} />
-                        <div className={styles.productsColumn}>
-                            <SortMenu setFilterOpen={setFilterOpen} />
-                            <SortProvider>
-                                <Category
-                                    attributes={data.attributes}
-                                    prices={data.prices}
-                                    brands={data.brands}
-                                    category={category.data}
-                                    dataLoading={isLoading}
-                                />
-                            </SortProvider>
-                        </div>
-                    </div> */}
                     <div className="">
                         <SortProvider>
                             <Category
@@ -94,8 +77,10 @@ const CategoryPage = ({ category }) => {
     }
 }
 
-export const getServerSideProps = async ({ params }) => {
-    const category = await nextAxios.get(`/categories/${params.category[0].split('-')[0]}`)
+export const getServerSideProps = async ({ params, locale }) => {
+    const category = await nextAxios.get(`/categories/${params.category[0].split('-')[0]}`, {
+        headers: { 'Accept-Language': locale }
+    })
         .then((res) => res.data)
         .catch((err) => console.error(err))
 

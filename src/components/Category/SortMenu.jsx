@@ -2,32 +2,32 @@ import { useContext, useState } from 'react';
 import ReactDropdown from 'react-dropdown';
 import { ScreenContext } from '../../context/screenContext';
 import { useSort } from '../../context/sort'
+import { useLang } from '../../hooks/useLang';
 
 import styles from './SortMenu.module.scss';
 
 const SortMenu = ({ setFilterOpen }) => {
+    const lang = useLang();
     const [listView, setListView] = useState(false);
     const { setIsPopular, isPopular, sortBy, setSortBy } = useSort();
     const { isMobile } = useContext(ScreenContext);
 
     const options = [
         {
-            value: 'popularity', label: 'По популярности'
+            value: 'is_popular', label: lang?.['Популярности']
         },
         {
-            value: 'new', label: 'Новинкам'
+            value: 'is_new', label: lang?.['Новинкам']
         },
         {
-            value: 'rating', label: 'Рейтингу'
+            value: 'rating', label: lang?.['Рейтингу']
         },
         {
-            value: 'ascending', label: 'Цена: по возрастанию'
+            value: 'price', label: `${lang?.['Цене']}: ${lang?.['по возрастанию']}`
         },
+
         {
-            value: 'descending', label: 'Цена: убыванию'
-        },
-        {
-            value: 'sale', label: 'Скидки'
+            value: 'sales', label: lang?.['Скидкам']
         }
     ];
     const defaultOption = options[0];
@@ -45,6 +45,7 @@ const SortMenu = ({ setFilterOpen }) => {
     return (
         <div className={styles.container}>
             <ReactDropdown
+                onChange={(e) => { set(e.value) }}
                 options={options}
                 value={defaultOption}
                 placeholder="Select an option"
@@ -71,7 +72,7 @@ const SortMenu = ({ setFilterOpen }) => {
                 className={styles.sortDropdown}
             />
             <div className={styles.sortBy}>
-                <p className={styles.title}>Сортировать по: </p>
+                <p className={styles.title}>{lang?.['Сортировать по']}: </p>
                 <ul className={styles.choices}>
                     <li
                         onClick={() => {
@@ -80,14 +81,14 @@ const SortMenu = ({ setFilterOpen }) => {
                             setIsPopular(true);
                         }}
                         style={{ color: isPopular ? '#7B54C9' : null }}
-                    >Популярности</li>
+                    >{lang?.['Популярности']}</li>
                     <li
                         style={{ color: sortBy.by == 'created_at' ? '#7B54C9' : null }}
                         onClick={() => {
                             setIsPopular(false);
                             setSortBy({ "by": "created_at", "direaction": "desc" })
                         }}
-                    >Новинкам</li>
+                    >{lang?.['Новинкам']}</li>
                     <li
                         onClick={() => {
                             setChoice('rating')
@@ -95,7 +96,7 @@ const SortMenu = ({ setFilterOpen }) => {
                             setSortBy({ "by": "rating", "direction": "asc" })
                         }}
                         style={{ color: sortBy.by == 'rating' ? '#7B54C9' : null }}
-                    >Рейтингу</li>
+                    >{lang?.['Рейтингу']}</li>
                     <li
                         className={styles.price}
                         onClick={() => {
@@ -110,7 +111,7 @@ const SortMenu = ({ setFilterOpen }) => {
                         }}
                         style={{ color: sortBy.by == 'price' ? '#7B54C9' : null }}
                     >
-                        <p>Цене</p>
+                        <p>{lang?.['Цене']}</p>
                         <svg
                             viewBox="0 0 16 17"
                             width="16"
@@ -128,7 +129,7 @@ const SortMenu = ({ setFilterOpen }) => {
                     <li
                         onClick={() => setChoice('sales')}
                         style={{ color: choice == 'sales' ? '#7B54C9' : null }}
-                    >Скидкам</li>
+                    >{lang?.['Скидкам']}</li>
                 </ul>
             </div>
             <button className={styles.filterButton} onClick={() => setFilterOpen(true)}>

@@ -107,7 +107,7 @@ const NewsPage = ({ pageInfo }) => {
                             </div>
 
                             <div className='lg:hidden'>
-                                <PopularGoods title="Популярные товары" link="/products?is_popular-1" />
+                                <PopularGoods title={lang?.['Популярные товары']} link="/products?is_popular-1" />
                             </div>
                             <DiscountTabs />
                         </div>
@@ -127,7 +127,7 @@ const NewsPage = ({ pageInfo }) => {
                                         </Link>
                                     </div>
                                 </div>
-                                <PopularGoods title="Популярные товары" link="/products?is_popular-1" />
+                                <PopularGoods title={lang?.['Популярные товары']} link="/products?is_popular-1" />
                                 <DiscountTabs />
                             </div>
                         </>

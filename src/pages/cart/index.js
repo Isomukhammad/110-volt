@@ -10,8 +10,10 @@ import CartTotal from '../../components/Cart/CartTotal';
 import styles from './Cart.module.scss'
 
 import products from '../../products.json';
+import { useLang } from '../../hooks/useLang';
 
 const CartPage = () => {
+    const lang = useLang();
     const { cartLoading, cart, localCart, handleCart, cartReqLoading } = useCart();
 
     const store = cart || localCart;
@@ -21,13 +23,10 @@ const CartPage = () => {
             <HeadInfo title="Корзина" />
             <PagePath
                 paths={[
-                    {
-                        "url": "/",
-                        "name": "Главная"
-                    },
+                    {},
                     {
                         "url": "",
-                        "name": `Корзина`
+                        "name": lang?.['Корзина']
                     }
                 ]}
             />
@@ -38,7 +37,7 @@ const CartPage = () => {
                         <CartEmpty />
                     ) : (
                         <div className={styles.content}>
-                            <h1 className={`${styles.title} font-bold text-[24px] md:text-[32px]`}>Корзина</h1>
+                            <h1 className={`${styles.title} font-bold text-[24px] md:text-[32px]`}>{lang?.['Корзина']}</h1>
 
                             <div className={styles.cart}>
                                 {!cartLoading && store ? (
@@ -56,7 +55,7 @@ const CartPage = () => {
                                         </div>
                                     </>
                                 ) : (
-                                    <p>Загрузка продуктов...</p>
+                                    <p>{lang?.['Загрузка…']}</p>
                                 )
                                 }
                             </div>
@@ -64,7 +63,7 @@ const CartPage = () => {
                     )
                 }
                 <PopularGoods
-                    title={'Популярные товары'} link="/products?is_popular-1&quantity=6"
+                    title={lang?.['Популярные товары']} link="/products?is_popular-1&quantity=6"
                 />
                 <DiscountTabs />
             </div>

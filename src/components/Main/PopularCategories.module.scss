@@ -15,7 +15,7 @@
     row-gap: 24px;
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1024px) {
     margin-top: 64px;
     .tabs {
       grid-template-columns: repeat(2, 49%);

@@ -8,28 +8,17 @@ import styles from './FilterMenu.module.scss';
 import useSWR from 'swr';
 import fetcher from '../../utils/fetcher';
 import { useParams } from '../../hooks/useParams';
+import { useLang } from '../../hooks/useLang';
 
 const FilterMenu = ({ attributes, brands, prices, loading, category, products, filterOpen, setFilterOpen }) => {
     console.log(attributes, brands, prices, loading, category)
+    const lang = useLang();
     const [space, setSpace] = useState([]);
     const [sim, setSim] = useState([]);
     const { updateParams, checkParams, findParams, resetParams } = useParams();
     const [checkedRadio, setCheckedRadio] = useState(null);
     const [maxValue, setMaxValue] = useState('');
     const [minValue, setMinValue] = useState('');
-    const { tree } = useData();
-
-    // const handleBrandChange = (event) => {
-    //     if (brands.includes(event.target.name)) {
-    //         const filteredList = brands.filter((item) => {
-    //             return item !== event.target.name;
-    //         })
-    //         setBrands(filteredList);
-
-    //     } else if (!brands.includes(event.target.name)) {
-    //         setBrands((oldList) => [...oldList, event.target.name])
-    //     }
-    // }
 
     const { data: subcast } = useSWR(
         `/categories/${category.id}/subcategories`,
@@ -74,6 +63,16 @@ const FilterMenu = ({ attributes, brands, prices, loading, category, products, f
         }
     }
 
+    useEffect(() => {
+        if (findParams('price')) {
+            setMaxValue(findParams('price').split('_')[1].split('-')[1])
+            setMinValue(findParams('price').split('_')[1].split('-')[0])
+        } else if (prices) {
+            setMaxValue(prices.max)
+            setMinValue(prices.min)
+        }
+    })
+
     return (
         <div className={`${styles.container} ${filterOpen ? styles.filterOpen : ''}`}>
             <div className={styles.closeButton} onClick={() => setFilterOpen(false)}>
@@ -88,7 +87,7 @@ const FilterMenu = ({ attributes, brands, prices, loading, category, products, f
                     <use xlinkHref='#close'></use>
                 </svg>
             </div>
-            <FilterOption title={'Бренды'}>
+            <FilterOption title={lang?.['Бренды']}>
                 <div className='flex flex-col gap-3'>
                     {
                         brands.map((brand) => (
