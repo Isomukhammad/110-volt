@@ -112,7 +112,7 @@ const FilterMenu = ({ attributes, brands, prices, loading, category, products, f
                 />
             </FilterOption>
 
-            <FilterOption title="Объем встроенной памяти">
+            {/* <FilterOption title="Объем встроенной памяти">
                 <form>
                     <InputCheckbox
                         name="1 ТБ"
@@ -191,7 +191,7 @@ const FilterMenu = ({ attributes, brands, prices, loading, category, products, f
                         value='blue'
                     />
                 </form>
-            </FilterOption>
+            </FilterOption> */}
         </div>
     )
 }

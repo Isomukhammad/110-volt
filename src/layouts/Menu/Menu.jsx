@@ -55,6 +55,8 @@ const Menu = ({ menuOpen, setMenuOpen, searchFocus, setSearchFocus }) => {
         event.stopProagation();
     }
 
+    console.log(tree)
+
     if (!treeValidating) {
         return (
             <div
@@ -135,16 +137,18 @@ const Menu = ({ menuOpen, setMenuOpen, searchFocus, setSearchFocus }) => {
                                     <>
                                         <h1>{sub.h1_name}</h1>
                                         <div className={styles.links}>
-                                            <Link
-                                                href={sub.children.url ? sub.children.url : '#'}
-                                                key={sub.children.id}
-                                                onClick={() => {
-                                                    setMenuOpen(false);
-                                                    setShowItems(false);
-                                                }}
-                                            >
-                                                {sub.children.name}
-                                            </Link>
+                                            {sub.children.map((item) => (
+                                                <Link
+                                                    href={`/categories/${item.id}-${item.slug}`}
+                                                    key={item.id}
+                                                    onClick={() => {
+                                                        setMenuOpen(false);
+                                                        setShowItems(false);
+                                                    }}
+                                                >
+                                                    {item.h1_name}
+                                                </Link>
+                                            ))}
                                         </div>
                                     </>
                                 ))

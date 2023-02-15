@@ -8,13 +8,10 @@ import BrandCategories from '../components/Main/BrandCategories';
 import Promotions from '../components/Main/Promotions';
 import ReviewCategories from '../components/ReviewCategories/ReviewCategories';
 import DiscountTabs from '../components/DiscountTabs/DiscountTabs';
-import { useLang } from '../hooks/useLang'
 
 import styles from '../styles/Home.module.scss';
 
 const Home = ({ page }) => {
-  const lang = useLang();
-  console.log(lang)
   return (
     <main className={styles.main}>
       <HeadInfo

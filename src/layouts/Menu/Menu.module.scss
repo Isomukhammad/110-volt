@@ -71,6 +71,16 @@
       display: grid;
       grid-template-columns: 50% 50%;
       padding: 40px;
+      overflow-y: overlay;
+
+      &::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: rgb(205, 205, 205);
+        border-radius: 10px;
+      }
 
       .items {
         display: flex;
