@@ -11,9 +11,11 @@ import styles from './Menu.module.scss';
 
 const Menu = ({ menuOpen, setMenuOpen, searchFocus, setSearchFocus }) => {
     const { tree, treeValidating } = useData();
-    const [btn, setBtn] = useState(null);
+    const [btn, setBtn] = useState(1);
+    const [sub, setSub] = useState(1);
     const { isMobile, isTablet } = useContext(ScreenContext);
     const [showItems, setShowItems] = useState(true);
+    const [showImg, setShowImg] = useState(false);
     const searchRef = useRef(null);
 
     useEffect(() => {
@@ -27,9 +29,10 @@ const Menu = ({ menuOpen, setMenuOpen, searchFocus, setSearchFocus }) => {
     }, [isTablet, isMobile, searchFocus])
 
     useEffect(() => {
-        tree ? (
+        if (tree) {
             setBtn(tree.data[0].id)
-        ) : null
+            setSub(tree.data[0].children[0].id)
+        }
     }, [tree]);
 
     const useOutsideAlerter = (ref) => {
@@ -55,7 +58,9 @@ const Menu = ({ menuOpen, setMenuOpen, searchFocus, setSearchFocus }) => {
         event.stopProagation();
     }
 
-    console.log(tree)
+    useEffect(() => {
+        console.log(tree?.data.filter(item => item.id === btn)[0].children.filter(item => item.id == sub)[0])
+    }, [btn, tree, sub])
 
     if (!treeValidating) {
         return (
@@ -145,6 +150,10 @@ const Menu = ({ menuOpen, setMenuOpen, searchFocus, setSearchFocus }) => {
                                                         setMenuOpen(false);
                                                         setShowItems(false);
                                                     }}
+                                                    onMouseOver={() => {
+                                                        setSub(item.id)
+                                                        setShowImg(true)
+                                                    }}
                                                 >
                                                     {item.h1_name}
                                                 </Link>
@@ -154,11 +163,11 @@ const Menu = ({ menuOpen, setMenuOpen, searchFocus, setSearchFocus }) => {
                                 ))
                             }
                         </div>
-                        <div className={styles.img}>
+                        <div className={`${styles.img} ${showImg ? 'visible opacity-100' : 'invisible opacity-0'} transition duration-300`}>
                             <div>
-                                <Image src={'/images/Rectangle 15.png'} alt="" width={0} height={0} sizes="100vw" />
+                                <Image src={tree?.data.filter(item => item.id === btn)[0].children.filter(item => item.id == sub)[0]?.img} alt="" width={0} height={0} sizes="100vw" />
                             </div>
-                            <p>Смартфоны</p>
+                            <p>{tree?.data.filter(item => item.id === btn)[0].children.filter(item => item.id == sub)[0]?.name}</p>
                         </div>
                     </div>
                     <div
