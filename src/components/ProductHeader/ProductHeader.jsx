@@ -34,10 +34,10 @@ const ProductHeader = ({ product, show, data }) => {
                 <div className={styles.line}></div>
                 <div className={styles.prices}>
                     {
-                        product?.installment_prices.length === 0 ? (
-                            null
+                        product?.installment_prices[0].prices[0].price_per_month_formatted ? (
+                            <p className={styles.monthly}> {product?.installment_prices[0].prices[0].price_per_month_formatted} <span>x {product?.installment_prices[0].prices[0].duration} {lang?.['месяцев']}</span></p>
                         ) : (
-                            <p className={styles.monthly}>{product?.installment_prices[0]} сум/мес <span>x 12 месяцев</span></p>
+                            null
                         )
                     }
                     <p className={styles.discounted}>{data.current_price_formatted

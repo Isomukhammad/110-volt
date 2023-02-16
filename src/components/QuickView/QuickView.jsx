@@ -72,7 +72,7 @@ const QuickView = ({
                     Больше информации
                 </Link>
 
-                <button
+                {/* <button
                     className={`${styles.prevBtn} ${index === 0 ? styles.disabled : ''}`}
                     onClick={() => {
                         if (index !== 0) {
@@ -89,8 +89,8 @@ const QuickView = ({
                     >
                         <use xlinkHref='#arrow-right'></use>
                     </svg>
-                </button>
-                <button
+                </button> */}
+                {/* <button
                     className={`${styles.nextBtn} ${index === arrLength ? styles.disabled : ''}`}
                     onClick={() => {
                         if (index !== arrLength) {
@@ -106,7 +106,7 @@ const QuickView = ({
                     >
                         <use xlinkHref='#arrow-right'></use>
                     </svg>
-                </button>
+                </button> */}
                 <button
                     className={styles.closeBtn}
                     onClick={() => setQuickView('false')}

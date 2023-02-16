@@ -20,8 +20,6 @@ const ProfilePage = () => {
     const [section, setSection] = useState('profile');
     const { handleLogout } = useAuth()
 
-    console.log(router)
-
     useEffect(() => {
         if (router.query.section === 'orders') {
             setSection('orders');
