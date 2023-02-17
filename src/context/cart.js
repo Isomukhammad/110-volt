@@ -1,9 +1,10 @@
-import { useState, createContext, useContext, useEffect } from 'react'
-import { authAxios } from '../utils/axios'
-import { useRouter } from 'next/router'
-import { useAuth } from './auth'
+import { useState, createContext, useContext, useEffect } from 'react';
+import { authAxios } from '../utils/axios';
+import { useRouter } from 'next/router';
+import { useAuth } from './auth';
+import { useToast } from './toast';
 
-const CartContext = createContext({})
+const CartContext = createContext({});
 
 export const CartProvider = ({ children }) => {
     const router = useRouter();
@@ -12,6 +13,7 @@ export const CartProvider = ({ children }) => {
     const [cartLoading, setCartLoading] = useState(true)
     const [cartReqLoading, setCartReqLoading] = useState(false)
     const { user, userLoading, handleRegister } = useAuth();
+    const { setType, setMessage } = useToast();
 
     useEffect(() => {
         async function loadCart() {
@@ -193,8 +195,9 @@ export const CartProvider = ({ children }) => {
                 })
             }
         } catch (err) {
-            console.log(toast)
-            console.error(err)
+            setType('error');
+            setMessage(err.response.data.errors.quantity[0]);
+            console.error(err);
         }
     }
 

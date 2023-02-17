@@ -44,12 +44,12 @@ const App = ({ Component, pageProps }) => {
 
   return (
     <>
-      <AuthProvider>
-        <CartProvider>
-          <WishProvider>
-            <DataProvider>
-              <ScreenContext>
-                <ToastProvider>
+      <ToastProvider>
+        <AuthProvider>
+          <CartProvider>
+            <WishProvider>
+              <DataProvider>
+                <ScreenContext>
                   <MainLayout>
                     {
                       Component.requireAuth === true ? (
@@ -61,12 +61,12 @@ const App = ({ Component, pageProps }) => {
                       )
                     }
                   </MainLayout>
-                </ToastProvider>
-              </ScreenContext>
-            </DataProvider>
-          </WishProvider>
-        </CartProvider>
-      </AuthProvider>
+                </ScreenContext>
+              </DataProvider>
+            </WishProvider>
+          </CartProvider>
+        </AuthProvider>
+      </ToastProvider>
     </>
   )
 }

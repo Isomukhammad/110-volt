@@ -21,7 +21,6 @@ const ProductTab = ({
 }) => {
     const lang = useLang();
     const [quickView, setQuickView] = useState('false');
-    const [imgSrc, setImgSrc] = useState(product.img);
     const { handleCart, cartReqLoading, cart, localCart } = useCart();
     const { handleWish, wishReqLoading, wish, localWish } = useWish();
 
@@ -62,18 +61,14 @@ const ProductTab = ({
                     >
                         {lang?.['Быстрый просмотр']}
                     </div>
-                    <div className={styles.image}>
-                        <Image
-                            src={imgSrc}
+                    <div className={styles.image} style={{ backgroundImage: `url(${product.img}` }}>
+                        {/* <Image
+                            src={product.img || '/images/placeholder.jpg'}
                             alt={product.name}
                             sizes="100vh"
                             width={0}
                             height={0}
-                            onError={() => {
-                                setImgSrc('/images/placeholder.jpg')
-                            }}
-                            priority
-                        />
+                        /> */}
                     </div>
                 </div>
 

@@ -18,16 +18,14 @@
       }
 
       .image {
-        img {
-          -webkit-filter: brightness(87%);
-          -webkit-filter: brightness(87%);
-          -webkit-transition: all 0.3s ease;
-          -moz-transition: all 0.3s ease;
-          -o-transition: all 0.3s ease;
-          -ms-transition: all 0.3s ease;
-          transition: all 0.3s ease;
-          background: rgba(0, 0, 0, 0.166);
-        }
+        -webkit-filter: brightness(83%);
+        -webkit-filter: brightness(83%);
+        -webkit-transition: all 0.3s ease;
+        -moz-transition: all 0.3s ease;
+        -o-transition: all 0.3s ease;
+        -ms-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+        background-color: rgba(0, 0, 0, 0.166);
       }
     }
 
@@ -70,15 +68,15 @@
     }
 
     .image {
+      width: auto;
+      height: 254px;
       border-radius: 24px;
-
-      img {
-        transition: 0.5s;
-        border-radius: 24px;
-        width: 100%;
-        height: auto;
-        -webkit-filter: brightness(100%);
-      }
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      -webkit-filter: brightness(100%);
+      transition: 0.3s;
+      border-radius: 24px;
     }
   }
 
@@ -130,6 +128,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    align-self: flex-end;
     gap: 24px;
     margin: 0 12px;
     margin-bottom: 24px;

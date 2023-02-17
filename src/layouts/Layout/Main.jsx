@@ -9,11 +9,16 @@ import MobileBottomMenu from "../MobileBottomMenu/MobileBottomMenu";
 import styles from './Main.module.scss';
 
 const MainLayout = ({ children }) => {
-    const { type, message, handleShowToast } = useToast();
+    const { type, setType, message, setMessage, handleShowToast } = useToast();
 
     useEffect(() => {
-        handleShowToast(type, message)
+        if (type && message) {
+            handleShowToast(type, message);
+            setType(null);
+            setMessage(null);
+        }
     }, [type, message])
+
     return (
         <div className={styles.container} >
             {/* SVGs */}

@@ -4,13 +4,15 @@ import { toast } from "react-toastify";
 const ToastContext = createContext({});
 
 export const ToastProvider = ({ children }) => {
-    const handleShowToast = (toastType, message) => {
-        switch (toastType) {
+    const [type, setType] = useState(null);
+    const [message, setMessage] = useState(null);
+    const handleShowToast = (type, message) => {
+        switch (type) {
             case "success":
                 toast.success(message);
                 break;
             case "error":
-                toast.success(message);
+                toast.error(message);
                 break;
             case "warning":
                 toast.warning(message);
@@ -24,7 +26,11 @@ export const ToastProvider = ({ children }) => {
     }
 
     const values = {
-        handleShowToast
+        type,
+        setType,
+        message,
+        setMessage,
+        handleShowToast,
     }
     return (
         <ToastContext.Provider value={values}>
@@ -34,18 +40,3 @@ export const ToastProvider = ({ children }) => {
 }
 
 export const useToast = () => useContext(ToastContext);
-// import { createContext, useContext, useState } from "react"
-
-// const ToastContext = createContext({})
-
-// export const ToastProvider = ({ children }) => {
-//     const [showToast, setShowToast] = useState(false);
-
-//     const values = {
-//         showToast,
-//     }
-
-//     return <ToastContext.Provider value={values}>{children}</ToastContext.Provider>
-// }
-
-// export const useToast = () => useContext(ToastContext);

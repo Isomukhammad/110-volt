@@ -15,6 +15,8 @@ module.exports = {
         accent: '#7B54C9',
         accentDark: '#4D2D8E',
         error: '#E95050',
+        primaryBg: '#F1F1FE',
+        secondary: '#828282',
       },
       borderRadius: {
         'base': "16px",
