@@ -52,7 +52,7 @@ const ContactsPage = ({ contacts }) => {
 
 export const getServerSideProps = async ({ locale }) => {
     const contacts = await nextAxios
-        .get(`/pages/2`, {
+        .get(`pages/2`, {
             headers: { 'Accept-Language': locale }
         })
         .then(res => res.data.data)

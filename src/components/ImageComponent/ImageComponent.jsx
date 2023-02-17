@@ -7,7 +7,7 @@ const ImageComponent = ({ src, alt, ...otherProps }) => {
     return (
         <Image
             src={src || '/images/placeholder.jpg'}
-            alt={alt}
+            alt={alt ? alt : ''}
             width={0}
             height={0}
             sizes="100vw"

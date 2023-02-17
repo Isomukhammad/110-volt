@@ -50,7 +50,7 @@ const NewsBlog = ({ pub }) => {
 
 export async function getServerSideProps({ params, locale }) {
     const pub = await nextAxios
-        .get(`/publications/${params.id.split('-')[0]}`, {
+        .get(`publications/${params.id.split('-')[0]}`, {
             headers: { 'Accept-Language': locale }
         })
         .then((res) => res.data.data)

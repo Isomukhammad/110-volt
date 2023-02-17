@@ -13,6 +13,8 @@ import DiscountTabs from '../../components/DiscountTabs/DiscountTabs';
 import styles from './Profile.module.scss';
 import { toast, ToastContainer } from 'react-toastify';
 import { useLang } from '../../hooks/useLang';
+import { authAxios } from '../../utils/axios';
+import Orders from '../../components/Profile/Orders';
 
 const ProfilePage = () => {
     const router = useRouter();
@@ -28,17 +30,14 @@ const ProfilePage = () => {
 
     return (
         <>
-            <HeadInfo title="Профиль" />
+            <HeadInfo title={lang?.['Профиль']} />
             <div className={styles.container}>
                 <PagePath
                     paths={[
+                        {},
                         {
                             "url": "",
-                            "name": "Главная"
-                        },
-                        {
-                            "url": "",
-                            "name": "Мой аккаунт"
+                            "name": lang?.['Мой аккаунт']
                         }
                     ]}
                 />
@@ -49,19 +48,19 @@ const ProfilePage = () => {
                             onClick={() => setSection('profile')}
                             className={`${styles.section} ${section === 'profile' ? styles.active : ''}`}
                         >
-                            Профиль
+                            {lang?.['Профиль']}
                         </div>
                         <div
                             onClick={() => setSection('orders')}
                             className={`${styles.section} ${section === 'orders' ? styles.active : ''}`}
                         >
-                            Мои заказы
+                            {lang?.['Мои заказы']}
                         </div>
                         <div
                             className={styles.section}
                             onClick={handleLogout}
                         >
-                            Выйти из аккунта
+                            {lang?.['Выйти из аккаунта']}
                         </div>
                     </div>
 
@@ -69,11 +68,7 @@ const ProfilePage = () => {
                         section === 'profile' ? (
                             <ProfileForm />
                         ) : (
-                            <div className={styles.orders}>
-                                <OrderTab />
-                                <OrderTab />
-                                <OrderTab />
-                            </div>
+                            <Orders />
                         )
                     }
                 </div>
@@ -84,6 +79,6 @@ const ProfilePage = () => {
     )
 }
 
-ProfilePage.requireAuth = true
+ProfilePage.requireAuth = true;
 
 export default ProfilePage;

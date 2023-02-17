@@ -6,10 +6,10 @@ import HeadInfo from '../utils/HeadInfo';
 const AuthContext = createContext({})
 
 export const AuthProvider = ({ children }) => {
+    const router = useRouter();
     const [user, setUser] = useState(null);
     const [userLoading, setUserLoading] = useState(true);
     const [redirect, setRedirect] = useState('/');
-    const router = useRouter();
 
     useEffect(() => {
         const loadUser = async () => {

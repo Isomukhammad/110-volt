@@ -20,7 +20,7 @@
     justify-content: space-between;
     align-items: center;
     gap: 32px;
-    padding: 40px 0;
+    padding: 40px 80px;
     border-radius: 16px;
 
     .image {
@@ -33,6 +33,17 @@
       flex-direction: column;
       align-items: center;
       gap: 16px;
+
+      h4 {
+        font-weight: 600;
+        font-size: 20px;
+      }
+
+      p {
+        text-align: center;
+        font-weight: 600;
+        color: #828282;
+      }
     }
 
     button {

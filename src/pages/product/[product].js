@@ -147,7 +147,7 @@ const ProductPage = ({ product }) => {
                     <div>
                         <button onClick={() => { setIsHidden(!isHidden) }}>
                             {
-                                isHidden ? lang?.['Читать далее'] : 'Скрыть'
+                                isHidden ? lang?.['Читать далее'] : ['Скрыть']
                             }
                         </button>
                     </div>
@@ -160,7 +160,7 @@ const ProductPage = ({ product }) => {
                 </div>
                 <ProductCharasteristic data={product} />
                 <PopularGoods margin={'80px'} title={lang?.['Популярные товары']} link="/products?is_popular-1&quantity=6" />
-                <PopularGoods title={lang?.['Похожие товары']} margin={'80px'} link={`/products/${product.id}/similar?quantity=3`} />
+                <PopularGoods title={lang?.['Похожие товары']} margin={'80px'} link={`/products/${product.id}/similar?quantity=6`} />
                 <DiscountTabs />
             </div >
         </>

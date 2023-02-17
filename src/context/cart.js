@@ -1,17 +1,17 @@
 import { useState, createContext, useContext, useEffect } from 'react'
-import { useAuth } from './auth'
 import { authAxios } from '../utils/axios'
 import { useRouter } from 'next/router'
+import { useAuth } from './auth'
 
 const CartContext = createContext({})
 
 export const CartProvider = ({ children }) => {
+    const router = useRouter();
     const [localCart, setLocalCart] = useState(null)
     const [cart, setCart] = useState(null)
     const [cartLoading, setCartLoading] = useState(true)
     const [cartReqLoading, setCartReqLoading] = useState(false)
-    const { user, userLoading } = useAuth()
-    const router = useRouter()
+    const { user, userLoading, handleRegister } = useAuth();
 
     useEffect(() => {
         async function loadCart() {
@@ -75,7 +75,7 @@ export const CartProvider = ({ children }) => {
                         if (cart.items.some((item) => item.id == product.id)) {
                             await deleteCart(product)
                         } else {
-                            await addCart(product, quantity)
+                            await addCart(product, quantity);
                         }
                         await getAndSetCart()
                         break
@@ -157,7 +157,7 @@ export const CartProvider = ({ children }) => {
                 },
             })
         } catch (err) {
-            console.error(err)
+            console.error(err);
         }
     }
 
@@ -167,7 +167,7 @@ export const CartProvider = ({ children }) => {
                 data: { product_id: product.id },
             })
         } catch (err) {
-            console.error(err)
+            console.error(err);
         }
     }
 
@@ -193,6 +193,7 @@ export const CartProvider = ({ children }) => {
                 })
             }
         } catch (err) {
+            console.log(toast)
             console.error(err)
         }
     }

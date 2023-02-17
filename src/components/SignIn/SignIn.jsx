@@ -43,9 +43,17 @@ const SignIn = () => {
 
             }
 
-            await handleLogin({ phone_number, password: data.password });
-            getAndSetCart();
+            const res = await handleLogin({ phone_number, password: data.password });
 
+            if (res.response.data.message) {
+                return setFormError((prevVal) => ({
+                    ...prevVal,
+                    errors: {
+                        message: ['Напишите полностью номер телефона!']
+                    }
+                }))
+            }
+            getAndSetCart();
         } catch (error) {
             setFormError(error?.response?.data)
             console.error(error);

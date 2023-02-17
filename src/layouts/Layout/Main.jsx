@@ -1,3 +1,6 @@
+import { useEffect } from "react";
+import { ToastContainer } from "react-toastify";
+import { useToast } from "../../context/toast";
 import Sprites from "../../utils/Sprites";
 import Footer from "../Footer/Footer"
 import Header from "../Header/Header"
@@ -6,6 +9,11 @@ import MobileBottomMenu from "../MobileBottomMenu/MobileBottomMenu";
 import styles from './Main.module.scss';
 
 const MainLayout = ({ children }) => {
+    const { type, message, handleShowToast } = useToast();
+
+    useEffect(() => {
+        handleShowToast(type, message)
+    }, [type, message])
     return (
         <div className={styles.container} >
             {/* SVGs */}
@@ -30,6 +38,18 @@ const MainLayout = ({ children }) => {
 
             {/* Bottom menu on mobile devices */}
             <MobileBottomMenu />
+
+            {/* Toast to use accross all app */}
+            <ToastContainer
+                position="top-right"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                draggable
+                theme="light"
+            />
         </div >
     )
 }

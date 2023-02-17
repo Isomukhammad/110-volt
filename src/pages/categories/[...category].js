@@ -77,7 +77,7 @@ const CategoryPage = ({ category }) => {
 }
 
 export const getServerSideProps = async ({ params, locale }) => {
-    const category = await nextAxios.get(`/categories/${params.category[0].split('-')[0]}`, {
+    const category = await nextAxios.get(`categories/${params.category[0].split('-')[0]}`, {
         headers: { 'Accept-Language': locale }
     })
         .then((res) => res.data)

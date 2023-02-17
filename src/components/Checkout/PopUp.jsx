@@ -7,9 +7,14 @@ import Button from "../Button/Button";
 
 import styles from './PopUp.module.scss'
 import ImageComponent from "../ImageComponent/ImageComponent";
+import { useLang } from "../../hooks/useLang";
+import { useRouter } from "next/router";
 
 const PopUp = ({ result, setPopUp }) => {
+    const lang = useLang();
+    const router = useRouter();
     const { isMobile } = useContext(ScreenContext)
+
     return (
         <div className={styles.container}>
             <div className={styles.content}>
@@ -22,9 +27,15 @@ const PopUp = ({ result, setPopUp }) => {
                                 />
                             </div>
                             <div className={styles.description}>
-                                <h4>Ура, вы это сделали!</h4>
-                                <p>Ваш заказ успешно оформлен</p>
+                                <h4>{lang?.['Ура, Ваша заявка отправлена!']}</h4>
+                                <p>{lang?.['Наши операторы с вами свяжутся как только ваша заявка пройдет модерацию.']}</p>
                             </div>
+                            <Button onClick={() => {
+                                setPopUp(false),
+                                    router.push('/profile?section=orders')
+                            }}>
+                                {lang?.['Детали заказа']}
+                            </Button>
                         </>
                     ) : (
                         <>
@@ -34,19 +45,18 @@ const PopUp = ({ result, setPopUp }) => {
                                 />
                             </div>
                             <div className={styles.description}>
-                                <h4>Упс, кажется что-то пошло не так</h4>
+                                <h4>{lang?.['Что-то пошло не так ☹️']}</h4>
                                 <p>Наши модераторы свяжутся с вами</p>
                             </div>
+                            <Button onClick={() => {
+                                setPopUp(false),
+                                    router.push('/')
+                            }}>
+                                {lang?.['Вернуться на главную']}
+                            </Button>
                         </>
                     )
                 }
-                <Link href='/' onClick={() => setPopUp(false)}>
-                    <Button>
-                        {
-                            isMobile ? (<>На главную</>) : (<>Вернуться на главную</>)
-                        }
-                    </Button>
-                </Link>
                 <svg
                     viewBox="0 0 24 24"
                     width={24}

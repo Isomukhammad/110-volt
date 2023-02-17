@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import NProgress from 'nprogress';
 
@@ -8,6 +8,7 @@ import { CartProvider } from '../context/cart';
 import { DataProvider } from '../context/dataContext';
 import ScreenContext from '../context/screenContext';
 import { WishProvider } from '../context/wish';
+import { ToastProvider } from '../context/toast';
 
 //layout
 import MainLayout from '../layouts/Layout/Main';
@@ -23,9 +24,8 @@ import '../styles/PageButtons.scss';
 
 import 'react-toastify/dist/ReactToastify.min.css';
 
-
 const App = ({ Component, pageProps }) => {
-  const router = useRouter()
+  const router = useRouter();
 
   useEffect(() => {
     const handleStart = () => NProgress.start()
@@ -49,17 +49,19 @@ const App = ({ Component, pageProps }) => {
           <WishProvider>
             <DataProvider>
               <ScreenContext>
-                <MainLayout>
-                  {
-                    Component.requireAuth === true ? (
-                      <AuthGuard>
+                <ToastProvider>
+                  <MainLayout>
+                    {
+                      Component.requireAuth === true ? (
+                        <AuthGuard>
+                          <Component {...pageProps} />
+                        </AuthGuard>
+                      ) : (
                         <Component {...pageProps} />
-                      </AuthGuard>
-                    ) : (
-                      <Component {...pageProps} />
-                    )
-                  }
-                </MainLayout>
+                      )
+                    }
+                  </MainLayout>
+                </ToastProvider>
               </ScreenContext>
             </DataProvider>
           </WishProvider>

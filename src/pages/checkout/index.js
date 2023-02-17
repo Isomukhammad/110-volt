@@ -9,7 +9,7 @@ import DiscountTabs from '../../components/DiscountTabs/DiscountTabs';
 import PagePath from '../../components/PagePath/PagePath';
 import CartTotal from '../../components/Cart/CartTotal';
 import PersonalInfo from '../../components/Checkout/PersonalInfo';
-import PopUp from '../../components/PopUp/PopUp';
+import PopUp from '../../components/Checkout/PopUp';
 
 import styles from './Checkout.module.scss';
 import Button from '../../components/Button/Button';
@@ -28,6 +28,7 @@ const CheckoutPage = () => {
     const [address, setAddress] = useState(null);
     const [addressOpen, setAddressOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [result, setResult] = useState(null);
 
     const store = cart || localCart;
 
@@ -47,12 +48,12 @@ const CheckoutPage = () => {
                 payment_method_id: data.payment_method_id,
                 shipping_method_id: data.shipping_method_id
             })
-            toast.success(lang?.['Наши операторы с вами свяжутся как только ваша заявка пройдет модерацию.'])
+            setPopUp(true);
+            setResult('success');
             reset();
-            router.push("/profile?section='orders'")
         } catch (error) {
             console.error(error);
-            toast.error('Что-то пошло не так ☹️')
+            setPopUp('fail');
         } finally {
             setIsLoading(false);
         }
@@ -115,7 +116,7 @@ const CheckoutPage = () => {
                                     </div>
                                     <PersonalInfo register={register} errors={errors} control={control} address={address} setAddressOpen={setAddressOpen} />
                                     {
-                                        popUp ? <PopUp result='success' setPopUp={setPopUp} /> : null
+                                        popUp ? <PopUp result={result} setPopUp={setPopUp} /> : null
                                     }
                                 </div>
                                 <div className={styles.cartTotal}>

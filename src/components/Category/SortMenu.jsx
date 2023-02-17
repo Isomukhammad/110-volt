@@ -127,7 +127,11 @@ const SortMenu = ({ setFilterOpen }) => {
                         </svg>
                     </li>
                     <li
-                        onClick={() => setChoice('sales')}
+                        onClick={() => {
+                            setChoice('sales');
+                            setSortBy({ "by": "", "direction": "" });
+                            setIsPopular(false);
+                        }}
                         style={{ color: choice == 'sales' ? '#7B54C9' : null }}
                     >{lang?.['Скидкам']}</li>
                 </ul>

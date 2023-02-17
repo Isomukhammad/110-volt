@@ -39,6 +39,10 @@ const ProductTab = ({
         localStore: localWish,
     })
 
+    const handleCartSwitch = () => {
+        handleCart({ type: 'SWITCH', product })
+    }
+
     const { isMobile } = useContext(ScreenContext);
     return (
         <>
@@ -56,7 +60,7 @@ const ProductTab = ({
                             setQuickView('true');
                         }}
                     >
-                        Быстрый просмотр
+                        {lang?.['Быстрый просмотр']}
                     </div>
                     <div className={styles.image}>
                         <Image
@@ -100,7 +104,7 @@ const ProductTab = ({
                             >
                                 <Button
                                     className="bg-accent padding-1 text-white hover:bg-accentDark transition duration-300"
-                                    onClick={() => handleCart({ type: 'SWITCH', product })}
+                                    onClick={handleCartSwitch}
                                     loading={cartReqLoading.id == product.id && cartReqLoading.type == 'SWITCH'}
                                     customStyles="w-[128px] flex flex-col items-center justify-center"
                                 >
