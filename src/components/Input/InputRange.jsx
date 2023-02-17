@@ -113,7 +113,7 @@ const InputRange = ({ min, max, onChange }) => {
                             event.preventDefault();
                         }
                     }}
-                    placeholder={`От ${min}`}
+                    placeholder={min}
                 />
                 -
                 <input
@@ -124,7 +124,7 @@ const InputRange = ({ min, max, onChange }) => {
                             event.preventDefault();
                         }
                     }}
-                    placeholder={`До ${max}`}
+                    placeholder={max}
                     className="outline-none focus:outline-none ring-none focus:ring-none"
                 />
             </div>

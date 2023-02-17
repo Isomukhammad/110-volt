@@ -1,34 +1,36 @@
-import { useRouter } from 'next/router'
-import { useContext, useEffect, useRef, useState } from 'react'
-import useSWR from 'swr'
-import fetcher from '../../utils/fetcher'
-import { ScreenContext } from '../../context/screenContext'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import 'swiper/css'
-import 'swiper/css/grid'
-import 'swiper/css/pagination'
-import 'swiper/css/navigation'
-import 'swiper/css/free-mode'
-import 'swiper/css/thumbs'
-import { Pagination, Navigation, Autoplay, Grid } from 'swiper'
-import BrandTab from './BrandTap'
-import styles from './BrandCategories.module.scss'
+import { useRouter } from 'next/router';
+import { useContext, useRef } from 'react';
+import { useLang } from '../../hooks/useLang';
+import useSWR from 'swr';
+
+import fetcher from '../../utils/fetcher';
+
+import { ScreenContext } from '../../context/screenContext';
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/grid';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+import 'swiper/css/free-mode';
+import 'swiper/css/thumbs';
+import { Pagination, Navigation, Autoplay, Grid } from 'swiper';
+
+import BrandTab from './BrandTap';
+
+import styles from './BrandCategories.module.scss';
 
 const BrandCategories = () => {
 	const router = useRouter();
-	const { isMobile } = useContext(ScreenContext)
+	const lang = useLang();
+	const { isMobile } = useContext(ScreenContext);
 	// const { brands } = data;
 	const brandsRef = useRef();
-	const { data: brands, error, mutateBrands } = useSWR(['/brands', router.locale], (url) => fetcher(url, { headers: { 'Accept-Language': router.locale } }))
-
-	if (error)
-		return (
-			<div>Error loading brands</div>
-		)
+	const { data: brands, error, mutateBrands } = useSWR(['/brands', router.locale], (url) => fetcher(url, { headers: { 'Accept-Language': router.locale } }));
 
 	return (
 		<div className={`brands ${styles.brands}`}>
-			<h1 className='font-bold text-[24px] lg:text-[32px]'>Популярные бренды</h1>
+			<h1 className='font-bold text-[24px] lg:text-[32px]'>{lang?.['Популярные бренды']}</h1>
 			<div className={styles.tabs}>
 				<Swiper
 					modules={[Autoplay, Navigation, Grid, Pagination]}

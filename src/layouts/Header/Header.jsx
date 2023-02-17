@@ -135,7 +135,7 @@ const Header = () => {
                         className={styles.navButton}
                     >
                         <svg viewBox="0 0 21 22" fill="none" stroke="white" className={styles.languageButton}>
-                            <use xlinkHref='#bag-logo'></use>
+                            <use xlinkHref='#bag-logo-white'></use>
                         </svg>
                         {
                             !cartLoading && store ? (

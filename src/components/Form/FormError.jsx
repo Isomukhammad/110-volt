@@ -1,9 +1,10 @@
 const FormError = ({ error }) => {
+    console.log(error);
     if (!error) return null
 
     return (
         <div className='FormError text-red-600 font-bold text-[14px]'>
-            <p> {error?.message}</p>
+            <p>{error?.message}</p>
 
             {!!error &&
                 !!error.errors &&

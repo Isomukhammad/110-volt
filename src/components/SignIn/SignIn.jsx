@@ -3,11 +3,13 @@ import { Controller, useForm } from 'react-hook-form';
 import { PatternFormat } from 'react-number-format';
 import { useAuth } from '../../context/auth';
 import { useCart } from '../../context/cart';
+import { useLang } from '../../hooks/useLang';
 import Button from '../Button/Button';
 import FormError from '../Form/FormError';
 import styles from './SignIn.module.scss'
 
 const SignIn = () => {
+    const lang = useLang();
     const [isLoading, setIsLoading] = useState(false);
     const { handleLogin } = useAuth();
     const [formError, setFormError] = useState(null);
@@ -28,7 +30,6 @@ const SignIn = () => {
 
     const onSubmit = async (data) => {
         try {
-            setIsLoading(true);
             setFormError(null);
             setIsLoading(true);
 
@@ -37,26 +38,17 @@ const SignIn = () => {
                 return setFormError((prevVal) => ({
                     ...prevVal,
                     errors: {
-                        phone_number: ['Напишите полностью номер телефона!']
+                        phone_number: [lang?.['Неправильный формат номера телефона']]
                     }
                 }))
 
             }
 
             const res = await handleLogin({ phone_number, password: data.password });
-
-            if (res.response.data.message) {
-                return setFormError((prevVal) => ({
-                    ...prevVal,
-                    errors: {
-                        message: ['Напишите полностью номер телефона!']
-                    }
-                }))
-            }
             getAndSetCart();
-        } catch (error) {
-            setFormError(error?.response?.data)
-            console.error(error);
+        } catch (err) {
+            setFormError(err?.response?.data)
+            console.error(err);
         } finally {
             setIsLoading(false);
         }
@@ -89,24 +81,24 @@ const SignIn = () => {
                             />
                         )}
                     />
-                    <label htmlFor="phone_number" className="absolute text-[15px] text-gray-500 duration-300 transform -translate-y-4 scale-100 top-1.5 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1 cursor-text">Номер телефона</label>
+                    <label htmlFor="phone_number" className="absolute text-[15px] text-gray-500 duration-300 transform -translate-y-4 scale-100 top-1.5 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1 cursor-text">{lang?.['Номер телефона']}</label>
                 </div>
                 <div className="relative">
                     <input
-                        {...register("password", { required: true, maxLength: 80 })}
+                        {...register("password", { required: true, minLength: 8, maxLength: 80 })}
                         type="password"
                         id="password"
                         className="block py-4 px-[14px] w-full text-[15px] text-gray-900 bg-transparent rounded-[16px] border-1 border-gray-300 appearance-none focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-transparent peer"
                         placeholder=" "
                     />
-                    <label htmlFor="password" className="absolute text-[15px] text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-100 top-1.5 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500  peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1 cursor-text">Пароль</label>
+                    <label htmlFor="password" className="absolute text-[15px] text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-100 top-1.5 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500  peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1 cursor-text">{lang?.['Пароль']}</label>
                 </div>
                 <Button
                     type="submit"
                     active={!isValid}
                     loading={isLoading}
                     className="bg-accent py-4 rounded-base font-semibold text-[16px] text-white hover:bg-accentDark transition duration-300 disabled:bg-gray7 disabled:text-placeholder"
-                >Войти</Button>
+                >{lang?.['Войти']}</Button>
             </form>
         </div>
     )

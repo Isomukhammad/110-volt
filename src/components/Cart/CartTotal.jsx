@@ -35,7 +35,7 @@ const CartTotal = ({ offer, store, handleCart, cartReqLoading, loading }) => {
                 <div className={styles.content}>
                     <div className={styles.prices}>
                         <p>{store.quantity} {store.quantity === 1 ? 'товар' : 'товара'}</p>
-                        <h4 className='font-bold text-[20px]'>{thousandSeperate(store.total)} cум</h4>
+                        <h4 className='font-bold text-[20px]'>{thousandSeperate(store.total)} {lang?.['cум']}</h4>
                     </div>
 
                     {
@@ -52,7 +52,7 @@ const CartTotal = ({ offer, store, handleCart, cartReqLoading, loading }) => {
                             </>
                         ) : (
                             <Link href='/checkout'>
-                                <Button>Заказать</Button>
+                                <Button>{lang?.['Заказ']}</Button>
                             </Link>
                         )
                     }
@@ -73,7 +73,7 @@ const CartTotal = ({ offer, store, handleCart, cartReqLoading, loading }) => {
                         {
                             router.pathname === '/checkout' ? (
                                 <>
-                                    <Button loading={loading} type="submit">Оформить заказ</Button>
+                                    <Button loading={loading} type="submit">{lang?.['Оформить заказ']}</Button>
                                     <Link href="/cart">
                                         <Button variant="reverse" tyle="button">{lang?.['Вернуться назад']}</Button>
                                     </Link>
@@ -100,7 +100,7 @@ const CartTotal = ({ offer, store, handleCart, cartReqLoading, loading }) => {
                                 <use xlinkHref='#tick-logo'></use>
                             </svg>
                             <p>
-                                {lang?.['Нажимая на кнопку “Оформить заказ” вы соглашаетесь у условиями Оферты']}<span onClick={() => router.push('/offer')}>Оферты</span>
+                                {lang?.['Нажимая на кнопку “Оформить заказ” вы соглашаетесь у условиями Оферты']}
                             </p>
                         </div> : null
                     }
@@ -111,7 +111,7 @@ const CartTotal = ({ offer, store, handleCart, cartReqLoading, loading }) => {
                     ) : (
                         <>
                             <div className={styles.cartButtons}>
-                                <Button variant="cart" active={true}>Добавить всё в избранное</Button>
+                                <Button variant="cart" active={true}>{lang?.['Добавить все в избранное']}</Button>
                                 <div onClick={() => { handleCart({ type: 'CLEAR' }) }}>
                                     <Button
                                         variant="cart"

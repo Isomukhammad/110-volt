@@ -1,7 +1,11 @@
 import Link from 'next/link';
+import { useLang } from '../../hooks/useLang';
+
 import { useCart } from '../../context/cart';
 import { useWish } from '../../context/wish';
+
 import { isActive } from '../../utils/funcs';
+
 import Button from '../Button/Button';
 import QuickViewSlider from '../QuickViewSlider/QuickViewSlider';
 
@@ -16,6 +20,7 @@ const QuickView = ({
     setProductId,
     arrLength
 }) => {
+    const lang = useLang();
     const { handleCart, cartReqLoading, cart, localCart } = useCart();
     const { handleWish, wishReqLoading, wish, localWish } = useWish();
 
@@ -49,11 +54,11 @@ const QuickView = ({
                 <div className={styles.information}>
                     <div className={styles.title}>
                         <h2>{data.h1_name}</h2>
-                        <p>Код товара: {data.id}</p>
+                        <p>{lang?.['Код товара']}: {data.id}</p>
                     </div>
                     <div className={styles.buttons}>
                         <div onClick={() => handleCart({ type: 'SWITCH', product: data })}>
-                            <Button>{productInCart ? "Уже в корзине" : 'Добавить в корзину'}</Button>
+                            <Button>{productInCart ? lang?.['В корзине'] : lang?.['в корзину']}</Button>
                         </div>
                         <svg
                             viewBox="0 0 24 24"
@@ -69,7 +74,7 @@ const QuickView = ({
                 </div>
 
                 <Link href={`/product/${data.id}-${data.slug}`} className={styles.moreInfoBtn} onClick={() => setQuickView('false')}>
-                    Больше информации
+                    {lang?.['Больше информации']}
                 </Link>
 
                 {/* <button

@@ -14,6 +14,7 @@ import { ScreenContext } from "../../context/screenContext";
 import ImageComponent from "../ImageComponent/ImageComponent";
 
 import styles from './ProductPageSlider.module.scss'
+import Image from "next/image";
 
 
 const ProductPageSlider = ({ images }) => {
@@ -101,8 +102,9 @@ const ProductPageSlider = ({ images }) => {
                         images.map((item, index) => (
                             <SwiperSlide key={index}>
                                 <ImageComponent
-                                    src={item.medium}
+                                    src={item.original}
                                     placeholder=""
+                                    alt=""
                                 />
                             </SwiperSlide>
                         ))

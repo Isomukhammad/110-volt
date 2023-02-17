@@ -48,10 +48,10 @@ const ConnectOption = () => {
             <div className={styles.menu}>
                 <div
                     value="sms"
-                    onClick={e => onChangeHandler(e)}>Напишите мне</div>
+                    onClick={e => onChangeHandler(e)}>{lang?.['Написать']}</div>
                 <div
                     value="call"
-                    onClick={e => onChangeHandler(e)}>Позвоните мне</div>
+                    onClick={e => onChangeHandler(e)}>{lang?.['Позвонить']}</div>
             </div>
         </div>
 

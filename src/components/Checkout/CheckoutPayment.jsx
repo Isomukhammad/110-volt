@@ -30,7 +30,7 @@ const CheckoutPayment = ({ register, errors }) => {
                                     {...register('payment_method_id', {
                                         required: {
                                             value: true,
-                                            message: 'Выберите способ оплаты!'
+                                            message: `${lang?.['Способ оплаты']}!`
                                         }
                                     })}
                                 />

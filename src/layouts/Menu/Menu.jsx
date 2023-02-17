@@ -2,8 +2,6 @@ import Image from 'next/image';
 import { useContext, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 
-import fetcher from '../../utils/fetcher';
-import data from '../../data.json';
 import { ScreenContext } from '../../context/screenContext';
 import { useData } from '../../context/dataContext';
 

@@ -11,7 +11,7 @@ const NewsTab = ({ data }) => {
             <div className={styles.image}>
                 <ImageComponent
                     src={img}
-                    alt="Изображение новости"
+                    alt={slug}
                     sizes='100vw'
                     width={0}
                     height={0}

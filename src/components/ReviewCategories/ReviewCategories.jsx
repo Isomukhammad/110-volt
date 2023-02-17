@@ -1,24 +1,24 @@
-import Link from 'next/link';
-import data from '../../data.json';
+import useLang from '../../hooks/useLang';
+
 import CategoriesTabsLink from '../CategoriesTabsLink/CategoriesTabLink';
 import ReviewTab from '../ReviewTab/ReviewTab';
 
 import styles from './ReviewCategories.module.scss';
 
 const ReviewCategories = () => {
-    const { reviews } = data;
+    const lang = useLang();
     return (
         <section className={styles.reviews}>
             <div className={styles.header}>
-                <h1 className='font-bold text-[32px]'>Что думают клиенты о 110-volt?</h1>
-                <CategoriesTabsLink linkTitle="Все отзывы" />
+                <h1 className='font-bold text-[32px]'>{lang?.['Что думают клиенты о 110-volt?']}</h1>
+                <CategoriesTabsLink linkTitle={lang?.['Все отзывы']} />
             </div>
             <div className={styles.tabs}>
-                {
-                    reviews.map((review) => (
-                        <ReviewTab key={review.id} info={review} />
-                    ))
-                }
+                <ReviewTab key={review.id} info={review} />
+                <ReviewTab key={review.id} info={review} />
+                <ReviewTab key={review.id} info={review} />
+                <ReviewTab key={review.id} info={review} />
+                <ReviewTab key={review.id} info={review} />
             </div>
         </section>
     )

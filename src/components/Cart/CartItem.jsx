@@ -1,14 +1,17 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { useLang } from '../../hooks/useLang';
 import { useCart } from '../../context/cart';
 import ImageComponent from '../ImageComponent/ImageComponent';
 
 import styles from './CartItem.module.scss'
+import { thousandSeperate } from '../../utils/funcs';
 
-const CartItem = ({ item, info, checkout }) => {
+const CartItem = ({ item, checkout }) => {
+    const lang = useLang();
     const [imgSrc, setImgSrc] = useState(item.product.img);
-    const { cart, handleCart, cartReqLoading } = useCart();
+    const { cart, handleCart } = useCart();
 
     const handleItemIncrement = () => {
         handleCart({
@@ -33,6 +36,8 @@ const CartItem = ({ item, info, checkout }) => {
             })
         }
     }
+
+    console.log(item?.product?.installment_prices[0]?.prices[0]?.duration);
 
     return (
         <div className={styles.container}>
@@ -79,10 +84,10 @@ const CartItem = ({ item, info, checkout }) => {
                         <div className={styles.checkoutPrice}>{item.product.current_price_formatted}</div>
                     ) : (
                         <>
-                            <div className={styles.monthly}> сум/мес<span>x 12 месяцев</span>
+                            <div className={styles.monthly}>{thousandSeperate(item?.product?.installment_prices[0]?.prices[0]?.price_per_month)} {lang?.['сум/мес']} <span>x {item?.product?.installment_prices[0]?.prices[0]?.duration} {lang?.['месяцев']}</span>
                             </div>
                             <div className={styles.discounted}>{item.product.current_price_formatted}</div>
-                            <div className={styles.price}>{item.product.old_price_formatted} сум</div>
+                            <div className={styles.price}>{item.product.old_price_formatted}</div>
                         </>
                     )
                 }

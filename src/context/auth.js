@@ -54,10 +54,11 @@ export const AuthProvider = ({ children }) => {
     const handleLogin = async ({ phone_number, password }) => {
         try {
             const res = await nextAxios.post('/login', {
-                "phone_number": phone_number,
-                "password": password,
+                phone_number,
+                password
             })
 
+            //set token
             localStorage.setItem('token', res.data.token);
             authAxios.defaults.headers.Authorization = `Bearer ${res.data.token}`
             const {
@@ -119,12 +120,14 @@ export const AuthProvider = ({ children }) => {
     }
 
     const checkOtp = async ({ phone_number, otp }) => {
+        console.log(phone_number, otp)
         try {
             await nextAxios.post('/otp/check', {
                 phone_number,
                 otp,
             })
         } catch (error) {
+            console.error(error)
             throw error;
         }
     }

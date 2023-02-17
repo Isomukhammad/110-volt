@@ -33,7 +33,7 @@ const CheckoutShipment = ({ register, errors }) => {
                                     {...register('shipping_method_id', {
                                         required: {
                                             value: true,
-                                            message: 'Выберите способ доставки!'
+                                            message: `${lang?.['Метод доставки']}!`
                                         }
                                     })}
                                 />

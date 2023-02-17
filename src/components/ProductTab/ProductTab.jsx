@@ -6,7 +6,7 @@ import { ClipLoader } from 'react-spinners';
 import { ScreenContext } from '../../context/screenContext';
 import { useCart } from '../../context/cart';
 import { useWish } from '../../context/wish'
-import { isActive } from '../../utils/funcs';
+import { isActive, thousandSeperate } from '../../utils/funcs';
 import QuickView from '../QuickView/QuickView';
 import Button from '../Button/Button';
 import styles from './ProductTab.module.scss'
@@ -75,7 +75,7 @@ const ProductTab = ({
                 <div className={styles.prices}>
                     {
                         product?.installment_prices[0].prices[0].price_per_month_formatted ? (
-                            <p className={styles.monthly}> {product?.installment_prices[0].prices[0].price_per_month_formatted}/мес</p>
+                            <p className={styles.monthly}> {thousandSeperate(product?.installment_prices[0].prices[0].price_per_month)} {lang?.['сум/мес']}</p>
                         ) : (
                             null
                         )

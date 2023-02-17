@@ -25,7 +25,7 @@ const PopularGoods = ({ title, margin, link }) => {
     const [productId, setProductId] = useState(null);
     const arrLength = products?.data.length;
 
-    if (!isValidating) {
+    if (products) {
         return (
             <div
                 className={styles.container}

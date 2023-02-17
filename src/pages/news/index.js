@@ -69,7 +69,7 @@ const NewsPage = ({ pageInfo }) => {
                             <div className={styles.headline}>
                                 <div className={styles.subtitle}>
                                     <div className={styles.info}>
-                                        <h1 className='font-bold text-[24px] lg:text-[32px]'>110 volt - на рынке Узбекистана</h1>
+                                        <h1 className='font-bold text-[24px] lg:text-[32px]'>{lang?.['110 volt - на рынке Узбекистана']}</h1>
                                         <Button variant="news">{lang?.['ПОДРОБНЕЕ']}</Button>
                                     </div>
                                     <div className={styles.image}>
@@ -83,8 +83,8 @@ const NewsPage = ({ pageInfo }) => {
                                     </div>
                                 </div>
                                 <div className={styles.contacts}>
-                                    <h2 className='font-semibold text-[24px]'>Контакты</h2>
-                                    <p>По всем интересующим вас вопросом можете обращаться по телефону <span>+99855 501 56 56</span> или написав нам на почту <span>info@110volt.uz</span></p>
+                                    <h2 className='font-semibold text-[24px]'>{lang?.['Контакты']}</h2>
+                                    <p>По всем интересующим вас вопросом можете обращаться по телефону <Link href={`tel:${settings?.phone}`}><span>{settings?.phone}</span></Link> или написав нам на почту <Link href={`mailto:${settings?.email}`}><span>{settings?.email}</span></Link></p>
                                     <div className={styles.buttons}>
                                         <Link href={`mailto:${settings?.email}`}>
                                             <Button>{lang?.['Написать']}</Button>
@@ -118,11 +118,9 @@ const NewsPage = ({ pageInfo }) => {
                                             src={'/images/Studying-rafiki 1.png'}
                                             alt=""
                                         />
-                                        <h2>Здесь пока ничего нету</h2>
-                                        <p>Наши редакторы уже в процессе написания новой статьи</p>
-                                        <Link href='/'>
-                                            <Button>Вернуться на главную</Button>
-                                        </Link>
+                                        <h2 className='text-[24px] font-semibold'>{lang?.['Здесь пока ничего нет']}</h2>
+                                        <p>{lang?.['Наши редакторы уже в процессе написания новой статьи']}</p>
+                                        <button className='w-full py-4 px-14 bg-accent rounded-[16px] text-white font-semibold hover:bg-accentDark transition duration-300 lg:max-w-[282px]'>{lang?.['Вернуться на главную']}</button>
                                     </div>
                                 </div>
                                 <PopularGoods title={lang?.['Популярные товары']} link="/products?is_popular-1" />

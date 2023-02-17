@@ -67,7 +67,7 @@ const ContactUs = () => {
                         {...register("name", {
                             required: {
                                 value: true,
-                                message: 'Поле обязательно к заполнению!'
+                                message: lang?.['Поле обязательно для заполнения']
                             }
                         })}
                         type="text"
@@ -105,7 +105,7 @@ const ContactUs = () => {
                         {...register("message", {
                             required: {
                                 value: true,
-                                message: 'Поле обязательно к заполнению!'
+                                message: lang?.['Поле обязательно для заполнения']
                             }
                         })}
                         type="text"

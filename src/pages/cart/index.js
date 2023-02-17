@@ -9,7 +9,6 @@ import CartEmpty from '../../components/Cart/CartEmpty';
 import CartTotal from '../../components/Cart/CartTotal';
 import styles from './Cart.module.scss'
 
-import products from '../../products.json';
 import { useLang } from '../../hooks/useLang';
 
 const CartPage = () => {

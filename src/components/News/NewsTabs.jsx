@@ -1,5 +1,3 @@
-import news from '../../news.json';
-
 import NewsTab from './NewsTab'
 
 import styles from './NewsTabs.module.scss';

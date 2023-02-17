@@ -11,15 +11,19 @@ import DiscountTabs from '../../components/DiscountTabs/DiscountTabs';
 import { useLang } from '../../hooks/useLang';
 
 const NewsBlog = ({ pub }) => {
+    console.log(pub)
     const lang = useLang();
     return (
         <>
-            <HeadInfo title="Новости" />
+            <HeadInfo
+                title={pub.seo_title}
+                description={pub.meta_description}
+                keywords={pub.meta_keywords}
+            />
             <PagePath
                 paths={[
                     {},
                     {
-                        "url": "",
                         "name": lang?.['Новости']
                     }
                 ]}

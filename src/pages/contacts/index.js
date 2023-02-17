@@ -21,10 +21,7 @@ const ContactsPage = ({ contacts }) => {
 
                 <PagePath
                     paths={[
-                        {
-                            "url": "/",
-                            "name": "Главная"
-                        },
+                        {},
                         {
                             "url": "",
                             "name": contacts.name

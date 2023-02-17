@@ -1,17 +1,18 @@
 import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { PatternFormat } from 'react-number-format';
+import { toast } from 'react-toastify';
 import { useAuth } from '../../context/auth';
-import { authAxios, nextAxios } from '../../utils/axios';
+import { useLang } from '../../hooks/useLang';
+import { nextAxios } from '../../utils/axios';
 
 import Button from '../Button/Button';
 import FormError from '../Form/FormError';
-import Input from '../Input/Input';
-import MsgCodeForm from './MsgCodeForm';
 
 import styles from './SignUp.module.scss'
 
 const SignUp = () => {
+    const lang = useLang();
     const [isLoading, setIsLoading] = useState(false);
     const [otpOpen, setOtpOpen] = useState(false);
     const [formError, setFormError] = useState(null);
@@ -44,7 +45,7 @@ const SignUp = () => {
                 return setFormError((prevVal) => ({
                     ...prevVal,
                     errors: {
-                        password: ['Пароли не совпадают!'],
+                        password: [lang?.['Пароли должны совпадать друг с другом  ']],
                     }
                 }))
             }
@@ -56,7 +57,7 @@ const SignUp = () => {
                 return setFormError((prevVal) => ({
                     ...prevVal,
                     errors: {
-                        phone_number: ['Напишите полностью номер телефона!']
+                        phone_number: [lang?.['Неправильный формат номера телефона']]
                     }
                 }))
 
@@ -79,9 +80,10 @@ const SignUp = () => {
                 phone_number: phone
             })
 
+            toast.info((lang?.[`Код подтверждения отправлен на {{number}}`]).replace('{{number}}', data.phone_number))
             setOtpOpen(true);
         } catch (error) {
-            setFormError(err?.response?.data)
+            setFormError(error?.response?.data)
             console.error(error)
         } finally {
             setIsLoading(false);
@@ -90,23 +92,24 @@ const SignUp = () => {
 
     const onSubmit2 = async (data) => {
         try {
+            console.log(data);
             setIsLoading(true);
             const { name, password, email, phone_number } = data;
             setFormError(null)
             const phone = phone_number.replace(/\D/g, '');
 
-            const otpCheck = await checkOtp({ phone_number: phone, otp });
+            const otpCheck = await checkOtp({ phone_number: phone, otp: data.otp });
 
-            if (otpCheck.errors) {
-                return setFormError((prevError) => ({
-                    ...prevError,
-                    errors: {
-                        otpcheck: ['Неправильный код!'],
-                    },
-                }))
-            }
-
-            await handleRegister({ name, password, phone_number: phone, email, opt: data.otp })
+            console.log(otpCheck)
+            // if (otpCheck.errors) {
+            //     return setFormError((prevError) => ({
+            //         ...prevError,
+            //         errors: {
+            //             otpcheck: ['Неправильный код!'],
+            //         },
+            //     }))
+            // }
+            await handleRegister({ name, password, phone_number: phone, email, opt: data.otp });
             await handleLogin({ phone_number: phone, password })
             reset()
         } catch (error) {
@@ -132,7 +135,7 @@ const SignUp = () => {
                                 className="block py-4 px-[14px] w-full text-[15px] text-gray-900 bg-transparent rounded-[16px] border-1 border-gray-300 appearance-none focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-transparent peer"
                                 placeholder=" "
                             />
-                            <label htmlFor="fullName" className="absolute text-[15px] text-gray-500 duration-300 transform -translate-y-4 scale-100 top-1.5 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1 cursor-text">Имя и фамилия</label>
+                            <label htmlFor="fullName" className="absolute text-[15px] text-gray-500 duration-300 transform -translate-y-4 scale-100 top-1.5 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1 cursor-text">{lang?.['Имя и Фамилия']}</label>
                         </div>
 
                         <div className="relative">
@@ -155,7 +158,7 @@ const SignUp = () => {
                                     />
                                 )}
                             />
-                            <label htmlFor="phone-number" className="absolute text-[15px] text-gray-500 duration-300 transform -translate-y-4 scale-100 top-1.5 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1">Номер телефона</label>
+                            <label htmlFor="phone-number" className="absolute text-[15px] text-gray-500 duration-300 transform -translate-y-4 scale-100 top-1.5 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1">{lang?.['Номер телефона']}</label>
                         </div>
 
                         <div className="relative">
@@ -166,14 +169,14 @@ const SignUp = () => {
                                 className="block py-4 px-[14px] w-full text-[15px] text-gray-900 bg-transparent rounded-[16px] border-1 border-gray-300 appearance-none focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-transparent peer"
                                 placeholder=" "
                             />
-                            <label htmlFor="email" className="absolute text-[15px] text-gray-500 duration-300 transform -translate-y-4 scale-100 top-1.5 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1 cursor-text">E-mail</label>
+                            <label htmlFor="email" className="absolute text-[15px] text-gray-500 duration-300 transform -translate-y-4 scale-100 top-1.5 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1 cursor-text">{lang?.['E-mail']}</label>
                         </div>
                         <div className="relative">
                             <input
                                 {...register("password", {
                                     required: true,
                                     minLength: {
-                                        value: 3,
+                                        value: 8,
                                         message: "Пароль должен быть не менее 8 символов"
                                     },
                                     maxLength: 30
@@ -183,14 +186,14 @@ const SignUp = () => {
                                 className="block py-4 px-[14px] w-full text-[15px] text-gray-900 bg-transparent rounded-[16px] border-1 border-gray-300 appearance-none focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-transparent peer cursor-text"
                                 placeholder=" "
                             />
-                            <label htmlFor="password" className="absolute text-[15px] text-gray-500 duration-300 transform -translate-y-4 scale-100 top-1.5 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1 cursor-text">Пароль</label>
+                            <label htmlFor="password" className="absolute text-[15px] text-gray-500 duration-300 transform -translate-y-4 scale-100 top-1.5 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1 cursor-text">{lang?.['Пароль']}</label>
                         </div>
                         <div className="relative">
                             <input
                                 {...register("confirm_password", {
                                     required: true,
                                     minLength: {
-                                        value: 3,
+                                        value: 8,
                                         message: "Пароль должен быть не менее 8 символов"
                                     },
                                     maxLength: 30
@@ -200,13 +203,13 @@ const SignUp = () => {
                                 className="block py-4 px-[14px] w-full text-[15px] text-gray-900 bg-transparent rounded-[16px] border-1 border-gray-300 appearance-none focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-transparent peer"
                                 placeholder=" "
                             />
-                            <label htmlFor="confirm-password" className="absolute text-[15px] text-gray-500 duration-300 transform -translate-y-4 scale-100 top-1.5 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1 cursor-text">Подтвердите пароль</label>
+                            <label htmlFor="confirm-password" className="absolute text-[15px] text-gray-500 duration-300 transform -translate-y-4 scale-100 top-1.5 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1 cursor-text">{lang?.['Подтвердите пароль']}</label>
                         </div>
                         <Button
                             active={!isValid}
                             type="submit"
                             loading={isLoading}
-                        >Войти</Button>
+                        >{lang?.['Зарегистрироваться']}</Button>
                     </form>
                 ) : (
                     <form onSubmit={handleSubmit(onSubmit2)}>

@@ -69,7 +69,7 @@ const FilterMenu = ({ attributes, brands, prices, loading, category, products, f
     return (
         <div className={`${styles.container} ${filterOpen ? styles.filterOpen : ''}`}>
             <div className={styles.closeButton} onClick={() => setFilterOpen(false)}>
-                <h2 className='font-semibold text-[20px]'>Фильтры</h2>
+                <h2 className='font-semibold text-[20px]'>{lang?.['Фильтры']}</h2>
                 <svg
                     viewBox='0 0 24 24'
                     width={24}

@@ -84,7 +84,7 @@ const OrderDetailsPage = () => {
                                     <div className="font-bold text-[20px] text-center lg:flex lg:gap-60 lg:justify-end"><span className="lg:text-[20px] lg:font-semibold lg:text-secondary">{lang?.['Итого']}:</span> <span>{thousandSeperate(order?.total)}</span></div>
                                 </div>
                                 <div className="mt-20 flex flex-col gap-10">
-                                    <h1 className="font-bold text-[24px]">Указать личные данные</h1>
+                                    <h1 className="font-bold text-[24px]">{lang?.['Личные данные']}</h1>
                                     <div className="flex flex-col gap-y-6">
                                         <h1 className="font-semibold text-[16px] text-secondary">{lang?.['Контактная информация']}</h1>
                                         <div className="flex flex-col gap-6 lg:max-w-[824px] lg:grid lg:grid-cols-2">
@@ -97,7 +97,7 @@ const OrderDetailsPage = () => {
                                                     value={order?.name}
                                                     disabled
                                                 />
-                                                <label htmlFor="password" className="absolute text-[15px] text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-100 top-1.5 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500  peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1 cursor-text">Имя и Фамилия</label>
+                                                <label htmlFor="password" className="absolute text-[15px] text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-100 top-1.5 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500  peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1 cursor-text">{lang?.['Имя и Фамилия']}</label>
                                             </div>
                                             <div className='relative'>
                                                 <PatternFormat
@@ -108,7 +108,7 @@ const OrderDetailsPage = () => {
                                                     placeholder=" "
                                                     disabled
                                                 />
-                                                <label htmlFor="phone_number" className="absolute text-[15px] text-gray-500 duration-300 transform -translate-y-4 scale-100 top-1.5 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1 cursor-text">Номер телефона</label>
+                                                <label htmlFor="phone_number" className="absolute text-[15px] text-gray-500 duration-300 transform -translate-y-4 scale-100 top-1.5 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1 cursor-text">{lang?.['Номер телефона']}</label>
                                             </div>
                                             <div className="relative">
                                                 <input
@@ -119,7 +119,7 @@ const OrderDetailsPage = () => {
                                                     placeholder=" "
                                                     disabled
                                                 />
-                                                <label htmlFor="email" className="absolute text-[15px] text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-100 top-1.5 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500  peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1 cursor-text">E-mail</label>
+                                                <label htmlFor="email" className="absolute text-[15px] text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-100 top-1.5 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500  peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1 cursor-text">{lang?.['E-mail']}</label>
                                             </div>
                                             <div className="relative">
                                                 <input
@@ -130,7 +130,7 @@ const OrderDetailsPage = () => {
                                                     placeholder=" "
                                                     disabled
                                                 />
-                                                <label htmlFor="password" className="absolute text-[15px] text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-100 top-1.5 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500  peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1 cursor-text">Адрес</label>
+                                                <label htmlFor="password" className="absolute text-[15px] text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-100 top-1.5 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500  peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1 cursor-text">{lang?.['Адрес']}</label>
                                             </div>
                                         </div>
                                     </div>
