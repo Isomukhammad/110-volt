@@ -8,7 +8,6 @@ import { CartProvider } from '../context/cart';
 import { DataProvider } from '../context/dataContext';
 import ScreenContext from '../context/screenContext';
 import { WishProvider } from '../context/wish';
-import { ToastProvider } from '../context/toast';
 
 //layout
 import MainLayout from '../layouts/Layout/Main';
@@ -44,29 +43,27 @@ const App = ({ Component, pageProps }) => {
 
   return (
     <>
-      <ToastProvider>
-        <AuthProvider>
-          <CartProvider>
-            <WishProvider>
-              <DataProvider>
-                <ScreenContext>
-                  <MainLayout>
-                    {
-                      Component.requireAuth === true ? (
-                        <AuthGuard>
-                          <Component {...pageProps} />
-                        </AuthGuard>
-                      ) : (
+      <AuthProvider>
+        <CartProvider>
+          <WishProvider>
+            <DataProvider>
+              <ScreenContext>
+                <MainLayout>
+                  {
+                    Component.requireAuth === true ? (
+                      <AuthGuard>
                         <Component {...pageProps} />
-                      )
-                    }
-                  </MainLayout>
-                </ScreenContext>
-              </DataProvider>
-            </WishProvider>
-          </CartProvider>
-        </AuthProvider>
-      </ToastProvider>
+                      </AuthGuard>
+                    ) : (
+                      <Component {...pageProps} />
+                    )
+                  }
+                </MainLayout>
+              </ScreenContext>
+            </DataProvider>
+          </WishProvider>
+        </CartProvider>
+      </AuthProvider>
     </>
   )
 }

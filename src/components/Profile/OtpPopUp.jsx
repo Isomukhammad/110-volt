@@ -35,16 +35,6 @@ const PasswordPopUp = ({ setIsOpen, isOpen, register, handleSubmit }) => {
 
     return (
         <>
-            <ToastContainer
-                position="top-right"
-                autoClose={3000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                draggable
-                theme="light"
-            />
             {
                 isOpen ? (
                     <div className={styles.container} onClick={handleClose}>

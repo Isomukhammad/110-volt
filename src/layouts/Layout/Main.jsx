@@ -1,6 +1,4 @@
-import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
-import { useToast } from "../../context/toast";
 import Sprites from "../../utils/Sprites";
 import Footer from "../Footer/Footer"
 import Header from "../Header/Header"
@@ -9,16 +7,6 @@ import MobileBottomMenu from "../MobileBottomMenu/MobileBottomMenu";
 import styles from './Main.module.scss';
 
 const MainLayout = ({ children }) => {
-    const { type, setType, message, setMessage, handleShowToast } = useToast();
-
-    useEffect(() => {
-        if (type && message) {
-            handleShowToast(type, message);
-            setType(null);
-            setMessage(null);
-        }
-    }, [type, message])
-
     return (
         <div className={styles.container} >
             {/* SVGs */}

@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import { useLang } from "../../hooks/useLang";
 import { authAxios } from "../../utils/axios";
 
@@ -35,8 +35,7 @@ const AddressModal = ({ addressOpen, register, setAddress, setAddressOpen }) => 
             const res = await authAxios.post('/addresses', {
                 address_line_1: data.address
             });
-            toast.success(lang?.['Адрес добавлен'])
-            handleAddressGet();
+            toast.error('Адрес добавлен');
             reset2();
         } catch (error) {
             console.error(error);
@@ -142,16 +141,6 @@ const AddressModal = ({ addressOpen, register, setAddress, setAddressOpen }) => 
                     <svg viewBox="0 0 24 24" className="w-6 h-6 fill-placeholder"><use xlinkHref="#close" /></svg>
                 </button>
             </div>
-            <ToastContainer
-                position="top-right"
-                autoClose={3000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                draggable
-                theme="light"
-            />
         </div>
     );
 }

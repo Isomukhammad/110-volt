@@ -127,16 +127,6 @@ const ProfilePassword = () => {
                     type="submit"
                 >Сохранить изменения</Button>
             </form>
-            <ToastContainer
-                position="top-right"
-                autoClose={3000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                draggable
-                theme="light"
-            />
         </>
     )
 }

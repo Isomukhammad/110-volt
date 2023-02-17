@@ -144,16 +144,6 @@ const PersonalEdit = () => {
                 handleSubmit={handleSubmit}
                 control={control}
             />
-            <ToastContainer
-                position="top-right"
-                autoClose={3000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                draggable
-                theme="light"
-            />
         </>
     )
 }

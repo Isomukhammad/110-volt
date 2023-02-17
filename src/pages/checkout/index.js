@@ -138,16 +138,6 @@ const CheckoutPage = () => {
                     )
                 }
                 <DiscountTabs />
-                <ToastContainer
-                    position="top-right"
-                    autoClose={10000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    draggable
-                    theme="light"
-                />
             </div>
         </>
     );
