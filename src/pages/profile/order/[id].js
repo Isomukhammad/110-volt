@@ -81,7 +81,7 @@ const OrderDetailsPage = () => {
                                         ))}
                                     </div>
                                     <hr />
-                                    <div className="font-bold text-[20px] text-center lg:flex lg:gap-60 lg:justify-end"><span className="lg:text-[20px] lg:font-semibold lg:text-secondary">{lang?.['Итого']}:</span> <span>{thousandSeperate(order.total)}</span></div>
+                                    <div className="font-bold text-[20px] text-center lg:flex lg:gap-60 lg:justify-end"><span className="lg:text-[20px] lg:font-semibold lg:text-secondary">{lang?.['Итого']}:</span> <span>{thousandSeperate(order?.total)}</span></div>
                                 </div>
                                 <div className="mt-20 flex flex-col gap-10">
                                     <h1 className="font-bold text-[24px]">Указать личные данные</h1>
