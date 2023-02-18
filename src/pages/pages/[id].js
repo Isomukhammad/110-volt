@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import DiscountTabs from "../../components/DiscountTabs/DiscountTabs";
 import PagePath from "../../components/PagePath/PagePath";
 import { nextAxios } from "../../utils/axios";
-import HeadInfo from "../../utils/HeadInfo";
+import HeadInfo from "../../utils/headInfo";
 
 const AboutPage = ({ page }) => {
     return (

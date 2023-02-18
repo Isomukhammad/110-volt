@@ -5,7 +5,7 @@ import { useSort } from "../../context/sort";
 import { setQuery, useParams } from '../../hooks/useParams';
 import { useLang } from '../../hooks/useLang';
 import fetcher from "../../utils/fetcher";
-import HeadInfo from "../../utils/HeadInfo";
+import HeadInfo from "../../utils/headInfo";
 import SortMenu from "../Category/SortMenu";
 import PageButtons from "../PageButtons/PageButtons";
 import PagePath from "../PagePath/PagePath";

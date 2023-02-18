@@ -9,7 +9,7 @@ import fetcher from '../../utils/fetcher';
 import { useData } from '../../context/dataContext';
 
 import PagePath from "../../components/PagePath/PagePath";
-import HeadInfo from "../../utils/HeadInfo";
+import HeadInfo from "../../utils/headInfo";
 import Button from '../../components/Button/Button';
 import ImageComponent from "../../components/ImageComponent/ImageComponent";
 import NewsTabs from '../../components/News/NewsTabs'

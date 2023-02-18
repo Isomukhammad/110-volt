@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useCart } from '../../context/cart';
-import HeadInfo from '../../utils/HeadInfo';
+import HeadInfo from '../../utils/headInfo';
 import DiscountTabs from '../../components/DiscountTabs/DiscountTabs';
 import PagePath from '../../components/PagePath/PagePath'
 import PopularGoods from '../../components/PopularGoods/PopularGoods';

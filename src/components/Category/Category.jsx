@@ -12,7 +12,7 @@ import PagePath from '../PagePath/PagePath';
 import styles from './Category.module.scss';
 import FilterMenu from './FilterMenu';
 import SortMenu from './SortMenu';
-import HeadInfo from '../../utils/HeadInfo';
+import HeadInfo from '../../utils/headInfo';
 import { useLang } from '../../hooks/useLang';
 
 const Category = ({

@@ -1,5 +1,5 @@
 import { nextAxios } from '../utils/axios';
-import HeadInfo from '../utils/HeadInfo';
+import HeadInfo from '../utils/headInfo';
 import Headline from '../components/Main/Headline';
 import PopularCategories from '../components/Main/PopularCategories';
 import Recommendations from '../components/Recommendations/Recommendations';

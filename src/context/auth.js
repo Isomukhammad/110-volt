@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { createContext, useContext, useEffect, useState } from "react"
 import { nextAxios, authAxios } from '../utils/axios'
-import HeadInfo from '../utils/HeadInfo';
+import HeadInfo from '../utils/headInfo';
 
 const AuthContext = createContext({})
 

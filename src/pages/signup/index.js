@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import SignUp from '../../components/SignUp/SignUp';
 import { useLang } from '../../hooks/useLang';
-import HeadInfo from '../../utils/HeadInfo';
+import HeadInfo from '../../utils/headInfo';
 
 import styles from './SignUp.module.scss';
 

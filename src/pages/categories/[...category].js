@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import HeadInfo from '../../utils/HeadInfo';
+import HeadInfo from '../../utils/headInfo';
 import { nextAxios } from '../../utils/axios';
 import { useParams } from '../../hooks/useParams'
 

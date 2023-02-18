@@ -92,15 +92,14 @@ const SignUp = () => {
 
     const onSubmit2 = async (data) => {
         try {
-            console.log(data);
             setIsLoading(true);
             const { name, password, email, phone_number } = data;
             setFormError(null)
             const phone = phone_number.replace(/\D/g, '');
+            console.log(data);
 
-            const otpCheck = await checkOtp({ phone_number: phone, otp: data.otp });
+            // const otpCheck = await checkOtp({ phone_number: phone, otp: data.otp });
 
-            console.log(otpCheck)
             // if (otpCheck.errors) {
             //     return setFormError((prevError) => ({
             //         ...prevError,
@@ -109,10 +108,12 @@ const SignUp = () => {
             //         },
             //     }))
             // }
-            await handleRegister({ name, password, phone_number: phone, email, opt: data.otp });
+            await handleRegister({ name, password, phone_number: phone, email, otp: data.otp });
+            toast.success('Регистрация прошла успешно');
             await handleLogin({ phone_number: phone, password })
             reset()
         } catch (error) {
+            setFormError(error?.response?.data)
             console.error(error);
         } finally {
             setIsLoading(false);

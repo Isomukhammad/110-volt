@@ -8,7 +8,7 @@ import OrderedProduct from "../../../components/Profile/OrderedProduct";
 import { useLang } from "../../../hooks/useLang";
 import { authAxios } from "../../../utils/axios";
 import { thousandSeperate } from "../../../utils/funcs";
-import HeadInfo from "../../../utils/HeadInfo";
+import HeadInfo from "../../../utils/headInfo";
 
 const OrderDetailsPage = () => {
     const router = useRouter();

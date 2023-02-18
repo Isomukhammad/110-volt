@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useCart } from '../../context/cart';
 import { useLang } from '../../hooks/useLang';
-import HeadInfo from '../../utils/HeadInfo';
+import HeadInfo from '../../utils/headInfo';
 import CartItem from '../../components/Cart/CartItem';
 import CartError from '../../components/Cart/CartEmpty';
 import DiscountTabs from '../../components/DiscountTabs/DiscountTabs';

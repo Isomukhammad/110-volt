@@ -3,7 +3,7 @@ import { useContext, useEffect, useRef, useState } from 'react';
 import { nextAxios } from '../../utils/axios';
 import { ScreenContext } from '../../context/screenContext';
 import fetcher from '../../utils/fetcher';
-import HeadInfo from '../../utils/HeadInfo';
+import HeadInfo from '../../utils/headInfo';
 import Button from '../../components/Button/Button'
 import PopularGoods from '../../components/PopularGoods/PopularGoods';
 import ProductCharasteristic from '../../components/ProductCharasteristic/ProductCharasteristic';

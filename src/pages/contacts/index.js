@@ -4,7 +4,7 @@ import DiscountTabs from '../../components/DiscountTabs/DiscountTabs';
 import PagePath from '../../components/PagePath/PagePath'
 import { useData } from '../../context/dataContext';
 import { nextAxios } from '../../utils/axios';
-import HeadInfo from '../../utils/HeadInfo';
+import HeadInfo from '../../utils/headInfo';
 
 const ContactsPage = ({ contacts }) => {
     const { settings, settingsVal } = useData();

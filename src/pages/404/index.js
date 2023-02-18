@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useLang } from '../../hooks/useLang';
 
-import HeadInfo from '../../utils/HeadInfo';
+import HeadInfo from '../../utils/headInfo';
 import DiscountTabs from '../../components/DiscountTabs/DiscountTabs';
 import PagePath from '../../components/PagePath/PagePath';
 import PopularGoods from '../../components/PopularGoods/PopularGoods';

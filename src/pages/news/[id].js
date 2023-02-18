@@ -1,7 +1,7 @@
 import { nextAxios } from '../../utils/axios';
 
 import PagePath from '../../components/PagePath/PagePath';
-import HeadInfo from '../../utils/HeadInfo';
+import HeadInfo from '../../utils/headInfo';
 import ImageComponent from '../../components/ImageComponent/ImageComponent';
 import NewSlider from '../../components/News/NewSlider';
 
