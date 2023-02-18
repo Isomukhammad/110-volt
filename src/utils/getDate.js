@@ -4,24 +4,18 @@ const months = {
 }
 
 export const getDate = (timestamp, locale) => {
-    var d = new Date(timestamp);
+    if (timestamp == null) return 0;
 
-    const year = d.getFullYear();
+    var date = new Date(timestamp);
+
     const getMonth = () => {
-        if (locale === 'uz') {
-            return months.uz[d.getMonth()]
-        } else {
-            return months.ru[d.getMonth()]
-        }
+        if (locale === 'uz') return months.uz[date.getMonth()];
+        return months.ru[date.getMonth()];
     }
-    const month = getMonth();
-    const day = d.getDate();
-    const date = {
-        year: year,
-        month: month,
-        day: day,
 
+    return {
+        year: date.getFullYear(),
+        month: getMonth(),
+        day: date.getDate(),
     };
-
-    return date;
 }
