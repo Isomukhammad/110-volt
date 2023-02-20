@@ -1,5 +1,5 @@
 import { PatternFormat } from 'react-number-format';
-import ImageDrop from '../ImageDrop/ImageDrop';
+import InputImage from '../Input/InputImage';
 import styles from './CheckoutInstallment.module.scss';
 
 const CheckoutInstallment = ({ register, errors }) => {
@@ -28,15 +28,15 @@ const CheckoutInstallment = ({ register, errors }) => {
             </div>
             <div className={`${styles.instalment} ${styles.file}`}>
                 <h4>{lang?.['Фото паспорта']}</h4>
-                <ImageDrop image="/images/Passport.png" />
+                <InputImage image="/images/Passport.png" />
             </div>
             <div className={`${styles.instalment} ${styles.file}`}>
                 <h4>{lang?.['Селфи с паспортом']}</h4>
-                <ImageDrop image="/images/selfie with passport 1.png" />
+                <InputImage image="/images/selfie with passport 1.png" />
             </div>
             <div className={`${styles.instalment} ${styles.file}`}>
                 <h4>{lang?.['Страница прописки']}</h4>
-                <ImageDrop image="/images/Propiska.png" />
+                <InputImage image="/images/Propiska.png" />
             </div>
             <div className={`${styles.instalment} ${styles.wishes}`}>
                 <h4>{lang?.['Ваши пожелания']}</h4>

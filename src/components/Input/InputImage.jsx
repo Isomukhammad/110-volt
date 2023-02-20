@@ -2,9 +2,9 @@ import Image from "next/image";
 import { useCallback, useState } from "react";
 import Dropzone, { useDropzone } from "react-dropzone";
 
-import styles from './ImageDrop.module.scss'
+import styles from './InputImage.module.scss'
 
-const ImageDrop = ({ image }) => {
+const InputImage = ({ image }) => {
     const [imgSrc, setImgSrc] = useState(image);
 
     const {
@@ -53,4 +53,4 @@ const ImageDrop = ({ image }) => {
     );
 }
 
-export default ImageDrop;
+export default InputImage;
