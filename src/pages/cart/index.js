@@ -1,15 +1,14 @@
-import { useEffect, useState } from 'react';
-import { useCart } from '../../context/cart';
+import { useCart } from '../../context/cartContext';
 import HeadInfo from '../../utils/headInfo';
 import DiscountTabs from '../../components/DiscountTabs/DiscountTabs';
 import PagePath from '../../components/PagePath/PagePath'
 import PopularGoods from '../../components/PopularGoods/PopularGoods';
 import CartItem from '../../components/Cart/CartItem';
-import CartEmpty from '../../components/Cart/CartEmpty';
 import CartTotal from '../../components/Cart/CartTotal';
 import styles from './Cart.module.scss'
 
 import { useLang } from '../../hooks/useLang';
+import Empty from '../../components/Empty/Empty';
 
 const CartPage = () => {
     const lang = useLang();
@@ -22,7 +21,6 @@ const CartPage = () => {
             <HeadInfo title="Корзина" />
             <PagePath
                 paths={[
-                    {},
                     {
                         "url": "",
                         "name": lang?.['Корзина']
@@ -33,7 +31,13 @@ const CartPage = () => {
             <div className={styles.container}>
                 {
                     store && store.items.length < 1 ? (
-                        <CartEmpty />
+                        <Empty
+                            img="/images/Empty-amico 1.png"
+                            title={lang?.['Здесь пока ничего нет']}
+                            description={lang?.['Загляните а главую или воспользуйтесь поиском']}
+                            btnUrl='/'
+                            btnText={lang?.['Вернуться на главную']}
+                        />
                     ) : (
                         <div className={styles.content}>
                             <h1 className={`${styles.title} font-bold text-[24px] md:text-[32px]`}>{lang?.['Корзина']}</h1>

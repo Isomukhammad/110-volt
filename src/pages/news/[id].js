@@ -11,7 +11,6 @@ import DiscountTabs from '../../components/DiscountTabs/DiscountTabs';
 import { useLang } from '../../hooks/useLang';
 
 const NewsBlog = ({ pub }) => {
-    console.log(pub)
     const lang = useLang();
     return (
         <>
@@ -22,7 +21,6 @@ const NewsBlog = ({ pub }) => {
             />
             <PagePath
                 paths={[
-                    {},
                     {
                         "name": lang?.['Новости']
                     }

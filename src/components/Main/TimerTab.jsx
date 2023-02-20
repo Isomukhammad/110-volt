@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useLang } from '../../hooks/useLang';
-import getCountdown from '../../utils/getCoundown';
+import { getCountdown } from '../../utils/getCoundown';
 import styles from './TimerTab.module.scss';
 
 const TimerTab = ({ end }) => {
     const lang = useLang();
     const [coundown, setCountdown] = useState();
 
-    const dateStart = new Date(end);
-    const timestamp = dateStart.getTime();
+    const timestamp = (new Date(end).getTime());
 
     useEffect(() => {
         const timer = setInterval(() => {

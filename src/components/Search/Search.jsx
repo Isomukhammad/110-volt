@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect, useMemo, useState } from "react";
 import useSWR from "swr";
-import { useSort } from "../../context/sort";
+import { useSort } from "../../context/sortContext";
 import { setQuery, useParams } from '../../hooks/useParams';
 import { useLang } from '../../hooks/useLang';
 import fetcher from "../../utils/fetcher";
@@ -62,10 +62,6 @@ const Search = () => {
             <div>
                 <PagePath
                     paths={[
-                        {
-                            "url": "/",
-                            "name": "Главная"
-                        },
                         {
                             "url": "",
                             "name": "Поиск"

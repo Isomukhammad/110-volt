@@ -12,6 +12,11 @@
     align-items: center;
     cursor: pointer;
 
+    h3 {
+      font-weight: 600;
+      font-size: 20px;
+    }
+
     svg {
       animation: rotateBack 0.3s;
       transform: rotate(90deg);

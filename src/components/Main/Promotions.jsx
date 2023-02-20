@@ -12,7 +12,7 @@ import styles from './Promotions.module.scss'
 const Promotions = () => {
     const router = useRouter;
     const lang = useLang();
-    const { data: promotions, error: promotionsError, isValidating } = useSWR(['/promotions?type=active&quantity=3', router.locale], (url) => fetcher(url, { header: { 'Accept-Language': router.locale } }),
+    const { data: promotions, error: promotionsError, isValidating } = useSWR(['/promotions?quantity=3', router.locale], (url) => fetcher(url, { header: { 'Accept-Language': router.locale } }),
         {
             revalidateIfStale: false,
             revalidateOnFocus: false,

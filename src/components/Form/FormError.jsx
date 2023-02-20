@@ -1,5 +1,4 @@
 const FormError = ({ error }) => {
-    console.log(error);
     if (!error) return null
 
     return (

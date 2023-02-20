@@ -9,6 +9,7 @@ import { useLang } from '../../hooks/useLang';
 const PopularCategories = () => {
     const router = useRouter();
     const lang = useLang();
+
     const { data: categories, error, isValidating, mutate } = useSWR(['/categories?is_popular=1&quantity=8', router.locale], (url) => fetcher(url, { headers: { 'Accept-Language': router.locale } }),
         {
             revalidateIfStale: false,

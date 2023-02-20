@@ -12,7 +12,7 @@ import DiscountTabs from '../../components/DiscountTabs/DiscountTabs';
 import PagePath from '../../components/PagePath/PagePath';
 import ProductPageSlider from '../../components/ProductPageSlider/ProductPageSlider';
 import styles from './Product.module.scss';
-import { useCart } from '../../context/cart';
+import { useCart } from '../../context/cartContext';
 import { isActive } from '../../utils/funcs';
 import { useLang } from '../../hooks/useLang';
 
@@ -81,7 +81,6 @@ const ProductPage = ({ product }) => {
                 <ProductHeader product={product} show={show} data={product} />
                 <PagePath
                     paths={[
-                        {},
                         ...path,
                         {
                             "url": '',

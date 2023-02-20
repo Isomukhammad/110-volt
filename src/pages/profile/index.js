@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
-import { useAuth } from '../../context/auth';
-import HeadInfo from '../../utils/HeadInfo';
+import { useAuth } from '../../context/authContext';
+import HeadInfo from '../../utils/headInfo';
 
 import PagePath from '../../components/PagePath/PagePath'
 import ProfileForm from '../../components/Profile/ProfileForm';
@@ -20,7 +20,7 @@ const ProfilePage = () => {
     const router = useRouter();
     const lang = useLang();
     const [section, setSection] = useState('profile');
-    const { handleLogout } = useAuth()
+    const { handleLogout } = useAuth();
 
     useEffect(() => {
         if (router.query.section === 'orders') {
@@ -31,17 +31,16 @@ const ProfilePage = () => {
     return (
         <>
             <HeadInfo title={lang?.['Профиль']} />
+            <PagePath
+                paths={[
+                    {
+                        "url": "",
+                        "name": lang?.['Мой аккаунт']
+                    }
+                ]}
+            />
             <div className={styles.container}>
-                <PagePath
-                    paths={[
-                        {},
-                        {
-                            "url": "",
-                            "name": lang?.['Мой аккаунт']
-                        }
-                    ]}
-                />
-                <h1>Мой аккаунт</h1>
+                <h1>{lang?.['Мой аккаунт']}</h1>
                 <div className={`${styles.content} ${section === 'orders' ? styles.space : ''}`}>
                     <div className={styles.sidebar}>
                         <div

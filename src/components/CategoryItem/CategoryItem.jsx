@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ClipLoader } from "react-spinners";
-import { useCart } from "../../context/cart";
+import { useCart } from "../../context/cartContext";
 import { isActive } from "../../utils/funcs";
 
 import styles from './CategoryItem.module.scss';

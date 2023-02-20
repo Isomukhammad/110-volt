@@ -5,7 +5,7 @@ import ProductTab from '../ProductTab/ProductTab';
 import PageButtons from "../../components/PageButtons/PageButtons";
 import { useParams } from '../../hooks/useParams';
 import { ScreenContext } from '../../context/screenContext';
-import { useSort } from '../../context/sort';
+import { useSort } from '../../context/sortContext';
 import useSWR from 'swr';
 import fetcher from '../../utils/fetcher';
 import PagePath from '../PagePath/PagePath';
@@ -96,7 +96,6 @@ const Category = ({
             <div className={styles.container}>
                 <PagePath
                     paths={[
-                        {},
                         {
                             "name": category?.name,
                             "url": ""

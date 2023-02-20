@@ -54,19 +54,18 @@ const OrderDetailsPage = () => {
     return (
         <>
             <HeadInfo title={lang?.['Детали заказа']} />
+            <PagePath
+                paths={[
+                    {
+                        "url": "/profile",
+                        "name": lang?.['Мой аккаунт']
+                    },
+                    {
+                        "name": lang?.['Мои заказы']
+                    }
+                ]}
+            />
             <div className="mb-[120px]">
-                <PagePath
-                    paths={[
-                        {},
-                        {
-                            "url": "/profile",
-                            "name": lang?.['Мой аккаунт']
-                        },
-                        {
-                            "name": lang?.['Мои заказы']
-                        }
-                    ]}
-                />
                 <h1 className="font-bold text-[24px] mt-10 lg:text-[32px]">{lang?.['Заказ']} #{router.query.id}</h1>
                 {
                     isLoading ? (

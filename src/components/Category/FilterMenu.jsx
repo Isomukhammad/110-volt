@@ -65,7 +65,6 @@ const FilterMenu = ({ attributes, brands, prices, loading, category, products, f
             setMinValue(prices.min)
         }
     })
-
     return (
         <div className={`${styles.container} ${filterOpen ? styles.filterOpen : ''}`}>
             <div className={styles.closeButton} onClick={() => setFilterOpen(false)}>
@@ -105,52 +104,76 @@ const FilterMenu = ({ attributes, brands, prices, loading, category, products, f
                 />
             </FilterOption>
 
-            {/* <FilterOption title="Объем встроенной памяти">
-                <form>
-                    <InputCheckbox
-                        name="1 ТБ"
-                        handleChange={handleSpaceChange}
-                    />
-                    <InputCheckbox
-                        name="256 ГБ"
-                        handleChange={handleSpaceChange}
-                    />
-                    <InputCheckbox
-                        name="128 ГБ"
-                        handleChange={handleSpaceChange}
-                    />
-                    <InputCheckbox
-                        name="64 ГБ"
-                        handleChange={handleSpaceChange}
-                    />
-                    <InputCheckbox
-                        name="32 ГБ"
-                        handleChange={handleSpaceChange}
-                    />
-                </form>
-            </FilterOption>
+            {attributes.map((attr) => {
+                if (
+                    attr.used_for_filter &&
+                    attr.attribute_values.some((value) => value.used_for_filter) &&
+                    attr.slug !== 'cvet'
+                ) {
+                    return (
+                        <div key={attr.id}>
+                            <FilterOption title={attr.name}>
+                                <div className='flex flex-col gap-3'>
+                                    {
+                                        attr.attribute_values.map((value) => {
+                                            if (value.used_for_filter) {
+                                                return (
+                                                    <InputCheckbox
+                                                        name={value.name}
+                                                        key={value.id}
+                                                        id={`attribute-${value.id}`}
+                                                        onChange={() => {
+                                                            updateParams('attribute', `${value.id}-${value.slug}`)
+                                                        }}
+                                                        checked={checkParams('attribute', `${value.id}-${value.slug}`)}
+                                                    />
+                                                )
+                                            }
+                                        })
+                                    }
+                                </div>
+                            </FilterOption>
+                        </div>
+                    )
+                }
+            })}
 
-            <FilterOption title="Количество и тип SIM-карты">
-                <form>
-                    <InputCheckbox
-                        name="Dual-Sim (nano-sim)"
-                        handleChange={handleSimChange}
-                    />
-                    <InputCheckbox
-                        name="1 (Nano Sim)"
-                        handleChange={handleSimChange}
-                    />
-                    <InputCheckbox
-                        name="2 (Nano-SIM + eSIM)"
-                        handleChange={handleSimChange}
-                    />
-                    <InputCheckbox
-                        name="2 nano-SIM"
-                        handleChange={handleSimChange}
-                    />
-                </form>
-            </FilterOption>
-
+            {
+                attributes.map((attr) => {
+                    if (
+                        attr.used_for_filter &&
+                        attr.slug === 'cvet'
+                    ) {
+                        return (
+                            <div key={attr.id}>
+                                <FilterOption title={attr.name}>
+                                    <form
+                                        key={attr.id}
+                                        className={styles.radios}
+                                    >
+                                        {
+                                            attr.attribute_values.map((value) => {
+                                                if (value.used_for_filter) {
+                                                    return (
+                                                        <div key={value.id}>
+                                                            <InputRadio
+                                                                name='color'
+                                                                color={value.slug}
+                                                                value={value.slug}
+                                                            />
+                                                        </div>
+                                                    )
+                                                }
+                                            })
+                                        }
+                                    </form>
+                                </FilterOption>
+                            </div>
+                        )
+                    }
+                })
+            }
+            {/*
             <FilterOption title="Цвет">
                 <form className={styles.radios}>
                     <InputRadio
@@ -185,7 +208,7 @@ const FilterMenu = ({ attributes, brands, prices, loading, category, products, f
                     />
                 </form>
             </FilterOption> */}
-        </div>
+        </div >
     )
 }
 

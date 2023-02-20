@@ -3,11 +3,11 @@ import { useRouter } from 'next/router';
 import NProgress from 'nprogress';
 
 //context 
-import AuthGuard, { AuthProvider } from '../context/auth';
-import { CartProvider } from '../context/cart';
+import AuthGuard, { AuthProvider } from '../context/authContext';
+import { CartProvider } from '../context/cartContext';
 import { DataProvider } from '../context/dataContext';
 import ScreenContext from '../context/screenContext';
-import { WishProvider } from '../context/wish';
+import { WishProvider } from '../context/wishContext';
 
 //layout
 import MainLayout from '../layouts/Layout/Main';

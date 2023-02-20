@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useLang } from '../../hooks/useLang';
-import { useCart } from '../../context/cart';
+import { useCart } from '../../context/cartContext';
 import ImageComponent from '../ImageComponent/ImageComponent';
 
 import styles from './CartItem.module.scss'
@@ -36,8 +36,6 @@ const CartItem = ({ item, checkout }) => {
             })
         }
     }
-
-    console.log(item?.product?.installment_prices[0]?.prices[0]?.duration);
 
     return (
         <div className={styles.container}>

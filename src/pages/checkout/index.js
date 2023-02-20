@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useCart } from '../../context/cart';
+import { useCart } from '../../context/cartContext';
 import { useLang } from '../../hooks/useLang';
 import HeadInfo from '../../utils/headInfo';
 import CartItem from '../../components/Cart/CartItem';
-import CartError from '../../components/Cart/CartEmpty';
 import DiscountTabs from '../../components/DiscountTabs/DiscountTabs';
 import PagePath from '../../components/PagePath/PagePath';
 import CartTotal from '../../components/Cart/CartTotal';
@@ -18,6 +17,7 @@ import AddressModal from '../../components/Checkout/AddressModal';
 import { toast, ToastContainer } from 'react-toastify';
 import { authAxios } from '../../utils/axios';
 import { useRouter } from 'next/router';
+import Empty from '../../components/Empty/Empty';
 
 const CheckoutPage = () => {
     const router = useRouter();
@@ -72,7 +72,6 @@ const CheckoutPage = () => {
             <HeadInfo title="Оформить заказ" />
             <PagePath
                 paths={[
-                    {},
                     {
                         "url": "cart",
                         "name": lang?.['Корзина']
@@ -132,7 +131,13 @@ const CheckoutPage = () => {
                         </>
                     ) : (
                         <div className='flex flex-col items-center justify-center'>
-                            <CartError />
+                            <Empty
+                                img="/images/Empty-amico 1.png"
+                                title={lang?.['Здесь пока ничего нет']}
+                                description={lang?.['Загляните а главую или воспользуйтесь поиском']}
+                                btnUrl='/'
+                                btnText={lang?.['Вернуться на главную']}
+                            />
                         </div>
                     )
                     )

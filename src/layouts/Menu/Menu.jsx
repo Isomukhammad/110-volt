@@ -90,7 +90,12 @@ const Menu = ({ menuOpen, setMenuOpen, searchFocus, setSearchFocus }) => {
                                             <use xlinkHref='#search'></use>
                                         </svg>
                                     </div>
-                                    <input ref={searchRef} type="text" placeholder='Я ищу ...' />
+                                    <input
+                                        ref={searchRef}
+                                        type="text"
+                                        placeholder='Я ищу ...'
+                                        className='focus:ring-0'
+                                    />
                                 </div>
                             </div>
                         ) : null

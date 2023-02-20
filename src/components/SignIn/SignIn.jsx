@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { PatternFormat } from 'react-number-format';
-import { useAuth } from '../../context/auth';
-import { useCart } from '../../context/cart';
+import { useAuth } from '../../context/authContext';
+import { useCart } from '../../context/cartContext';
 import { useLang } from '../../hooks/useLang';
 import Button from '../Button/Button';
 import FormError from '../Form/FormError';
@@ -45,7 +45,7 @@ const SignIn = () => {
 
             }
 
-            const res = await handleLogin({ phone_number, password: data.password });
+            await handleLogin({ phone_number, password: data.password });
             getAndSetCart();
         } catch (err) {
             setFormError(err?.response?.data)

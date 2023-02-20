@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { PatternFormat } from 'react-number-format';
 import { toast } from 'react-toastify';
-import { useAuth } from '../../context/auth';
+import { useAuth } from '../../context/authContext';
 import { useLang } from '../../hooks/useLang';
 import { nextAxios } from '../../utils/axios';
 
@@ -96,7 +96,6 @@ const SignUp = () => {
             const { name, password, email, phone_number } = data;
             setFormError(null)
             const phone = phone_number.replace(/\D/g, '');
-            console.log(data);
 
             // const otpCheck = await checkOtp({ phone_number: phone, otp: data.otp });
 

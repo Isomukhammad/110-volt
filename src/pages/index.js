@@ -1,5 +1,7 @@
 import { nextAxios } from '../utils/axios';
+
 import HeadInfo from '../utils/headInfo';
+
 import Headline from '../components/Main/Headline';
 import PopularCategories from '../components/Main/PopularCategories';
 import Recommendations from '../components/Recommendations/Recommendations';
@@ -15,24 +17,26 @@ import { useLang } from '../hooks/useLang';
 const Home = ({ page }) => {
   const lang = useLang();
   return (
-    <main className={styles.main}>
+    <>
       <HeadInfo
         title={page.seo_title}
         description={page.meta_description}
         keywords={page.meta_keywords}
       />
 
-      <Headline />
-      <PopularCategories />
-      <DiscountTabs />
-      <Recommendations title={lang?.['Хиты продаж']} linkTitle={lang?.['Все хиты']} link="/products?is_bestseller=1&quantity=12" />
-      <Recommendations title={lang?.["Лучшие новинки"]} linkTitle={lang?.["Все новинки"]} link="/products?is_new=1&quantity=12" />
-      <Recommendations title={lang?.["Успейте купить"]} link="/products?is_promotion=1&quantity=12" />
-      <Promotions />
-      {/* <ReviewCategories /> */}
-      <BrandCategories />
-      <CompanyDescription data={page} />
-    </main>
+      <main className={styles.main}>
+        <Headline />
+        <PopularCategories />
+        <DiscountTabs />
+        <Recommendations title={lang?.['Хиты продаж']} linkTitle={lang?.['Все хиты']} link="/products?is_bestseller=1&quantity=12" />
+        <Recommendations title={lang?.["Лучшие новинки"]} linkTitle={lang?.["Все новинки"]} link="/products?is_new=1&quantity=12" />
+        <Recommendations title={lang?.["Успейте купить"]} link="/products?is_promotion=1&quantity=12" />
+        <Promotions />
+        {/* <ReviewCategories /> */}
+        <BrandCategories />
+        <CompanyDescription data={page} />
+      </main>
+    </>
   )
 }
 

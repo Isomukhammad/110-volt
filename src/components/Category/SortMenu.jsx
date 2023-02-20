@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import ReactDropdown from 'react-dropdown';
 import { ScreenContext } from '../../context/screenContext';
-import { useSort } from '../../context/sort'
+import { useSort } from '../../context/sortContext'
 import { useLang } from '../../hooks/useLang';
 
 import styles from './SortMenu.module.scss';

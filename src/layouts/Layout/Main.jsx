@@ -1,5 +1,5 @@
 import { ToastContainer } from "react-toastify";
-import Sprites from "../../utils/Sprites";
+import Sprites from "../../utils/sprites";
 import Footer from "../Footer/Footer"
 import Header from "../Header/Header"
 import MobileBottomMenu from "../MobileBottomMenu/MobileBottomMenu";

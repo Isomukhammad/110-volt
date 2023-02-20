@@ -1,24 +1,25 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { useEffect, useMemo, useState } from 'react';
-import useSWR from 'swr';
+import { useMemo, useState } from 'react';
 import { useLang } from '../../hooks/useLang';
+import useSWR from 'swr';
 
-import fetcher from '../../utils/fetcher';
 import { useData } from '../../context/dataContext';
 
-import PagePath from "../../components/PagePath/PagePath";
+import { nextAxios } from '../../utils/axios';
+import fetcher from '../../utils/fetcher';
 import HeadInfo from "../../utils/headInfo";
+
+import Empty from '../../components/Empty/Empty';
+import PagePath from "../../components/PagePath/PagePath";
 import Button from '../../components/Button/Button';
-import ImageComponent from "../../components/ImageComponent/ImageComponent";
 import NewsTabs from '../../components/News/NewsTabs'
 import DiscountTabs from '../../components/DiscountTabs/DiscountTabs'
 import PopularGoods from '../../components/PopularGoods/PopularGoods'
 import PageButtons from '../../components/PageButtons/PageButtons';
 
 import styles from './News.module.scss'
-import { nextAxios } from '../../utils/axios';
 
 const NewsPage = ({ pageInfo }) => {
     const router = useRouter();
@@ -50,85 +51,76 @@ const NewsPage = ({ pageInfo }) => {
                     description={pageInfo.meta_description}
                     keywords={pageInfo.meta_keywords}
                 />
-                <PagePath
-                    paths={[
-                        {
-                            "url": "/",
-                            "name": lang?.['Главная']
-                        },
-                        {
-                            "url": "",
-                            "name": pageInfo.name
-                        }
-                    ]}
-                />
-                {
-                    publications ? (
-                        <div className={styles.container}>
-                            <h1 className={`${styles.title} hidden lg:flex font-bold text-[32px]`}>{pageInfo.seo_title}</h1>
-                            <div className={styles.headline}>
-                                <div className={styles.subtitle}>
-                                    <div className={styles.info}>
-                                        <h1 className='font-bold text-[24px] lg:text-[32px]'>{lang?.['110 volt - на рынке Узбекистана']}</h1>
-                                        <Button variant="news">{lang?.['ПОДРОБНЕЕ']}</Button>
+                <div className='mb-[120px]'>
+                    <PagePath
+                        paths={[
+                            {
+                                "url": "",
+                                "name": pageInfo.name
+                            }
+                        ]}
+                    />
+                    {
+                        publications ? (
+                            <div className={styles.container}>
+                                <h1 className={`${styles.title} hidden lg:flex font-bold text-[32px]`}>{pageInfo.seo_title}</h1>
+                                <div className={styles.headline}>
+                                    <div className={styles.subtitle}>
+                                        <div className={styles.info}>
+                                            <h1 className='font-bold text-[24px] lg:text-[32px]'>{lang?.['110 volt - на рынке Узбекистана']}</h1>
+                                            <Button variant="news">{lang?.['ПОДРОБНЕЕ']}</Button>
+                                        </div>
+                                        <div className={styles.image}>
+                                            <Image
+                                                src={'/images/Documents-rafiki 1.png'}
+                                                sizes="100vw"
+                                                width="0"
+                                                height="0"
+                                                alt=""
+                                            />
+                                        </div>
                                     </div>
-                                    <div className={styles.image}>
-                                        <Image
-                                            src={'/images/Documents-rafiki 1.png'}
-                                            sizes="100vw"
-                                            width="0"
-                                            height="0"
-                                            alt=""
-                                        />
-                                    </div>
-                                </div>
-                                <div className={styles.contacts}>
-                                    <h2 className='font-semibold text-[24px]'>{lang?.['Контакты']}</h2>
-                                    <p>По всем интересующим вас вопросом можете обращаться по телефону <Link href={`tel:${settings?.phone}`}><span>{settings?.phone}</span></Link> или написав нам на почту <Link href={`mailto:${settings?.email}`}><span>{settings?.email}</span></Link></p>
-                                    <div className={styles.buttons}>
-                                        <Link href={`mailto:${settings?.email}`}>
-                                            <Button>{lang?.['Написать']}</Button>
-                                        </Link>
-                                        <Link href={`tel:${settings?.phone}`}>
-                                            <Button variant="reverse">{lang?.['Позвонить']}</Button>
-                                        </Link>
+                                    <div className={styles.contacts}>
+                                        <h2 className='font-semibold text-[24px]'>{lang?.['Контакты']}</h2>
+                                        <p>По всем интересующим вас вопросом можете обращаться по телефону <span>{settings?.phone}</span> или написав нам на почту <span>{settings?.email}</span></p>
+                                        <div className={styles.buttons}>
+                                            <Link href={`mailto:${settings?.email}`}>
+                                                <Button>{lang?.['Написать']}</Button>
+                                            </Link>
+                                            <Link href={`tel:${settings?.phone}`}>
+                                                <Button variant="reverse">{lang?.['Позвонить']}</Button>
+                                            </Link>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div className={styles.news}>
-                                <NewsTabs data={publications} />
-                            </div>
-
-                            <div className={styles.pageButtons}>
-                                <PageButtons data={publications} page={page} setPage={setPage} />
-                            </div>
-
-                            <div className='lg:hidden'>
-                                <PopularGoods title={lang?.['Популярные товары']} link="/products?is_popular-1" />
-                            </div>
-                            <DiscountTabs />
-                        </div>
-                    ) : (
-                        <>
-                            <div className={styles.error}>
-                                <div className={styles.content}>
-                                    <div>
-                                        <ImageComponent
-                                            src={'/images/Studying-rafiki 1.png'}
-                                            alt=""
-                                        />
-                                        <h2 className='text-[24px] font-semibold'>{lang?.['Здесь пока ничего нет']}</h2>
-                                        <p>{lang?.['Наши редакторы уже в процессе написания новой статьи']}</p>
-                                        <button className='w-full py-4 px-14 bg-accent rounded-[16px] text-white font-semibold hover:bg-accentDark transition duration-300 lg:max-w-[282px]'>{lang?.['Вернуться на главную']}</button>
-                                    </div>
+                                <div className={styles.news}>
+                                    <NewsTabs data={publications} />
                                 </div>
-                                <PopularGoods title={lang?.['Популярные товары']} link="/products?is_popular-1" />
-                                <DiscountTabs />
+
+                                <div className={styles.pageButtons}>
+                                    <PageButtons data={publications} page={page} setPage={setPage} />
+                                </div>
                             </div>
-                        </>
-                    )
-                }
+                        ) : (
+                            <>
+                                <div className={styles.error}>
+                                    <Empty
+                                        img='/images/News-empty.png'
+                                        title={lang?.['Здесь пока ничего нет']}
+                                        description={lang?.['Наши редакторы уже в процессе написания новой статьи']}
+                                        btnUrl='/'
+                                        btnText={lang?.['Вернуться на главную']}
+                                    />
+                                </div>
+                            </>
+                        )
+                    }
+                    <div className='lg:hidden'>
+                        <PopularGoods title={lang?.['Популярные товары']} link="/products?is_popular-1" />
+                    </div>
+                    <DiscountTabs />
+                </div>
             </>
         )
     }

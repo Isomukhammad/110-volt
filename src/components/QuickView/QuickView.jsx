@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import { useLang } from '../../hooks/useLang';
 
-import { useCart } from '../../context/cart';
-import { useWish } from '../../context/wish';
+import { useCart } from '../../context/cartContext';
+import { useWish } from '../../context/wishContext';
 
 import { isActive } from '../../utils/funcs';
 

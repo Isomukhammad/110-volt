@@ -1,12 +1,12 @@
-import { useRouter } from "next/router";
-import DiscountTabs from "../../components/DiscountTabs/DiscountTabs";
-import PagePath from "../../components/PagePath/PagePath";
 import { nextAxios } from "../../utils/axios";
 import HeadInfo from "../../utils/headInfo";
 
+import DiscountTabs from "../../components/DiscountTabs/DiscountTabs";
+import PagePath from "../../components/PagePath/PagePath";
+
 const AboutPage = ({ page }) => {
     return (
-        <div className='mb-20'>
+        <>
             <HeadInfo
                 title={page.seo_title}
                 description={page.meta_description}
@@ -16,26 +16,23 @@ const AboutPage = ({ page }) => {
             <PagePath
                 paths={[
                     {
-                        "url": "/",
-                        "name": "Главная"
-                    },
-                    {
                         "url": "",
                         "name": page.name
                     }
                 ]}
             />
+            <div className='mb-20'>
+                <div className='flex flex-col gap-12'>
+                    <h1 className="font-bold text-[24px] md:text-[32px] mt-10">{page.seo_title}</h1>
 
-            <div className='flex flex-col gap-12'>
-                <h1 className="font-bold text-[24px] md:text-[32px] mt-10">{page.seo_title}</h1>
-
-                <div
-                    dangerouslySetInnerHTML={{ __html: page.body }}
-                    className='flex flex-col gap-4 font-medium  text-[18px] [&>ul]:pl-7 [&>ul]:list-disc'
-                />
+                    <div
+                        dangerouslySetInnerHTML={{ __html: page.body }}
+                        className='flex flex-col gap-4 font-medium  text-[18px] [&>ul]:pl-7 [&>ul]:list-disc'
+                    />
+                </div>
+                <DiscountTabs />
             </div>
-            <DiscountTabs />
-        </div>
+        </>
     )
 }
 

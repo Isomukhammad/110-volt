@@ -1,10 +1,12 @@
 .container {
-  width: 32px;
-  height: 32px;
+  // width: 32px;
+  height: 30px;
+  margin: 0.3em;
+
   input[type="radio"] {
     border: none;
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     cursor: pointer;
 
     &:after {
@@ -29,7 +31,7 @@
       content: "";
       display: inline-block;
       visibility: visible;
-      outline: 2px solid black;
+      outline: 2px solid #7b54c9;
       outline-offset: 2px;
     }
   }
@@ -59,26 +61,26 @@
   }
 }
 
-.purple {
+.gray {
   input[type="radio"] {
     &:after {
-      background: linear-gradient(270.95deg, #888bf4 0%, #5151c6 100%);
+      background: #808080;
     }
   }
 }
 
-.orange {
+.gold {
   input[type="radio"] {
     &:after {
-      background-color: #ff8a00;
+      background-color: #ffd700;
     }
   }
 }
 
-.blue {
+.bronze {
   input[type="radio"] {
     &:after {
-      background-color: #7dc9ff;
+      background-color: #cd7f32;
     }
   }
 }

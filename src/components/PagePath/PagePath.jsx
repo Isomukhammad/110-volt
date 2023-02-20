@@ -6,24 +6,21 @@ const PagePath = ({ paths }) => {
     const lang = useLang();
     return (
         <nav className={styles.container}>
+            <Link href="/">{lang?.['Главная']}</Link>
             {
                 paths?.map((item, index) => (
                     <div key={index}>
                         {
-                            index === 0 ? (
-                                <Link href="/">{lang?.['Главная']}</Link>
+                            item.url ? (
+                                <Link
+                                    href={`/${item.url}`}
+                                >
+                                    &mdash; {item.name}
+                                </Link>
                             ) : (
-                                item.url ? (
-                                    <Link
-                                        href={`/${item.url}`}
-                                    >
-                                        &mdash; {item.name}
-                                    </Link>
-                                ) : (
-                                    <div>
-                                        &mdash; {item.name}
-                                    </div>
-                                )
+                                <div>
+                                    &mdash; {item.name}
+                                </div>
                             )
                         }
                     </div>

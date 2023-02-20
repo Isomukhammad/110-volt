@@ -7,7 +7,7 @@ import PageButtons from "../../components/PageButtons/PageButtons";
 import styles from './ProductsList.module.scss';
 import { useRouter } from 'next/router';
 import { useParams } from '../../hooks/useParams';
-import { useSort } from '../../context/sort';
+import { useSort } from '../../context/sortContext';
 import useSWRInfinite from 'swr';
 import fetcher from '../../utils/fetcher';
 import Link from 'next/link';

@@ -4,8 +4,8 @@ import Link from 'next/link';
 import { useLang } from '../../hooks/useLang';
 import { ClipLoader } from 'react-spinners';
 import { ScreenContext } from '../../context/screenContext';
-import { useCart } from '../../context/cart';
-import { useWish } from '../../context/wish'
+import { useCart } from '../../context/cartContext';
+import { useWish } from '../../context/wishContext'
 import { isActive, thousandSeperate } from '../../utils/funcs';
 import QuickView from '../QuickView/QuickView';
 import Button from '../Button/Button';

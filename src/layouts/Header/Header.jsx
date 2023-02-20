@@ -4,8 +4,8 @@ import { useLang } from '../../hooks/useLang';
 
 import { ScreenContext } from '../../context/screenContext';
 import { useData } from '../../context/dataContext';
-import { useCart } from '../../context/cart';
-import { useAuth } from '../../context/auth';
+import { useCart } from '../../context/cartContext';
+import { useAuth } from '../../context/authContext';
 
 import Menu from '../Menu/Menu';
 import SearchInput from '../../components/SearchInput/SearchInput';
@@ -51,7 +51,7 @@ const Header = () => {
 
                 <div className={styles.categories}>
                     {
-                        !treeValidating ? (
+                        tree ? (
                             tree.data.map((category) => (
                                 <Link href={`/categories/${category.id}-${category.slug}`} key={category.id}>{category.name}</Link>
                             ))
@@ -112,7 +112,11 @@ const Header = () => {
                 </div>
 
                 <div className={styles.navButtons}>
-                    <div className={styles.navButton}>
+                    <div
+                        // href={router.asPath}
+                        // locale={router.locale === 'uz' ? 'ru' : 'uz'}
+                        className={styles.navButton}
+                    >
                         <svg viewBox="0 0 21 22" fill="none" className={styles.languageButton}>
                             <use xlinkHref='#language-logo'></use>
                         </svg>

@@ -30,6 +30,7 @@ const PasswordPopUp = ({ setIsOpen, isOpen, register, handleSubmit }) => {
             setIsOpen(false);
         } catch (error) {
             console.error(error);
+            setFormError(error?.response?.data)
         }
     }
 

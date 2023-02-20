@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import Button from '../Button/Button';
-import { useCart } from '../../context/cart';
+import { useCart } from '../../context/cartContext';
 import ImageComponent from '../ImageComponent/ImageComponent';
 import styles from './ProductHeader.module.scss'
 import { isActive } from '../../utils/funcs';

@@ -2,7 +2,7 @@ import Link from 'next/link';
 import SignIn from '../../components/SignIn/SignIn';
 import { useLang } from '../../hooks/useLang';
 
-import HeadInfo from '../../utils/HeadInfo'
+import HeadInfo from '../../utils/headInfo'
 
 import styles from './SignIn.module.scss'
 

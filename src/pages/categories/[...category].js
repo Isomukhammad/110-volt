@@ -4,7 +4,7 @@ import { nextAxios } from '../../utils/axios';
 import { useParams } from '../../hooks/useParams'
 
 import styles from './Categories.module.scss'
-import { SortProvider } from "../../context/sort";
+import { SortProvider } from "../../context/sortContext";
 import Category from '../../components/Category/Category'
 import { useRouter } from "next/router";
 

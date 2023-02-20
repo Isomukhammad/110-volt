@@ -19,8 +19,6 @@ const ProductCharasteristic = ({ data }) => {
         }
     )
 
-    console.log(attr);
-
     if (!isValidating) {
         return (
             <div className={styles.container}>
@@ -37,7 +35,7 @@ const ProductCharasteristic = ({ data }) => {
                                                 <span>{item.slug ? item.slug : 'unknown'}</span> <span>
                                                     {
                                                         item.attribute_values.map((char) => (
-                                                            <>{char.slug ? char.slug : 'unknown'} </>
+                                                            <>{char.slug ? `${char.slug} ` : 'unknown'}</>
                                                         ))
                                                     }
                                                 </span>
