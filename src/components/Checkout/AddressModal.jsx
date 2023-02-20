@@ -35,7 +35,8 @@ const AddressModal = ({ addressOpen, register, setAddress, setAddressOpen }) => 
             const res = await authAxios.post('/addresses', {
                 address_line_1: data.address
             });
-            toast.error('Адрес добавлен');
+            toast.success('Адрес добавлен');
+            handleAddressGet();
             reset2();
         } catch (error) {
             console.error(error);

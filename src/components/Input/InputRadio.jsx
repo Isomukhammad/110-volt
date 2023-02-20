@@ -1,7 +1,6 @@
 import styles from './InputRadio.module.scss';
 
 const InputRadio = ({ slug, color, value, ...otherProps }) => {
-    console.log(color)
     const red = color === "red" ? styles.red : '';
     const black = color === "black" ? styles.black : '';
     const mysticBlack = color === 'mystic-black' ? styles.mysticBlack : '';

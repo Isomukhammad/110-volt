@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState, useRef } from "react";
+import { useParams } from "../../hooks/useParams";
 
 import styles from "./InputRange.module.scss";
 
@@ -8,12 +9,15 @@ const InputRange = ({ min, max, onChange }) => {
     const minValRef = useRef(null);
     const maxValRef = useRef(null);
     const range = useRef(null);
+    const { updateParams, findParams } = useParams();
 
     // Convert to percentage
     const getPercent = useCallback(
         (value) => Math.round(((value - min) / (max - min)) * 100),
         [min, max]
     );
+
+
 
     // Set width of the range to decrease from the left side
     useEffect(() => {
@@ -51,18 +55,21 @@ const InputRange = ({ min, max, onChange }) => {
             value = 0;
         }
 
-        if (value >= min && value < maxVal) {
-            setMinVal(value);
-        }
+        setMinVal(value);
     }
 
     const handleMaxValueChange = (event) => {
         let value = event.target.value;
 
-
-        if (value > minVal && value <= max) {
-            setMaxVal(value);
+        if (value.charAt(0) == 0) {
+            value = value.substring(1)
         }
+
+        if (value.length === 0) {
+            value = max;
+        }
+
+        setMaxVal(value);
     }
 
     return (
@@ -76,8 +83,11 @@ const InputRange = ({ min, max, onChange }) => {
                     ref={minValRef}
                     onChange={(event) => {
                         const value = Math.min(+event.target.value, maxVal - 1);
+                        updateParams(
+                            'price',
+                            `${event.target.value}-${findParams('price') ? findParams('price').split('=')[1].split('-')[1] : max}`
+                        )
                         setMinVal(value);
-                        event.target.value = value.toString();
                     }}
                     className={`${styles.thumb} ${styles.thumbZindex3} ${styles.thumbZindex5}`}
                 />
@@ -90,8 +100,11 @@ const InputRange = ({ min, max, onChange }) => {
                     ref={maxValRef}
                     onChange={(event) => {
                         const value = Math.max(+event.target.value, minVal + 1);
+                        updateParams(
+                            'price',
+                            `${findParams('price') ? findParams('price').split('=')[1].split('-')[0] : min}-${event.target.value}`
+                        )
                         setMaxVal(value);
-                        event.target.value = value.toString();
                     }}
                     className={`${styles.thumb} ${styles.thumbZindex4}`}
                 />
@@ -107,12 +120,13 @@ const InputRange = ({ min, max, onChange }) => {
             <div className={styles.priceInput}>
                 <input
                     type="text"
-                    onChange={handleMinValueChange}
                     onKeyPress={(event) => {
                         if (!/[0-9]/.test(event.key)) {
                             event.preventDefault();
                         }
                     }}
+                    onChange={handleMinValueChange}
+                    value={minVal}
                     placeholder={min}
                 />
                 -
@@ -124,6 +138,7 @@ const InputRange = ({ min, max, onChange }) => {
                             event.preventDefault();
                         }
                     }}
+                    value={maxVal}
                     placeholder={max}
                     className="outline-none focus:outline-none ring-none focus:ring-none"
                 />

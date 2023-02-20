@@ -18,6 +18,7 @@ const FilterMenu = ({ attributes, brands, prices, loading, category, products, f
     const [checkedRadio, setCheckedRadio] = useState(null);
     const [maxValue, setMaxValue] = useState('');
     const [minValue, setMinValue] = useState('');
+    const [color, setColor] = useState('')
 
     const { data: subcast } = useSWR(
         `/categories/${category.id}/subcategories`,
@@ -58,13 +59,16 @@ const FilterMenu = ({ attributes, brands, prices, loading, category, products, f
 
     useEffect(() => {
         if (findParams('price')) {
-            setMaxValue(findParams('price').split('_')[1].split('-')[1])
-            setMinValue(findParams('price').split('_')[1].split('-')[0])
+            setMaxValue(findParams('price').split('=')[1].split('-')[1])
+            setMinValue(findParams('price').split('=')[1].split('-')[0])
         } else if (prices) {
             setMaxValue(prices.max)
             setMinValue(prices.min)
         }
     })
+
+    console.log(findParams('attribute')?.split('=')[1].replace(color, '1000-pink'))
+
     return (
         <div className={`${styles.container} ${filterOpen ? styles.filterOpen : ''}`}>
             <div className={styles.closeButton} onClick={() => setFilterOpen(false)}>
@@ -97,7 +101,7 @@ const FilterMenu = ({ attributes, brands, prices, loading, category, products, f
                 </div>
             </FilterOption>
 
-            <FilterOption title="Цена">
+            <FilterOption title={lang?.['Цена']}>
                 <InputRange
                     min={prices.min}
                     max={prices.max}
@@ -160,6 +164,14 @@ const FilterMenu = ({ attributes, brands, prices, loading, category, products, f
                                                                 name='color'
                                                                 color={value.slug}
                                                                 value={value.slug}
+                                                                onChange={() => {
+                                                                    updateParams(
+                                                                        'attribute',
+                                                                        `${findParams('attribute') ? findParams('attribute').split('=')[1].replace(color, '1000-pink') : `${value.id}-${value.slug}`}`
+                                                                    )
+                                                                    setColor(`${value.id}-${value.slug}`)
+                                                                }}
+                                                                checked={checkParams('attribute', `${value.id}-${value.slug}`)}
                                                             />
                                                         </div>
                                                     )
@@ -173,41 +185,6 @@ const FilterMenu = ({ attributes, brands, prices, loading, category, products, f
                     }
                 })
             }
-            {/*
-            <FilterOption title="Цвет">
-                <form className={styles.radios}>
-                    <InputRadio
-                        name='color'
-                        color='red'
-                        value="red"
-                    />
-                    <InputRadio
-                        name='color'
-                        color='black'
-                        value='black'
-                    />
-                    <InputRadio
-                        name='color'
-                        color='white'
-                        value='white'
-                    />
-                    <InputRadio
-                        name='color'
-                        color='purple'
-                        value='purple'
-                    />
-                    <InputRadio
-                        name='color'
-                        color='orange'
-                        value='orange'
-                    />
-                    <InputRadio
-                        name='color'
-                        color='blue'
-                        value='blue'
-                    />
-                </form>
-            </FilterOption> */}
         </div >
     )
 }

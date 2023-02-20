@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { useContext, useEffect, useMemo, useState } from 'react';
+import { memo, useContext, useEffect, useMemo, useState } from 'react';
 import ProductTab from '../ProductTab/ProductTab';
 import PageButtons from "../../components/PageButtons/PageButtons";
 import { useParams } from '../../hooks/useParams';
@@ -148,4 +148,4 @@ const Category = ({
     )
 }
 
-export default Category;
+export default memo(Category);

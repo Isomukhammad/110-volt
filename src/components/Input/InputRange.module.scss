@@ -3,6 +3,7 @@
   flex-direction: column;
   gap: 28px;
   width: 95%;
+  overflow: hidden;
 
   .rangeInput {
     height: fit-content;

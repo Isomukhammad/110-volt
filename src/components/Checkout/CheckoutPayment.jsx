@@ -1,11 +1,13 @@
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import useSWR from 'swr';
+import { useLang } from '../../hooks/useLang';
 import fetcher from '../../utils/fetcher';
 import styles from './CheckoutPayment.module.scss';
 
 const CheckoutPayment = ({ register, errors }) => {
     const router = useRouter();
+    const lang = useLang();
     const { data: paymentMethod, error: paymentError, isValidating: paymentValidating } = useSWR(['/payment-methods', router.locale], (url) => fetcher(url, { headers: { 'Accept-Language': router.locale } }), {
         revalidateOnFocus: false,
         revalidateOnReconnect: false,
