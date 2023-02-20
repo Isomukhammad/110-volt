@@ -1,5 +1,6 @@
-import { nextAxios } from '../utils/axios';
+import { useLang } from '../hooks/useLang';
 
+import { nextAxios } from '../utils/axios';
 import HeadInfo from '../utils/headInfo';
 
 import Headline from '../components/Main/Headline';
@@ -8,11 +9,10 @@ import Recommendations from '../components/Recommendations/Recommendations';
 import CompanyDescription from '../components/Main/CompanyDescription';
 import BrandCategories from '../components/Main/BrandCategories';
 import Promotions from '../components/Main/Promotions';
-import ReviewCategories from '../components/ReviewCategories/ReviewCategories';
+import Publications from '../components/Main/PublicationsVideo';
 import DiscountTabs from '../components/DiscountTabs/DiscountTabs';
 
 import styles from '../styles/Home.module.scss';
-import { useLang } from '../hooks/useLang';
 
 const Home = ({ page }) => {
   const lang = useLang();
@@ -32,7 +32,9 @@ const Home = ({ page }) => {
         <Recommendations title={lang?.["Лучшие новинки"]} linkTitle={lang?.["Все новинки"]} link="/products?is_new=1&quantity=12" />
         <Recommendations title={lang?.["Успейте купить"]} link="/products?is_promotion=1&quantity=12" />
         <Promotions />
-        {/* <ReviewCategories /> */}
+        <div className='mt-16 lg:mt-[120px]'>
+          <Publications />
+        </div>
         <BrandCategories />
         <CompanyDescription data={page} />
       </main>

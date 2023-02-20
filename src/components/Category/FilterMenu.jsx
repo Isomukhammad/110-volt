@@ -67,8 +67,6 @@ const FilterMenu = ({ attributes, brands, prices, loading, category, products, f
         }
     })
 
-    console.log(findParams('attribute')?.split('=')[1].replace(color, '1000-pink'))
-
     return (
         <div className={`${styles.container} ${filterOpen ? styles.filterOpen : ''}`}>
             <div className={styles.closeButton} onClick={() => setFilterOpen(false)}>

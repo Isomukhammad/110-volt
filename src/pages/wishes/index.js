@@ -28,8 +28,6 @@ const WishesPage = () => {
         return (<div>{lang?.['Загрузка…']}</div>)
     }
 
-    console.log(wish.items)
-
     if (store && store.items.length == 0) {
         return (
             <Empty

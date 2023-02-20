@@ -20,8 +20,6 @@ const Promotions = () => {
         }
     );
 
-    console.log(promotions)
-
     if (!isValidating) {
         return (
             <div className={styles.salesTab}>
