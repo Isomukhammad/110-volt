@@ -101,7 +101,7 @@ const FilterMenu = ({ attributes, brands, prices, loading, category, products, f
 
             <FilterOption title={lang?.['Цена']}>
                 <InputRange
-                    min={prices.min}
+                    min={0}
                     max={prices.max}
                 />
             </FilterOption>
@@ -109,8 +109,7 @@ const FilterMenu = ({ attributes, brands, prices, loading, category, products, f
             {attributes.map((attr) => {
                 if (
                     attr.used_for_filter &&
-                    attr.attribute_values.some((value) => value.used_for_filter) &&
-                    attr.slug !== 'cvet'
+                    attr.attribute_values.some((value) => value.used_for_filter)
                 ) {
                     return (
                         <div key={attr.id}>
@@ -140,7 +139,7 @@ const FilterMenu = ({ attributes, brands, prices, loading, category, products, f
                 }
             })}
 
-            {
+            {/* {
                 attributes.map((attr) => {
                     if (
                         attr.used_for_filter &&
@@ -182,7 +181,7 @@ const FilterMenu = ({ attributes, brands, prices, loading, category, products, f
                         )
                     }
                 })
-            }
+            } */}
         </div >
     )
 }

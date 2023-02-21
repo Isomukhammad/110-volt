@@ -68,7 +68,7 @@ const Search = () => {
                         }
                     ]}
                 />
-                <h1 className="mt-6 lg:mt-10 text-[24px] lg:text-[32px] font-bold">Поиск</h1>
+                <h1 className="mt-6 lg:mt-10 text-[24px] lg:text-[32px] font-bold">{lang?.['Поиск']}</h1>
                 <div className="flex flex-col gap-10 lg:grid lg:grid-cols-[16%_81%;] mt-5 mb-10">
                     <form onSubmit={handleSearch} className="flex flex-row items-center h-10 w-full">
                         <input
@@ -112,7 +112,7 @@ const Search = () => {
                                 }
                             </div>
                         ) : (
-                            <div className="rounded-[8px] mt-4 py-3 px-5 bg-[#ff000050] h-fit rounded-4 font-semibold">Поле поиска пустое...</div>
+                            <div className="rounded-[8px] mt-4 h-fit rounded-4 font-semibold lg:mt-0">Поле поиска пустое...</div>
                         )
                     }
                 </div>

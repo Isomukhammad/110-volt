@@ -43,7 +43,7 @@ const CartTotal = ({ offer, store, handleCart, cartReqLoading, loading }) => {
                             <>
                                 <div className={styles.bottomButtons}>
                                     <Link href='/checkout'>
-                                        <Button loading={loading}>{lang?.['Оформить заказ']}</Button>
+                                        <Button type="submit" loading={loading}>{lang?.['Оформить заказ']}</Button>
                                     </Link>
                                     <Link href='/checkout'>
                                         <Button variant="reverse">{lang?.['Купить в рассрочку']}</Button>
@@ -52,7 +52,7 @@ const CartTotal = ({ offer, store, handleCart, cartReqLoading, loading }) => {
                             </>
                         ) : (
                             <Link href='/checkout'>
-                                <Button>{lang?.['Заказ']}</Button>
+                                <Button type="submit">{lang?.['Заказ']}</Button>
                             </Link>
                         )
                     }

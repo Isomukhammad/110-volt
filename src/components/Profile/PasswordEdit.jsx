@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
+import { useLang } from "../../hooks/useLang";
 import { authAxios } from "../../utils/axios";
 
 import Button from "../Button/Button";
@@ -9,6 +10,7 @@ import FormError from "../Form/FormError";
 import styles from './PasswordEdit.module.scss';
 
 const ProfilePassword = () => {
+    const lang = useLang();
     const [formError, setFormError] = useState(null);
     const [isDisabled, setIsDisabled] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
@@ -88,7 +90,7 @@ const ProfilePassword = () => {
                         placeholder=" "
                         maxLength={255}
                     />
-                    <label htmlFor="current-password" className="absolute text-[15px] text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-100 top-1.5 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500  peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1 cursor-text">Старый пароль</label>
+                    <label htmlFor="current-password" className="absolute text-[15px] text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-100 top-1.5 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500  peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1 cursor-text">{lang?.['Старый пароль']}</label>
                 </div>
                 <div className="relative">
                     <input
@@ -103,7 +105,7 @@ const ProfilePassword = () => {
                         placeholder=" "
                         maxLength={255}
                     />
-                    <label htmlFor="new-password" className="absolute text-[15px] text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-100 top-1.5 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500  peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1 cursor-text">Придумайте новый пароль</label>
+                    <label htmlFor="new-password" className="absolute text-[15px] text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-100 top-1.5 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500  peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1 cursor-text">{lang?.['Придумайте новый пароль']}</label>
                 </div>
                 <div className="relative">
                     <input
@@ -118,14 +120,14 @@ const ProfilePassword = () => {
                         placeholder=" "
                         maxLength={255}
                     />
-                    <label htmlFor="confirm-password" className="absolute text-[15px] text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-100 top-1.5 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500  peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1 cursor-text">Подтвердите пароль</label>
+                    <label htmlFor="confirm-password" className="absolute text-[15px] text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-100 top-1.5 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500  peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1 cursor-text">{lang?.['Подтвердите пароль']}</label>
                 </div>
                 <Button
                     active={!isDisabled}
                     loading={isLoading}
                     spinColor="#000000"
                     type="submit"
-                >Сохранить изменения</Button>
+                >{lang?.['Сохранить изменения']}</Button>
             </form>
         </>
     )

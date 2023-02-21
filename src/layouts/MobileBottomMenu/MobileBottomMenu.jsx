@@ -1,9 +1,12 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useLang } from '../../hooks/useLang';
 import styles from './MobileBottomMenu.module.scss'
 
 const MobileBottomMenu = () => {
     const router = useRouter();
+    const lang = useLang();
+
     return (
         <div className={styles.container}>
             <Link
@@ -20,7 +23,7 @@ const MobileBottomMenu = () => {
                 >
                     <use xlinkHref='#home'></use>
                 </svg>
-                <p>Главная</p>
+                <p>{lang?.['Главная']}</p>
             </Link>
             <Link
                 href="/categories/noutbuki"
@@ -35,8 +38,17 @@ const MobileBottomMenu = () => {
                 >
                     <use xlinkHref='#menu'></use>
                 </svg>
-                <p>Каталог</p>
+                <p>{lang?.['Каталог']}</p>
             </Link>
+            {/* <Link
+                    href="/wishes"
+                    className={styles.navButton}
+                >
+                    <svg viewBox="0 0 21 22" fill="white" stroke="white" className={styles.languageButton}>
+                        <use xlinkHref='#heart'></use>
+                    </svg>
+                    <p>{lang?.['Корзина']}</p>
+                </Link> */}
             <Link
                 href="/cart"
                 className={`${router.pathname === '/cart' ? styles.cart : null}`}
@@ -49,7 +61,7 @@ const MobileBottomMenu = () => {
                 >
                     <use xlinkHref={`${router.pathname === '/cart' ? '#bag-mobile-active' : '#bag-mobile'}`}></use>
                 </svg>
-                <p>Корзина</p>
+                <p>{lang?.['Корзина']}</p>
             </Link>
             <Link
                 href="/profile"
@@ -62,7 +74,7 @@ const MobileBottomMenu = () => {
                 >
                     <use xlinkHref={`${router.pathname === '/profile' ? '#profile-mobile-active' : '#profile-mobile'}`}></use>
                 </svg>
-                <p>Профиль</p>
+                <p>{lang?.['Профиль']}</p>
             </Link>
         </div>
     );

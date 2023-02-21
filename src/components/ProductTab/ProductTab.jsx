@@ -10,6 +10,7 @@ import { isActive, thousandSeperate } from '../../utils/funcs';
 import QuickView from '../QuickView/QuickView';
 import Button from '../Button/Button';
 import styles from './ProductTab.module.scss'
+import { toast } from 'react-toastify';
 
 const ProductTab = ({
     index,
@@ -39,7 +40,11 @@ const ProductTab = ({
     })
 
     const handleCartSwitch = () => {
-        handleCart({ type: 'SWITCH', product })
+        if (productInCart || product.in_stock !== 0) {
+            handleCart({ type: 'SWITCH', product })
+        } else {
+            toast.info('Товара не осталось в наличии')
+        }
     }
 
     const { isMobile } = useContext(ScreenContext);
@@ -103,7 +108,7 @@ const ProductTab = ({
                                     loading={cartReqLoading.id == product.id && cartReqLoading.type == 'SWITCH'}
                                     customStyles="w-[128px] flex flex-col items-center justify-center"
                                 >
-                                    {productInCart ? lang?.['В корзине'] : lang?.['в корзину']}
+                                    {!productInCart && product.in_stock === 0 ? lang?.['нет в наличии'] : productInCart && product.in_stock !== 0 ? lang?.['В корзине'] : lang?.['в корзину']}
                                 </Button>
                             </div>
                             <svg

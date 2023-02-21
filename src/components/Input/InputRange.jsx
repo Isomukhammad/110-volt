@@ -55,6 +55,10 @@ const InputRange = ({ min, max, onChange }) => {
             value = 0;
         }
 
+        updateParams(
+            'price',
+            `${value}-${findParams('price') ? findParams('price').split('=')[1].split('-')[1] : max}`
+        )
         setMinVal(value);
     }
 
@@ -62,13 +66,18 @@ const InputRange = ({ min, max, onChange }) => {
         let value = event.target.value;
 
         if (value.charAt(0) == 0) {
-            value = value.substring(1)
+            return false;
         }
 
         if (value.length === 0) {
             value = max;
         }
 
+        updateParams(
+            'price',
+            `${findParams('price') ? findParams('price').split('=')[1].split('-')[0] : min}-${value}`
+        )
+        setMaxVal(value);
         setMaxVal(value);
     }
 

@@ -2,7 +2,6 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import { ToastContainer } from 'react-toastify';
 import useSWR from 'swr';
 import { useLang } from '../../hooks/useLang';
 import fetcher from '../../utils/fetcher';

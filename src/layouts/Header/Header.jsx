@@ -12,6 +12,7 @@ import SearchInput from '../../components/SearchInput/SearchInput';
 
 import styles from './Header.module.scss';
 import { useRouter } from 'next/router';
+import { useWish } from '../../context/wishContext';
 
 const Header = () => {
     const router = useRouter();
@@ -24,7 +25,10 @@ const Header = () => {
     const [firstOpen, setFirstOpen] = useState(false); //state which is used for opening menu for the first time
     const [menuOpen, setMenuOpen] = useState(false); //state which is used to control classes of menu component which is always active after initial opening, so it has animation in closing
     const { cart, localCart } = useCart();
-    const store = cart || localCart;
+    const { wish, localWish } = useWish();
+
+    const wishStore = wish || localWish;
+    const cartStore = cart || localCart;
 
     const stopProp = (e) => {
         e.stopPropagation();
@@ -53,7 +57,11 @@ const Header = () => {
                     {
                         tree ? (
                             tree.data.map((category) => (
-                                <Link href={`/categories/${category.id}-${category.slug}`} key={category.id}>{category.name}</Link>
+                                <Link
+                                    href={`/categories/${category.id}-${category.slug}`}
+                                    key={category.id}
+                                    className='hover:text-black'
+                                >{category.name}</Link>
                             ))
                         ) : (null)
                     }
@@ -135,6 +143,21 @@ const Header = () => {
                         }
                     </div>
                     <Link
+                        href="/wishes"
+                        className={styles.navButton}
+                    >
+                        <svg viewBox="0 0 21 22" fill="white" stroke="white" className={styles.languageButton}>
+                            <use xlinkHref='#heart'></use>
+                        </svg>
+                        {
+                            !cartLoading && wishStore ? (
+                                wishStore.quantity !== 0 ? (
+                                    <div className={styles.itemsNumber}>{wishStore.quantity}</div>) : (null)
+                            ) : null
+                        }
+                        <div>{lang?.['Корзина']}</div>
+                    </Link>
+                    <Link
                         href="/cart"
                         className={styles.navButton}
                     >
@@ -142,9 +165,9 @@ const Header = () => {
                             <use xlinkHref='#bag-logo-white'></use>
                         </svg>
                         {
-                            !cartLoading && store ? (
-                                store.quantity !== 0 ? (
-                                    <div className={styles.itemsNumber}>{store.quantity}</div>) : (null)
+                            !cartLoading && cartStore ? (
+                                cartStore.quantity !== 0 ? (
+                                    <div className={styles.itemsNumber}>{cartStore.quantity}</div>) : (null)
                             ) : null
                         }
                         <div>{lang?.['Корзина']}</div>

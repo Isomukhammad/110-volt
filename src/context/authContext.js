@@ -40,13 +40,12 @@ export const AuthProvider = ({ children }) => {
         loadUser();
     }, []);
 
-    const handleRegister = async ({ name, phone_number, password, email, otp }) => {
+    const handleRegister = async ({ name, phone_number, password, otp }) => {
         try {
             await nextAxios.post('/register', {
                 name,
                 phone_number,
                 password,
-                email,
                 otp
             })
         } catch (error) {
@@ -58,18 +57,18 @@ export const AuthProvider = ({ children }) => {
         try {
             const res = await nextAxios.post('/login', {
                 phone_number,
-                password
+                password,
             })
 
-            //set token
-            localStorage.setItem('token', res.data.token);
+            // set token
+            localStorage.setItem('token', res.data.token)
             authAxios.defaults.headers.Authorization = `Bearer ${res.data.token}`
             const {
                 data: { data: user },
-            } = await authAxios.get('/profile');
-            user && setUser(user);
+            } = await authAxios.get('/profile')
+            user && setUser(user)
 
-            //save cart
+            // save cart
             if (
                 window &&
                 JSON.parse(localStorage.getItem('localCart'))?.items.length > 0
@@ -78,16 +77,16 @@ export const AuthProvider = ({ children }) => {
                     localStorage.getItem('localCart')
                 ).items.map((item) => ({
                     id: item.id,
-                    quantity: item.quantity
+                    quantity: item.quantity,
                 }))
                 await authAxios({
                     method: 'POST',
                     url: '/cart',
                     data: { products: cartArray },
-                }).then(() => localStorage.removeItem('localCart'));
+                }).then(() => localStorage.removeItem('localCart'))
             }
 
-            //save wish
+            // save wish
             if (
                 window &&
                 JSON.parse(localStorage.getItem('localWish'))?.items.length > 0
@@ -104,10 +103,27 @@ export const AuthProvider = ({ children }) => {
                 }).then(() => localStorage.removeItem('localWish'))
             }
 
-            //redirect to main page after successful login
-            router.push(redirect);
-        } catch (error) {
-            console.error(error);
+            // save compare
+            if (
+                window &&
+                JSON.parse(localStorage.getItem('localCompare'))?.items.length > 0
+            ) {
+                const compareArray = JSON.parse(
+                    localStorage.getItem('localCompare')
+                ).items.map((item) => ({
+                    id: item.id,
+                }))
+                await authAxios({
+                    method: 'POST',
+                    url: '/compare',
+                    data: { products: compareArray },
+                }).then(() => localStorage.removeItem('localCompare'))
+            }
+
+            // end login and redirect
+            router.push(redirect)
+        } catch (err) {
+            throw err
         }
     }
 

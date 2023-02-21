@@ -27,7 +27,7 @@ const Footer = () => {
                 <div className={styles.contactUs}>
                     <h2 className="font-semibold text-[24px]">{lang?.['Свяжитесь с нами']}</h2>
                     <p>{lang?.['Телефон']}: <span><Link href={`tel:${settings?.phone}`}>{settings?.phone}</Link></span></p>
-                    <p>{lang?.['Режим работы']}: <span>9:00–21:00</span></p>
+                    <p>{lang?.['Режим работы']}: <span>{settings?.work_hours}</span></p>
                     <p>{lang?.['E-mail']}: <span><Link href={`mailto:${settings?.email}`}>{settings?.email}</Link></span></p>
                     <p>{lang?.['Адрес']}: <span>{settings?.address}</span></p>
                 </div>
@@ -62,7 +62,7 @@ const Footer = () => {
                             </svg>
                         </Link>
                     </div>
-                    <Link href="http://inweb.uz/" className={styles.devsMobile}>Разработка -
+                    <Link href="http://inweb.uz/" className={styles.devsMobile}>{lang?.['Разработка']} -
                         <span>
                             <svg viewBox="0 0 15 18" fill="none" width={15} height={18} className={styles.devLogo}>
                                 <use xlinkHref='#dev-logo'></use>

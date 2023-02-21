@@ -194,7 +194,6 @@ export const CartProvider = ({ children }) => {
                 })
             }
         } catch (err) {
-            toast.error(err.response.data.errors.quantity[0])
             console.error(err);
         }
     }

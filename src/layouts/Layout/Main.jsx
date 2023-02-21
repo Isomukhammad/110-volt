@@ -1,4 +1,5 @@
-import { ToastContainer } from "react-toastify";
+import { useMediaQuery } from "react-responsive";
+import { ToastContainer, Zoom } from "react-toastify";
 import Sprites from "../../utils/sprites";
 import Footer from "../Footer/Footer"
 import Header from "../Header/Header"
@@ -7,6 +8,7 @@ import MobileBottomMenu from "../MobileBottomMenu/MobileBottomMenu";
 import styles from './Main.module.scss';
 
 const MainLayout = ({ children }) => {
+    const isDesktop = useMediaQuery({ query: '(min-width: 1024px)' })
     return (
         <div className={styles.container} >
             {/* SVGs */}
@@ -35,10 +37,12 @@ const MainLayout = ({ children }) => {
             {/* Toast to use accross all app */}
             <ToastContainer
                 position="top-right"
-                autoClose={3000}
+                autoClose={2000}
                 hideProgressBar={false}
                 newestOnTop={false}
                 closeOnClick
+                limit={isDesktop ? null : 1}
+                transition={Zoom}
                 rtl={false}
                 draggable
                 theme="light"

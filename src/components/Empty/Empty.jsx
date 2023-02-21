@@ -31,7 +31,7 @@ const Empty = ({
             <button
                 type="button"
                 onClick={handlePush}
-                className="Empty text-white font-semibold py-4 px-16 bg-accent rounded-[16px]"
+                className="Empty text-white font-semibold py-4 px-16 bg-accent rounded-[16px] transition duration-300 hover:bg-accentDark"
             >{btnText}</button>
         </div>
     );

@@ -4,6 +4,7 @@ import { PatternFormat } from 'react-number-format';
 import { useAuth } from '../../context/authContext';
 import { useCart } from '../../context/cartContext';
 import { useLang } from '../../hooks/useLang';
+import { nextAxios } from '../../utils/axios';
 import Button from '../Button/Button';
 import FormError from '../Form/FormError';
 import styles from './SignIn.module.scss'
@@ -45,7 +46,8 @@ const SignIn = () => {
 
             }
 
-            await handleLogin({ phone_number, password: data.password });
+            const res = await handleLogin({ phone_number, password: data.password });
+
             getAndSetCart();
         } catch (err) {
             setFormError(err?.response?.data)

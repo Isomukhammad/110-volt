@@ -3,6 +3,10 @@ import Link from "next/link";
 import styles from './CategoriesTabLink.module.scss'
 
 const CategoriesTabsLink = ({ linkTitle, link }) => {
+    if (!linkTitle && !link) {
+        return null;
+    }
+
     return (
         <Link href={`${link}`} className={styles.link}>
             {linkTitle}
@@ -13,11 +17,6 @@ const CategoriesTabsLink = ({ linkTitle, link }) => {
             </span>
         </Link>
     )
-}
-
-CategoriesTabsLink.defaultProps = {
-    linkTitle: 'Название',
-    link: '/'
 }
 
 export default CategoriesTabsLink;

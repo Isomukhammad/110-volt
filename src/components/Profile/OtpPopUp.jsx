@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { authAxios } from '../../utils/axios';
 import Button from '../Button/Button';
 import FormError from '../Form/FormError';
@@ -26,7 +26,7 @@ const PasswordPopUp = ({ setIsOpen, isOpen, register, handleSubmit }) => {
                 phone_number: phone,
                 otp: data.otp
             })
-            toast.success('Номер телефона изменен!');
+            toast.success(lang?.['Номер телефона подтверждён']);
             setIsOpen(false);
         } catch (error) {
             console.error(error);
@@ -40,9 +40,9 @@ const PasswordPopUp = ({ setIsOpen, isOpen, register, handleSubmit }) => {
                 isOpen ? (
                     <div className={styles.container} onClick={handleClose}>
                         <div className={styles.wrapper} onClick={(e) => e.stopPropagation()}>
-                            <h1 className="">Подтверждение номера телефона</h1>
+                            <h1 className="">{lang?.['Подтверждение номера телефона']}</h1>
                             <div className={styles.form}>
-                                <p>Код подтверждения отправлен на номер телефона</p>
+                                <p>{lang?.['На ваш номер отправлен смс-код']}</p>
                                 <FormError error={formError} />
                                 <form onSubmit={handleSubmit(onSubmit)}>
                                     <div className="relative">
@@ -53,9 +53,9 @@ const PasswordPopUp = ({ setIsOpen, isOpen, register, handleSubmit }) => {
                                             className="block py-4 px-[14px] w-full text-[15px] text-gray-900 bg-transparent rounded-[16px] border-1 border-gray-300 appearance-none focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-transparent peer"
                                             placeholder=" "
                                         />
-                                        <label htmlFor="otp" className="absolute text-[15px] text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-100 top-1.5 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500  peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1 cursor-text">Номер телефона</label>
+                                        <label htmlFor="otp" className="absolute text-[15px] text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-100 top-1.5 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500  peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1 cursor-text">{lang?.['Код из СМС']}</label>
                                     </div>
-                                    <Button type="submit">Подтвердить</Button>
+                                    <Button type="submit">{lang?.['Продолжить']}</Button>
                                 </form>
                             </div>
                             <button className={styles.closeButton} onClick={handleClose}>

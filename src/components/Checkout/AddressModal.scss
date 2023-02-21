@@ -1,35 +1,64 @@
 .AddressModal {
   &__content {
-    &--address {
-      input[type="radio"],
-      label {
-        cursor: pointer;
+    &__addresses {
+      margin: 0 -1em;
+      padding: 0 1em;
+      max-height: 200px;
+      overflow-y: scroll;
+    }
+  }
+
+  &__address {
+    input[type="radio"],
+    label {
+      cursor: pointer;
+    }
+
+    label {
+      padding-left: 12px;
+    }
+
+    input[type="radio"] {
+      width: 18px;
+      height: 18px;
+      &:after {
+        border: 1px solid #e0e0e0;
       }
 
-      label {
-        padding-left: 12px;
+      &:checked:after {
+        width: 14px;
+        height: 14px;
+        border-radius: 15px;
+        // top: -2px;
+        left: 1px;
+        position: relative;
+        background-color: white;
+        content: "";
+        display: inline-block;
+        visibility: visible;
+        // border: 6px solid #7b54c9;
+        outline: 4px solid #7b54c9;
       }
+    }
+  }
 
-      input[type="radio"] {
-        width: 18px;
-        height: 18px;
-        &:after {
-          border: 1px solid #e0e0e0;
+  @media screen and (min-width: 1024px) {
+    &__content {
+      &__addresses {
+        max-height: 300px;
+        overflow-y: hidden;
+
+        &:hover {
+          overflow-y: overlay;
         }
 
-        &:checked:after {
-          width: 14px;
-          height: 14px;
-          border-radius: 15px;
-          // top: -2px;
-          left: 1px;
-          position: relative;
-          background-color: white;
-          content: "";
-          display: inline-block;
-          visibility: visible;
-          // border: 6px solid #7b54c9;
-          outline: 4px solid #7b54c9;
+        &::-webkit-scrollbar {
+          width: 5px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background: #bdbdbd;
+          border-radius: 10px;
         }
       }
     }

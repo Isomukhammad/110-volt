@@ -28,18 +28,6 @@ const WishesPage = () => {
         return (<div>{lang?.['Загрузка…']}</div>)
     }
 
-    if (store && store.items.length == 0) {
-        return (
-            <Empty
-                img="/images/Wish-empty.png"
-                title={lang?.['Здесь пока ничего нет']}
-                description={lang?.['Загляните а главую или воспользуйтесь поиском']}
-                btnUrl='/'
-                btnText={lang?.['Вернуться на главную']}
-            />
-        )
-    }
-
     return (
         <>
             <HeadInfo
@@ -60,7 +48,8 @@ const WishesPage = () => {
                                     img={'/images/Wish-empty.png'}
                                     title={lang?.['Здесь пока ничего нет']}
                                     description={lang?.['Загляните а главую или воспользуйтесь поиском']}
-                                    btn={{ btnUrl: '/', btnText: lang?.['Вернуться на главную'] }}
+                                    btnUrl='/'
+                                    btnText={lang?.['Вернуться на главную']}
                                 />
                                 <PopularGoods title={lang?.['Популярные товары']} link="/products?is_popular-1&quantity=6" />
                                 <DiscountTabs />

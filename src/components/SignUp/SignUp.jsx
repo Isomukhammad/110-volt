@@ -31,7 +31,6 @@ const SignUp = () => {
         defaultValues: {
             "name": '',
             "phone_number": '',
-            "email": '',
             "password": '',
             "confirm_password": ''
         }
@@ -92,22 +91,11 @@ const SignUp = () => {
 
     const onSubmit2 = async (data) => {
         try {
-            setIsLoading(true);
-            const { name, password, email, phone_number } = data;
             setFormError(null)
+            setIsLoading(true);
+            const { name, password, phone_number } = data;
             const phone = phone_number.replace(/\D/g, '');
-
-            // const otpCheck = await checkOtp({ phone_number: phone, otp: data.otp });
-
-            // if (otpCheck.errors) {
-            //     return setFormError((prevError) => ({
-            //         ...prevError,
-            //         errors: {
-            //             otpcheck: ['Неправильный код!'],
-            //         },
-            //     }))
-            // }
-            await handleRegister({ name, password, phone_number: phone, email, otp: data.otp });
+            await handleRegister({ name, password, phone_number: phone, otp: data.otp });
             toast.success('Регистрация прошла успешно');
             await handleLogin({ phone_number: phone, password })
             reset()
@@ -163,16 +151,6 @@ const SignUp = () => {
 
                         <div className="relative">
                             <input
-                                {...register("email", { required: true, maxLength: 30 })}
-                                type="email"
-                                id="email"
-                                className="block py-4 px-[14px] w-full text-[15px] text-gray-900 bg-transparent rounded-[16px] border-1 border-gray-300 appearance-none focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-transparent peer"
-                                placeholder=" "
-                            />
-                            <label htmlFor="email" className="absolute text-[15px] text-gray-500 duration-300 transform -translate-y-4 scale-100 top-1.5 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1 cursor-text">{lang?.['E-mail']}</label>
-                        </div>
-                        <div className="relative">
-                            <input
                                 {...register("password", {
                                     required: true,
                                     minLength: {
@@ -224,7 +202,7 @@ const SignUp = () => {
                                 className="block py-4 px-[14px] w-full text-[15px] text-gray-900 bg-transparent rounded-[16px] border-1 border-gray-300 appearance-none focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-transparent peer"
                                 placeholder=" "
                             />
-                            <label htmlFor="otp" className="absolute text-[15px] text-gray-500 duration-300 transform -translate-y-4 scale-100 top-1.5 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1 cursor-text">Код из СМС</label>
+                            <label htmlFor="otp" className="absolute text-[15px] text-gray-500 duration-300 transform -translate-y-4 scale-100 top-1.5 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1 cursor-text">{lang?.['Код из СМС']}</label>
                         </div>
                         {
                             errors?.otp && <p className='text-red-500'>{errors?.otp?.message}</p>
@@ -234,7 +212,7 @@ const SignUp = () => {
                         <button
                             onClick={() => setOtpOpen(false)}
                             className="text-accent font-semibold hover:text-accentDark transition duration-300"
-                        >Назад</button>
+                        >{lang?.['Вернуться назад']}</button>
                     </form>
                 )
             }

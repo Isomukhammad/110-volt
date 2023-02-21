@@ -6,7 +6,7 @@ import Input from '../Input/Input';
 
 
 import styles from './ContactUs.module.scss'
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { useLang } from '../../hooks/useLang';
 import FormError from '../Form/FormError';
 import { useState } from 'react';
@@ -98,7 +98,7 @@ const ContactUs = () => {
                             />
                         )}
                     />
-                    <label htmlFor="phone-number" className="absolute text-[15px] text-gray-500 duration-300 transform -translate-y-4 scale-100 top-1.5 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1">Номер телефона</label>
+                    <label htmlFor="phone-number" className="absolute text-[15px] text-gray-500 duration-300 transform -translate-y-4 scale-100 top-1.5 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1.5 peer-focus:scale-100 peer-focus:-translate-y-4 left-1">{lang?.['Номер телефона']}</label>
                 </div>
                 <div className="relative">
                     <textarea

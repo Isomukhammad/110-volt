@@ -144,7 +144,7 @@ const SortMenu = ({ setFilterOpen }) => {
                 >
                     <use xlinkHref='#filter'></use>
                 </svg>
-                <p>Фильтры</p>
+                <p>{lang?.['Фильтры']}</p>
             </button>
             <div className={styles.viewType}>
                 <svg

@@ -24,16 +24,11 @@
   }
 
   .scroll {
-    display: none;
-    flex-direction: row;
-    gap: 16px;
     overflow-x: scroll;
     margin: 0 -2em;
     padding: 0 2em;
 
     img {
-      width: 100%;
-      height: auto;
       border-radius: 16px;
     }
 

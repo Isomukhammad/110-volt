@@ -46,7 +46,7 @@ const PopUp = ({ result, setPopUp }) => {
                             </div>
                             <div className={styles.description}>
                                 <h4>{lang?.['Что-то пошло не так ☹️']}</h4>
-                                <p>Наши модераторы свяжутся с вами</p>
+                                <p>{lang?.['Наши модераторы свяжутся с вами']}</p>
                             </div>
                             <Button onClick={() => {
                                 setPopUp(false),

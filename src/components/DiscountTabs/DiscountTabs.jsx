@@ -53,7 +53,7 @@ const DiscountTabs = () => {
                     >
                         {
                             data.data.map((item) => (
-                                <SwiperSlide className={styles.swiperSlide} key={item.id}>
+                                <SwiperSlide className={`${styles.swiperSlide} cursor-grab active:cursor-grabbing`} key={item.id}>
                                     <Image src={item.img} alt={item.description} width="0" height="0" sizes="100vw" placeholder="blurDataURL" />
                                 </SwiperSlide>
                             ))
