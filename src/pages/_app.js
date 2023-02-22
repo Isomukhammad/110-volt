@@ -20,6 +20,7 @@ import '../styles/Slider.scss';
 import '../styles/SortMenu.scss';
 import '../styles/ProductImageSlider.scss';
 import '../styles/PageButtons.scss';
+import 'react-loading-skeleton/dist/skeleton.css'
 
 import 'react-toastify/dist/ReactToastify.min.css';
 

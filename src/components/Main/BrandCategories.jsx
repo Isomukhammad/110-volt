@@ -5,7 +5,7 @@ import useSWR from 'swr';
 
 import fetcher from '../../utils/fetcher';
 
-import { ScreenContext } from '../../context/screenContext';
+import { ScreenContext, useMedia } from '../../context/screenContext';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -19,14 +19,34 @@ import { Pagination, Navigation, Autoplay, Grid } from 'swiper';
 import BrandTab from './BrandTap';
 
 import styles from './BrandCategories.module.scss';
+import Skeleton from 'react-loading-skeleton';
 
 const BrandCategories = () => {
+	const { isDesktop } = useMedia();
 	const router = useRouter();
 	const lang = useLang();
 	const { isMobile } = useContext(ScreenContext);
-	// const { brands } = data;
-	const brandsRef = useRef();
-	const { data: brands, error, mutateBrands } = useSWR(['/brands', router.locale], (url) => fetcher(url, { headers: { 'Accept-Language': router.locale } }));
+	const { data: brands, error, isValidating } = useSWR(['/brands', router.locale], (url) => fetcher(url, { headers: { 'Accept-Language': router.locale } }));
+
+	const swiperPrevRef = useRef(null);
+	const swiperNextRef = useRef(null);
+
+	if (!brands) {
+		return (
+			<div className='mt-[64px] lg:mt-[120px] flex flex-col gap-6 gap-12'>
+				<div><Skeleton width={300} /></div>
+				<div className='grid grid-rows-2 gap-4 lg:grid-cols-4'>
+					{
+						[...Array(isDesktop ? 8 : 2).keys()].map((item, index) => (
+							<div key={index} className="rounded-[16px] overflow-hidden">
+								<Skeleton height={150} />
+							</div>
+						))
+					}
+				</div>
+			</div>
+		)
+	}
 
 	return (
 		<div className={`brands ${styles.brands}`}>
@@ -43,8 +63,11 @@ const BrandCategories = () => {
 					loopFillGroupWithBlank={true}
 					className={styles.slider}
 
-					onBeforeInit={(swiper) => {
-						brandsRef.current = swiper;
+					onInit={(swiper) => {
+						swiper.params.navigation.prevEl = swiperPrevRef.current;
+						swiper.params.navigation.nextEl = swiperNextRef.current;
+						swiper.navigation.init();
+						swiper.navigation.update();
 					}}
 				>
 					{brands?.data.map((brand) => (
@@ -53,17 +76,13 @@ const BrandCategories = () => {
 						</SwiperSlide>
 					))}
 				</Swiper>
-				<div className={styles.swiperPrev} onClick={() => {
-					brandsRef.current?.slidePrev()
-				}}>
+				<div className={styles.swiperPrev} ref={swiperPrevRef}>
 					<svg width={18.67} height={16.33} viewBox='0 0 28 28' fill='none' stroke="white"
 					>
 						<use xlinkHref={`#arrow-left`}></use>
 					</svg>
 				</div>
-				<div className={styles.swiperNext} onClick={() => {
-					brandsRef.current?.slideNext()
-				}}>
+				<div className={styles.swiperNext} ref={swiperNextRef}>
 					<svg width={18.67} height={16.33} viewBox='0 0 28 28' fill='none' stroke="white"
 					>
 						<use xlinkHref={`#arrow-left`}></use>

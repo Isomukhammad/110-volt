@@ -5,6 +5,7 @@ import styles from './CompanyDescription.module.scss';
 const CompanyDescription = ({ data }) => {
     const lang = useLang();
     const [isHidden, setIsHidden] = useState(true);
+
     return (
         <article className={styles.container}>
             <h1 className='font-semibold'>{lang?.['110volt Family - это экономия на доставке, взаимная поддержка и полная конфиденциальность. ']}</h1>

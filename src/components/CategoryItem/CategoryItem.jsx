@@ -3,11 +3,13 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ClipLoader } from "react-spinners";
 import { useCart } from "../../context/cartContext";
-import { isActive } from "../../utils/funcs";
+import { useLang } from "../../hooks/useLang";
+import { isActive, thousandSeperate } from "../../utils/funcs";
 
 import styles from './CategoryItem.module.scss';
 
 const CategoryItem = ({ info }) => {
+    const lang = useLang();
     const { h1_name, old_price_formatted, current_price_formatted, url, img, price, discounted, monthly, name, id, slug } = info;
     const [width, setWidth] = useState(100);
     const [imgSrc, setImgSrc] = useState(img);
@@ -54,7 +56,7 @@ const CategoryItem = ({ info }) => {
                     className={styles.background}
                     style={{ right: `${width}%` }}
                 ></div>
-                <p>lngсум/мес</p>
+                <p>{thousandSeperate(info?.installment_prices[0]?.prices[0]?.price_per_month)} {lang?.['сум/мес']}</p>
             </div>
             <div className={styles.name}>{name}</div>
             <div className={styles.prices}>

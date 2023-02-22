@@ -13,6 +13,7 @@ import Publications from '../components/Main/PublicationsVideo';
 import DiscountTabs from '../components/DiscountTabs/DiscountTabs';
 
 import styles from '../styles/Home.module.scss';
+import Skeleton from 'react-loading-skeleton';
 
 const Home = ({ page }) => {
   const lang = useLang();

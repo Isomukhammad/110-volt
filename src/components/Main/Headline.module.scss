@@ -37,7 +37,11 @@
     }
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1024px) {
+    .side {
+      display: none;
+    }
+
     .slider {
       display: none;
     }
@@ -52,16 +56,6 @@
       img {
         width: 100%;
       }
-    }
-  }
-
-  @media screen and (max-width: 1024px) {
-    .side {
-      display: none;
-    }
-
-    .slider {
-      width: 100%;
     }
   }
 }

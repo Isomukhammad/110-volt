@@ -5,8 +5,11 @@ import PopularCategoryTab from './PopularCategoryTab'
 
 import styles from './PopularCategories.module.scss';
 import { useLang } from '../../hooks/useLang';
+import Skeleton from 'react-loading-skeleton';
+import { useMedia } from '../../context/screenContext';
 
 const PopularCategories = () => {
+    const { isDesktop } = useMedia();
     const router = useRouter();
     const lang = useLang();
 
@@ -17,6 +20,23 @@ const PopularCategories = () => {
             revalidateOnReconnect: false,
         }
     )
+
+    if (!categories) {
+        return (
+            <div className='mt-[64px] flex flex-col gap-6 lg:mt-[120px] lg:gap-12'>
+                <Skeleton width={300} />
+                <div className='grid grid-cols-2 gap-4 lg:grid-cols-4'>
+                    {
+                        [...Array(isDesktop ? 8 : 2).keys()].map((item, index) => (
+                            <div key={index} className="rounded-[24px] overflow-hidden">
+                                <Skeleton height={250} />
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+        )
+    }
 
     return (
         <div className={styles.popularCategories}>

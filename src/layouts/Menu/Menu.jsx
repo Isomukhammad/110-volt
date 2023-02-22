@@ -158,12 +158,20 @@ const Menu = ({ menuOpen, setMenuOpen, searchFocus, setSearchFocus }) => {
                                 ))
                             }
                         </div>
-                        <div className={`${styles.img} ${showImg ? 'visible opacity-100' : 'invisible opacity-0'} transition duration-300`}>
+                        <Link
+                            href={`categories/${tree?.data.filter(item => item.id === btn)[0].children.filter(item => item.id == sub)[0]?.id}-${tree?.data.filter(item => item.id === btn)[0].children.filter(item => item.id == sub)[0]?.slug}`}
+                            className={`${styles.img} ${showImg ? 'visible opacity-100' : 'invisible opacity-0'} transition duration-300`}>
                             <div>
-                                <Image src={tree?.data.filter(item => item.id === btn)[0].children.filter(item => item.id == sub)[0]?.img} alt="" width={0} height={0} sizes="100vw" />
+                                <Image
+                                    src={tree?.data.filter(item => item.id === btn)[0].children.filter(item => item.id == sub)[0]?.img}
+                                    alt=""
+                                    width={0}
+                                    height={0}
+                                    sizes="100vw"
+                                />
                             </div>
                             <p>{tree?.data.filter(item => item.id === btn)[0].children.filter(item => item.id == sub)[0]?.name}</p>
-                        </div>
+                        </Link>
                     </div>
                     <div
                         className={styles.close}

@@ -13,6 +13,7 @@ import HeadlineSlider from './HeadlineSlider'
 
 import styles from './Headline.module.scss'
 import { useMediaQuery } from 'react-responsive';
+import Skeleton from 'react-loading-skeleton';
 
 const Headline = () => {
 	const isDesktop = useMediaQuery({ query: '(min-width: 1024px)' })
@@ -37,6 +38,19 @@ const Headline = () => {
 		}
 	)
 
+	if (!slider && !sidebanner) {
+		return (
+			<div className='lg:grid lg:grid-cols-[75%_25%] gap-4'>
+				<div className='rounded-[24px] overflow-hidden'>
+					<Skeleton height={isDesktop ? 200 : 250} />
+				</div>
+				<div className='hidden lg:block rounded-[24px] overflow-hidden'>
+					<Skeleton height={250} />
+				</div>
+			</div>
+		)
+	}
+
 	return (
 		<>
 			<div className={`Headline ${styles.container}`}>
@@ -54,7 +68,7 @@ const Headline = () => {
 					</div>
 				) : (null)
 				}
-				<div className="Headline__mobile mx-[-2em] overflow-x-hidden md:hidden">
+				<div className="Headline__mobile mx-[-2em] overflow-x-hidden lg:hidden">
 					<Swiper
 						spaceBetween={16}
 						slidesPerView={1}

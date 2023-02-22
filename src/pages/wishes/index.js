@@ -9,23 +9,29 @@ import PagePath from "../../components/PagePath/PagePath.jsx";
 import Empty from "../../components/Empty/Empty";
 import PopularGoods from '../../components/PopularGoods/PopularGoods';
 import DiscountTabs from '../../components/DiscountTabs/DiscountTabs';
-import SortMenu from "../../components/Category/SortMenu";
-import PageButtons from "../../components/PageButtons/PageButtons";
 import ProductTab from "../../components/ProductTab/ProductTab";
-import { SortProvider } from "../../context/sortContext";
+import Skeleton from "react-loading-skeleton";
 
 const WishesPage = () => {
     const router = useRouter();
     const lang = useLang();
     const [productId, setProductId] = useState(null);
-    const [filterOpen, setFilterOpen] = useState(false)
 
     const { wish, localWish, wishLoading } = useWish();
 
     const store = wish || localWish;
 
     if (wishLoading) {
-        return (<div>{lang?.['Загрузка…']}</div>)
+        return (
+            <div className="mt-10 mb-[120px] flex flex-col gap-10">
+                <Skeleton width={200} />
+                <Skeleton width={200} />
+                <div className="grid grid-cols-2 gap-4 lg:grid-cols-6">
+                    {[...Array(6).keys()].map((item, index) => (
+                        <div key={index} className="rounded-[24px] overflow-hidden"><Skeleton height={300} /></div>
+                    ))}
+                </div>
+            </div>)
     }
 
     return (
@@ -40,7 +46,7 @@ const WishesPage = () => {
                     }
                 ]}
                 />
-                <div className="mt-10 lg:mt-20">
+                <div className="mt-10 lg:mt-10">
                     {
                         store && store.items.length === 0 ? (
                             <>
@@ -60,26 +66,19 @@ const WishesPage = () => {
                                     <h1 className="text-2xl font-bold leading-7 lg:text-[32px]">{lang?.['Избранное']}</h1>
                                     <p className="text-placeholder font-medium">{(lang?.['{{number}} товаров']).replace('{{number}}', wish.quantity)}</p>
                                 </div>
-                                <div>
-                                    <SortProvider>
-                                        <SortMenu products={wish.items} productsLoading={wishLoading} setFilterOpen={setFilterOpen} />
-                                        <div className="grid grid-cols-2 gap-4 lg:grid-cols-6">
-                                            {
-                                                wish.items.map((info, index) => (
-                                                    <ProductTab
-                                                        index={index}
-                                                        key={info.id}
-                                                        product={info.product}
-                                                        setProductId={setProductId}
-                                                        productId={productId}
-                                                        arrLength={20}
-                                                    />
-                                                ))
-                                            }
-                                        </div>
-                                        {wish.items.length > 20 ? <PageButtons data={products} /> : null}
-                                        {/* <PageButtons data={wish.items} /> */}
-                                    </SortProvider>
+                                <div className="grid grid-cols-2 gap-4 lg:grid-cols-6 mt-10">
+                                    {
+                                        wish.items.map((info, index) => (
+                                            <ProductTab
+                                                index={index}
+                                                key={info.id}
+                                                product={info.product}
+                                                setProductId={setProductId}
+                                                productId={productId}
+                                                arrLength={20}
+                                            />
+                                        ))
+                                    }
                                 </div>
                             </div>
                         )

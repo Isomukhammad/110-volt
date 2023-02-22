@@ -40,15 +40,15 @@ const MobileBottomMenu = () => {
                 </svg>
                 <p>{lang?.['Каталог']}</p>
             </Link>
-            {/* <Link
-                    href="/wishes"
-                    className={styles.navButton}
-                >
-                    <svg viewBox="0 0 21 22" fill="white" stroke="white" className={styles.languageButton}>
-                        <use xlinkHref='#heart'></use>
-                    </svg>
-                    <p>{lang?.['Корзина']}</p>
-                </Link> */}
+            <Link
+                href="/wishes"
+                className={`${router.pathname === '/wishes' ? styles.wishes : null}`}
+            >
+                <svg viewBox="0 0 24 24" width={24} height={24} fill="white" stroke="#9499A5" className={styles.languageButton}>
+                    <use xlinkHref='#heart'></use>
+                </svg>
+                <p>{lang?.['Корзина']}</p>
+            </Link>
             <Link
                 href="/cart"
                 className={`${router.pathname === '/cart' ? styles.cart : null}`}

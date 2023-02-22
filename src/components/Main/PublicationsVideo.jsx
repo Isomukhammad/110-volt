@@ -12,6 +12,7 @@ import { useEffect, useRef, useState } from "react";
 import { nextAxios } from "../../utils/axios";
 import { useMediaQuery } from "react-responsive";
 import ImageComponent from "../ImageComponent/ImageComponent";
+import Skeleton from "react-loading-skeleton";
 
 
 const disableRevalidation = {
@@ -32,15 +33,13 @@ const PublicationsVideo = () => {
     const [videoOpen, setVideoOpen] = useState(false);
     const [videoUrl, setVideoUrl] = useState(null);
 
-    if (videoOpen) {
-        document.body.style.overflow = "hidden"
-    } else {
-        document.body.style.overflow = "scroll"
-    }
-
     useEffect(() => {
-        console.log(videoUrl)
-    }, [videoUrl])
+        if (videoOpen) {
+            document.body.style.overflow = "hidden"
+        } else {
+            document.body.style.overflow = "scroll"
+        }
+    }, [videoOpen]);
 
     const { data: pubs, error: pubsError, isValidating } = useSWR(['/publications?type=13', router.locale], (url) => fetcher(url, { headers: { 'Accept-Language': router.locale } }), disableRevalidation
     );
@@ -48,7 +47,17 @@ const PublicationsVideo = () => {
     const swiperPrevRef = useRef(null);
     const swiperNextRef = useRef(null);
 
-    if (isValidating) return (<div>{lang?.['Загрузка…']}</div>)
+    if (!pubs || isValidating) return (
+        <div className='mt-[64px] flex flex-col gap-6 lg:mt-[120px] lg:black lg:gap-12'>
+            <Skeleton width={300} height={30} />
+            <div className='lg:grid lg:grid-cols-3 gap-4'>
+                <div className="rounded-[24px] overflow-hidden"><Skeleton height={450} /></div>
+                <div className="rounded-[24px] overflow-hidden hidden lg:block"><Skeleton height={450} /></div>
+                <div className="rounded-[24px] overflow-hidden hidden lg:block"><Skeleton height={450} /></div>
+            </div>
+        </div>
+    )
+
     return (
         <div className="PublicationsVideo relative flex flex-col gap-8 lg:gap-10">
             <h1 className="text-[24px] font-bold lg:text-[32px]">{lang?.['Видеообзоры']}</h1>
@@ -61,9 +70,6 @@ const PublicationsVideo = () => {
                         prevEl: swiperPrevRef,
                         nextEl: swiperNextRef
                     }}
-                    on={
-                        console.log()
-                    }
                     modules={[Pagination, Navigation]}
                     onInit={(swiper) => {
                         swiper.params.navigation.prevEl = swiperPrevRef.current;
@@ -118,7 +124,7 @@ const PublicationsVideo = () => {
                         onClick={() => setVideoOpen(false)}
                     >
                         <div className="PublicationsVideo__video__wrapper">
-                            <div dangerouslySetInnerHTML={{ __html: videoUrl }} className="w-full max-w-[1060px] h-auto" />
+                            <div dangerouslySetInnerHTML={{ __html: videoUrl }} />
                         </div>
                     </div>
                 ) : null
