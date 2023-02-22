@@ -21,7 +21,7 @@ const WishesPage = () => {
 
     const store = wish || localWish;
 
-    if (wishLoading || !wish) {
+    if (wishLoading || !store) {
         return (
             <div className="mt-10 mb-[120px] flex flex-col gap-10">
                 <Skeleton width={200} />
@@ -48,7 +48,7 @@ const WishesPage = () => {
                 />
                 <div className="mt-10 lg:mt-10">
                     {
-                        store && store.items.length === 0 ? (
+                        store && store?.items.length === 0 ? (
                             <>
                                 <Empty
                                     img={'/images/Wish-empty.png'}

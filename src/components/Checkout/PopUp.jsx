@@ -23,7 +23,7 @@ const PopUp = ({ result, setPopUp }) => {
                         <>
                             <div className={styles.image}>
                                 <ImageComponent
-                                    src={'/gifs/animation_300_l92q1ps4 1.gif'}
+                                    src={'/gifs/animation_640_lefpjz8v.gif'}
                                 />
                             </div>
                             <div className={styles.description}>
@@ -41,7 +41,7 @@ const PopUp = ({ result, setPopUp }) => {
                         <>
                             <div className={styles.image}>
                                 <ImageComponent
-                                    src={"/gifs/76705-error-animation 1.gif"}
+                                    src={"/gifs/animation_640_lefpjz8v.gif"}
                                 />
                             </div>
                             <div className={styles.description}>
