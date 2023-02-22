@@ -23,7 +23,7 @@ const PopUp = ({ result, setPopUp }) => {
                         <>
                             <div className={styles.image}>
                                 <ImageComponent
-                                    src={'/gifs/animation_640_lefpjz8v.gif'}
+                                    src={'/gifs/animation_640_lefqb16y.gif'}
                                 />
                             </div>
                             <div className={styles.description}>
