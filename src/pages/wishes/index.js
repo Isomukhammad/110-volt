@@ -64,11 +64,11 @@ const WishesPage = () => {
                             <div>
                                 <div className="flex flex-col gap-2 lg:flex-row lg:items-end lg:gap-8">
                                     <h1 className="text-2xl font-bold leading-7 lg:text-[32px]">{lang?.['Избранное']}</h1>
-                                    <p className="text-placeholder font-medium">{(lang?.['{{number}} товаров']).replace('{{number}}', wish.quantity)}</p>
+                                    <p className="text-placeholder font-medium">{(lang?.['{{number}} товаров']).replace('{{number}}', wish?.quantity)}</p>
                                 </div>
                                 <div className="grid grid-cols-2 gap-4 lg:grid-cols-6 mt-10">
                                     {
-                                        wish.items.map((info, index) => (
+                                        wish?.items.map((info, index) => (
                                             <ProductTab
                                                 index={index}
                                                 key={info.id}
