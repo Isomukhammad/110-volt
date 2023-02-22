@@ -21,7 +21,7 @@ const WishesPage = () => {
 
     const store = wish || localWish;
 
-    if (wishLoading) {
+    if (wishLoading || !wish) {
         return (
             <div className="mt-10 mb-[120px] flex flex-col gap-10">
                 <Skeleton width={200} />
