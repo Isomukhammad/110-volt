@@ -22,7 +22,7 @@ import Empty from '../../components/Empty/Empty';
 const CheckoutPage = () => {
     const router = useRouter();
     const lang = useLang();
-    const [popUp, setPopUp] = useState(true);
+    const [popUp, setPopUp] = useState(false);
     const { cartLoading, cart, localCart, handleCart } = useCart();
     const { register, handleSubmit, control, formState: { errors }, reset } = useForm();
     const [address, setAddress] = useState(null);
