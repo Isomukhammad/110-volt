@@ -6,7 +6,6 @@
 @import "./colors.scss";
 
 body {
-  // overflow-x: hidden;
   font-size: 16px;
 
   @media screen and (max-width: 768px) {
@@ -20,6 +19,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: "Gilroy", sans-serif;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 a {
@@ -71,3 +71,4 @@ input::-webkit-inner-spin-button {
 @import "../components/Checkout/AddressModal.scss";
 @import "./PublicationVideo.scss";
 @import "./Headline.scss";
+@import "./DiscountTabs.scss";
