@@ -29,6 +29,8 @@
 
       .social {
         display: flex;
+        flex-direction: row;
+        align-items: center;
         gap: 8px;
 
         svg {
@@ -97,10 +99,10 @@
         cursor: pointer;
         position: relative;
 
-        .itemsNumber {
+        .itemsNumber,
+        .itemsNumberWish {
           position: absolute;
           top: -5px;
-          right: 12px;
           width: 16px;
           height: 16px;
           display: flex;
@@ -112,6 +114,14 @@
           font-size: 12px;
           line-height: 15px;
           border-radius: 1em;
+        }
+
+        .itemsNumberWish {
+          right: 18px;
+        }
+
+        .itemsNumber {
+          right: 12px;
         }
       }
     }
@@ -143,6 +153,7 @@
     }
 
     .navigation {
+      gap: 0;
       .menuButton {
         padding: 12px 12px;
         scale: 0.7;

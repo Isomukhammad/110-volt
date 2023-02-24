@@ -19,6 +19,10 @@
     flex: 1;
     border-radius: 32px;
     background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
   .header,
@@ -41,7 +45,7 @@
     .cheader,
     .content,
     .cfooter {
-      padding: 0 1em;
+      // padding: 0 1em;
       max-width: 100%;
     }
 

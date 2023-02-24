@@ -9,6 +9,7 @@ import styles from './Cart.module.scss'
 
 import { useLang } from '../../hooks/useLang';
 import Empty from '../../components/Empty/Empty';
+import Skeleton from 'react-loading-skeleton';
 
 const CartPage = () => {
     const lang = useLang();
@@ -40,28 +41,29 @@ const CartPage = () => {
                         />
                     ) : (
                         <div className={styles.content}>
-                            <h1 className={`${styles.title} font-bold text-[24px] md:text-[32px]`}>{lang?.['Корзина']}</h1>
+                            <h1 className={`${styles.title} font-bold text-[24px] md:text-[32px]`}>{lang ? lang?.['Корзина'] : <Skeleton width={300} />}</h1>
 
-                            <div className={styles.cart}>
-                                {!cartLoading && store ? (
-                                    <>
-                                        <div className={styles.cartItems}>
-                                            {
+                            {!cartLoading && store ? (
+                                <div className={styles.cart}>
+                                    <div className={styles.cartItems}>
+                                        {
 
-                                                store.items.map((item) => (
-                                                    <CartItem key={item.id} item={item} />
-                                                ))
-                                            }
-                                        </div>
-                                        <div className={styles.cartTotal}>
-                                            <CartTotal store={store} handleCart={handleCart} cartReqLoading={cartReqLoading} />
-                                        </div>
-                                    </>
-                                ) : (
-                                    <p>{lang?.['Загрузка…']}</p>
-                                )
-                                }
-                            </div>
+                                            store.items.map((item) => (
+                                                <CartItem key={item.id} item={item} />
+                                            ))
+                                        }
+                                    </div>
+                                    <div className={styles.cartTotal}>
+                                        <CartTotal store={store} handleCart={handleCart} cartReqLoading={cartReqLoading} />
+                                    </div>
+                                </div>
+                            ) : (
+                                <div className='lg:grid lg:grid-cols-[75%_25%] gap-4'>
+                                    <div className='rounded-[24px] overflow-hidden'><Skeleton height={400} /></div>
+                                    <div className='hidden lg:block rounded-[24px] overflow-hidden'><Skeleton height={400} /></div>
+                                </div>
+                            )
+                            }
                         </div>
                     )
                 }

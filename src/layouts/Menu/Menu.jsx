@@ -1,30 +1,33 @@
 import Image from 'next/image';
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 
-import { ScreenContext } from '../../context/screenContext';
+import { useMedia } from '../../context/screenContext';
 import { useData } from '../../context/dataContext';
 
 import styles from './Menu.module.scss';
+import { useRouter } from 'next/router';
 
 const Menu = ({ menuOpen, setMenuOpen, searchFocus, setSearchFocus }) => {
+    const router = useRouter();
     const { tree, treeValidating } = useData();
     const [btn, setBtn] = useState(1);
     const [sub, setSub] = useState(1);
-    const { isMobile, isTablet } = useContext(ScreenContext);
+    const { isDesktop } = useMedia();;
     const [showItems, setShowItems] = useState(true);
     const [showImg, setShowImg] = useState(false);
     const searchRef = useRef(null);
+    const [searchValue, setSearchValue] = useState('');
 
     useEffect(() => {
-        if (isTablet || isMobile === true) {
+        if (isDesktop) {
             setShowItems(false);
         }
 
         if (searchFocus) {
             searchRef.current.focus();
         }
-    }, [isTablet, isMobile, searchFocus])
+    }, [isDesktop, searchFocus])
 
     useEffect(() => {
         if (tree) {
@@ -49,6 +52,20 @@ const Menu = ({ menuOpen, setMenuOpen, searchFocus, setSearchFocus }) => {
         }, [ref]);
     }
 
+    const handleChange = (e) => {
+        setSearchValue(e.target.value);
+    }
+
+    const handleSearch = (e) => {
+        e.preventDefault();
+        router.push({
+            pathname: '/search',
+            query: { searchValue }
+        })
+        setMenuOpen(false);
+        setSearchValue('');
+    }
+
     const wrapperRef = useRef(null);
     useOutsideAlerter(wrapperRef);
 
@@ -59,7 +76,7 @@ const Menu = ({ menuOpen, setMenuOpen, searchFocus, setSearchFocus }) => {
             >
                 <div className={styles.menu} ref={wrapperRef}>
                     {
-                        isTablet || isMobile ? (
+                        !isDesktop ? (
                             <div className={styles.header}>
                                 <div
                                     onClick={() => {
@@ -90,12 +107,15 @@ const Menu = ({ menuOpen, setMenuOpen, searchFocus, setSearchFocus }) => {
                                             <use xlinkHref='#search'></use>
                                         </svg>
                                     </div>
-                                    <input
-                                        ref={searchRef}
-                                        type="text"
-                                        placeholder='Я ищу ...'
-                                        className='focus:ring-0'
-                                    />
+                                    <form onSubmit={handleSearch}>
+                                        <input
+                                            onChange={handleChange}
+                                            ref={searchRef}
+                                            type="text"
+                                            placeholder='Я ищу ...'
+                                            className='focus:ring-0'
+                                        />
+                                    </form>
                                 </div>
                             </div>
                         ) : null

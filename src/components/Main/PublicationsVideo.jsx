@@ -37,7 +37,7 @@ const PublicationsVideo = () => {
         if (videoOpen) {
             document.body.style.overflow = "hidden"
         } else {
-            document.body.style.overflow = "scroll"
+            document.body.style.overflow = "auto"
         }
     }, [videoOpen]);
 
@@ -111,7 +111,7 @@ const PublicationsVideo = () => {
                     </svg>
                 </button>
                 <button className="hidden lg:flex PublicationsVideo__slider--button absolute top-[50%] right-[-24px] bg-white z-[1] p-[14px] rounded-full" ref={swiperNextRef}>
-                    <svg width={28} height={28} viewBox='0 0 28 28' className="w-7 h-7 stroke-accent fill-none"
+                    <svg width={28} height={28} viewBox='0 0 24 24' className="w-7 h-7 stroke-accent fill-none"
                     >
                         <use xlinkHref={`#arr-right`}></use>
                     </svg>

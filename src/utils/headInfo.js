@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-const HeadInfo = ({ title = '110volt.uz', description = '', keywords = '' }) => (
+const HeadInfo = ({ title = '110volt', description = '', keywords = '' }) => (
     <Head>
         <title>{title}</title>
         <meta name="description" content={description} />

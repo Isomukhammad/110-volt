@@ -16,8 +16,8 @@ const ScreenProvider = ({ children }) => {
         } else if (window.innerWidth >= 1024) {
             setIsDekstop(true);
         } else {
-            setIsMobile(false)
-            setIsTablet(false)
+            setIsMobile(false);
+            setIsTablet(false);
             setIsDekstop(false);
         }
     }

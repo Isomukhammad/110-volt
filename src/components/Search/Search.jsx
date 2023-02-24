@@ -12,8 +12,8 @@ import PagePath from "../PagePath/PagePath";
 import ProductTab from "../ProductTab/ProductTab";
 
 const Search = () => {
-    const lang = useLang();
     const router = useRouter();
+    const lang = useLang();
     const [productId, setProductId] = useState(null);
     const [value, setValue] = useState('');
     const [formError, setFormError] = useState(null);
@@ -56,15 +56,17 @@ const Search = () => {
         setValue(e.target.value);
     }
 
+    useEffect(() => {
+        console.log(products)
+    }, [products])
     return (
         <>
-            <HeadInfo title="Поиск" />
+            <HeadInfo title={lang?.['Поиск']} />
             <div>
                 <PagePath
                     paths={[
                         {
-                            "url": "",
-                            "name": "Поиск"
+                            "name": lang?.['Поиск']
                         }
                     ]}
                 />
@@ -86,12 +88,12 @@ const Search = () => {
                     {
                         router.query.value ? (
                             <div>
-                                <div className="mb-10">
-                                    <SortMenu products={products} productsLoading={isValidating} setFilterOpen={setFilterOpen} />
-                                </div>
                                 {
-                                    products ? (
+                                    products && products?.data.length !== 0 ? (
                                         <>
+                                            <div className="mb-10">
+                                                <SortMenu products={products} productsLoading={isValidating} setFilterOpen={setFilterOpen} />
+                                            </div>
                                             <div className='grid grid-cols-2 lg:grid-cols-5 gap-4 lg:gap-3'>
                                                 {
                                                     products?.data.map((info, index) => (
@@ -108,11 +110,13 @@ const Search = () => {
                                             </div>
                                             <PageButtons data={products} search={value} />
                                         </>
-                                    ) : null
+                                    ) : (
+                                        <div className="mt-4 h-fit rounded-4 font-semibold lg:mt-2">lngНичего не найдено</div>
+                                    )
                                 }
                             </div>
                         ) : (
-                            <div className="rounded-[8px] mt-4 h-fit rounded-4 font-semibold lg:mt-0">Поле поиска пустое...</div>
+                            <div className="rounded-[8px] mt-4 h-fit rounded-4 font-semibold lg:mt-2">lngПоле поиска пустое...</div>
                         )
                     }
                 </div>

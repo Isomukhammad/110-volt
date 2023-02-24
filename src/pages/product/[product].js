@@ -1,8 +1,6 @@
 import { useRouter } from 'next/router';
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { nextAxios } from '../../utils/axios';
-import { ScreenContext } from '../../context/screenContext';
-import fetcher from '../../utils/fetcher';
 import HeadInfo from '../../utils/headInfo';
 import Button from '../../components/Button/Button'
 import PopularGoods from '../../components/PopularGoods/PopularGoods';
@@ -15,20 +13,28 @@ import styles from './Product.module.scss';
 import { useCart } from '../../context/cartContext';
 import { isActive } from '../../utils/funcs';
 import { useLang } from '../../hooks/useLang';
+import { useWish } from '../../context/wishContext';
+import { ClipLoader } from 'react-spinners';
 
 const ProductPage = ({ product }) => {
     const lang = useLang();
     const [isHidden, setIsHidden] = useState(true);
     const [height, setHeight] = useState(0);
     const [show, setShow] = useState('false');
-    const { isMobile, isTablet } = useContext(ScreenContext)
     const { handleCart, cartReqLoading, cart, localCart } = useCart();
+    const { handleWish, wishReqLoading, wish, localWish } = useWish();
 
     const store = cart || localCart;
     const productInCart = isActive({
         product: product,
         store: cart,
         localStore: localCart
+    })
+
+    const productInWish = isActive({
+        product,
+        store: wish,
+        localStore: localWish,
     })
 
     const ref = useRef(null);
@@ -57,7 +63,7 @@ const ProductPage = ({ product }) => {
 
     const path = product.categories.map((cat) => {
         return {
-            url: `/categories/${cat.id}-${cat.slug}`,
+            url: `categories/${cat.id}-${cat.slug}`,
             name: cat.name,
         }
     })
@@ -123,12 +129,7 @@ const ProductPage = ({ product }) => {
                                 loading={cartReqLoading}
                                 onClick={() => handleCart({ type: 'SWITCH', product })}
                             >
-                                <Button
-                                    style={{ width: "fit-content" }}
-                                    loading={cartReqLoading.type == 'SWITCH' && cartReqLoading.id == product.id}
-                                >
-                                    {productInCart ? lang?.['Добавлено в корзину'] : lang?.['Добавить в корзину']}
-                                </Button>
+                                <Button active={product.in_stock === 0} loading={cartReqLoading.id == product.id && cartReqLoading.type == 'SWITCH'}>{!productInCart && product.in_stock === 0 ? lang?.['нет в наличии'] : productInCart && product.in_stock !== 0 ? lang?.['Добавлено в корзину'] : lang?.['Добавить в корзину']}</Button>
                             </div>
                             <Button
                                 onClick={() => handleInstantBuy()}
@@ -137,6 +138,28 @@ const ProductPage = ({ product }) => {
                             >
                                 {lang?.['Купить в рассрочку']}
                             </Button>
+                            <button>
+                                {
+                                    wishReqLoading ? (
+                                        <ClipLoader
+                                            color="#B5159D"
+                                            size={24}
+                                        />
+                                    ) : (
+                                        <svg
+                                            viewBox="0 0 24 24"
+                                            width="24"
+                                            height="24"
+                                            fill={productInWish ? "red" : "none"}
+                                            stroke={productInWish ? "none" : "#BDBDBD"}
+                                            onClick={() => handleWish({ type: 'ADD', product })}
+                                        >
+                                            <use xlinkHref='#heart'></use>
+                                        </svg>
+
+                                    )
+                                }
+                            </button>
                         </div>
                     </div>
                 </section>
@@ -153,13 +176,39 @@ const ProductPage = ({ product }) => {
                 </section>
 
                 <div className={styles.bottomButton}>
-                    <Button onClick={() => handleCart({ type: 'SWITCH', product })} loading={cartReqLoading.type == 'SWITCH' && cartReqLoading.id == product.id}>
-                        {productInCart ? lang?.['В корзине'] : lang?.['в корзину']}
-                    </Button>
+                    <button className='w-fit'>
+                        {
+                            wishReqLoading ? (
+                                <div className='flex flex-col items-center justify-center'>
+                                    <ClipLoader
+                                        color="#B5159D"
+                                        size={24}
+                                    />
+                                </div>
+                            ) : (
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    width="24"
+                                    height="24"
+                                    fill={productInWish ? "red" : "none"}
+                                    stroke={productInWish ? "none" : "#BDBDBD"}
+                                    onClick={() => handleWish({ type: 'ADD', product })}
+                                >
+                                    <use xlinkHref='#heart'></use>
+                                </svg>
+
+                            )
+                        }
+                    </button>
+                    <div className={styles.cartButton}>
+                        <Button onClick={() => handleCart({ type: 'SWITCH', product })} loading={cartReqLoading.type == 'SWITCH' && cartReqLoading.id == product.id}>
+                            {productInCart ? lang?.['В корзине'] : lang?.['в корзину']}
+                        </Button>
+                    </div>
                 </div>
                 <ProductCharasteristic data={product} />
-                <PopularGoods margin={'80px'} title={lang?.['Популярные товары']} link="/products?is_popular-1&quantity=6" />
-                <PopularGoods title={lang?.['Похожие товары']} margin={'80px'} link={`/products/${product.id}/similar?quantity=6`} />
+                <PopularGoods title={lang?.['Популярные товары']} link="/products?is_popular-1&quantity=6" />
+                <PopularGoods title={lang?.['Похожие товары']} link={`/products/${product.id}/similar?quantity=6`} />
                 <DiscountTabs />
             </div >
         </>
@@ -168,7 +217,7 @@ const ProductPage = ({ product }) => {
 
 export const getServerSideProps = async ({ params, locale }) => {
     const product = await nextAxios
-        .get(`/products/${params.product.split('-')[0]}`, {
+        .get(`products/${params.product.split('-')[0]}`, {
             headers: { 'Accept-Language': locale },
         })
         .then((res) => res.data.data)

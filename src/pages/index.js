@@ -9,8 +9,8 @@ import Recommendations from '../components/Recommendations/Recommendations';
 import CompanyDescription from '../components/Main/CompanyDescription';
 import BrandCategories from '../components/Main/BrandCategories';
 import Promotions from '../components/Main/Promotions';
-import Publications from '../components/Main/PublicationsVideo';
 import DiscountTabs from '../components/DiscountTabs/DiscountTabs';
+import PublicationsVideo from '../components/Main/PublicationsVideo';
 
 import styles from '../styles/Home.module.scss';
 import Skeleton from 'react-loading-skeleton';
@@ -34,7 +34,7 @@ const Home = ({ page }) => {
         <Recommendations title={lang?.["Успейте купить"]} link="/products?is_promotion=1&quantity=12" />
         <Promotions />
         <div className='mt-16 lg:mt-[120px]'>
-          <Publications />
+          <PublicationsVideo />
         </div>
         <BrandCategories />
         <CompanyDescription data={page} />

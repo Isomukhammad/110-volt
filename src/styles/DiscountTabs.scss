@@ -1,0 +1,35 @@
+.DiscountTabs {
+  .swiper {
+    .swiper-wrapper {
+      .swiper-slide {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        font-size: 18px;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .PublicationsVideo {
+    .swiper {
+      padding: 0;
+      .swiper-wrapper {
+        .swiper-slide {
+          cursor: pointer;
+
+          &:active {
+            cursor: grabbing;
+          }
+        }
+      }
+    }
+
+    &__slider {
+      margin: 0;
+    }
+  }
+}

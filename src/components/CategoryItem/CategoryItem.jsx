@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ClipLoader } from "react-spinners";
 import { useCart } from "../../context/cartContext";
+import { useMedia } from "../../context/screenContext";
 import { useLang } from "../../hooks/useLang";
 import { isActive, thousandSeperate } from "../../utils/funcs";
 
@@ -10,6 +11,7 @@ import styles from './CategoryItem.module.scss';
 
 const CategoryItem = ({ info }) => {
     const lang = useLang();
+    const { isDesktop } = useMedia();
     const { h1_name, old_price_formatted, current_price_formatted, url, img, price, discounted, monthly, name, id, slug } = info;
     const [width, setWidth] = useState(100);
     const [imgSrc, setImgSrc] = useState(img);
@@ -24,11 +26,11 @@ const CategoryItem = ({ info }) => {
     })
 
     const increaseWidth = () => {
-        setWidth(0)
+        isDesktop ? setWidth(0) : null
     }
 
     const decreaseWidth = () => {
-        setWidth(-100);
+        isDesktop ? setWidth(-100) : null;
     }
 
     const stopProp = (event) => {

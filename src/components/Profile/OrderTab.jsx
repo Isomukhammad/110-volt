@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import Skeleton from "react-loading-skeleton";
 import { useLang } from "../../hooks/useLang";
 
 import { authAxios } from "../../utils/axios";
@@ -39,7 +40,7 @@ const OrderTab = ({ data }) => {
     }, [])
 
     if (isLoading) {
-        return (<div>{lang?.['Загрузка…']}</div>)
+        return (<div className="rounded-[24px] overflow-hidden w-full max-w -[1187px]"><Skeleton height={300} /></div>)
     } else {
         return (
             <div className={styles.container}>

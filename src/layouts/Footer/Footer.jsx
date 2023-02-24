@@ -76,7 +76,7 @@ const Footer = () => {
                 <Link href='/'>
                     <div dangerouslySetInnerHTML={{ __html: settings?.logo_light_svg }}></div>
                 </Link>
-                <p>© 2022 110-volt. {lang?.['Все права защищены']}</p>
+                <p className="font-medium">© 2022 110-volt. {lang?.['Все права защищены']}</p>
                 <Link href="http://inweb.uz/" className={styles.devs}>{lang?.['Разработка']} -
                     <span>
                         <svg viewBox="0 0 15 18" fill="none" width={15} height={18} className={styles.devLogo}>

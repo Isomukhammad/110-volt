@@ -11,7 +11,7 @@ const PasswordPopUp = ({ setIsOpen, isOpen, register, handleSubmit }) => {
     if (isOpen) {
         document.body.style.overflow = "hidden"
     } else {
-        document.body.style.overflow = "scroll"
+        document.body.style.overflow = "auto"
     }
 
     const handleClose = () => {

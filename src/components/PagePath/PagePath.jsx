@@ -8,8 +8,8 @@ const PagePath = ({ paths }) => {
         <nav className={styles.container}>
             <Link href="/">{lang?.['Главная']}</Link>
             {
-                paths?.map((item, index) => (
-                    <div key={index}>
+                paths?.map((item) => (
+                    <div key={item.name}>
                         {
                             item.url ? (
                                 <Link
@@ -18,7 +18,7 @@ const PagePath = ({ paths }) => {
                                     &mdash; {item.name}
                                 </Link>
                             ) : (
-                                <div>
+                                <div className='font-medium'>
                                     &mdash; {item.name}
                                 </div>
                             )

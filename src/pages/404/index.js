@@ -27,6 +27,7 @@ const ErrorPage = () => {
                     description={lang?.['Нужная вам страница либо удалена либо перемещена по новому адресу']}
                     btnUrl='/'
                     btnText={lang?.['Вернуться на главную']}
+                    blurDataUrl={'/images/404_placeholder.png'}
                 />
                 <PopularGoods title={lang?.['Популярные товары']} link="/products?is_popular-1&quantity=6" />
                 <DiscountTabs />

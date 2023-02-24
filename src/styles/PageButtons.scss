@@ -11,35 +11,38 @@
     cursor: pointer;
     text-align: center;
     border-radius: 1000px;
+    width: 40px;
 
     .page-link {
       border-radius: 600px;
       background: #f2f2f2;
-      padding: 10px 13.5px;
       line-height: 19px;
       text-align: center;
       color: #828282;
       display: block;
-      width: 40px;
+      padding: 10px 0;
+      transition: all 0.3s;
+      font-weight: 600;
+
+      &:hover {
+        background: #dadada;
+        color: #242424;
+      }
     }
 
     .previous-page,
     .next-page {
-      position: relative;
-      display: inline-block;
-      background: #f2f2f2;
-      margin-top: 5px;
-      padding: 21px;
+      padding: 11px 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
 
-      svg {
-        position: absolute;
-        top: 15px;
-        left: 14.5px;
+      &:hover {
+        svg * {
+          stroke: #242424;
+        }
       }
-    }
-
-    .previous-page {
-      transform: scale(-1, 1);
     }
   }
 
@@ -47,6 +50,11 @@
     .page-link {
       background: #7b54c9;
       color: white;
+
+      &:hover {
+        background: #63479b;
+        color: white;
+      }
     }
   }
 }

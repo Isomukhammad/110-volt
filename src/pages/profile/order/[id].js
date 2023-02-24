@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import Skeleton from "react-loading-skeleton";
 import { PatternFormat } from "react-number-format";
 import DiscountTabs from "../../../components/DiscountTabs/DiscountTabs";
 import PagePath from "../../../components/PagePath/PagePath";
@@ -18,38 +19,38 @@ const OrderDetailsPage = () => {
     const [isLoading, setIsLoading] = useState(true);
     const id = router.query.id;
 
-    const handleOrderGet = async () => {
-        try {
-            setIsLoading(true);
-            const order = await authAxios.get(`orders/${id}`, {
-                headers: { 'Accept-Language': router.locale }
-            });
-            setOrder(order.data.data);
-        } catch (error) {
-            console.error(error);
-        } finally {
-            setIsLoading(false);
-        }
-    }
-
-    const handleItemsGet = async () => {
-        try {
-            setIsLoading(true);
-            const items = await authAxios.get(`/orders/${id}/order-items`, {
-                headers: { 'Accept-Language': router.locale }
-            });
-            setItems(items.data.data);
-        } catch (error) {
-            console.error(error);
-        } finally {
-            setIsLoading(false);
-        }
-    }
-
     useEffect(() => {
+        const handleOrderGet = async () => {
+            try {
+                setIsLoading(true);
+                const order = await authAxios.get(`orders/${id}`, {
+                    headers: { 'Accept-Language': router.locale }
+                });
+                setOrder(order.data.data);
+            } catch (error) {
+                console.error(error);
+            } finally {
+                setIsLoading(false);
+            }
+        }
+
+        const handleItemsGet = async () => {
+            try {
+                setIsLoading(true);
+                const items = await authAxios.get(`/orders/${id}/order-items`, {
+                    headers: { 'Accept-Language': router.locale }
+                });
+                setItems(items.data.data);
+            } catch (error) {
+                console.error(error);
+            } finally {
+                setIsLoading(false);
+            }
+        }
+
         handleOrderGet();
         handleItemsGet();
-    }, []);
+    }, [router.locale, id]);
 
     return (
         <>
@@ -69,15 +70,23 @@ const OrderDetailsPage = () => {
                 <h1 className="font-bold text-[24px] mt-10 lg:text-[32px]">{lang?.['Заказ']} #{router.query.id}</h1>
                 {
                     isLoading ? (
-                        <div>{lang?.['Загрузка…']}</div>
+                        <div className="mt-10 lg:mt-20 flex flex-col gap-4">
+                            <div className="flex flex-col gap-4 lg:grid lg:grid-cols-[70%_25%]">
+                                <div className="rounded-[24px] overflow-hidden"><Skeleton height={400} /></div>
+                                <div className="rounded-[24px] overflow-hidden"><Skeleton height={400} /></div>
+                            </div>
+                            <div className="lg:max-w-[824px] rounded-[24px] overflow-hidden"><Skeleton height={300} /></div>
+                        </div>
                     ) : (
                         <div className="flex flex-col gap-20 lg:grid lg:grid-cols-[70%_25%] justify-between mt-16 lg:mt-20">
                             <div className="flex flex-col gap-20 lg:gap-30">
                                 <div className="flex flex-col gap-10">
                                     <div>
-                                        {items?.map((item) => (
-                                            <OrderedProduct key={item.id} data={item} />
-                                        ))}
+                                        {
+                                            items?.map((item) => (
+                                                <OrderedProduct key={item.id} data={item} />
+                                            ))
+                                        }
                                     </div>
                                     <hr />
                                     <div className="font-bold text-[20px] text-center lg:flex lg:gap-60 lg:justify-end"><span className="lg:text-[20px] lg:font-semibold lg:text-secondary">{lang?.['Итого']}:</span> <span>{thousandSeperate(order?.total)}</span></div>
@@ -140,7 +149,7 @@ const OrderDetailsPage = () => {
                                 <div className="flex flex-col gap-8">
                                     <div className="flex flex-col gap-4">
                                         <h1 className="font-semibold text-[20px]">{lang?.['В корзине']}</h1>
-                                        <p className="text-secondary font-medium text-[16px]">{(lang?.['{{number}} товаров']).replace('{{number}}', '3')}</p>
+                                        <p className="text-secondary font-medium text-[16px]">{(lang?.['{{number}} товаров'])?.replace('{{number}}', '3')}</p>
                                     </div>
                                     <p className="font-bold text-[24px]">{thousandSeperate(order?.total)} {lang?.['сум']}</p>
                                     <button className="py-4 rounded-[16px] bg-accent w-full font-semibold text-[16px] text-white hover:bg-accentDark transition duration-300">Оплатить</button>

@@ -5,10 +5,11 @@ import Button from "../Button/Button";
 
 const Empty = ({
     img = '/images/placeholder.jpg',
+    blurDataUrl = null,
     title = '',
     description = '',
     btnUrl = '/',
-    btnText
+    btnText,
 }) => {
     const router = useRouter();
     const handlePush = () => router.push(btnUrl);
@@ -22,6 +23,8 @@ const Empty = ({
                     width={0}
                     height={0}
                     className="Empty block w-full max-w-[420px]"
+                    placeholder={blurDataUrl ? 'blur' : 'empty'}
+                    blurDataURL={blurDataUrl}
                 />
                 <div className="Empty flex flex-col gap-3 items-center">
                     <h1 className="Empty text-[24px] font-semibold">{title}</h1>

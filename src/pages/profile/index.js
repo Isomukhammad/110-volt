@@ -56,7 +56,7 @@ const ProfilePage = () => {
                             {lang?.['Мои заказы']}
                         </div>
                         <div
-                            className={styles.section}
+                            className={`${styles.section} ${styles.quitBtn}`}
                             onClick={handleLogout}
                         >
                             {lang?.['Выйти из аккаунта']}

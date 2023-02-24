@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import Skeleton from 'react-loading-skeleton';
 import { useLang } from '../../hooks/useLang';
 import { nextAxios } from '../../utils/axios';
 import { thousandSeperate } from '../../utils/funcs';
@@ -16,6 +17,7 @@ const OrderedProduct = ({ data }) => {
 
     const hanldeProductGet = async () => {
         try {
+            setIsLoading(true);
             const product = await nextAxios.get(`/products/${data.product_id}`, {
                 headers: { 'Accept-Language': router.locale }
             })
@@ -31,7 +33,7 @@ const OrderedProduct = ({ data }) => {
     }, []);
 
     if (isLoading) {
-        <div>{<div>{lang?.['Загрузка…"']}</div>}</div>
+        <div>{<div><Skeleton height={300} /></div>}</div>
     } else {
         return (
             <div className={styles.container}>

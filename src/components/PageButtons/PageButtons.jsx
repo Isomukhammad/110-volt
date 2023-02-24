@@ -1,15 +1,14 @@
 import { useRouter } from 'next/router';
 import { useLang } from '../../hooks/useLang';
-import { useContext, useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
-import { ScreenContext } from '../../context/screenContext';
+import { useMedia } from '../../context/screenContext';
 
 import styles from './PageButtons.module.scss'
 
 const PageButtons = ({ data, setSize, search, setPage, page }) => {
     const router = useRouter();
     const lang = useLang();
-    const { isMobile } = useContext(ScreenContext);
+    const { isDesktop } = useMedia();
 
     const handlePageClick = (event) => {
         router.push(`${router.asPath.split('?')[0]}?${search ? `value=${search}&` : ''}page=${event.selected + 1}`)
@@ -19,29 +18,33 @@ const PageButtons = ({ data, setSize, search, setPage, page }) => {
         <div className={styles.container}>
             <ReactPaginate
                 previousLabel={
-                    <svg
-                        viewBox="0 0 17 16"
-                        width={17}
-                        height={16}
-                        fill="none"
-                        stroke="#828282"
-                    >
-                        <use xlinkHref="#arrow-right"></use>
-                    </svg>
+                    <button>
+                        <svg
+                            viewBox="0 0 24 24"
+                            width={17}
+                            height={16}
+                            fill="none"
+                            stroke="#828282"
+                        >
+                            <use xlinkHref="#arr-left"></use>
+                        </svg>
+                    </button>
                 }
                 nextLabel={
-                    <svg
-                        viewBox="0 0 17 16"
-                        width={17}
-                        height={16}
-                        fill="none"
-                        stroke="#828282"
-                    >
-                        <use xlinkHref="#arrow-right"></use>
-                    </svg>
+                    <button>
+                        <svg
+                            viewBox="0 0 24 24"
+                            width={17}
+                            height={16}
+                            fill="none"
+                            stroke="#828282"
+                        >
+                            <use xlinkHref="#arr-right"></use>
+                        </svg>
+                    </button>
                 }
                 onPageChange={handlePageClick}
-                pageRangeDisplayed={isMobile ? 1 : 2}
+                pageRangeDisplayed={!isDesktop ? 1 : 2}
                 marginPagesDisplayed={1}
                 pageCount={data.meta.last_page}
                 forcePage={router.query.page ? router.query.page - 1 : null}

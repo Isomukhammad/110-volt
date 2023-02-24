@@ -1,8 +1,8 @@
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import Link from 'next/link';
 import { useLang } from '../../hooks/useLang';
 
-import { ScreenContext } from '../../context/screenContext';
+import { useMedia } from '../../context/screenContext';
 import { useData } from '../../context/dataContext';
 import { useCart } from '../../context/cartContext';
 import { useAuth } from '../../context/authContext';
@@ -19,7 +19,7 @@ const Header = () => {
     const lang = useLang();
     const { user, userLoading } = useAuth();
     const { settings, settingsError, tree, treeValidating, cartLoading } = useData();
-    const { isMobile, isTablet } = useContext(ScreenContext)
+    const { isDesktop } = useMedia();
     const [searchFocus, setSearchFocus] = useState(false);
     const ref = useRef(false)
     const [firstOpen, setFirstOpen] = useState(false); //state which is used for opening menu for the first time
@@ -32,6 +32,7 @@ const Header = () => {
 
     const stopProp = (e) => {
         e.stopPropagation();
+
     }
 
     return (
@@ -40,12 +41,12 @@ const Header = () => {
                 <div className={styles.contacts}>
                     <div className={styles.social}>
                         <Link href={settings ? settings?.instagram : '#'}>
-                            <svg width={16} height={16} fill="white">
+                            <svg viewBox="0 0 16 16" width={16} height={16} fill="white">
                                 <use xlinkHref='#instagram-logo' />
                             </svg>
                         </Link>
                         <Link href={settings ? settings.telegram : '#'}>
-                            <svg viewBox="0 0 24 24" width={16} height={15} fill="white">
+                            <svg viewBox="0 0 16 16" width={16} height={15} fill="white">
                                 <use xlinkHref='#telegram-logo'></use>
                             </svg>
                         </Link>
@@ -88,7 +89,7 @@ const Header = () => {
 
                 <Link href='/'>
                     {
-                        isTablet || isMobile ? (
+                        !isDesktop ? (
                             <div className={styles.mobileLogo} dangerouslySetInnerHTML={{ __html: settings?.logo_light_svg }} />
                         ) : (
                             <div dangerouslySetInnerHTML={{ __html: settings?.logo_svg }} />
@@ -152,10 +153,10 @@ const Header = () => {
                         {
                             !cartLoading && wishStore ? (
                                 wishStore.quantity !== 0 ? (
-                                    <div className={styles.itemsNumber}>{wishStore.quantity}</div>) : (null)
+                                    <div className={styles.itemsNumberWish}>{wishStore.quantity}</div>) : (null)
                             ) : null
                         }
-                        <div>{lang?.['Корзина']}</div>
+                        <div>{lang?.['Избранное']}</div>
                     </Link>
                     <Link
                         href="/cart"

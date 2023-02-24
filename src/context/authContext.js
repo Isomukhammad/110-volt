@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { createContext, useContext, useEffect, useState } from "react"
+import { ClipLoader } from "react-spinners";
 import { toast } from "react-toastify";
 import { useLang } from "../hooks/useLang";
 import { nextAxios, authAxios } from '../utils/axios'
@@ -183,6 +184,7 @@ export const useAuth = () => useContext(AuthContext)
 const AuthGuard = ({ children }) => {
     const { user, userLoading, setRedirect } = useAuth()
     const router = useRouter();
+    const lang = useLang()
 
     useEffect(() => {
         if (!userLoading) {
@@ -195,9 +197,12 @@ const AuthGuard = ({ children }) => {
 
     if (userLoading) {
         return (
-            <div className='fixed-layer'>
-                <HeadInfo title="Загрузка..." />
-                Загрузка
+            <div className='w-full h-full flex flex-col items-center justify-center'>
+                <HeadInfo title={lang?.['Загрузка…']} />
+                <ClipLoader
+                    color="#B5159D"
+                    size={32}
+                />
             </div>
         )
     }
