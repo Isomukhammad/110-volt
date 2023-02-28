@@ -7,7 +7,7 @@ import { useSort } from '../../context/sortContext'
 
 const SortDropdown = () => {
     const lang = useLang();
-    const [choice, setChoice] = useState(lang?.['Популярности']);
+    const [choice, setChoice] = useState(null);
     const { setIsPopular, isPopular, sortBy, setSortBy } = useSort();
 
     return (
@@ -16,7 +16,7 @@ const SortDropdown = () => {
                 <div>
                     <Menu.Button className="text-[14px] font-semibold text-secondary">
                         <div className='flex flex-row items-center'>
-                            <p className='mt-1'>{choice}</p>
+                            <p className='mt-1'>{choice ? choice : lang?.['Популярности']}</p>
                             <svg
                                 viewBox="0 0 24 24"
                                 width={22}

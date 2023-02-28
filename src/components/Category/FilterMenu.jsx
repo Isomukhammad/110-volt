@@ -69,6 +69,14 @@ const FilterMenu = ({ attributes, brands, prices, loading, category, products, f
         }
     })
 
+    useEffect(() => {
+        if (filterOpen) {
+            document.body.style.overflow = "hidden"
+        } else {
+            document.body.style.overflow = "auto"
+        }
+    }, [filterOpen]);
+
     return (
         <div className={`${styles.container} ${filterOpen ? styles.filterOpen : ''}`}>
             <div className={styles.closeButton} onClick={() => setFilterOpen(false)}>

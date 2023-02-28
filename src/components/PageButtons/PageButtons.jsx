@@ -5,8 +5,9 @@ import { useMedia } from '../../context/screenContext';
 
 import styles from './PageButtons.module.scss'
 import { useEffect, useState } from 'react';
+import { ClipLoader } from 'react-spinners';
 
-const PageButtons = ({ data, search, setPage, page, stage, setStage }) => {
+const PageButtons = ({ data, search, setPage, page, stage, setStage, loading }) => {
     const router = useRouter();
     const lang = useLang();
     const { isDesktop } = useMedia();
@@ -74,7 +75,13 @@ const PageButtons = ({ data, search, setPage, page, stage, setStage }) => {
                     >
                         {lang?.['Показать еще']}
                     </button>) : null
-                : (null)}
+                : (
+                    <button
+                        className={styles.showMore}
+                    >
+                        <ClipLoader color="black" size={16} />
+                    </button>
+                )}
         </div >
     )
 }

@@ -7,8 +7,10 @@ const MobileBottomMenu = () => {
     const router = useRouter();
     const lang = useLang();
 
+    const disabledShadow = router.pathname === '/checkout' ? styles.disabled : '';
+
     return (
-        <div className={styles.container}>
+        <div className={`${styles.container} ${disabledShadow}`}>
             <div className={styles.wrapper}>
                 <Link
                     href="/"

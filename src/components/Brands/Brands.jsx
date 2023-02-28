@@ -57,7 +57,6 @@ const Brands = ({ brand, tree }) => {
 
     return (
         <div className="Brands relative">
-            <button onClick={() => setFilterOpen(true)}>Open</button>
             <div className="mt-10 flex flex-col gap-2 lg:flex-row lg:gap-8 lg:items-center">
                 <h1 className="text-[24px] font-bold lg:text-[32px]">{brand?.name}</h1>
                 {lang ? (<p className="text-[14px] font-medium text-placeholder lg:text-[16px]">{(lang?.['{{number}} товаров']).replace('{{number}}', products?.meta.total)}</p>) : null}
@@ -105,7 +104,7 @@ const Brands = ({ brand, tree }) => {
                         ><use xlinkHref='#close' /></svg>
                     </button>
                 </div>
-                <div className="flex flex-col gap-10">
+                <div className="flex flex-col gap-10 mt-10 lg:mt-0">
                     <SortMenu
                         title={lang?.['Категории']}
                         filterOpen={filterOpen}

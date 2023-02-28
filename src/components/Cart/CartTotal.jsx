@@ -29,8 +29,8 @@ const CartTotal = ({ offer, store, handleCart, cartReqLoading, loading }) => {
         router.push('/checkout?instalment=1');
     }
 
-    if (isMobile || isTablet) {
-        return (
+    return (
+        <>
             <div className={styles.bottomTotal}>
                 <div className={styles.content}>
                     <div className={styles.prices}>
@@ -59,9 +59,6 @@ const CartTotal = ({ offer, store, handleCart, cartReqLoading, loading }) => {
 
                 </div>
             </div>
-        )
-    } else {
-        return (
             <div className={styles.totalContainer}>
                 <div className={styles.content}>
                     <div className={styles.quantity}>
@@ -125,8 +122,8 @@ const CartTotal = ({ offer, store, handleCart, cartReqLoading, loading }) => {
                     )
                 }
             </div >
-        )
-    }
+        </>
+    )
 }
 
 export default CartTotal;
