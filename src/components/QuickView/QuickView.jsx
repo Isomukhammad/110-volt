@@ -10,6 +10,7 @@ import Button from '../Button/Button';
 import QuickViewSlider from '../QuickViewSlider/QuickViewSlider';
 
 import styles from './QuickView.module.scss';
+import { ClipLoader } from 'react-spinners';
 
 const QuickView = ({
     index,
@@ -57,19 +58,32 @@ const QuickView = ({
                         <p>{lang?.['Код товара']}: {data.id}</p>
                     </div>
                     <div className={styles.buttons}>
-                        <div onClick={() => handleCart({ type: 'SWITCH', product: data })}>
-                            <Button>{productInCart ? lang?.['В корзине'] : lang?.['в корзину']}</Button>
-                        </div>
-                        <svg
-                            viewBox="0 0 24 24"
-                            width="24"
-                            height="24"
-                            fill={productInWish ? "red" : "none"}
-                            stroke={productInWish ? "none" : "#BDBDBD"}
-                            onClick={() => handleWish({ type: 'ADD', product: data })}
+                        <div
+                            loading={cartReqLoading}
+                            onClick={() => handleCart({ type: 'SWITCH', product: data })}
                         >
-                            <use xlinkHref='#heart'></use>
-                        </svg>
+                            <Button active={data.in_stock === 0} loading={cartReqLoading.id == data.id && cartReqLoading.type == 'SWITCH'}>{!productInCart && data.in_stock === 0 ? lang?.['нет в наличии'] : productInCart && data.in_stock !== 0 ? lang?.['Добавлено в корзину'] : lang?.['Добавить в корзину']}</Button>
+                        </div>
+                        {
+                            wishReqLoading ? (
+                                <ClipLoader
+                                    color="#B5159D"
+                                    size={24}
+                                />
+                            ) : (
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    width="24"
+                                    height="24"
+                                    fill={productInWish ? "red" : "none"}
+                                    stroke={productInWish ? "none" : "#BDBDBD"}
+                                    onClick={() => handleWish({ type: 'ADD', product: data })}
+                                >
+                                    <use xlinkHref='#heart'></use>
+                                </svg>
+
+                            )
+                        }
                     </div>
                 </div>
 

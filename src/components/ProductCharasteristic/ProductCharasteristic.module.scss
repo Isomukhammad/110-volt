@@ -5,6 +5,7 @@
   position: relative;
   position: relative;
   overflow: hidden;
+  border-radius: 24px;
 
   .background {
     position: absolute;
@@ -89,6 +90,7 @@
   }
 
   @media screen and (max-width: 1024px) {
+    border-radius: 0;
     .content {
       h1 {
         font-size: 24px;

@@ -9,17 +9,21 @@ import TimerTab from './TimerTab';
 
 import styles from './Promotions.module.scss'
 import Skeleton from 'react-loading-skeleton';
+import Link from 'next/link';
+import CategoriesTabsLink from '../CategoriesTabsLink/CategoriesTabLink';
 
 const Promotions = () => {
-    const router = useRouter;
+    const router = useRouter();
     const lang = useLang();
-    const { data: promotions, error: promotionsError, isValidating } = useSWR(['/promotions?quantity=3&type=active', router.locale], (url) => fetcher(url, { header: { 'Accept-Language': router.locale } }),
+    const { data: promotions, error: promotionsError, isValidating } = useSWR(['/promotions?type=active&page=1&quantity=3', router.locale], (url) => fetcher(url, { headers: { 'Accept-Language': router.locale } }),
         {
             revalidateIfStale: false,
             revalidateOnFocus: false,
             revalidateOnReconnect: false,
         }
     );
+
+    console.log(promotions);
 
     if (!promotions || isValidating) {
         return (
@@ -34,15 +38,21 @@ const Promotions = () => {
         )
     }
 
+
     return (
         <div className={styles.salesTab}>
-            <h1 className='font-bold text-[32px]'>{lang?.['Акции от 110-volt']}</h1>
+            <div className='flex flex-row justify-between items-center'>
+                <h1 className='font-bold text-[32px]'>{lang?.['Акции от 110-volt']}</h1>
+                <CategoriesTabsLink title={lang?.['Все акции']} url="/sales" />
+            </div>
             <div className={styles.tabs}>
                 {
                     promotions.data.length !== 0 ? (
                         promotions.data.map(item => (
                             <div key={item.id} className={styles.tab}>
-                                <Image src={item.img} alt={item.name || ''} width="0" height="0" sizes="100vw" placeholder="blurDataURL" />
+                                <Link href={`sales/${item.id}-${item.slug}`}>
+                                    <Image src={item.img} alt={item.name || ''} width="0" height="0" sizes="100vw" placeholder="blurDataURL" />
+                                </Link>
 
                                 <div className={styles.timer}>
                                     <TimerTab start={item.start_at} end={item.end_at} />

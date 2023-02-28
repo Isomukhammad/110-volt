@@ -7,7 +7,7 @@ const BrandTab = ({ info }) => {
 	const { img, name, id, slug } = info;
 	const { imgSrc, setImgSrc } = useState(img);
 	return (
-		<Link href={`/categories/${id}-${slug}`} className={styles.tab}>
+		<Link href={`/brands/${id}-${slug}`} className={styles.tab}>
 			<Image
 				src={imgSrc || '/images/placeholder.jpg'}
 				alt={name}

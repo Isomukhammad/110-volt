@@ -1,6 +1,6 @@
 import styles from './InputCheckbox.module.scss';
 
-const FormCheckbox = ({ name, id, key, checked, ...otherProps }) => {
+const FormCheckbox = ({ name, id, checked, ...otherProps }) => {
     return (
         <div className={styles.container}>
             <input

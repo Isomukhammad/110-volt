@@ -4,13 +4,16 @@ import ReactPaginate from 'react-paginate';
 import { useMedia } from '../../context/screenContext';
 
 import styles from './PageButtons.module.scss'
+import { useEffect, useState } from 'react';
 
-const PageButtons = ({ data, setSize, search, setPage, page }) => {
+const PageButtons = ({ data, search, setPage, page, stage, setStage }) => {
     const router = useRouter();
     const lang = useLang();
     const { isDesktop } = useMedia();
+    const [pageData, setPageData] = useState(data);
 
     const handlePageClick = (event) => {
+        setPage(null);
         router.push(`${router.asPath.split('?')[0]}?${search ? `value=${search}&` : ''}page=${event.selected + 1}`)
     };
 
@@ -46,7 +49,7 @@ const PageButtons = ({ data, setSize, search, setPage, page }) => {
                 onPageChange={handlePageClick}
                 pageRangeDisplayed={!isDesktop ? 1 : 2}
                 marginPagesDisplayed={1}
-                pageCount={data.meta.last_page}
+                pageCount={pageData.meta.last_page}
                 forcePage={router.query.page ? router.query.page - 1 : null}
                 pageClassName="page-item"
                 pageLinkClassName="page-link"
@@ -64,17 +67,13 @@ const PageButtons = ({ data, setSize, search, setPage, page }) => {
             <button
                 className={styles.showMore}
                 onClick={() => {
-                    if (setSize) {
-                        setSize(size + 1)
-                    } else if (page) {
-                        setPage(page + 1)
-                    }
+                    page ? setPage(+page + 1) : router.query.page ? setPage(+router.query.page + 1) : setPage(2)
                 }}
             >
                 {lang?.['Показать еще']}
             </button>
 
-        </div>
+        </div >
     )
 }
 

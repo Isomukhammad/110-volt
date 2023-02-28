@@ -1,22 +1,20 @@
 import Link from "next/link";
 
-import styles from './CategoriesTabLink.module.scss'
-
-const CategoriesTabsLink = ({ linkTitle, link }) => {
-    if (!linkTitle && !link) {
+const CategoriesTabsLink = ({ title, url }) => {
+    if (!title && !url) {
         return null;
     }
 
     return (
-        <Link href={`${link}`} className={styles.link}>
-            {linkTitle}
-            <span>
-                <svg viewBox="0 0 16 13" fill="none" className={styles.arrowIcon} width="16px" height="16px">
-                    <use xlinkHref='#arrow-right'></use>
-                </svg>
-            </span>
+        <Link href={`${url}`} className='text-[14px] gap-2 font-semibold lg:text-[18px] text-placeholder flex flex-row items-center lg:gap-3 transition duration-300 group hover:text-accent font-segoe'>
+            <p className="whitespace-nowrap">{title}</p>
+            <svg viewBox="0 0 24 24" className='w-4 h-4 stroke-placeholder fill-none group-hover:stroke-accent transition duration-300' style={{ strokeWidth: '2' }}>
+                <use xlinkHref='#arr-right'></use>
+            </svg>
         </Link>
     )
 }
 
 export default CategoriesTabsLink;
+
+// font-family: "Segoe UI";

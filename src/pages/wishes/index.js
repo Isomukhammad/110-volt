@@ -34,8 +34,6 @@ const WishesPage = () => {
             </div>)
     }
 
-    console.log(store);
-
     return (
         <>
             <HeadInfo

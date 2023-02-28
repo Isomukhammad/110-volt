@@ -47,7 +47,7 @@ const PopularGoods = ({ title, margin, link }) => {
         >
             <div className={styles.titleBar}>
                 <h2 className='font-bold text-[24px]'>{isDesktop ? title : title.split(' ')[0]}</h2>
-                <CategoriesTabsLink linkTitle={lang?.['Все товары']} link="/" />
+                <CategoriesTabsLink title={lang?.['Все товары']} url="/" />
             </div>
             <div className={styles.tabs}>
                 {

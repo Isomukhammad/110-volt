@@ -6,7 +6,7 @@
 
   .tabs {
     display: grid;
-    grid-template-columns: repeat(3, 32%);
+    grid-template-columns: repeat(3, 1fr);
     gap: 24px;
 
     .tab {

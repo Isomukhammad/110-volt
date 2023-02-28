@@ -1,25 +1,10 @@
 .brands {
-  margin-top: 120px;
-  display: flex;
-  flex-direction: column;
-  gap: 48px;
-
   .tabs {
     position: relative;
-
-    &:hover {
-      .swiperPrev,
-      .swiperNext {
-        visibility: visible;
-        opacity: 1;
-      }
-    }
 
     .swiperPrev,
     .swiperNext {
       transition: visibility 0.3s ease-in-out, opacity 0.3s ease-in-out;
-      opacity: 0;
-      visibility: hidden;
       background: rgba(35, 35, 35, 0.5);
       width: fit-content;
       padding: 19.33px 18.67px;

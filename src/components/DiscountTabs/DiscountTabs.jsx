@@ -44,10 +44,10 @@ const DiscountTabs = () => {
     }
 
     return (
-        <div className="DiscountTabs mt-[64px] lg:mt-[120px] relative group">
+        <div className="DiscountTabs mt-[64px] lg:mt-[120px] relative">
             <Swiper
                 spaceBetween={16}
-                slidesPerView={isDesktop ? 2 : 1}
+                slidesPerView={!isDesktop ? 1 : 2}
                 loop={true}
                 loopFillGroupWithBlank={true}
                 autoplay={{
@@ -72,13 +72,13 @@ const DiscountTabs = () => {
                     ))
                 }
             </Swiper>
-            <button className="DiscountTabs--button hidden lg:flex absolute top-[50%] left-[-24px] bg-[#23232380] z-[1] p-[14px] rounded-full invisible group:hover-visible" ref={swiperPrevRef} type="button">
+            <button className="DiscountTabs--button hidden lg:block absolute top-[50%] left-[-24px] bg-[#23232380] z-[2] p-[14px] rounded-full" ref={swiperPrevRef} type="button">
                 <svg viewBox='0 0 24 24' className="w-7 h-7 stroke-white fill-none"
                 >
                     <use xlinkHref={`#arr-left`}></use>
                 </svg>
             </button>
-            <button className="DiscountTabs--button hidden lg:flex absolute top-[50%] right-[-24px] bg-[#23232380] z-[1] p-[14px] rounded-full" ref={swiperNextRef} type="button">
+            <button className="DiscountTabs--button hidden lg:block absolute top-[50%] right-[-24px] bg-[#23232380] z-[2] p-[14px] rounded-full" ref={swiperNextRef} type="button">
                 <svg width={28} height={28} viewBox='0 0 24 24' className="w-7 h-7 stroke-white fill-none"
                 >
                     <use xlinkHref={`#arr-right`}></use>

@@ -36,6 +36,14 @@ const Menu = ({ menuOpen, setMenuOpen, searchFocus, setSearchFocus }) => {
         }
     }, [tree]);
 
+    useEffect(() => {
+        if (menuOpen) {
+            document.body.style.overflow = "hidden"
+        } else {
+            document.body.style.overflow = "auto"
+        }
+    }, [menuOpen]);
+
     const useOutsideAlerter = (ref) => {
         useEffect(() => {
             const handleClickOutside = (event) => {

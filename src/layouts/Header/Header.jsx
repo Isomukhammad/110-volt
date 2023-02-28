@@ -77,6 +77,7 @@ const Header = () => {
                         setMenuOpen(true);
                         setFirstOpen(true);
                     }}
+                    type="button"
                 >
                     <svg
                         viewBox="0 0 24 24"
@@ -101,13 +102,14 @@ const Header = () => {
                     <SearchInput placeholder={'Я ищу ...'} />
                 </div>
 
-                <div
+                <button
                     className={styles.searchLogo}
                     onClick={() => {
                         setFirstOpen(true);
                         setMenuOpen(true);
                         setSearchFocus(true);
                     }}
+                    type="button"
                 >
                     <svg
                         viewBox='0 0 24 24'
@@ -118,7 +120,7 @@ const Header = () => {
                     >
                         <use xlinkHref='#search'></use>
                     </svg>
-                </div>
+                </button>
 
                 <div className={styles.navButtons}>
                     <div
@@ -147,7 +149,7 @@ const Header = () => {
                         href="/wishes"
                         className={styles.navButton}
                     >
-                        <svg viewBox="0 0 21 22" fill="white" stroke="white" className={styles.languageButton}>
+                        <svg viewBox="0 0 24 24" fill="white" stroke="white" className={styles.languageButton}>
                             <use xlinkHref='#heart'></use>
                         </svg>
                         {

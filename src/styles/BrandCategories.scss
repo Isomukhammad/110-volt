@@ -1,0 +1,62 @@
+.BrandCategories {
+  margin-top: 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  position: relative;
+
+  &__slider {
+    &--button {
+      &.swiper-button-disabled {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+  }
+
+  // .swiperPrev,
+  // .swiperNext {
+  //   transition: visibility 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  //   opacity: 0;
+  //   visibility: hidden;
+  //   background: rgba(35, 35, 35, 0.5);
+  //   width: fit-content;
+  //   padding: 19.33px 18.67px;
+  //   filter: drop-shadow(0px 4px 40px rgba(38, 41, 43, 0.07));
+  //   border-radius: 2em;
+  //   position: absolute;
+  //   z-index: 1;
+  //   cursor: pointer;
+  //   transform: translateY(-50%);
+
+  //   svg {
+  //     scale: 1.6;
+  //   }
+  // }
+
+  // .swiperPrev {
+  //   left: -28px;
+  //   top: 50%;
+  // }
+
+  // .swiperNext {
+  //   right: -28px;
+  //   top: 50%;
+
+  //   svg {
+  //     -moz-transform: scale(-1, 1);
+  //     -webkit-transform: scale(-1, 1);
+  //     -o-transform: scale(-1, 1);
+  //     -ms-transform: scale(-1, 1);
+  //     transform: scale(-1, 1);
+  //   }
+  // }
+
+  @media screen and (max-width: 1024px) {
+    &__slider {
+      &--button {
+        display: none;
+      }
+    }
+  }
+}

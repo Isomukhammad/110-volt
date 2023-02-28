@@ -28,6 +28,7 @@ module.exports = {
       },
       fontFamily: {
         inter: ['Inter', 'sans-serif'],
+        segoe: ['Segoe UI', 'sans-serif']
       },
     },
   },

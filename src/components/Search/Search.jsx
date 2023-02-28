@@ -56,9 +56,6 @@ const Search = () => {
         setValue(e.target.value);
     }
 
-    useEffect(() => {
-        console.log(products)
-    }, [products])
     return (
         <>
             <HeadInfo title={lang?.['Поиск']} />

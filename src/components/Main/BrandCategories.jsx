@@ -49,12 +49,12 @@ const BrandCategories = () => {
 	}
 
 	return (
-		<div className={`brands ${styles.brands}`}>
-			<h1 className='font-bold text-[24px] lg:text-[32px]'>{lang?.['Популярные бренды']}</h1>
-			<div className={styles.tabs}>
+		<div className={`BrandCategories ${styles.brands}`}>
+			<h1 className='BrandCategories__title font-bold text-[24px] lg:text-[32px]'>{lang?.['Популярные бренды']}</h1>
+			<div className={`${styles.tabs} BrandCategories__slider`}>
 				<Swiper
 					modules={[Autoplay, Navigation, Grid, Pagination]}
-					slidesPerView={isMobile ? 1 : 4}
+					slidesPerView={!isDesktop ? 1 : 4}
 					spaceBetween={30}
 					grid={{
 						fill: 'rows',
@@ -76,13 +76,13 @@ const BrandCategories = () => {
 						</SwiperSlide>
 					))}
 				</Swiper>
-				<div className={styles.swiperPrev} ref={swiperPrevRef}>
+				<div className={`${styles.swiperPrev} BrandCategories__slider--button`} ref={swiperPrevRef}>
 					<svg width={18.67} height={16.33} viewBox='0 0 28 28' fill='none' stroke="white"
 					>
 						<use xlinkHref={`#arrow-left`}></use>
 					</svg>
 				</div>
-				<div className={styles.swiperNext} ref={swiperNextRef}>
+				<div className={`${styles.swiperNext} BrandCategories__slider--button`} ref={swiperNextRef}>
 					<svg width={18.67} height={16.33} viewBox='0 0 28 28' fill='none' stroke="white"
 					>
 						<use xlinkHref={`#arrow-left`}></use>

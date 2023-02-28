@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useLang } from '../../hooks/useLang';
 import useSWR from 'swr';
 
@@ -29,10 +29,10 @@ const NewsPage = ({ pageInfo }) => {
     const { isDesktop } = useMedia();
     const { settings } = useData();
     const [news, setNews] = useState([]);
-    const [page, setPage] = useState(router.query.page ? router.query.page : 1);
+    const [page, setPage] = useState(null);
 
     const url = useMemo(() => {
-        return `/publications?type=2&page=${router.query.page || page}&quantity=${router.query.quantity || 12
+        return `/publications?type=2&page=${!page ? router.query.page : page}&quantity=${router.query.quantity || 12
             }`
     }, [router.query.page, router.query.quantity, page])
 
@@ -46,7 +46,17 @@ const NewsPage = ({ pageInfo }) => {
         refreshWhenOffline: false,
     })
 
-    if (!publications || isValidating) {
+    useEffect(() => {
+        if (publications) {
+            if (page) {
+                setNews(prevVal => [...prevVal, ...publications.data])
+            } else {
+                setNews(publications.data);
+            }
+        }
+    }, [publications])
+
+    if (!publications) {
         return (
             <div className='mt-10 mb-[120px] flex flex-col gap-10'>
                 <Skeleton width={300} />

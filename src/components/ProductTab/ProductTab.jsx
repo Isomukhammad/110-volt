@@ -11,6 +11,7 @@ import QuickView from '../QuickView/QuickView';
 import Button from '../Button/Button';
 import styles from './ProductTab.module.scss'
 import { toast } from 'react-toastify';
+import { useRouter } from 'next/router';
 
 const ProductTab = ({
     index,
@@ -20,6 +21,7 @@ const ProductTab = ({
     arrLength,
     width
 }) => {
+    const router = useRouter();
     const lang = useLang();
     const [quickView, setQuickView] = useState('false');
     const { handleCart, cartReqLoading, cart, localCart } = useCart();
@@ -47,11 +49,13 @@ const ProductTab = ({
         }
     }
 
+    const handleRouteChange = (route) => router.push(route);
+
     const { isMobile } = useContext(ScreenContext);
     return (
         <>
-            <Link
-                href={`/product/${product.id}-${product.slug}`}
+            <div
+                onClick={() => handleRouteChange(`/product/${product.id}-${product.slug}`)}
                 className={styles.container}
             >
                 <div
@@ -66,15 +70,7 @@ const ProductTab = ({
                     >
                         {lang?.['Быстрый просмотр']}
                     </div>
-                    <div className={styles.image} style={{ backgroundImage: `url(${product.img}` }}>
-                        {/* <Image
-                            src={product.img || '/images/placeholder.jpg'}
-                            alt={product.name}
-                            sizes="100vh"
-                            width={0}
-                            height={0}
-                        /> */}
-                    </div>
+                    <div className={styles.image} style={{ backgroundImage: `url(${product.img}` }} />
                 </div>
 
                 <div className={styles.prices}>
@@ -90,18 +86,56 @@ const ProductTab = ({
                 </div>
 
                 <p className={styles.description}>{product.description}</p>
-
                 {
                     isMobile ? (
-                        null
+                        <div
+                            className='absolute top-0 right-0'
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                e.preventDefault();
+                            }}
+                        >
+                            <button
+                                className='p-3'
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleCartSwitch()
+                                }}
+                            >
+                                <svg
+                                    viewBox='0 0 24 24'
+                                    width={24}
+                                    height={24}
+                                    fill={productInCart ? "#7B54C9" : "none"}
+                                    stroke={productInCart ? "#7B54C9" : "#BDBDBD"}
+                                ><use xlinkHref='#bag-logo' /></svg>
+                            </button>
+                            <button
+                                className='p-3'
+                                onClick={(e) => {
+                                    e.stopPropagation()
+                                    handleWish({ type: 'ADD', product })
+                                }}
+                            >
+                                <svg
+                                    viewBox='0 0 24 24'
+                                    width={24}
+                                    height={24}
+                                    fill={productInWish ? "red" : "none"}
+                                    stroke={productInWish ? "none" : "#BDBDBD"}
+                                    onClick={() => handleWish({ type: 'ADD', product })}
+                                ><use xlinkHref='#heart' /></svg>
+                            </button>
+                        </div>
                     ) : (
                         <div
                             className={styles.buttons}
-                            onClick={(e) => e.preventDefault()}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                e.preventDefault()
+                            }}
                         >
-                            <div
-
-                            >
+                            <div>
                                 <Button
                                     className="bg-accent padding-1 text-white hover:bg-accentDark transition duration-300"
                                     onClick={handleCartSwitch}
@@ -118,6 +152,7 @@ const ProductTab = ({
                                 fill={productInWish ? "red" : "none"}
                                 stroke={productInWish ? "none" : "#BDBDBD"}
                                 onClick={() => handleWish({ type: 'ADD', product })}
+                                className="cursor-pointer"
                             >
                                 {
                                     wishReqLoading.id == product.id && wishReqLoading.type == 'ADD' ? (
@@ -133,7 +168,7 @@ const ProductTab = ({
                         </div>
                     )
                 }
-            </Link >
+            </div >
             <QuickView
                 setQuickView={setQuickView}
                 data={product}

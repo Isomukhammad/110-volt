@@ -1,5 +1,6 @@
 .DiscountTabs {
   .swiper {
+    z-index: 0;
     .swiper-wrapper {
       .swiper-slide {
         width: 100%;
@@ -10,6 +11,16 @@
         font-weight: 500;
       }
     }
+  }
+
+  &:hover {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  &--button {
+    // visibility: hidden;
+    transform: translate(0, -50%);
   }
 }
 

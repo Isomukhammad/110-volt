@@ -1,14 +1,12 @@
-import Link from "next/link"
 import { useRouter } from "next/router"
 import Skeleton from "react-loading-skeleton"
 import useSWR from "swr"
 import { useMedia } from "../../context/screenContext"
 import { useLang } from "../../hooks/useLang"
 import fetcher from "../../utils/fetcher"
-import CategoriesTabsLink from "../CategoriesTabsLink/CategoriesTabLink"
 
 import CategoryItem from "../CategoryItem/CategoryItem"
-import ProductTab from "../ProductsList/ProductsList"
+import CategoriesTabsLink from "../CategoriesTabsLink/CategoriesTabLink";
 
 import styles from './Recommendations.module.scss'
 
@@ -28,6 +26,7 @@ const Recommendations = ({ title, link, linkTitle }) => {
         <div className={styles.bestsellers}>
             <div className={styles.titleBar}>
                 <h2 className="font-bold text-[24px]">{lang ? lang?.[`${title}`] : <Skeleton width={300} />}</h2>
+
             </div>
             {
                 data ? (

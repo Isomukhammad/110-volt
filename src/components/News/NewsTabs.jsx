@@ -10,6 +10,7 @@ const NewsTabs = ({ data }) => {
                     <NewsTab
                         key={item.id}
                         data={item}
+                        link="news"
                     />
                 ))
             }

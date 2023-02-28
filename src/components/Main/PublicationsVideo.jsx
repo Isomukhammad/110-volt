@@ -13,6 +13,7 @@ import { nextAxios } from "../../utils/axios";
 import { useMediaQuery } from "react-responsive";
 import ImageComponent from "../ImageComponent/ImageComponent";
 import Skeleton from "react-loading-skeleton";
+import CategoriesTabsLink from "../CategoriesTabsLink/CategoriesTabLink";
 
 
 const disableRevalidation = {
@@ -60,11 +61,14 @@ const PublicationsVideo = () => {
 
     return (
         <div className="PublicationsVideo relative flex flex-col gap-8 lg:gap-10">
-            <h1 className="text-[24px] font-bold lg:text-[32px]">{lang?.['Видеообзоры']}</h1>
+            <div className='flex flex-row justify-between items-center'>
+                <h1 className='font-bold text-[32px]'>{lang?.['Видеообзоры']}</h1>
+                <CategoriesTabsLink title={lang?.['Смотреть все']} url="/news" />
+            </div>
             <div className="PublicationsVideo__slider relative">
                 <Swiper
-                    spaceBetween={16}
-                    slidesPerView={isDesktop ? 3 : 'auto'}
+                    spaceBetween={24}
+                    slidesPerView={!isDesktop ? 'auto' : 3}
                     loopFillGroupWithBlank={true}
                     navigation={{
                         prevEl: swiperPrevRef,

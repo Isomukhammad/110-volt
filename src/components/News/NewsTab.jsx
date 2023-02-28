@@ -4,10 +4,10 @@ import ImageComponent from '../ImageComponent/ImageComponent';
 
 import styles from './NewsTab.module.scss'
 
-const NewsTab = ({ data }) => {
+const NewsTab = ({ data, link }) => {
     const { img, name, description, url, id, slug } = data;
     return (
-        <Link href={`/news/${id}-${slug}`} className={styles.container}>
+        <Link href={`/${link ? link : 'news'}/${id}-${slug}`} className={styles.container}>
             <div className={styles.image}>
                 <ImageComponent
                     src={img}
