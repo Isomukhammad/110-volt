@@ -64,15 +64,17 @@ const PageButtons = ({ data, search, setPage, page, stage, setStage }) => {
                 activeClassName="active"
                 renderOnZeroPageCount={null}
             />
-            <button
-                className={styles.showMore}
-                onClick={() => {
-                    page ? setPage(+page + 1) : router.query.page ? setPage(+router.query.page + 1) : setPage(2)
-                }}
-            >
-                {lang?.['Показать еще']}
-            </button>
-
+            {data ?
+                data.meta.current_page !== data.meta.last_page ?
+                    (<button
+                        className={styles.showMore}
+                        onClick={() => {
+                            page ? setPage(+page + 1) : router.query.page ? setPage(+router.query.page + 1) : setPage(2)
+                        }}
+                    >
+                        {lang?.['Показать еще']}
+                    </button>) : null
+                : (null)}
         </div >
     )
 }

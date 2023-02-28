@@ -129,7 +129,7 @@ const Category = ({
                      loading={dataLoading}
                   />
                   <div className={styles.productsColumn}>
-                     <SortMenu products={products} productsLoading={isValidating} setFilterOpen={setFilterOpen} />
+                     <SortMenu title={lang?.['Фильтры']} products={products} productsLoading={isValidating} setFilterOpen={setFilterOpen} />
                      {
                         productsList ? (
                            <>

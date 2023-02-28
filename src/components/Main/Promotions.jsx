@@ -23,8 +23,6 @@ const Promotions = () => {
         }
     );
 
-    console.log(promotions);
-
     if (!promotions || isValidating) {
         return (
             <div className='hidden mt-[64px] flex-col gap-6 lg:block lg:mt-[120px] lg:gap-12'>

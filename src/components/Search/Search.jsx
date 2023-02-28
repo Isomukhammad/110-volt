@@ -19,13 +19,14 @@ const Search = () => {
     const [formError, setFormError] = useState(null);
     const { view, sortBy, setSortBy } = useSort();
     const { setQuery } = useParams();
-    const [filterOpen, setFilterOpen] = useState(false)
+    const [filterOpen, setFilterOpen] = useState(false);
+    const [page, setPage] = useState(null);
+    const [productsList, setProductsList] = useState(null);
 
     const url = useMemo(() => {
-        return `/products?search=${router.query.value}&page=${router.query.page || 1
-            }&order_by=${sortBy.by}&order_direction=${sortBy.direction}${router.query.category_id && router.query.category_id != 'all'
-                ? `&category_id=${router.query.category_id}`
-                : ''
+        return `/products?search=${router.query.value}&page=${!page ? router.query.page : page}&order_by=${sortBy.by}&order_direction=${sortBy.direction}${router.query.category_id && router.query.category_id != 'all'
+            ? `&category_id=${router.query.category_id}`
+            : ''
             }&quantity=${router.query.quantity || 20}`
     }, [
         router.query.value,
@@ -33,6 +34,7 @@ const Search = () => {
         router.query.category_id,
         router.query.quantity,
         sortBy,
+        page
     ])
 
     const { data: products, isValidating, mutate } = useSWR(router.query.value ? url : null, fetcher, {
@@ -45,6 +47,16 @@ const Search = () => {
             setValue(router.query.value);
         }
     }, [router.query.value])
+
+    useEffect(() => {
+        if (products) {
+            if (page) {
+                setProductsList(prevVal => [...prevVal, ...products.data])
+            } else {
+                setProductsList(products.data);
+            }
+        }
+    }, [products])
 
     const handleSearch = (e) => {
         e.preventDefault();
@@ -86,14 +98,14 @@ const Search = () => {
                         router.query.value ? (
                             <div>
                                 {
-                                    products && products?.data.length !== 0 ? (
+                                    productsList && productsList?.length !== 0 ? (
                                         <>
                                             <div className="mb-10">
-                                                <SortMenu products={products} productsLoading={isValidating} setFilterOpen={setFilterOpen} />
+                                                <SortMenu title={lang?.['Фильтры']} products={products} productsLoading={isValidating} setFilterOpen={setFilterOpen} />
                                             </div>
                                             <div className='grid grid-cols-2 lg:grid-cols-5 gap-4 lg:gap-3'>
                                                 {
-                                                    products?.data.map((info, index) => (
+                                                    productsList?.map((info, index) => (
                                                         <ProductTab
                                                             index={index}
                                                             key={info.id}
@@ -105,7 +117,7 @@ const Search = () => {
                                                     ))
                                                 }
                                             </div>
-                                            <PageButtons data={products} search={value} />
+                                            <PageButtons data={products} search={value} page={page} setPage={setPage} />
                                         </>
                                     ) : (
                                         <div className="mt-4 h-fit rounded-4 font-semibold lg:mt-2">lngНичего не найдено</div>

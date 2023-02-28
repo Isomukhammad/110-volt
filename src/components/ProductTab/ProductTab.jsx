@@ -54,22 +54,23 @@ const ProductTab = ({
     const { isMobile } = useContext(ScreenContext);
     return (
         <>
-            <div
-                onClick={() => handleRouteChange(`/product/${product.id}-${product.slug}`)}
+            <Link
+                href={`/product/${product.id}-${product.slug}`}
                 className={styles.container}
             >
                 <div
                     className={`${styles.preview} ${width ? 'w-[254px] lg:w-full' : ''}`}>
-                    <div
+                    <button
                         className={styles.quickReview}
                         onClick={(e) => {
+                            e.stopPropagation();
                             e.preventDefault();
                             setProductId(index);
                             setQuickView('true');
                         }}
                     >
                         {lang?.['Быстрый просмотр']}
-                    </div>
+                    </button>
                     <div className={styles.image} style={{ backgroundImage: `url(${product.img}` }} />
                 </div>
 
@@ -86,89 +87,86 @@ const ProductTab = ({
                 </div>
 
                 <p className={styles.description}>{product.description}</p>
-                {
-                    isMobile ? (
-                        <div
-                            className='absolute top-0 right-0'
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                e.preventDefault();
-                            }}
+                <div
+                    className='absolute top-0 right-0 lg:hidden'
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        e.preventDefault();
+                    }}
+                >
+                    <button
+                        className='p-3'
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            e.preventDefault();
+                            handleCartSwitch()
+                        }}
+                    >
+                        <svg
+                            viewBox='0 0 24 24'
+                            width={24}
+                            height={24}
+                            fill={productInCart ? "#7B54C9" : "none"}
+                            stroke={productInCart ? "#7B54C9" : "#BDBDBD"}
+                        ><use xlinkHref='#bag-logo' /></svg>
+                    </button>
+                    <button
+                        className='p-3'
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            e.preventDefault();
+                            handleWish({ type: 'ADD', product })
+                        }}
+                    >
+                        <svg
+                            viewBox='0 0 24 24'
+                            width={24}
+                            height={24}
+                            fill={productInWish ? "red" : "none"}
+                            stroke={productInWish ? "none" : "#BDBDBD"}
+                            onClick={() => handleWish({ type: 'ADD', product })}
+                        ><use xlinkHref='#heart' /></svg>
+                    </button>
+                </div>
+                <div
+                    className={styles.buttons}
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        e.preventDefault()
+                    }}
+                >
+                    <div>
+                        <Button
+                            className="bg-accent padding-1 text-white hover:bg-accentDark transition duration-300"
+                            onClick={handleCartSwitch}
+                            loading={cartReqLoading.id == product.id && cartReqLoading.type == 'SWITCH'}
+                            customStyles="w-[128px] flex flex-col items-center justify-center"
                         >
-                            <button
-                                className='p-3'
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    handleCartSwitch()
-                                }}
-                            >
-                                <svg
-                                    viewBox='0 0 24 24'
-                                    width={24}
-                                    height={24}
-                                    fill={productInCart ? "#7B54C9" : "none"}
-                                    stroke={productInCart ? "#7B54C9" : "#BDBDBD"}
-                                ><use xlinkHref='#bag-logo' /></svg>
-                            </button>
-                            <button
-                                className='p-3'
-                                onClick={(e) => {
-                                    e.stopPropagation()
-                                    handleWish({ type: 'ADD', product })
-                                }}
-                            >
-                                <svg
-                                    viewBox='0 0 24 24'
-                                    width={24}
-                                    height={24}
-                                    fill={productInWish ? "red" : "none"}
-                                    stroke={productInWish ? "none" : "#BDBDBD"}
-                                    onClick={() => handleWish({ type: 'ADD', product })}
-                                ><use xlinkHref='#heart' /></svg>
-                            </button>
-                        </div>
-                    ) : (
-                        <div
-                            className={styles.buttons}
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                e.preventDefault()
-                            }}
-                        >
-                            <div>
-                                <Button
-                                    className="bg-accent padding-1 text-white hover:bg-accentDark transition duration-300"
-                                    onClick={handleCartSwitch}
-                                    loading={cartReqLoading.id == product.id && cartReqLoading.type == 'SWITCH'}
-                                    customStyles="w-[128px] flex flex-col items-center justify-center"
-                                >
-                                    {!productInCart && product.in_stock === 0 ? lang?.['нет в наличии'] : productInCart && product.in_stock !== 0 ? lang?.['В корзине'] : lang?.['в корзину']}
-                                </Button>
-                            </div>
-                            <svg
-                                viewBox='0 0 24 24'
-                                width={24}
-                                height={24}
-                                fill={productInWish ? "red" : "none"}
-                                stroke={productInWish ? "none" : "#BDBDBD"}
-                                onClick={() => handleWish({ type: 'ADD', product })}
-                                className="cursor-pointer"
-                            >
-                                {
-                                    wishReqLoading.id == product.id && wishReqLoading.type == 'ADD' ? (
-                                        <ClipLoader
-                                            color="#7B54C9"
-                                            size={16}
-                                        />
-                                    ) : (
-                                        <use xlinkHref="#heart"></use>
-                                    )
-                                }
-                            </svg>
-                        </div>
-                    )
-                }
-            </div >
+                            {!productInCart && product.in_stock === 0 ? lang?.['нет в наличии'] : productInCart && product.in_stock !== 0 ? lang?.['В корзине'] : lang?.['в корзину']}
+                        </Button>
+                    </div>
+                    <svg
+                        viewBox='0 0 24 24'
+                        width={24}
+                        height={24}
+                        fill={productInWish ? "red" : "none"}
+                        stroke={productInWish ? "none" : "#BDBDBD"}
+                        onClick={() => handleWish({ type: 'ADD', product })}
+                        className="cursor-pointer"
+                    >
+                        {
+                            wishReqLoading.id == product.id && wishReqLoading.type == 'ADD' ? (
+                                <ClipLoader
+                                    color="#7B54C9"
+                                    size={16}
+                                />
+                            ) : (
+                                <use xlinkHref="#heart"></use>
+                            )
+                        }
+                    </svg>
+                </div>
+            </Link >
             <QuickView
                 setQuickView={setQuickView}
                 data={product}

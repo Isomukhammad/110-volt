@@ -26,8 +26,6 @@ const SalesPage = () => {
         refreshWhenOffline: false,
     })
 
-    console.log(sales);
-
     if (!sales || isValidating) {
         return (
             <div className="flex flex-col gap-10 mt-10 mb-[120px]">

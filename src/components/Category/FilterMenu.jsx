@@ -9,8 +9,10 @@ import useSWR from 'swr';
 import fetcher from '../../utils/fetcher';
 import { useParams } from '../../hooks/useParams';
 import { useLang } from '../../hooks/useLang';
+import { useRouter } from 'next/router';
 
 const FilterMenu = ({ attributes, brands, prices, loading, category, products, filterOpen, setFilterOpen }) => {
+    const router = useRouter();
     const lang = useLang();
     const [space, setSpace] = useState([]);
     const [sim, setSim] = useState([]);
@@ -90,6 +92,7 @@ const FilterMenu = ({ attributes, brands, prices, loading, category, products, f
                                 key={brand.id}
                                 id={`brand-${brand.id}`}
                                 onChange={() => {
+                                    console.log(router.query)
                                     updateParams('brand', `${brand.id}-${brand.slug}`)
                                 }}
                                 checked={checkParams('brand', `${brand.id}-${brand.slug}`)}

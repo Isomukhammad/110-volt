@@ -36,7 +36,7 @@ const BrandPage = ({ brand }) => {
 
 export const getServerSideProps = async ({ params, locale }) => {
     const brand = await nextAxios
-        .get(`brands/${params.id.split('-')[0]}`, {
+        .get(`brands/${params.brand[0].split('-')[0]}`, {
             headers: { 'Accept-Language': locale }
         })
         .then(res => res.data.data)

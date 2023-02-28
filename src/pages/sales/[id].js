@@ -9,7 +9,6 @@ import HeadInfo from "../../utils/headInfo";
 
 const SalePage = ({ prom }) => {
     const lang = useLang();
-    console.log(prom)
     return (
         <>
             <HeadInfo

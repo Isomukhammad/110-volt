@@ -1,36 +1,16 @@
 import { useContext, useState } from 'react';
-import ReactDropdown from 'react-dropdown';
 import { ScreenContext } from '../../context/screenContext';
 import { useSort } from '../../context/sortContext'
 import { useLang } from '../../hooks/useLang';
+import SortDropdown from './SortDropdown';
 
 import styles from './SortMenu.module.scss';
 
-const SortMenu = ({ setFilterOpen }) => {
+const SortMenu = ({ title, setFilterOpen }) => {
     const lang = useLang();
     const [listView, setListView] = useState(false);
     const { setIsPopular, isPopular, sortBy, setSortBy } = useSort();
     const { isMobile } = useContext(ScreenContext);
-
-    const options = [
-        {
-            value: 'is_popular', label: lang?.['Популярности']
-        },
-        {
-            value: 'is_new', label: lang?.['Новинкам']
-        },
-        {
-            value: 'rating', label: lang?.['Рейтингу']
-        },
-        {
-            value: 'price', label: `${lang?.['Цене']}: ${lang?.['по возрастанию']}`
-        },
-
-        {
-            value: 'sales', label: lang?.['Скидкам']
-        }
-    ];
-    const defaultOption = options[0];
     const [choice, setChoice] = useState('popularity');
     const [isAscending, setIsAscending] = useState(true);
 
@@ -44,33 +24,7 @@ const SortMenu = ({ setFilterOpen }) => {
 
     return (
         <div className={styles.container}>
-            <ReactDropdown
-                onChange={(e) => { set(e.value) }}
-                options={options}
-                value={defaultOption}
-                placeholder="Select an option"
-                arrowClosed={
-                    <svg
-                        viewBox="0 0 24 24"
-                        width={24}
-                        height={24}
-                        fill="#BDBDBD"
-                    >
-                        <use xlinkHref='#arrow-ios-forward'></use>
-                    </svg>
-                }
-                arrowOpen={
-                    <svg
-                        viewBox="0 0 24 24"
-                        width={24}
-                        height={24}
-                        fill="#BDBDBD"
-                    >
-                        <use xlinkHref='#arrow-ios-backward'></use>
-                    </svg>
-                }
-                className={styles.sortDropdown}
-            />
+            <div className='relative lg:hidden order-2'><SortDropdown /></div>
             <div className={styles.sortBy}>
                 <p className={styles.title}>{lang?.['Сортировать по']}: </p>
                 <ul className={styles.choices}>
@@ -144,7 +98,7 @@ const SortMenu = ({ setFilterOpen }) => {
                 >
                     <use xlinkHref='#filter'></use>
                 </svg>
-                <p>{lang?.['Фильтры']}</p>
+                <p>{title}</p>
             </button>
             <div className={styles.viewType}>
                 <svg
