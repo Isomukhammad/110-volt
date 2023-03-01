@@ -25,6 +25,7 @@ const Empty = ({
                     className="Empty block w-full max-w-[420px]"
                     placeholder={blurDataUrl ? 'blur' : 'empty'}
                     blurDataURL={blurDataUrl}
+                    priority
                 />
                 <div className="Empty flex flex-col gap-3 items-center">
                     <h1 className="Empty text-[24px] font-semibold">{title}</h1>

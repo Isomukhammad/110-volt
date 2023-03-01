@@ -7,6 +7,7 @@ import styles from './Categories.module.scss'
 import { SortProvider } from "../../context/sortContext";
 import Category from '../../components/Category/Category'
 import { useRouter } from "next/router";
+import Skeleton from "react-loading-skeleton";
 
 const CategoryPage = ({ category }) => {
     const router = useRouter();
@@ -49,31 +50,58 @@ const CategoryPage = ({ category }) => {
         return baseUrl + getParams(['page']).join('/')
     }, [getParams])
 
-    if (!isLoading) {
-
+    if (isLoading) {
         return (
-            <>
-                <HeadInfo
-                    title={category.seo_title}
-                    description={category.meta_description}
-                    keywords={category.meta_keywords}
-                />
-                <div className={styles.container}>
-                    <div className="">
-                        <SortProvider>
-                            <Category
-                                attributes={data.attributes}
-                                prices={data.prices}
-                                brands={data.brands}
-                                category={category.data}
-                                dataLoading={isLoading}
-                            />
-                        </SortProvider>
+            <div className="flex flex-col gap-10 mt-10 mb-[120px]">
+                <Skeleton width={300} />
+                <div className="flex flex-col gap-2 lg:flex-row lg:gap-5 justify-end lg:justify-start lg:items-end">
+                    <Skeleton width={300} height={32} />
+                    <Skeleton width={150} height={14} />
+                </div>
+                <div className="flex flex-col gap-10 lg:grid lg:grid-cols-[16.6%_83.3%]">
+                    <div>
+                        <div className="lg:hidden"><Skeleton height={50} /></div>
+                        <div className="hidden lg:block">
+                            {[...Array(10).keys()].map((item) => (
+                                <div key={item}><Skeleton /></div>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="flex flex-col gap-10">
+                        <div className="hidden lg:block"><Skeleton height={50} /></div>
+                        <div className="grid grid-cols-2 gap-4 lg:grid-cols-5">
+                            {[...Array(20).keys()].map((item) => (
+                                <div key={item} className="overflow-hidden rounded-[24px]"><Skeleton height={350} /></div>
+                            ))}
+                        </div>
                     </div>
                 </div>
-            </>
+            </div>
         )
     }
+
+    return (
+        <>
+            <HeadInfo
+                title={category.seo_title}
+                description={category.meta_description}
+                keywords={category.meta_keywords}
+            />
+            <div className={styles.container}>
+                <div className="">
+                    <SortProvider>
+                        <Category
+                            attributes={data.attributes}
+                            prices={data.prices}
+                            brands={data.brands}
+                            category={category.data}
+                            dataLoading={isLoading}
+                        />
+                    </SortProvider>
+                </div>
+            </div>
+        </>
+    )
 }
 
 export const getServerSideProps = async ({ params, locale }) => {

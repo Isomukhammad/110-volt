@@ -14,6 +14,7 @@ import FilterMenu from './FilterMenu';
 import SortMenu from './SortMenu';
 import HeadInfo from '../../utils/headInfo';
 import { useLang } from '../../hooks/useLang';
+import Skeleton from 'react-loading-skeleton';
 
 const Category = ({
    attributes,
@@ -149,7 +150,13 @@ const Category = ({
                               </div>
                               <PageButtons data={products} page={page} setPage={setPage} />
                            </>
-                        ) : null
+                        ) : (
+                           <div className="grid grid-cols-2 lg:grid-cols-5 gap-3">
+                              {[...Array(20).keys()].map(item => (
+                                 <div key={item} className="overflow-hidden rounded-[24px]"><Skeleton height={350} /></div>
+                              ))}
+                           </div>
+                        )
                      }
                   </div>
                </div>

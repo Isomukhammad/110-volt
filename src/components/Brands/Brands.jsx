@@ -63,7 +63,7 @@ const Brands = ({ brand, tree }) => {
             </div>
             <div className="lg:grid lg:grid-cols-[16.6%_80%] lg:gap-[30px] lg:mt-10">
                 <div className={`fixed lg:relative flex flex-col gap-6 bg-white w-full h-full top-0 ${filterOpen ? 'left-0 lg:left-0' : 'left-[100%] lg:left-0'} z-[10] py-8 lg:py-0 px-[2em] transition-all duration-300 lg:w-fit lg:h-fit lg:px-0`}>
-                    <h3 className="text-[24px] font-semibold lg:hidden">{lang?.['Фильтры']}</h3>
+                    <h3 className="text-[24px] font-semibold lg:hidden">{lang?.['Категории']}</h3>
                     <div className="flex flex-col gap-10">
                         {
                             tree ? (
@@ -106,7 +106,7 @@ const Brands = ({ brand, tree }) => {
                 </div>
                 <div className="flex flex-col gap-10 mt-10 lg:mt-0">
                     <SortMenu
-                        title={lang?.['Категории']}
+                        title={lang?.['Категории']} Категории
                         filterOpen={filterOpen}
                         setFilterOpen={setFilterOpen}
                     />

@@ -1,4 +1,4 @@
-const updateOptions = (options, auth) => {
+const updateOptions = (options = {}, auth = false) => {
     const update = {
         ...options,
         headers: {

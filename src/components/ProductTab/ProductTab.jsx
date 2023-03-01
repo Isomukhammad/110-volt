@@ -99,22 +99,6 @@ const ProductTab = ({
                         onClick={(e) => {
                             e.stopPropagation();
                             e.preventDefault();
-                            handleCartSwitch()
-                        }}
-                    >
-                        <svg
-                            viewBox='0 0 24 24'
-                            width={24}
-                            height={24}
-                            fill={productInCart ? "#7B54C9" : "none"}
-                            stroke={productInCart ? "#7B54C9" : "#BDBDBD"}
-                        ><use xlinkHref='#bag-logo' /></svg>
-                    </button>
-                    <button
-                        className='p-3'
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            e.preventDefault();
                             handleWish({ type: 'ADD', product })
                         }}
                     >
